@@ -1,0 +1,10 @@
+ro.build.product=HM2014818
+ro.product.device=HM2014818
+ro.product.model=2014818
+ro.product.name=2014818
+
+ro.build.display.wtid=SW_S88047C1_L_V013_M22_MP_XM
+persist.radio.custom_ecc=1
+persist.dbg.volte_avail_ovr=1
+persist.dbg.vt_avail_ovr=1
+ro.mtp.name=HM 2LTE-IN

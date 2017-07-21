@@ -1,0 +1,11 @@
+ro.build.product=HM2014812
+ro.product.device=HM2014812
+ro.product.model=2014812
+ro.product.name=2014812
+
+ro.build.display.wtid=SW_S88047B1_L_V013_M22_MP_XM
+ro.telephony.default_network=10
+telephony.lteOnCdmaDevice=1
+persist.radio.sglte.eons_domain=ps
+ril.subscription.types=RUIM
+ro.mtp.name=HM 2LTE-CT

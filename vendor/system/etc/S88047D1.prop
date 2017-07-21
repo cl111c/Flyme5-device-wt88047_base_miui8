@@ -1,0 +1,8 @@
+ro.build.product=HM2014819
+ro.product.device=HM2014819
+ro.product.model=2014819
+ro.product.name=2014819
+
+ro.build.display.wtid=SW_S88047D1_L_V013_M31_MP_XM
+persist.radio.custom_ecc=1
+ro.mtp.name=HM 2LTE-BR

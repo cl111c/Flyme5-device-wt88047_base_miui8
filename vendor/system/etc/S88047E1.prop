@@ -1,0 +1,8 @@
+ro.build.product=HM2014817
+ro.product.device=HM2014817
+ro.product.model=2014817
+ro.product.name=2014817
+
+ro.build.display.wtid=SW_S88047E1_L_V013_M22_MP_XM
+persist.radio.custom_ecc=1
+ro.mtp.name=HM 2LTE-SA
