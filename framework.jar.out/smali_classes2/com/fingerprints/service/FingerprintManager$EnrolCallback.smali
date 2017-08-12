@@ -23,3 +23,6 @@
 
 .method public abstract onProgress(Lcom/fingerprints/service/FingerprintManager$GuidedData;)V
 .end method
+
+.method public abstract onFingerDownTimeOut()V
+.end method

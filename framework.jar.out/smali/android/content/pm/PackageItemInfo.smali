@@ -493,6 +493,8 @@
 
     move-result-object v4
 
+    goto :goto_1
+
     invoke-static {p1, v1, v2, v3, v4}, Landroid/app/MiuiThemeHelper;->getDrawable(Landroid/content/pm/PackageManager;Ljava/lang/String;Ljava/lang/String;ILandroid/content/pm/ApplicationInfo;)Landroid/graphics/drawable/Drawable;
 
     move-result-object v0
@@ -521,6 +523,7 @@
 
     .restart local v0    # "dr":Landroid/graphics/drawable/Drawable;
     :cond_1
+    :goto_1
     invoke-virtual {p0}, Landroid/content/pm/PackageItemInfo;->getApplicationInfo()Landroid/content/pm/ApplicationInfo;
 
     move-result-object v1

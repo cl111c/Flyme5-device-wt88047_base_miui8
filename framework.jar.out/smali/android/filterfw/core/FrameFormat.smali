@@ -600,52 +600,45 @@
     .param p0, "target"    # I
 
     .prologue
-    .line 359
     packed-switch p0, :pswitch_data_0
 
-    .line 366
-    const-string/jumbo v0, "unknown"
+    const-string v0, "unknown"
 
     :goto_0
     return-object v0
 
-    .line 360
     :pswitch_0
-    const-string/jumbo v0, "unspecified"
+    const-string v0, "unspecified"
 
     goto :goto_0
 
-    .line 361
     :pswitch_1
-    const-string/jumbo v0, "simple"
+    const-string v0, "simple"
 
     goto :goto_0
 
-    .line 362
     :pswitch_2
-    const-string/jumbo v0, "native"
+    const-string v0, "native"
 
     goto :goto_0
 
-    .line 363
     :pswitch_3
     const-string v0, "gpu"
 
     goto :goto_0
 
-    .line 364
     :pswitch_4
-    const-string/jumbo v0, "vbo"
+    const-string v0, "vbo"
 
     goto :goto_0
 
-    .line 365
     :pswitch_5
-    const-string/jumbo v0, "renderscript"
+    const-string v0, "renderscript"
 
     goto :goto_0
 
-    .line 359
+    nop
+
     :pswitch_data_0
     .packed-switch 0x0
         :pswitch_0

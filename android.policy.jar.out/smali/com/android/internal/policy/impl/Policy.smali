@@ -174,10 +174,9 @@
     .param p1, "context"    # Landroid/content/Context;
 
     .prologue
-    .line 62
-    new-instance v0, Lcom/android/internal/policy/impl/MiuiPhoneWindow;
+    new-instance v0, Lcom/android/internal/policy/impl/PhoneWindow;
 
-    invoke-direct {v0, p1}, Lcom/android/internal/policy/impl/MiuiPhoneWindow;-><init>(Landroid/content/Context;)V
+    invoke-direct {v0, p1}, Lcom/android/internal/policy/impl/PhoneWindow;-><init>(Landroid/content/Context;)V
 
     return-object v0
 .end method
@@ -186,10 +185,9 @@
     .locals 1
 
     .prologue
-    .line 72
-    new-instance v0, Lcom/android/internal/policy/impl/MiuiPhoneWindowManager;
+    new-instance v0, Lcom/android/internal/policy/impl/PhoneWindowManager;
 
-    invoke-direct {v0}, Lcom/android/internal/policy/impl/MiuiPhoneWindowManager;-><init>()V
+    invoke-direct {v0}, Lcom/android/internal/policy/impl/PhoneWindowManager;-><init>()V
 
     return-object v0
 .end method

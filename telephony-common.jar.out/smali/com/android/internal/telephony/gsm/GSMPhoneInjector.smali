@@ -43,6 +43,8 @@
     .local p2, "uiccApplication":Ljava/util/concurrent/atomic/AtomicReference;, "Ljava/util/concurrent/atomic/AtomicReference<Lcom/android/internal/telephony/uicc/UiccCardApplication;>;"
     const/4 v5, 0x0
 
+    return v5
+
     .line 18
     const-string v4, "isLivetalk"
 

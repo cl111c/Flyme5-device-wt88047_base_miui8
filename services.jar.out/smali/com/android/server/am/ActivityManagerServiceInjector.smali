@@ -793,15 +793,10 @@
     .param p0, "context"    # Landroid/content/Context;
 
     .prologue
-    .line 77
     sget v0, Lmiui/R$style;->Theme_Light:I
 
-    invoke-virtual {p0, v0}, Landroid/content/Context;->setTheme(I)V
-
-    .line 78
     invoke-static {}, Lcom/android/server/am/ExtraActivityManagerService;->init()V
 
-    .line 79
     return-void
 .end method
 
@@ -1920,6 +1915,11 @@
     .param p1, "data"    # Ljava/util/HashMap;
 
     .prologue
+
+    const/4 v1, 0x0
+
+    return v1
+
     const/4 v6, 0x1
 
     .line 97

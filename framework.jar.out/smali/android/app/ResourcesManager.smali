@@ -231,38 +231,31 @@
 
     if-nez v11, :cond_3
 
-    .line 270
     :cond_2
     iput-object p2, p0, Landroid/app/ResourcesManager;->mResCompatibilityInfo:Landroid/content/res/CompatibilityInfo;
 
-    .line 271
     or-int/lit16 v0, v0, 0xd00
 
-    .line 277
     :cond_3
-    invoke-static {v0, p1}, Landroid/app/MiuiThemeHelper;->handleExtraConfigurationChanges(ILandroid/content/res/Configuration;)V
+#    invoke-static {v0, p1}, Landroid/app/MiuiThemeHelper;->handleExtraConfigurationChanges(ILandroid/content/res/Configuration;)V
 
-    .line 280
     iget-object v11, p1, Landroid/content/res/Configuration;->locale:Ljava/util/Locale;
 
     if-eqz v11, :cond_4
 
-    .line 281
     iget-object v11, p1, Landroid/content/res/Configuration;->locale:Ljava/util/Locale;
 
     invoke-static {v11}, Ljava/util/Locale;->setDefault(Ljava/util/Locale;)V
 
-    .line 284
     :cond_4
     invoke-static {p1, v1, p2}, Landroid/content/res/Resources;->updateSystemConfiguration(Landroid/content/res/Configuration;Landroid/util/DisplayMetrics;Landroid/content/res/CompatibilityInfo;)V
 
-    .line 286
+    invoke-direct {p0, v0}, Landroid/app/ResourcesManager;->flymeFreeCaches(I)V
+
     invoke-static {}, Landroid/app/ApplicationPackageManager;->configurationChanged()V
 
-    .line 289
     const/4 v9, 0x0
 
-    .line 291
     .local v9, "tmpConfig":Landroid/content/res/Configuration;
     iget-object v11, p0, Landroid/app/ResourcesManager;->mActiveResources:Landroid/util/ArrayMap;
 
@@ -1075,14 +1068,14 @@
     .line 231
     :cond_a
     :goto_6
-    new-instance v7, Landroid/content/res/MiuiResources;
+    new-instance v7, Landroid/content/res/Resources;
 
     .end local v7    # "r":Landroid/content/res/Resources;
     move-object/from16 v11, p7
 
     move-object/from16 v12, p8
 
-    invoke-direct/range {v7 .. v12}, Landroid/content/res/MiuiResources;-><init>(Landroid/content/res/AssetManager;Landroid/util/DisplayMetrics;Landroid/content/res/Configuration;Landroid/content/res/CompatibilityInfo;Landroid/os/IBinder;)V
+    invoke-direct/range {v7 .. v12}, Landroid/content/res/Resources;-><init>(Landroid/content/res/AssetManager;Landroid/util/DisplayMetrics;Landroid/content/res/Configuration;Landroid/content/res/CompatibilityInfo;Landroid/os/IBinder;)V
 
     .line 238
     .restart local v7    # "r":Landroid/content/res/Resources;
@@ -1201,4 +1194,40 @@
     move-object v14, v7
 
     goto/16 :goto_1
+.end method
+
+.method private flymeFreeCaches(I)V
+    .locals 1
+    .param p1, "changes"    # I
+
+    .prologue
+    and-int/lit16 v0, p1, 0x4000
+
+    if-eqz v0, :cond_0
+
+    invoke-static {}, Landroid/graphics/Canvas;->freeCaches()V
+
+    invoke-static {}, Landroid/graphics/Canvas;->freeTextLayoutCaches()V
+
+    invoke-static {}, Landroid/content/res/flymetheme/iconfilter/IconFilter;->getInstance()Landroid/content/res/flymetheme/iconfilter/IconFilter;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Landroid/content/res/flymetheme/iconfilter/IconFilter;->cleanFilter()V
+
+    :cond_0
+    const v0, 0x8000
+
+    and-int/2addr v0, p1
+
+    if-eqz v0, :cond_1
+
+    invoke-static {}, Landroid/graphics/Canvas;->freeCaches()V
+
+    invoke-static {}, Landroid/graphics/Canvas;->freeTextLayoutCaches()V
+
+    invoke-static {}, Landroid/content/res/flymetheme/FlymeFontsHelper;->cleanflymeTypeface()V
+
+    :cond_1
+    return-void
 .end method

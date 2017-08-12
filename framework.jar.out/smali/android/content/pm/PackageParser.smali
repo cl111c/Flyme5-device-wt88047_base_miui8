@@ -11,6 +11,7 @@
         Landroid/content/pm/PackageParser$ProviderIntentInfo;,
         Landroid/content/pm/PackageParser$ServiceIntentInfo;,
         Landroid/content/pm/PackageParser$ActivityIntentInfo;,
+        Landroid/content/pm/PackageParser$FlymeInjector;,
         Landroid/content/pm/PackageParser$IntentInfo;,
         Landroid/content/pm/PackageParser$Instrumentation;,
         Landroid/content/pm/PackageParser$Provider;,
@@ -4136,6 +4137,10 @@
 
     iput v3, v2, Landroid/content/pm/ActivityInfo;->uiOptions:I
 
+    move-object/from16 v0, v18
+
+    invoke-static {v14, v0}, Landroid/content/pm/PackageParser$FlymeInjector;->parseAccessArgsFromResource(Landroid/content/pm/PackageParser$Activity;Landroid/content/res/TypedArray;)V
+
     .line 3021
     const/16 v2, 0x1b
 
@@ -5045,7 +5050,7 @@
 
     move/from16 v0, v21
 
-    if-eq v0, v2, :cond_2a
+    if-eq v0, v2, :cond_2b
 
     const/4 v2, 0x3
 
@@ -5057,7 +5062,7 @@
 
     move-result v2
 
-    if-le v2, v15, :cond_2a
+    if-le v2, v15, :cond_2b
 
     .line 3214
     :cond_20
@@ -5313,7 +5318,7 @@
 
     move-result v2
 
-    if-eqz v2, :cond_28
+    if-eqz v2, :cond_29
 
     .line 3246
     iget-object v12, v14, Landroid/content/pm/PackageParser$Activity;->metaData:Landroid/os/Bundle;
@@ -5334,7 +5339,7 @@
 
     iput-object v2, v14, Landroid/content/pm/PackageParser$Activity;->metaData:Landroid/os/Bundle;
 
-    if-nez v2, :cond_1f
+    if-nez v2, :cond_28
 
     .line 3248
     const/4 v14, 0x0
@@ -5343,6 +5348,11 @@
 
     .line 3252
     :cond_28
+    invoke-static/range {v14 .. v14}, Landroid/content/pm/PackageParser$FlymeInjector;->parseAccessMetaFromResource(Landroid/content/pm/PackageParser$Activity;)V
+
+    goto/16 :goto_7
+
+    :cond_29
     const-string v2, "PackageParser"
 
     new-instance v3, Ljava/lang/StringBuilder;
@@ -5375,10 +5385,8 @@
 
     invoke-static {v2, v3}, Landroid/util/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 3253
-    if-eqz p7, :cond_29
+    if-eqz p7, :cond_2a
 
-    .line 3254
     const-string v2, "PackageParser"
 
     new-instance v3, Ljava/lang/StringBuilder;
@@ -5433,14 +5441,12 @@
 
     invoke-static {v2, v3}, Landroid/util/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 3262
     :goto_8
     invoke-static/range {p3 .. p3}, Lcom/android/internal/util/XmlUtils;->skipCurrentTag(Lorg/xmlpull/v1/XmlPullParser;)V
 
     goto/16 :goto_7
 
-    .line 3258
-    :cond_29
+    :cond_2a
     const-string v2, "PackageParser"
 
     new-instance v3, Ljava/lang/StringBuilder;
@@ -5497,11 +5503,9 @@
 
     goto :goto_8
 
-    .line 3275
-    :cond_2a
+    :cond_2b
     if-nez v19, :cond_1
 
-    .line 3276
     iget-object v3, v14, Landroid/content/pm/PackageParser$Activity;->info:Landroid/content/pm/ActivityInfo;
 
     iget-object v2, v14, Landroid/content/pm/PackageParser$Activity;->intents:Ljava/util/ArrayList;
@@ -5510,7 +5514,7 @@
 
     move-result v2
 
-    if-lez v2, :cond_2b
+    if-lez v2, :cond_2c
 
     const/4 v2, 0x1
 
@@ -5519,7 +5523,7 @@
 
     goto/16 :goto_1
 
-    :cond_2b
+    :cond_2c
     const/4 v2, 0x0
 
     goto :goto_9
@@ -5997,6 +6001,12 @@
     move-object/from16 v0, v17
 
     iput v2, v0, Landroid/content/pm/ActivityInfo;->maxRecents:I
+
+    move-object/from16 v0, v17
+
+    move-object/from16 v1, v25
+
+    invoke-static {v0, v1}, Landroid/content/pm/PackageParser$FlymeInjector;->copyAccessArgs(Landroid/content/pm/ActivityInfo;Landroid/content/pm/PackageParser$Activity;)V
 
     .line 3361
     new-instance v15, Landroid/content/pm/PackageParser$Activity;
@@ -10449,7 +10459,7 @@
     .line 892
     .local v27, "parser":Landroid/content/res/XmlResourceParser;
     :try_start_0
-    new-instance v30, Landroid/content/res/MiuiResources;
+    new-instance v30, Landroid/content/res/Resources;
 
     move-object/from16 v0, p0
 
@@ -10461,7 +10471,7 @@
 
     move-object/from16 v1, p2
 
-    invoke-direct {v0, v1, v5, v6}, Landroid/content/res/MiuiResources;-><init>(Landroid/content/res/AssetManager;Landroid/util/DisplayMetrics;Landroid/content/res/Configuration;)V
+    invoke-direct {v0, v1, v5, v6}, Landroid/content/res/Resources;-><init>(Landroid/content/res/AssetManager;Landroid/util/DisplayMetrics;Landroid/content/res/Configuration;)V
     :try_end_0
     .catch Landroid/content/pm/PackageParser$PackageParserException; {:try_start_0 .. :try_end_0} :catch_3
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_1
@@ -20674,26 +20684,33 @@
     .param p1, "requiresSeparator"    # Z
 
     .prologue
-    .line 1208
+    invoke-static/range {p0 .. p0}, Landroid/content/pm/PackageParser$FlymeInjector;->validateName(Ljava/lang/String;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    const/4 v0, 0x0
+
+    return-object v0
+
+    :cond_0
     invoke-virtual {p0}, Ljava/lang/String;->length()I
 
     move-result v0
 
-    .line 1209
     .local v0, "N":I
     const/4 v3, 0x0
 
-    .line 1210
     .local v3, "hasSep":Z
     const/4 v2, 0x1
 
-    .line 1211
     .local v2, "front":Z
     const/4 v4, 0x0
 
     .local v4, "i":I
     :goto_0
-    if-ge v4, v0, :cond_7
+    if-ge v4, v0, :cond_8
 
     .line 1212
     invoke-virtual {p0, v4}, Ljava/lang/String;->charAt(I)C
@@ -20704,67 +20721,58 @@
     .local v1, "c":C
     const/16 v5, 0x61
 
-    if-lt v1, v5, :cond_0
+    if-lt v1, v5, :cond_1
 
     const/16 v5, 0x7a
 
-    if-le v1, v5, :cond_1
+    if-le v1, v5, :cond_2
 
-    :cond_0
+    :cond_1
     const/16 v5, 0x41
 
-    if-lt v1, v5, :cond_3
+    if-lt v1, v5, :cond_4
 
     const/16 v5, 0x5a
 
-    if-gt v1, v5, :cond_3
+    if-gt v1, v5, :cond_4
 
-    .line 1214
-    :cond_1
+    :cond_2
     const/4 v2, 0x0
 
-    .line 1211
-    :cond_2
+    :cond_3
     :goto_1
     add-int/lit8 v4, v4, 0x1
 
     goto :goto_0
 
-    .line 1217
-    :cond_3
-    if-nez v2, :cond_5
+    :cond_4
+    if-nez v2, :cond_6
 
-    .line 1218
     const/16 v5, 0x30
 
-    if-lt v1, v5, :cond_4
+    if-lt v1, v5, :cond_5
 
     const/16 v5, 0x39
 
-    if-le v1, v5, :cond_2
+    if-le v1, v5, :cond_3
 
-    :cond_4
+    :cond_5
     const/16 v5, 0x5f
 
-    if-eq v1, v5, :cond_2
+    if-eq v1, v5, :cond_3
 
-    .line 1222
-    :cond_5
+    :cond_6
     const/16 v5, 0x2e
 
-    if-ne v1, v5, :cond_6
+    if-ne v1, v5, :cond_7
 
-    .line 1223
     const/4 v3, 0x1
 
-    .line 1224
     const/4 v2, 0x1
 
-    .line 1225
     goto :goto_1
 
-    .line 1227
-    :cond_6
+    :cond_7
     new-instance v5, Ljava/lang/StringBuilder;
 
     invoke-direct {v5}, Ljava/lang/StringBuilder;-><init>()V
@@ -20794,18 +20802,18 @@
     :goto_2
     return-object v5
 
-    :cond_7
-    if-nez v3, :cond_8
-
-    if-nez p1, :cond_9
-
     :cond_8
+    if-nez v3, :cond_9
+
+    if-nez p1, :cond_a
+
+    :cond_9
     const/4 v5, 0x0
 
     goto :goto_2
 
-    :cond_9
-    const-string/jumbo v5, "must have at least one \'.\' separator"
+    :cond_a
+    const-string v5, "must have at least one \'.\' separator"
 
     goto :goto_2
 .end method

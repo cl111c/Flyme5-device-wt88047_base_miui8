@@ -48,14 +48,10 @@
     .param p0, "context"    # Landroid/content/Context;
 
     .prologue
-    .line 18
-    invoke-static {p0}, Lmiui/os/Environment;->isUsingMiui(Landroid/content/Context;)Z
-
-    move-result v3
+    const/4 v3, 0x0
 
     if-eqz v3, :cond_0
 
-    .line 19
     invoke-virtual {p0}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
 
     move-result-object v3
@@ -102,14 +98,10 @@
     .param p1, "defaultValue"    # I
 
     .prologue
-    .line 48
-    invoke-static {p0}, Lmiui/os/Environment;->isUsingMiui(Landroid/content/Context;)Z
-
-    move-result v0
+    const/4 v0, 0x0
 
     if-eqz v0, :cond_0
 
-    .line 49
     invoke-virtual {p0}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
 
     move-result-object v0
@@ -138,14 +130,10 @@
     .param p1, "defaultValue"    # I
 
     .prologue
-    .line 41
-    invoke-static {p0}, Lmiui/os/Environment;->isUsingMiui(Landroid/content/Context;)Z
-
-    move-result v0
+    const/4 v0, 0x0
 
     if-eqz v0, :cond_0
 
-    .line 42
     invoke-virtual {p0}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
 
     move-result-object v0
@@ -173,10 +161,7 @@
     .param p0, "context"    # Landroid/content/Context;
 
     .prologue
-    .line 29
-    invoke-static {p0}, Lmiui/os/Environment;->isUsingMiui(Landroid/content/Context;)Z
-
-    move-result v0
+    const/4 v0, 0x0
 
     return v0
 .end method
@@ -187,14 +172,10 @@
     .param p1, "configuration"    # Landroid/view/ViewConfiguration;
 
     .prologue
-    .line 33
-    invoke-static {p0}, Lmiui/os/Environment;->isUsingMiui(Landroid/content/Context;)Z
-
-    move-result v2
+    const/4 v2, 0x0
 
     if-eqz v2, :cond_0
 
-    .line 34
     invoke-virtual {p0}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
 
     move-result-object v2

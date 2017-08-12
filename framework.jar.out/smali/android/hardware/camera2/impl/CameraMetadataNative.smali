@@ -3408,14 +3408,10 @@
 
     goto :goto_1
 
-    .line 240
     :pswitch_1
     const-string v0, "CELLID"
 
     goto :goto_0
-
-    .line 236
-    nop
 
     :sswitch_data_0
     .sparse-switch
@@ -3493,14 +3489,10 @@
 
     goto :goto_1
 
-    .line 254
     :pswitch_1
-    const-string/jumbo v0, "network"
+    const-string v0, "network"
 
     goto :goto_0
-
-    .line 250
-    nop
 
     :sswitch_data_0
     .sparse-switch

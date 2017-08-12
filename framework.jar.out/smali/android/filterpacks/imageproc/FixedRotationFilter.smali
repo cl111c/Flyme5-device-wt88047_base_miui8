@@ -204,37 +204,33 @@
 
     invoke-direct {v9, v7, v5, v8, v6}, Landroid/filterfw/geometry/Quad;-><init>(Landroid/filterfw/geometry/Point;Landroid/filterfw/geometry/Point;Landroid/filterfw/geometry/Point;Landroid/filterfw/geometry/Point;)V
 
-    .line 82
     .restart local v9    # "sourceRegion":Landroid/filterfw/geometry/Quad;
     invoke-virtual {v4, v0, v10}, Landroid/filterfw/core/MutableFrameFormat;->setDimensions(II)V
 
     goto :goto_1
 
-    .line 85
     .end local v9    # "sourceRegion":Landroid/filterfw/geometry/Quad;
     :pswitch_1
     new-instance v9, Landroid/filterfw/geometry/Quad;
 
     invoke-direct {v9, v8, v7, v6, v5}, Landroid/filterfw/geometry/Quad;-><init>(Landroid/filterfw/geometry/Point;Landroid/filterfw/geometry/Point;Landroid/filterfw/geometry/Point;Landroid/filterfw/geometry/Point;)V
 
-    .line 86
     .restart local v9    # "sourceRegion":Landroid/filterfw/geometry/Quad;
     goto :goto_1
 
-    .line 88
     .end local v9    # "sourceRegion":Landroid/filterfw/geometry/Quad;
     :pswitch_2
     new-instance v9, Landroid/filterfw/geometry/Quad;
 
     invoke-direct {v9, v6, v8, v5, v7}, Landroid/filterfw/geometry/Quad;-><init>(Landroid/filterfw/geometry/Point;Landroid/filterfw/geometry/Point;Landroid/filterfw/geometry/Point;Landroid/filterfw/geometry/Point;)V
 
-    .line 89
     .restart local v9    # "sourceRegion":Landroid/filterfw/geometry/Quad;
     invoke-virtual {v4, v0, v10}, Landroid/filterfw/core/MutableFrameFormat;->setDimensions(II)V
 
     goto :goto_1
 
-    .line 79
+    nop
+
     :pswitch_data_0
     .packed-switch 0x1
         :pswitch_0

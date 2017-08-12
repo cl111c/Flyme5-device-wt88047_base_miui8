@@ -216,8 +216,6 @@
 
     move-result-object v3
 
-    invoke-virtual {v1, v2, v3}, Landroid/content/ContentValues;->put(Ljava/lang/String;Ljava/lang/Integer;)V
-
     .line 476
     const-string v2, "address"
 
@@ -262,8 +260,6 @@
     invoke-static/range {p11 .. p11}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
     move-result-object v3
-
-    invoke-virtual {v1, v2, v3}, Landroid/content/ContentValues;->put(Ljava/lang/String;Ljava/lang/Integer;)V
 
     .line 484
     if-eqz p8, :cond_1
@@ -542,6 +538,8 @@
 
     invoke-virtual {v3, v0, v1}, Landroid/content/ContentValues;->put(Ljava/lang/String;Ljava/lang/Integer;)V
 
+    invoke-static/range {v3 .. v3}, Landroid/provider/Telephony$Sms;->setFlymeExtraValues(Landroid/content/ContentValues;)V
+
     .line 536
     invoke-virtual {p0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
 
@@ -600,11 +598,7 @@
     :cond_3
     move v0, v9
 
-    .line 536
     goto :goto_3
-
-    .line 510
-    nop
 
     :pswitch_data_0
     .packed-switch 0x1
@@ -785,4 +779,24 @@
 
     .line 346
     goto :goto_2
+.end method
+
+.method private static setFlymeExtraValues(Landroid/content/ContentValues;)V
+    .locals 4
+    .param p0, "values"    # Landroid/content/ContentValues;
+
+    .prologue
+    const-string v0, "date"
+
+    new-instance v1, Ljava/lang/Long;
+
+    invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
+
+    move-result-wide v2
+
+    invoke-direct {v1, v2, v3}, Ljava/lang/Long;-><init>(J)V
+
+    invoke-virtual {p0, v0, v1}, Landroid/content/ContentValues;->put(Ljava/lang/String;Ljava/lang/Long;)V
+
+    return-void
 .end method

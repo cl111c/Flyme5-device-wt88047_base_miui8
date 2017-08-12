@@ -1200,27 +1200,21 @@
 
     invoke-static {p1, v0}, Landroid/os/UserHandle;->formatUid(Ljava/io/PrintWriter;I)V
 
-    .line 3697
     const-string v0, ":\""
 
     invoke-virtual {p1, v0}, Ljava/io/PrintWriter;->print(Ljava/lang/String;)V
 
-    .line 3698
     iget-object v0, p2, Landroid/os/BatteryStats$HistoryItem;->eventTag:Landroid/os/BatteryStats$HistoryTag;
 
     iget-object v0, v0, Landroid/os/BatteryStats$HistoryTag;->string:Ljava/lang/String;
 
     invoke-virtual {p1, v0}, Ljava/io/PrintWriter;->print(Ljava/lang/String;)V
 
-    .line 3699
     const-string v0, "\""
 
     invoke-virtual {p1, v0}, Ljava/io/PrintWriter;->print(Ljava/lang/String;)V
 
     goto/16 :goto_15
-
-    .line 3577
-    nop
 
     :pswitch_data_0
     .packed-switch 0x1

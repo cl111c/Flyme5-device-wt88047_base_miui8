@@ -1266,15 +1266,11 @@
 
     if-eqz v3, :cond_2
 
-    .line 5362
     const-string v3, "dev_shutdown=true"
 
     invoke-static {v3}, Landroid/media/AudioSystem;->setParameters(Ljava/lang/String;)I
 
     goto/16 :goto_1
-
-    .line 5166
-    nop
 
     :pswitch_data_0
     .packed-switch 0x1

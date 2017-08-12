@@ -1,0 +1,415 @@
+.method private constructor <init>(Landroid/content/Context;)V
+    .locals 14
+    .param p1, "context"    # Landroid/content/Context;
+
+    .prologue
+    const/4 v12, 0x1
+
+    const/4 v4, 0x0
+
+    const/4 v13, 0x0
+
+    .line 733
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    .line 141
+    new-instance v0, Ljava/util/HashMap;
+
+    invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
+
+    iput-object v0, p0, Lcom/android/keyguard/KeyguardUpdateMonitor;->mSimDatas:Ljava/util/HashMap;
+
+    .line 156
+    iput v13, p0, Lcom/android/keyguard/KeyguardUpdateMonitor;->mFailedAttempts:I
+
+    .line 157
+    iput v13, p0, Lcom/android/keyguard/KeyguardUpdateMonitor;->mFailedBiometricUnlockAttempts:I
+
+    .line 163
+    invoke-static {}, Lcom/google/android/collect/Lists;->newArrayList()Ljava/util/ArrayList;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lcom/android/keyguard/KeyguardUpdateMonitor;->mCallbacks:Ljava/util/ArrayList;
+
+    .line 183
+    iput-boolean v13, p0, Lcom/android/keyguard/KeyguardUpdateMonitor;->mHolsterMode:Z
+
+    .line 185
+    iput v13, p0, Lcom/android/keyguard/KeyguardUpdateMonitor;->mRecongnizeFailTime:I
+
+    .line 187
+    new-instance v0, Lcom/android/keyguard/KeyguardUpdateMonitor$1;
+
+    invoke-direct {v0, p0}, Lcom/android/keyguard/KeyguardUpdateMonitor$1;-><init>(Lcom/android/keyguard/KeyguardUpdateMonitor;)V
+
+    iput-object v0, p0, Lcom/android/keyguard/KeyguardUpdateMonitor;->mHandler:Landroid/os/Handler;
+
+    .line 289
+    new-instance v0, Lcom/android/keyguard/KeyguardUpdateMonitor$2;
+
+    invoke-direct {v0, p0}, Lcom/android/keyguard/KeyguardUpdateMonitor$2;-><init>(Lcom/android/keyguard/KeyguardUpdateMonitor;)V
+
+    iput-object v0, p0, Lcom/android/keyguard/KeyguardUpdateMonitor;->mSubscriptionListener:Landroid/telephony/SubscriptionManager$OnSubscriptionsChangedListener;
+
+    .line 297
+    new-instance v0, Landroid/util/SparseBooleanArray;
+
+    invoke-direct {v0}, Landroid/util/SparseBooleanArray;-><init>()V
+
+    iput-object v0, p0, Lcom/android/keyguard/KeyguardUpdateMonitor;->mUserHasTrust:Landroid/util/SparseBooleanArray;
+
+    .line 298
+    new-instance v0, Landroid/util/SparseBooleanArray;
+
+    invoke-direct {v0}, Landroid/util/SparseBooleanArray;-><init>()V
+
+    iput-object v0, p0, Lcom/android/keyguard/KeyguardUpdateMonitor;->mUserTrustIsManaged:Landroid/util/SparseBooleanArray;
+
+    .line 299
+    new-instance v0, Landroid/util/SparseBooleanArray;
+
+    invoke-direct {v0}, Landroid/util/SparseBooleanArray;-><init>()V
+
+    iput-object v0, p0, Lcom/android/keyguard/KeyguardUpdateMonitor;->mUserFingerprintRecognized:Landroid/util/SparseBooleanArray;
+
+    .line 300
+    new-instance v0, Landroid/util/SparseBooleanArray;
+
+    invoke-direct {v0}, Landroid/util/SparseBooleanArray;-><init>()V
+
+    iput-object v0, p0, Lcom/android/keyguard/KeyguardUpdateMonitor;->mUserFaceUnlockRunning:Landroid/util/SparseBooleanArray;
+
+    .line 487
+    new-instance v0, Lcom/android/keyguard/KeyguardUpdateMonitor$DisplayClientState;
+
+    invoke-direct {v0}, Lcom/android/keyguard/KeyguardUpdateMonitor$DisplayClientState;-><init>()V
+
+    iput-object v0, p0, Lcom/android/keyguard/KeyguardUpdateMonitor;->mDisplayClientState:Lcom/android/keyguard/KeyguardUpdateMonitor$DisplayClientState;
+
+    .line 489
+    new-instance v0, Lcom/android/keyguard/KeyguardUpdateMonitor$3;
+
+    invoke-direct {v0, p0}, Lcom/android/keyguard/KeyguardUpdateMonitor$3;-><init>(Lcom/android/keyguard/KeyguardUpdateMonitor;)V
+
+    iput-object v0, p0, Lcom/android/keyguard/KeyguardUpdateMonitor;->mBroadcastReceiver:Landroid/content/BroadcastReceiver;
+
+    .line 532
+    new-instance v0, Lcom/android/keyguard/KeyguardUpdateMonitor$4;
+
+    invoke-direct {v0, p0}, Lcom/android/keyguard/KeyguardUpdateMonitor$4;-><init>(Lcom/android/keyguard/KeyguardUpdateMonitor;)V
+
+    iput-object v0, p0, Lcom/android/keyguard/KeyguardUpdateMonitor;->mBroadcastAllReceiver:Landroid/content/BroadcastReceiver;
+
+    .line 553
+    new-instance v0, Lcom/android/keyguard/KeyguardUpdateMonitor$5;
+
+    invoke-direct {v0, p0}, Lcom/android/keyguard/KeyguardUpdateMonitor$5;-><init>(Lcom/android/keyguard/KeyguardUpdateMonitor;)V
+
+    iput-object v0, p0, Lcom/android/keyguard/KeyguardUpdateMonitor;->mFingerprintManagerReceiver:Landroid/service/fingerprint/FingerprintManagerReceiver;
+
+    .line 838
+    new-instance v0, Lcom/android/keyguard/KeyguardUpdateMonitor$7;
+
+    new-instance v1, Landroid/os/Handler;
+
+    invoke-direct {v1}, Landroid/os/Handler;-><init>()V
+
+    invoke-direct {v0, p0, v1}, Lcom/android/keyguard/KeyguardUpdateMonitor$7;-><init>(Lcom/android/keyguard/KeyguardUpdateMonitor;Landroid/os/Handler;)V
+
+    iput-object v0, p0, Lcom/android/keyguard/KeyguardUpdateMonitor;->mContentObserver:Landroid/database/ContentObserver;
+
+    .line 868
+    new-instance v0, Lcom/android/keyguard/KeyguardUpdateMonitor$8;
+
+    new-instance v1, Landroid/os/Handler;
+
+    invoke-direct {v1}, Landroid/os/Handler;-><init>()V
+
+    invoke-direct {v0, p0, v1}, Lcom/android/keyguard/KeyguardUpdateMonitor$8;-><init>(Lcom/android/keyguard/KeyguardUpdateMonitor;Landroid/os/Handler;)V
+
+    iput-object v0, p0, Lcom/android/keyguard/KeyguardUpdateMonitor;->mEasyModeContentObserver:Landroid/database/ContentObserver;
+
+    .line 1508
+    invoke-static {}, Lcom/google/android/collect/Lists;->newArrayList()Ljava/util/ArrayList;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lcom/android/keyguard/KeyguardUpdateMonitor;->mFindPhoneCallbacks:Ljava/util/ArrayList;
+
+    .line 1568
+    iput-object v4, p0, Lcom/android/keyguard/KeyguardUpdateMonitor;->mLockPatternUtils:Lcom/android/internal/widget/LockPatternUtils;
+
+    .line 734
+    iput-object p1, p0, Lcom/android/keyguard/KeyguardUpdateMonitor;->mContext:Landroid/content/Context;
+
+    .line 735
+    invoke-static {p1}, Landroid/telephony/SubscriptionManager;->from(Landroid/content/Context;)Landroid/telephony/SubscriptionManager;
+
+    move-result-object v0
+
+    iput-object v0, p0, Lcom/android/keyguard/KeyguardUpdateMonitor;->mSubscriptionManager:Landroid/telephony/SubscriptionManager;
+
+    .line 736
+    invoke-direct {p0}, Lcom/android/keyguard/KeyguardUpdateMonitor;->isDeviceProvisionedInSettingsDb()Z
+
+    move-result v0
+
+    iput-boolean v0, p0, Lcom/android/keyguard/KeyguardUpdateMonitor;->mDeviceProvisioned:Z
+
+    .line 739
+    iget-boolean v0, p0, Lcom/android/keyguard/KeyguardUpdateMonitor;->mDeviceProvisioned:Z
+
+    if-nez v0, :cond_0
+
+    .line 740
+    invoke-direct {p0}, Lcom/android/keyguard/KeyguardUpdateMonitor;->watchForDeviceProvisioning()V
+
+    .line 744
+    :cond_0
+    new-instance v0, Lcom/android/keyguard/KeyguardUpdateMonitor$BatteryStatus;
+
+    const/16 v1, 0x64
+
+    invoke-direct {v0, v12, v1, v13, v13}, Lcom/android/keyguard/KeyguardUpdateMonitor$BatteryStatus;-><init>(IIII)V
+
+    iput-object v0, p0, Lcom/android/keyguard/KeyguardUpdateMonitor;->mBatteryStatus:Lcom/android/keyguard/KeyguardUpdateMonitor$BatteryStatus;
+
+    .line 747
+    new-instance v8, Landroid/content/IntentFilter;
+
+    invoke-direct {v8}, Landroid/content/IntentFilter;-><init>()V
+
+    .line 748
+    .local v8, "filter":Landroid/content/IntentFilter;
+    const-string v0, "android.intent.action.TIME_TICK"
+
+    invoke-virtual {v8, v0}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
+
+    .line 749
+    const-string v0, "android.intent.action.TIME_SET"
+
+    invoke-virtual {v8, v0}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
+
+    .line 750
+    const-string v0, "android.intent.action.BATTERY_CHANGED"
+
+    invoke-virtual {v8, v0}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
+
+    .line 751
+    const-string v0, "android.intent.action.TIMEZONE_CHANGED"
+
+    invoke-virtual {v8, v0}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
+
+    .line 752
+    const-string v0, "android.intent.action.SIM_STATE_CHANGED"
+
+    invoke-virtual {v8, v0}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
+
+    .line 753
+    const-string v0, "android.intent.action.internal_sim_state_changed"
+
+    invoke-virtual {v8, v0}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
+
+    .line 754
+    const-string v0, "android.intent.action.PHONE_STATE"
+
+    invoke-virtual {v8, v0}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
+
+    .line 755
+    const-string v0, "android.media.RINGER_MODE_CHANGED"
+
+    invoke-virtual {v8, v0}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
+
+    .line 756
+    const-string v0, "android.intent.action.USER_REMOVED"
+
+    invoke-virtual {v8, v0}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
+
+    .line 757
+    iget-object v0, p0, Lcom/android/keyguard/KeyguardUpdateMonitor;->mBroadcastReceiver:Landroid/content/BroadcastReceiver;
+
+    invoke-virtual {p1, v0, v8}, Landroid/content/Context;->registerReceiver(Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;)Landroid/content/Intent;
+
+    .line 759
+    new-instance v6, Landroid/content/IntentFilter;
+
+    invoke-direct {v6}, Landroid/content/IntentFilter;-><init>()V
+
+    .line 760
+    .local v6, "bootCompleteFilter":Landroid/content/IntentFilter;
+    const/16 v0, 0x3e8
+
+    invoke-virtual {v6, v0}, Landroid/content/IntentFilter;->setPriority(I)V
+
+    .line 761
+    const-string v0, "android.intent.action.BOOT_COMPLETED"
+
+    invoke-virtual {v6, v0}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
+
+    .line 762
+    iget-object v0, p0, Lcom/android/keyguard/KeyguardUpdateMonitor;->mBroadcastReceiver:Landroid/content/BroadcastReceiver;
+
+    invoke-virtual {p1, v0, v6}, Landroid/content/Context;->registerReceiver(Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;)Landroid/content/Intent;
+
+    .line 764
+    new-instance v3, Landroid/content/IntentFilter;
+
+    invoke-direct {v3}, Landroid/content/IntentFilter;-><init>()V
+
+    .line 765
+    .local v3, "allUserFilter":Landroid/content/IntentFilter;
+    const-string v0, "android.intent.action.USER_INFO_CHANGED"
+
+    invoke-virtual {v3, v0}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
+
+    .line 766
+    const-string v0, "android.app.action.NEXT_ALARM_CLOCK_CHANGED"
+
+    invoke-virtual {v3, v0}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
+
+    .line 767
+    const-string v0, "com.android.facelock.FACE_UNLOCK_STARTED"
+
+    invoke-virtual {v3, v0}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
+
+    .line 768
+    const-string v0, "com.android.facelock.FACE_UNLOCK_STOPPED"
+
+    invoke-virtual {v3, v0}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
+
+    .line 769
+    const-string v0, "android.app.action.DEVICE_POLICY_MANAGER_STATE_CHANGED"
+
+    invoke-virtual {v3, v0}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
+
+    .line 770
+    iget-object v1, p0, Lcom/android/keyguard/KeyguardUpdateMonitor;->mBroadcastAllReceiver:Landroid/content/BroadcastReceiver;
+
+    sget-object v2, Landroid/os/UserHandle;->ALL:Landroid/os/UserHandle;
+
+    move-object v0, p1
+
+    move-object v5, v4
+
+    invoke-virtual/range {v0 .. v5}, Landroid/content/Context;->registerReceiverAsUser(Landroid/content/BroadcastReceiver;Landroid/os/UserHandle;Landroid/content/IntentFilter;Ljava/lang/String;Landroid/os/Handler;)Landroid/content/Intent;
+
+    .line 773
+    iget-object v0, p0, Lcom/android/keyguard/KeyguardUpdateMonitor;->mSubscriptionManager:Landroid/telephony/SubscriptionManager;
+
+    iget-object v1, p0, Lcom/android/keyguard/KeyguardUpdateMonitor;->mSubscriptionListener:Landroid/telephony/SubscriptionManager$OnSubscriptionsChangedListener;
+
+    invoke-virtual {v0, v1}, Landroid/telephony/SubscriptionManager;->addOnSubscriptionsChangedListener(Landroid/telephony/SubscriptionManager$OnSubscriptionsChangedListener;)V
+
+    .line 775
+    :try_start_0
+    invoke-static {}, Landroid/app/ActivityManagerNative;->getDefault()Landroid/app/IActivityManager;
+
+    move-result-object v0
+
+    new-instance v1, Lcom/android/keyguard/KeyguardUpdateMonitor$6;
+
+    invoke-direct {v1, p0}, Lcom/android/keyguard/KeyguardUpdateMonitor$6;-><init>(Lcom/android/keyguard/KeyguardUpdateMonitor;)V
+
+    invoke-interface {v0, v1}, Landroid/app/IActivityManager;->registerUserSwitchObserver(Landroid/app/IUserSwitchObserver;)V
+    :try_end_0
+    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+
+    .line 798
+    :goto_0
+    iget-object v0, p0, Lcom/android/keyguard/KeyguardUpdateMonitor;->mContext:Landroid/content/Context;
+
+    invoke-virtual {v0}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
+
+    move-result-object v10
+
+    .line 799
+    .local v10, "resolver":Landroid/content/ContentResolver;
+    const-string v0, "mz_current_power_mode"
+
+    invoke-static {v0}, Landroid/provider/Settings$Secure;->getUriFor(Ljava/lang/String;)Landroid/net/Uri;
+
+    move-result-object v0
+
+    iget-object v1, p0, Lcom/android/keyguard/KeyguardUpdateMonitor;->mContentObserver:Landroid/database/ContentObserver;
+
+    invoke-virtual {v10, v0, v13, v1}, Landroid/content/ContentResolver;->registerContentObserver(Landroid/net/Uri;ZLandroid/database/ContentObserver;)V
+
+    .line 805
+    const-string v0, "mz_easy_mode"
+
+    invoke-static {v10, v0, v13}, Landroid/provider/Settings$System;->getInt(Landroid/content/ContentResolver;Ljava/lang/String;I)I
+
+    move-result v0
+
+    if-eqz v0, :cond_1
+
+    move v0, v12
+
+    :goto_1
+    iput-boolean v0, p0, Lcom/android/keyguard/KeyguardUpdateMonitor;->mEasyMode:Z
+
+    .line 807
+    const-string v0, "mz_easy_mode"
+
+    invoke-static {v0}, Landroid/provider/Settings$System;->getUriFor(Ljava/lang/String;)Landroid/net/Uri;
+
+    move-result-object v0
+
+    iget-object v1, p0, Lcom/android/keyguard/KeyguardUpdateMonitor;->mEasyModeContentObserver:Landroid/database/ContentObserver;
+
+    invoke-virtual {v10, v0, v13, v1}, Landroid/content/ContentResolver;->registerContentObserver(Landroid/net/Uri;ZLandroid/database/ContentObserver;)V
+
+    .line 810
+    const-string v0, "trust"
+
+    invoke-virtual {p1, v0}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+
+    move-result-object v11
+
+    check-cast v11, Landroid/app/trust/TrustManager;
+
+    .line 811
+    .local v11, "trustManager":Landroid/app/trust/TrustManager;
+    invoke-virtual {v11, p0}, Landroid/app/trust/TrustManager;->registerTrustListener(Landroid/app/trust/TrustManager$TrustListener;)V
+
+    .line 814
+    const-string v0, "fingerprint"
+
+    invoke-virtual {p1, v0}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+
+    move-result-object v9
+
+    check-cast v9, Landroid/hardware/fingerprint/FingerprintManager;
+
+    .line 815
+    .local v9, "fpm":Landroid/hardware/fingerprint/FingerprintManager;
+    iget-object v0, p0, Lcom/android/keyguard/KeyguardUpdateMonitor;->mFingerprintManagerReceiver:Landroid/service/fingerprint/FingerprintManagerReceiver;
+
+    invoke-virtual {v9, v0}, Landroid/hardware/fingerprint/FingerprintManager;->startListening(Landroid/service/fingerprint/FingerprintManagerReceiver;)V
+
+    .line 816
+    return-void
+
+    .line 790
+    .end local v9    # "fpm":Landroid/hardware/fingerprint/FingerprintManager;
+    .end local v10    # "resolver":Landroid/content/ContentResolver;
+    .end local v11    # "trustManager":Landroid/app/trust/TrustManager;
+    :catch_0
+    move-exception v7
+
+    .line 792
+    .local v7, "e":Landroid/os/RemoteException;
+    invoke-virtual {v7}, Landroid/os/RemoteException;->printStackTrace()V
+
+    goto :goto_0
+
+    .end local v7    # "e":Landroid/os/RemoteException;
+    .restart local v10    # "resolver":Landroid/content/ContentResolver;
+    :cond_1
+    move v0, v13
+
+    .line 805
+    goto :goto_1
+.end method
+

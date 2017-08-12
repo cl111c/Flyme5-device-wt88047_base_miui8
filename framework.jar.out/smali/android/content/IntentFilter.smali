@@ -4692,12 +4692,12 @@
 
     goto :goto_8
 
-    .line 1415
     .end local v3    # "pe":Landroid/os/PatternMatcher;
     :cond_8
     return-void
 
-    .line 1375
+    nop
+
     :pswitch_data_0
     .packed-switch 0x0
         :pswitch_0

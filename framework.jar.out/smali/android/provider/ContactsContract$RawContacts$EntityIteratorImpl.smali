@@ -428,6 +428,8 @@
 
     goto :goto_0
 
+    nop
+
     .line 3021
     :pswitch_data_0
     .packed-switch 0x0

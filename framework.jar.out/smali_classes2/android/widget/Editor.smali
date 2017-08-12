@@ -6,7 +6,6 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
-        Landroid/widget/Editor$PhraseAdapter;,
         Landroid/widget/Editor$TextModifyOperation;,
         Landroid/widget/Editor$UndoInputFilter;,
         Landroid/widget/Editor$InputMethodState;,
@@ -16,19 +15,21 @@
         Landroid/widget/Editor$SelectionModifierCursorController;,
         Landroid/widget/Editor$InsertionPointCursorController;,
         Landroid/widget/Editor$CursorController;,
-        Landroid/widget/Editor$SelectionHandleView;,
+        Landroid/widget/Editor$FlymeInsertionPointCursorController;,
+        Landroid/widget/Editor$FlymeShowSuggestionsRunnable;,
+        Landroid/widget/Editor$FlymeStartSelectionActionModeRunnable;,
+        Landroid/widget/Editor$FlymeInjector;,
+        Landroid/widget/Editor$OptionHandle;,
+        Landroid/widget/Editor$OptionWrapper;,
         Landroid/widget/Editor$SelectionEndHandleView;,
         Landroid/widget/Editor$SelectionStartHandleView;,
         Landroid/widget/Editor$InsertionHandleView;,
         Landroid/widget/Editor$HandleView;,
-        Landroid/widget/Editor$SelectionPopupWindow;,
+        Landroid/widget/Editor$CursorAnchorInfoNotifier;,
         Landroid/widget/Editor$ActionPopupWindow;,
         Landroid/widget/Editor$SelectionActionModeCallback;,
         Landroid/widget/Editor$SuggestionsPopupWindow;,
-        Landroid/widget/Editor$Fader;,
-        Landroid/widget/Editor$AnimatePopupWindow;,
         Landroid/widget/Editor$PinnedPopupWindow;,
-        Landroid/widget/Editor$ActionPinnedPopupWindow;,
         Landroid/widget/Editor$PositionListener;,
         Landroid/widget/Editor$EasyEditPopupWindow;,
         Landroid/widget/Editor$EasyEditDeleteListener;,
@@ -42,6 +43,10 @@
 
 
 # static fields
+.field public static final HIDE_OPTION:I = 0x2711
+
+.field public static final SHOW_OPTION:I = 0x2712
+
 .field static final BLINK:I = 0x1f4
 
 .field static final DEBUG_UNDO:Z = false
@@ -52,21 +57,39 @@
 
 .field static final EXTRACT_UNKNOWN:I = -0x1
 
-.field private static final LINE_SLOP_MULTIPLIER_FOR_HANDLEVIEWS:F = 0.5f
-
 .field private static final TAG:Ljava/lang/String; = "Editor"
 
 .field private static final TEMP_POSITION:[F
 
-.field private static final UNSET_LINE:I = -0x1
-
 
 # instance fields
+.field public mCursorOffsetX:I
+
+.field public mEnableDragSelection:Z
+
+.field public mHandler:Landroid/widget/Editor$OptionHandle;
+
+.field public mIsInDragSelectionMode:Z
+
+.field public mLastLayoutHeight:I
+
+.field public mLastScrollTime:J
+
+.field public mOptionWrapper:Landroid/widget/Editor$OptionWrapper;
+
+.field public mSelectionActionModeCallback:Landroid/widget/Editor$SelectionActionModeCallback;
+
+.field public mSelectonActionModeRunnable:Ljava/lang/Runnable;
+
+.field public mStartActionModeResult:Z
+
 .field mBlink:Landroid/widget/Editor$Blink;
 
 .field mCorrectionHighlighter:Landroid/widget/Editor$CorrectionHighlighter;
 
 .field mCreatedWithASelection:Z
+
+.field final mCursorAnchorInfoNotifier:Landroid/widget/Editor$CursorAnchorInfoNotifier;
 
 .field mCursorCount:I
 
@@ -83,8 +106,6 @@
 .field mErrorPopup:Landroid/widget/Editor$ErrorPopup;
 
 .field mErrorWasChanged:Z
-
-.field mFirstTouchUp:Z
 
 .field mFrozenWithFocus:Z
 
@@ -170,14 +191,14 @@
     .locals 1
 
     .prologue
-    .line 145
+    .line 124
     const/4 v0, 0x2
 
     new-array v0, v0, [F
 
     sput-object v0, Landroid/widget/Editor;->TEMP_POSITION:[F
 
-    .line 146
+    .line 125
     const/16 v0, 0x14
 
     sput v0, Landroid/widget/Editor;->DRAG_SHADOW_MAX_TEXT_LENGTH:I
@@ -192,34 +213,42 @@
     .prologue
     const/4 v1, 0x1
 
-    .line 245
+    .line 223
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 181
-    iput-boolean v1, p0, Landroid/widget/Editor;->mFirstTouchUp:Z
-
-    .line 184
+    .line 160
     const/4 v0, 0x0
 
     iput v0, p0, Landroid/widget/Editor;->mInputType:I
 
-    .line 192
+    .line 168
     iput-boolean v1, p0, Landroid/widget/Editor;->mCursorVisible:Z
 
-    .line 209
+    .line 185
     iput-boolean v1, p0, Landroid/widget/Editor;->mShowSoftInputOnFocus:Z
 
-    .line 217
+    .line 193
     const/4 v0, 0x2
 
     new-array v0, v0, [Landroid/graphics/drawable/Drawable;
 
     iput-object v0, p0, Landroid/widget/Editor;->mCursorDrawable:[Landroid/graphics/drawable/Drawable;
 
-    .line 246
+    .line 221
+    new-instance v0, Landroid/widget/Editor$CursorAnchorInfoNotifier;
+
+    const/4 v1, 0x0
+
+    invoke-direct {v0, p0, v1}, Landroid/widget/Editor$CursorAnchorInfoNotifier;-><init>(Landroid/widget/Editor;Landroid/widget/Editor$1;)V
+
+    iput-object v0, p0, Landroid/widget/Editor;->mCursorAnchorInfoNotifier:Landroid/widget/Editor$CursorAnchorInfoNotifier;
+
+    .line 224
     iput-object p1, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
-    .line 247
+    invoke-static/range {p0 .. p0}, Landroid/widget/Editor$FlymeInjector;->initFlymeExtraFields(Landroid/widget/Editor;)V
+
+    .line 225
     return-void
 .end method
 
@@ -228,7 +257,7 @@
     .param p0, "x0"    # Landroid/widget/Editor;
 
     .prologue
-    .line 140
+    .line 119
     invoke-direct {p0}, Landroid/widget/Editor;->extractedTextModeWillBeStarted()Z
 
     move-result v0
@@ -236,49 +265,12 @@
     return v0
 .end method
 
-.method static synthetic access$1400(Landroid/widget/Editor;I)Z
-    .locals 1
-    .param p0, "x0"    # Landroid/widget/Editor;
-    .param p1, "x1"    # I
-
-    .prologue
-    .line 140
-    invoke-direct {p0, p1}, Landroid/widget/Editor;->isOffsetVisible(I)Z
-
-    move-result v0
-
-    return v0
-.end method
-
-.method static synthetic access$1900(Landroid/widget/Editor;)Landroid/graphics/Rect;
+.method static synthetic access$1400(Landroid/widget/Editor;)Landroid/widget/Editor$PositionListener;
     .locals 1
     .param p0, "x0"    # Landroid/widget/Editor;
 
     .prologue
-    .line 140
-    iget-object v0, p0, Landroid/widget/Editor;->mTempRect:Landroid/graphics/Rect;
-
-    return-object v0
-.end method
-
-.method static synthetic access$1902(Landroid/widget/Editor;Landroid/graphics/Rect;)Landroid/graphics/Rect;
-    .locals 0
-    .param p0, "x0"    # Landroid/widget/Editor;
-    .param p1, "x1"    # Landroid/graphics/Rect;
-
-    .prologue
-    .line 140
-    iput-object p1, p0, Landroid/widget/Editor;->mTempRect:Landroid/graphics/Rect;
-
-    return-object p1
-.end method
-
-.method static synthetic access$2200(Landroid/widget/Editor;)Landroid/widget/Editor$PositionListener;
-    .locals 1
-    .param p0, "x0"    # Landroid/widget/Editor;
-
-    .prologue
-    .line 140
+    .line 119
     invoke-direct {p0}, Landroid/widget/Editor;->getPositionListener()Landroid/widget/Editor$PositionListener;
 
     move-result-object v0
@@ -286,7 +278,44 @@
     return-object v0
 .end method
 
-.method static synthetic access$3000(Landroid/widget/Editor;IIZ)V
+.method static synthetic access$1500(Landroid/widget/Editor;I)Z
+    .locals 1
+    .param p0, "x0"    # Landroid/widget/Editor;
+    .param p1, "x1"    # I
+
+    .prologue
+    .line 119
+    invoke-direct {p0, p1}, Landroid/widget/Editor;->isOffsetVisible(I)Z
+
+    move-result v0
+
+    return v0
+.end method
+
+.method static synthetic access$2300(Landroid/widget/Editor;)Landroid/graphics/Rect;
+    .locals 1
+    .param p0, "x0"    # Landroid/widget/Editor;
+
+    .prologue
+    .line 119
+    iget-object v0, p0, Landroid/widget/Editor;->mTempRect:Landroid/graphics/Rect;
+
+    return-object v0
+.end method
+
+.method static synthetic access$2302(Landroid/widget/Editor;Landroid/graphics/Rect;)Landroid/graphics/Rect;
+    .locals 0
+    .param p0, "x0"    # Landroid/widget/Editor;
+    .param p1, "x1"    # Landroid/graphics/Rect;
+
+    .prologue
+    .line 119
+    iput-object p1, p0, Landroid/widget/Editor;->mTempRect:Landroid/graphics/Rect;
+
+    return-object p1
+.end method
+
+.method static synthetic access$2400(Landroid/widget/Editor;IIZ)V
     .locals 0
     .param p0, "x0"    # Landroid/widget/Editor;
     .param p1, "x1"    # I
@@ -294,18 +323,18 @@
     .param p3, "x3"    # Z
 
     .prologue
-    .line 140
+    .line 119
     invoke-direct {p0, p1, p2, p3}, Landroid/widget/Editor;->updateSpellCheckSpans(IIZ)V
 
     return-void
 .end method
 
-.method static synthetic access$3300(Landroid/widget/Editor;)Z
+.method static synthetic access$2500(Landroid/widget/Editor;)Z
     .locals 1
     .param p0, "x0"    # Landroid/widget/Editor;
 
     .prologue
-    .line 140
+    .line 119
     invoke-direct {p0}, Landroid/widget/Editor;->isCursorInsideSuggestionSpan()Z
 
     move-result v0
@@ -313,138 +342,109 @@
     return v0
 .end method
 
-.method static synthetic access$3400(Landroid/view/View;)F
-    .locals 1
-    .param p0, "x0"    # Landroid/view/View;
-
-    .prologue
-    .line 140
-    invoke-static {p0}, Landroid/widget/Editor;->getDescendantViewScale(Landroid/view/View;)F
-
-    move-result v0
-
-    return v0
-.end method
-
-.method static synthetic access$3500(Landroid/widget/Editor;II)Z
-    .locals 1
-    .param p0, "x0"    # Landroid/widget/Editor;
-    .param p1, "x1"    # I
-    .param p2, "x2"    # I
-
-    .prologue
-    .line 140
-    invoke-direct {p0, p1, p2}, Landroid/widget/Editor;->isPositionVisible(II)Z
-
-    move-result v0
-
-    return v0
-.end method
-
-.method static synthetic access$3600(Landroid/widget/Editor;Landroid/text/Layout;IF)I
-    .locals 1
-    .param p0, "x0"    # Landroid/widget/Editor;
-    .param p1, "x1"    # Landroid/text/Layout;
-    .param p2, "x2"    # I
-    .param p3, "x3"    # F
-
-    .prologue
-    .line 140
-    invoke-direct {p0, p1, p2, p3}, Landroid/widget/Editor;->getCurrentLineAdjustedForSlop(Landroid/text/Layout;IF)I
-
-    move-result v0
-
-    return v0
-.end method
-
-.method static synthetic access$3900(Landroid/widget/Editor;)Landroid/graphics/drawable/Drawable;
-    .locals 1
-    .param p0, "x0"    # Landroid/widget/Editor;
-
-    .prologue
-    .line 140
-    iget-object v0, p0, Landroid/widget/Editor;->mSelectHandleCenter:Landroid/graphics/drawable/Drawable;
-
-    return-object v0
-.end method
-
-.method static synthetic access$3902(Landroid/widget/Editor;Landroid/graphics/drawable/Drawable;)Landroid/graphics/drawable/Drawable;
-    .locals 0
-    .param p0, "x0"    # Landroid/widget/Editor;
-    .param p1, "x1"    # Landroid/graphics/drawable/Drawable;
-
-    .prologue
-    .line 140
-    iput-object p1, p0, Landroid/widget/Editor;->mSelectHandleCenter:Landroid/graphics/drawable/Drawable;
-
-    return-object p1
-.end method
-
-.method static synthetic access$4000(Landroid/widget/Editor;)Landroid/graphics/drawable/Drawable;
-    .locals 1
-    .param p0, "x0"    # Landroid/widget/Editor;
-
-    .prologue
-    .line 140
-    iget-object v0, p0, Landroid/widget/Editor;->mSelectHandleLeft:Landroid/graphics/drawable/Drawable;
-
-    return-object v0
-.end method
-
-.method static synthetic access$4002(Landroid/widget/Editor;Landroid/graphics/drawable/Drawable;)Landroid/graphics/drawable/Drawable;
-    .locals 0
-    .param p0, "x0"    # Landroid/widget/Editor;
-    .param p1, "x1"    # Landroid/graphics/drawable/Drawable;
-
-    .prologue
-    .line 140
-    iput-object p1, p0, Landroid/widget/Editor;->mSelectHandleLeft:Landroid/graphics/drawable/Drawable;
-
-    return-object p1
-.end method
-
-.method static synthetic access$4100(Landroid/widget/Editor;)Landroid/graphics/drawable/Drawable;
-    .locals 1
-    .param p0, "x0"    # Landroid/widget/Editor;
-
-    .prologue
-    .line 140
-    iget-object v0, p0, Landroid/widget/Editor;->mSelectHandleRight:Landroid/graphics/drawable/Drawable;
-
-    return-object v0
-.end method
-
-.method static synthetic access$4102(Landroid/widget/Editor;Landroid/graphics/drawable/Drawable;)Landroid/graphics/drawable/Drawable;
-    .locals 0
-    .param p0, "x0"    # Landroid/widget/Editor;
-    .param p1, "x1"    # Landroid/graphics/drawable/Drawable;
-
-    .prologue
-    .line 140
-    iput-object p1, p0, Landroid/widget/Editor;->mSelectHandleRight:Landroid/graphics/drawable/Drawable;
-
-    return-object p1
-.end method
-
-.method static synthetic access$4200(Landroid/widget/Editor;)V
-    .locals 0
-    .param p0, "x0"    # Landroid/widget/Editor;
-
-    .prologue
-    .line 140
-    invoke-direct {p0}, Landroid/widget/Editor;->hideInsertionPointCursorController()V
-
-    return-void
-.end method
-
-.method static synthetic access$4300(Landroid/widget/Editor;FF)Z
+.method static synthetic access$2600(Landroid/widget/Editor;FF)Z
     .locals 1
     .param p0, "x0"    # Landroid/widget/Editor;
     .param p1, "x1"    # F
     .param p2, "x2"    # F
 
     .prologue
-    .line 140
+    .line 119
+    invoke-direct {p0, p1, p2}, Landroid/widget/Editor;->isPositionVisible(FF)Z
+
+    move-result v0
+
+    return v0
+.end method
+
+.method static synthetic access$2800(Landroid/widget/Editor;)Landroid/graphics/drawable/Drawable;
+    .locals 1
+    .param p0, "x0"    # Landroid/widget/Editor;
+
+    .prologue
+    .line 119
+    iget-object v0, p0, Landroid/widget/Editor;->mSelectHandleCenter:Landroid/graphics/drawable/Drawable;
+
+    return-object v0
+.end method
+
+.method static synthetic access$2802(Landroid/widget/Editor;Landroid/graphics/drawable/Drawable;)Landroid/graphics/drawable/Drawable;
+    .locals 0
+    .param p0, "x0"    # Landroid/widget/Editor;
+    .param p1, "x1"    # Landroid/graphics/drawable/Drawable;
+
+    .prologue
+    .line 119
+    iput-object p1, p0, Landroid/widget/Editor;->mSelectHandleCenter:Landroid/graphics/drawable/Drawable;
+
+    return-object p1
+.end method
+
+.method static synthetic access$2900(Landroid/widget/Editor;)V
+    .locals 0
+    .param p0, "x0"    # Landroid/widget/Editor;
+
+    .prologue
+    .line 119
+    invoke-direct {p0}, Landroid/widget/Editor;->hideInsertionPointCursorController()V
+
+    return-void
+.end method
+
+.method static synthetic access$3000(Landroid/widget/Editor;)Landroid/graphics/drawable/Drawable;
+    .locals 1
+    .param p0, "x0"    # Landroid/widget/Editor;
+
+    .prologue
+    .line 119
+    iget-object v0, p0, Landroid/widget/Editor;->mSelectHandleLeft:Landroid/graphics/drawable/Drawable;
+
+    return-object v0
+.end method
+
+.method static synthetic access$3002(Landroid/widget/Editor;Landroid/graphics/drawable/Drawable;)Landroid/graphics/drawable/Drawable;
+    .locals 0
+    .param p0, "x0"    # Landroid/widget/Editor;
+    .param p1, "x1"    # Landroid/graphics/drawable/Drawable;
+
+    .prologue
+    .line 119
+    iput-object p1, p0, Landroid/widget/Editor;->mSelectHandleLeft:Landroid/graphics/drawable/Drawable;
+
+    return-object p1
+.end method
+
+.method static synthetic access$3100(Landroid/widget/Editor;)Landroid/graphics/drawable/Drawable;
+    .locals 1
+    .param p0, "x0"    # Landroid/widget/Editor;
+
+    .prologue
+    .line 119
+    iget-object v0, p0, Landroid/widget/Editor;->mSelectHandleRight:Landroid/graphics/drawable/Drawable;
+
+    return-object v0
+.end method
+
+.method static synthetic access$3102(Landroid/widget/Editor;Landroid/graphics/drawable/Drawable;)Landroid/graphics/drawable/Drawable;
+    .locals 0
+    .param p0, "x0"    # Landroid/widget/Editor;
+    .param p1, "x1"    # Landroid/graphics/drawable/Drawable;
+
+    .prologue
+    .line 119
+    iput-object p1, p0, Landroid/widget/Editor;->mSelectHandleRight:Landroid/graphics/drawable/Drawable;
+
+    return-object p1
+.end method
+
+.method static synthetic access$3200(Landroid/widget/Editor;FF)Z
+    .locals 1
+    .param p0, "x0"    # Landroid/widget/Editor;
+    .param p1, "x1"    # F
+    .param p2, "x2"    # F
+
+    .prologue
+    .line 119
     invoke-direct {p0, p1, p2}, Landroid/widget/Editor;->isPositionOnText(FF)Z
 
     move-result v0
@@ -457,7 +457,7 @@
     .param p0, "x0"    # Landroid/widget/Editor;
 
     .prologue
-    .line 140
+    .line 119
     invoke-direct {p0}, Landroid/widget/Editor;->shouldBlink()Z
 
     move-result v0
@@ -470,7 +470,7 @@
     .param p0, "x0"    # Landroid/widget/Editor;
 
     .prologue
-    .line 140
+    .line 119
     iget-object v0, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     return-object v0
@@ -481,7 +481,7 @@
     .param p0, "x0"    # Landroid/widget/Editor;
 
     .prologue
-    .line 140
+    .line 119
     invoke-direct {p0}, Landroid/widget/Editor;->sendUpdateSelection()V
 
     return-void
@@ -491,7 +491,7 @@
     .locals 1
 
     .prologue
-    .line 646
+    .line 628
     invoke-virtual {p0}, Landroid/widget/Editor;->hasSelectionController()Z
 
     move-result v0
@@ -528,7 +528,7 @@
     .param p3, "tv"    # Landroid/widget/TextView;
 
     .prologue
-    .line 611
+    .line 593
     invoke-virtual {p3}, Landroid/widget/TextView;->getPaddingLeft()I
 
     move-result v1
@@ -539,7 +539,7 @@
 
     add-int v11, v1, v2
 
-    .line 612
+    .line 594
     .local v11, "wid":I
     invoke-virtual {p3}, Landroid/widget/TextView;->getPaddingTop()I
 
@@ -551,7 +551,7 @@
 
     add-int v8, v1, v2
 
-    .line 614
+    .line 596
     .local v8, "ht":I
     iget-object v1, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
@@ -565,7 +565,7 @@
 
     move-result v3
 
-    .line 616
+    .line 598
     .local v3, "defaultWidthInPixels":I
     new-instance v0, Landroid/text/StaticLayout;
 
@@ -585,11 +585,11 @@
 
     invoke-direct/range {v0 .. v7}, Landroid/text/StaticLayout;-><init>(Ljava/lang/CharSequence;Landroid/text/TextPaint;ILandroid/text/Layout$Alignment;FFZ)V
 
-    .line 618
+    .line 600
     .local v0, "l":Landroid/text/Layout;
     const/4 v10, 0x0
 
-    .line 619
+    .line 601
     .local v10, "max":F
     const/4 v9, 0x0
 
@@ -601,7 +601,7 @@
 
     if-ge v9, v1, :cond_0
 
-    .line 620
+    .line 602
     invoke-virtual {v0, v9}, Landroid/text/Layout;->getLineWidth(I)F
 
     move-result v1
@@ -610,12 +610,12 @@
 
     move-result v10
 
-    .line 619
+    .line 601
     add-int/lit8 v9, v9, 0x1
 
     goto :goto_0
 
-    .line 627
+    .line 609
     :cond_0
     float-to-double v4, v10
 
@@ -629,7 +629,7 @@
 
     invoke-virtual {p1, v1}, Landroid/widget/PopupWindow;->setWidth(I)V
 
-    .line 628
+    .line 610
     invoke-virtual {v0}, Landroid/text/Layout;->getHeight()I
 
     move-result v1
@@ -638,7 +638,7 @@
 
     invoke-virtual {p1, v1}, Landroid/widget/PopupWindow;->setHeight(I)V
 
-    .line 629
+    .line 611
     return-void
 .end method
 
@@ -646,12 +646,12 @@
     .locals 3
 
     .prologue
-    .line 318
+    .line 300
     iget-object v2, p0, Landroid/widget/Editor;->mTextDisplayLists:[Landroid/widget/Editor$TextDisplayList;
 
     if-eqz v2, :cond_2
 
-    .line 319
+    .line 301
     const/4 v1, 0x0
 
     .local v1, "i":I
@@ -662,7 +662,7 @@
 
     if-ge v1, v2, :cond_2
 
-    .line 320
+    .line 302
     iget-object v2, p0, Landroid/widget/Editor;->mTextDisplayLists:[Landroid/widget/Editor$TextDisplayList;
 
     aget-object v2, v2, v1
@@ -675,7 +675,7 @@
 
     iget-object v0, v2, Landroid/widget/Editor$TextDisplayList;->displayList:Landroid/view/RenderNode;
 
-    .line 322
+    .line 304
     .local v0, "displayList":Landroid/view/RenderNode;
     :goto_1
     if-eqz v0, :cond_0
@@ -686,23 +686,23 @@
 
     if-eqz v2, :cond_0
 
-    .line 323
+    .line 305
     invoke-virtual {v0}, Landroid/view/RenderNode;->destroyDisplayListData()V
 
-    .line 319
+    .line 301
     :cond_0
     add-int/lit8 v1, v1, 0x1
 
     goto :goto_0
 
-    .line 320
+    .line 302
     .end local v0    # "displayList":Landroid/view/RenderNode;
     :cond_1
     const/4 v0, 0x0
 
     goto :goto_1
 
-    .line 327
+    .line 309
     .end local v1    # "i":I
     :cond_2
     return-void
@@ -712,14 +712,14 @@
     .locals 8
 
     .prologue
-    .line 1057
+    .line 1000
     iget-object v5, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v5}, Landroid/widget/TextView;->getText()Ljava/lang/CharSequence;
 
     move-result-object v4
 
-    .line 1058
+    .line 1001
     .local v4, "text":Ljava/lang/CharSequence;
     instance-of v5, v4, Landroid/text/Spannable;
 
@@ -727,10 +727,10 @@
 
     move-object v2, v4
 
-    .line 1059
+    .line 1002
     check-cast v2, Landroid/text/Spannable;
 
-    .line 1060
+    .line 1003
     .local v2, "spannable":Landroid/text/Spannable;
     const/4 v5, 0x0
 
@@ -746,7 +746,7 @@
 
     check-cast v3, [Landroid/text/style/SuggestionSpan;
 
-    .line 1062
+    .line 1005
     .local v3, "suggestionSpans":[Landroid/text/style/SuggestionSpan;
     const/4 v1, 0x0
 
@@ -756,14 +756,14 @@
 
     if-ge v1, v5, :cond_1
 
-    .line 1063
+    .line 1006
     aget-object v5, v3, v1
 
     invoke-virtual {v5}, Landroid/text/style/SuggestionSpan;->getFlags()I
 
     move-result v0
 
-    .line 1064
+    .line 1007
     .local v0, "flags":I
     and-int/lit8 v5, v0, 0x1
 
@@ -773,21 +773,21 @@
 
     if-nez v5, :cond_0
 
-    .line 1066
+    .line 1009
     and-int/lit8 v0, v0, -0x2
 
-    .line 1067
+    .line 1010
     aget-object v5, v3, v1
 
     invoke-virtual {v5, v0}, Landroid/text/style/SuggestionSpan;->setFlags(I)V
 
-    .line 1062
+    .line 1005
     :cond_0
     add-int/lit8 v1, v1, 0x1
 
     goto :goto_0
 
-    .line 1071
+    .line 1014
     .end local v0    # "flags":I
     .end local v1    # "i":I
     .end local v2    # "spannable":Landroid/text/Spannable;
@@ -804,12 +804,12 @@
     .prologue
     const/4 v3, 0x0
 
-    .line 1525
+    .line 1439
     if-eqz p2, :cond_1
 
     const/4 v1, 0x1
 
-    .line 1526
+    .line 1440
     .local v1, "translate":Z
     :goto_0
     if-eqz v1, :cond_0
@@ -818,7 +818,7 @@
 
     invoke-virtual {p1, v3, v2}, Landroid/graphics/Canvas;->translate(FF)V
 
-    .line 1527
+    .line 1441
     :cond_0
     const/4 v0, 0x0
 
@@ -828,19 +828,19 @@
 
     if-ge v0, v2, :cond_2
 
-    .line 1528
+    .line 1442
     iget-object v2, p0, Landroid/widget/Editor;->mCursorDrawable:[Landroid/graphics/drawable/Drawable;
 
     aget-object v2, v2, v0
 
     invoke-virtual {v2, p1}, Landroid/graphics/drawable/Drawable;->draw(Landroid/graphics/Canvas;)V
 
-    .line 1527
+    .line 1441
     add-int/lit8 v0, v0, 0x1
 
     goto :goto_1
 
-    .line 1525
+    .line 1439
     .end local v0    # "i":I
     .end local v1    # "translate":Z
     :cond_1
@@ -848,7 +848,7 @@
 
     goto :goto_0
 
-    .line 1530
+    .line 1444
     .restart local v0    # "i":I
     .restart local v1    # "translate":Z
     :cond_2
@@ -860,7 +860,7 @@
 
     invoke-virtual {p1, v3, v2}, Landroid/graphics/Canvas;->translate(FF)V
 
-    .line 1531
+    .line 1445
     :cond_3
     return-void
 .end method
@@ -874,7 +874,7 @@
     .param p5, "cursorOffsetVertical"    # I
 
     .prologue
-    .line 1410
+    .line 1324
     move-object/from16 v0, p2
 
     move-object/from16 v1, p1
@@ -883,23 +883,23 @@
 
     move-result-wide v28
 
-    .line 1411
+    .line 1325
     .local v28, "lineRange":J
     invoke-static/range {v28 .. v29}, Landroid/text/TextUtils;->unpackRangeStartFromLong(J)I
 
     move-result v9
 
-    .line 1412
+    .line 1326
     .local v9, "firstLine":I
     invoke-static/range {v28 .. v29}, Landroid/text/TextUtils;->unpackRangeEndFromLong(J)I
 
     move-result v10
 
-    .line 1413
+    .line 1327
     .local v10, "lastLine":I
     if-gez v10, :cond_0
 
-    .line 1502
+    .line 1416
     :goto_0
     return-void
 
@@ -914,24 +914,24 @@
 
     move/from16 v8, p5
 
-    .line 1415
+    .line 1329
     invoke-virtual/range {v4 .. v10}, Landroid/text/Layout;->drawBackground(Landroid/graphics/Canvas;Landroid/graphics/Path;Landroid/graphics/Paint;III)V
 
-    .line 1418
+    .line 1332
     move-object/from16 v0, p2
 
     instance-of v4, v0, Landroid/text/DynamicLayout;
 
     if-eqz v4, :cond_b
 
-    .line 1419
+    .line 1333
     move-object/from16 v0, p0
 
     iget-object v4, v0, Landroid/widget/Editor;->mTextDisplayLists:[Landroid/widget/Editor$TextDisplayList;
 
     if-nez v4, :cond_1
 
-    .line 1420
+    .line 1334
     const-class v4, Landroid/widget/Editor$TextDisplayList;
 
     invoke-static {v4}, Lcom/android/internal/util/ArrayUtils;->emptyArray(Ljava/lang/Class;)[Ljava/lang/Object;
@@ -945,44 +945,50 @@
     iput-object v4, v0, Landroid/widget/Editor;->mTextDisplayLists:[Landroid/widget/Editor$TextDisplayList;
 
     :cond_1
+    move-object/from16 v0, p0
+
+    move-object/from16 v1, p2
+
+    invoke-static {v0, v1}, Landroid/widget/Editor$FlymeInjector;->injectDrawHardwareAccelerated(Landroid/widget/Editor;Landroid/text/Layout;)V
+
     move-object/from16 v20, p2
 
-    .line 1423
+    .line 1337
     check-cast v20, Landroid/text/DynamicLayout;
 
-    .line 1424
+    .line 1338
     .local v20, "dynamicLayout":Landroid/text/DynamicLayout;
     invoke-virtual/range {v20 .. v20}, Landroid/text/DynamicLayout;->getBlockEndLines()[I
 
     move-result-object v15
 
-    .line 1425
+    .line 1339
     .local v15, "blockEndLines":[I
     invoke-virtual/range {v20 .. v20}, Landroid/text/DynamicLayout;->getBlockIndices()[I
 
     move-result-object v17
 
-    .line 1426
+    .line 1340
     .local v17, "blockIndices":[I
     invoke-virtual/range {v20 .. v20}, Landroid/text/DynamicLayout;->getNumberOfBlocks()I
 
     move-result v31
 
-    .line 1427
+    .line 1341
     .local v31, "numberOfBlocks":I
     invoke-virtual/range {v20 .. v20}, Landroid/text/DynamicLayout;->getIndexFirstChangedBlock()I
 
     move-result v24
 
-    .line 1429
+    .line 1343
     .local v24, "indexFirstChangedBlock":I
     const/16 v21, -0x1
 
-    .line 1430
+    .line 1344
     .local v21, "endOfPreviousBlock":I
     const/16 v33, 0x0
 
-    .line 1431
+    .line 1345
     .local v33, "searchStartIndex":I
     const/16 v23, 0x0
 
@@ -994,14 +1000,14 @@
 
     if-ge v0, v1, :cond_a
 
-    .line 1432
+    .line 1346
     aget v14, v15, v23
 
-    .line 1433
+    .line 1347
     .local v14, "blockEndLine":I
     aget v16, v17, v23
 
-    .line 1435
+    .line 1349
     .local v16, "blockIndex":I
     const/4 v4, -0x1
 
@@ -1011,12 +1017,12 @@
 
     const/16 v18, 0x1
 
-    .line 1436
+    .line 1350
     .local v18, "blockIsInvalid":Z
     :goto_2
     if-eqz v18, :cond_2
 
-    .line 1437
+    .line 1351
     move-object/from16 v0, p0
 
     move-object/from16 v1, v17
@@ -1029,13 +1035,13 @@
 
     move-result v16
 
-    .line 1440
+    .line 1354
     aput v16, v17, v23
 
-    .line 1441
+    .line 1355
     add-int/lit8 v33, v16, 0x1
 
-    .line 1444
+    .line 1358
     :cond_2
     move-object/from16 v0, p0
 
@@ -1045,7 +1051,7 @@
 
     if-nez v4, :cond_3
 
-    .line 1445
+    .line 1359
     move-object/from16 v0, p0
 
     iget-object v4, v0, Landroid/widget/Editor;->mTextDisplayLists:[Landroid/widget/Editor$TextDisplayList;
@@ -1076,7 +1082,7 @@
 
     aput-object v5, v4, v16
 
-    .line 1449
+    .line 1363
     :cond_3
     move-object/from16 v0, p0
 
@@ -1088,7 +1094,7 @@
 
     move-result v13
 
-    .line 1450
+    .line 1364
     .local v13, "blockDisplayListIsInvalid":Z
     move-object/from16 v0, p0
 
@@ -1098,7 +1104,7 @@
 
     iget-object v12, v4, Landroid/widget/Editor$TextDisplayList;->displayList:Landroid/view/RenderNode;
 
-    .line 1451
+    .line 1365
     .local v12, "blockDisplayList":Landroid/view/RenderNode;
     move/from16 v0, v23
 
@@ -1108,11 +1114,11 @@
 
     if-eqz v13, :cond_9
 
-    .line 1452
+    .line 1366
     :cond_4
     add-int/lit8 v11, v21, 0x1
 
-    .line 1453
+    .line 1367
     .local v11, "blockBeginLine":I
     move-object/from16 v0, p2
 
@@ -1120,7 +1126,7 @@
 
     move-result v34
 
-    .line 1454
+    .line 1368
     .local v34, "top":I
     move-object/from16 v0, p2
 
@@ -1128,11 +1134,11 @@
 
     move-result v19
 
-    .line 1455
+    .line 1369
     .local v19, "bottom":I
     const/16 v25, 0x0
 
-    .line 1456
+    .line 1370
     .local v25, "left":I
     move-object/from16 v0, p0
 
@@ -1142,7 +1148,7 @@
 
     move-result v32
 
-    .line 1457
+    .line 1371
     .local v32, "right":I
     move-object/from16 v0, p0
 
@@ -1154,14 +1160,14 @@
 
     if-eqz v4, :cond_7
 
-    .line 1458
+    .line 1372
     const v30, 0x7f7fffff    # Float.MAX_VALUE
 
-    .line 1459
+    .line 1373
     .local v30, "min":F
     const/16 v27, 0x1
 
-    .line 1460
+    .line 1374
     .local v27, "max":F
     move/from16 v26, v11
 
@@ -1171,7 +1177,7 @@
 
     if-gt v0, v14, :cond_6
 
-    .line 1461
+    .line 1375
     move-object/from16 v0, p2
 
     move/from16 v1, v26
@@ -1186,7 +1192,7 @@
 
     move-result v30
 
-    .line 1462
+    .line 1376
     move-object/from16 v0, p2
 
     move/from16 v1, v26
@@ -1201,12 +1207,12 @@
 
     move-result v27
 
-    .line 1460
+    .line 1374
     add-int/lit8 v26, v26, 0x1
 
     goto :goto_3
 
-    .line 1435
+    .line 1349
     .end local v11    # "blockBeginLine":I
     .end local v12    # "blockDisplayList":Landroid/view/RenderNode;
     .end local v13    # "blockDisplayListIsInvalid":Z
@@ -1223,7 +1229,7 @@
 
     goto/16 :goto_2
 
-    .line 1464
+    .line 1378
     .restart local v11    # "blockBeginLine":I
     .restart local v12    # "blockDisplayList":Landroid/view/RenderNode;
     .restart local v13    # "blockDisplayListIsInvalid":Z
@@ -1242,7 +1248,7 @@
 
     move/from16 v25, v0
 
-    .line 1465
+    .line 1379
     const/high16 v4, 0x3f000000    # 0.5f
 
     add-float v4, v4, v27
@@ -1251,14 +1257,14 @@
 
     move/from16 v32, v0
 
-    .line 1469
+    .line 1383
     .end local v26    # "line":I
     .end local v27    # "max":F
     .end local v30    # "min":F
     :cond_7
     if-eqz v13, :cond_8
 
-    .line 1470
+    .line 1384
     sub-int v4, v32, v25
 
     sub-int v5, v19, v34
@@ -1267,7 +1273,7 @@
 
     move-result-object v22
 
-    .line 1475
+    .line 1389
     .local v22, "hardwareCanvas":Landroid/view/HardwareCanvas;
     move/from16 v0, v25
 
@@ -1286,7 +1292,7 @@
 
     invoke-virtual {v0, v4, v5}, Landroid/view/HardwareCanvas;->translate(FF)V
 
-    .line 1476
+    .line 1390
     move-object/from16 v0, p2
 
     move-object/from16 v1, v22
@@ -1295,17 +1301,17 @@
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 1480
+    .line 1394
     move-object/from16 v0, v22
 
     invoke-virtual {v12, v0}, Landroid/view/RenderNode;->end(Landroid/view/HardwareCanvas;)V
 
-    .line 1482
+    .line 1396
     const/4 v4, 0x0
 
     invoke-virtual {v12, v4}, Landroid/view/RenderNode;->setClipToBounds(Z)Z
 
-    .line 1488
+    .line 1402
     .end local v22    # "hardwareCanvas":Landroid/view/HardwareCanvas;
     :cond_8
     move/from16 v0, v25
@@ -1326,7 +1332,7 @@
     :cond_9
     move-object/from16 v4, p1
 
-    .line 1491
+    .line 1405
     check-cast v4, Landroid/view/HardwareCanvas;
 
     const/4 v5, 0x0
@@ -1335,15 +1341,15 @@
 
     invoke-virtual {v4, v12, v5, v6}, Landroid/view/HardwareCanvas;->drawRenderNode(Landroid/view/RenderNode;Landroid/graphics/Rect;I)I
 
-    .line 1494
+    .line 1408
     move/from16 v21, v14
 
-    .line 1431
+    .line 1345
     add-int/lit8 v23, v23, 0x1
 
     goto/16 :goto_1
 
-    .line 1480
+    .line 1394
     .restart local v11    # "blockBeginLine":I
     .restart local v19    # "bottom":I
     .restart local v22    # "hardwareCanvas":Landroid/view/HardwareCanvas;
@@ -1357,14 +1363,14 @@
 
     invoke-virtual {v12, v0}, Landroid/view/RenderNode;->end(Landroid/view/HardwareCanvas;)V
 
-    .line 1482
+    .line 1396
     const/4 v5, 0x0
 
     invoke-virtual {v12, v5}, Landroid/view/RenderNode;->setClipToBounds(Z)Z
 
     throw v4
 
-    .line 1497
+    .line 1411
     .end local v11    # "blockBeginLine":I
     .end local v12    # "blockDisplayList":Landroid/view/RenderNode;
     .end local v13    # "blockDisplayListIsInvalid":Z
@@ -1385,7 +1391,7 @@
 
     goto/16 :goto_0
 
-    .line 1500
+    .line 1414
     .end local v15    # "blockEndLines":[I
     .end local v17    # "blockIndices":[I
     .end local v20    # "dynamicLayout":Landroid/text/DynamicLayout;
@@ -1415,45 +1421,45 @@
     .prologue
     const/4 v6, 0x0
 
-    .line 1221
+    .line 1154
     iget-object v7, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v7}, Landroid/widget/TextView;->getText()Ljava/lang/CharSequence;
 
     move-result-object v1
 
-    .line 1222
+    .line 1155
     .local v1, "content":Ljava/lang/CharSequence;
     if-eqz v1, :cond_3
 
-    .line 1223
+    .line 1156
     const/4 v7, -0x2
 
     if-eq p2, v7, :cond_c
 
-    .line 1224
+    .line 1157
     invoke-interface {v1}, Ljava/lang/CharSequence;->length()I
 
     move-result v0
 
-    .line 1225
+    .line 1158
     .local v0, "N":I
     if-gez p2, :cond_4
 
-    .line 1226
+    .line 1159
     const/4 v7, -0x1
 
     iput v7, p5, Landroid/view/inputmethod/ExtractedText;->partialEndOffset:I
 
     iput v7, p5, Landroid/view/inputmethod/ExtractedText;->partialStartOffset:I
 
-    .line 1227
+    .line 1160
     const/4 p2, 0x0
 
-    .line 1228
+    .line 1161
     move p3, v0
 
-    .line 1261
+    .line 1194
     :cond_0
     :goto_0
     iget v7, p1, Landroid/view/inputmethod/ExtractedTextRequest;->flags:I
@@ -1462,19 +1468,19 @@
 
     if-eqz v7, :cond_b
 
-    .line 1262
+    .line 1195
     invoke-interface {v1, p2, p3}, Ljava/lang/CharSequence;->subSequence(II)Ljava/lang/CharSequence;
 
     move-result-object v7
 
     iput-object v7, p5, Landroid/view/inputmethod/ExtractedText;->text:Ljava/lang/CharSequence;
 
-    .line 1273
+    .line 1206
     .end local v0    # "N":I
     :goto_1
     iput v6, p5, Landroid/view/inputmethod/ExtractedText;->flags:I
 
-    .line 1274
+    .line 1207
     const/16 v7, 0x800
 
     invoke-static {v1, v7}, Landroid/text/method/MetaKeyKeyListener;->getMetaState(Ljava/lang/CharSequence;I)I
@@ -1483,14 +1489,14 @@
 
     if-eqz v7, :cond_1
 
-    .line 1275
+    .line 1208
     iget v7, p5, Landroid/view/inputmethod/ExtractedText;->flags:I
 
     or-int/lit8 v7, v7, 0x2
 
     iput v7, p5, Landroid/view/inputmethod/ExtractedText;->flags:I
 
-    .line 1277
+    .line 1210
     :cond_1
     iget-object v7, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
@@ -1500,18 +1506,18 @@
 
     if-eqz v7, :cond_2
 
-    .line 1278
+    .line 1211
     iget v7, p5, Landroid/view/inputmethod/ExtractedText;->flags:I
 
     or-int/lit8 v7, v7, 0x1
 
     iput v7, p5, Landroid/view/inputmethod/ExtractedText;->flags:I
 
-    .line 1280
+    .line 1213
     :cond_2
     iput v6, p5, Landroid/view/inputmethod/ExtractedText;->startOffset:I
 
-    .line 1281
+    .line 1214
     iget-object v6, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v6}, Landroid/widget/TextView;->getSelectionStart()I
@@ -1520,7 +1526,7 @@
 
     iput v6, p5, Landroid/view/inputmethod/ExtractedText;->selectionStart:I
 
-    .line 1282
+    .line 1215
     iget-object v6, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v6}, Landroid/widget/TextView;->getSelectionEnd()I
@@ -1529,29 +1535,29 @@
 
     iput v6, p5, Landroid/view/inputmethod/ExtractedText;->selectionEnd:I
 
-    .line 1283
+    .line 1216
     const/4 v6, 0x1
 
-    .line 1285
+    .line 1218
     :cond_3
     return v6
 
-    .line 1232
+    .line 1165
     .restart local v0    # "N":I
     :cond_4
     add-int/2addr p3, p4
 
-    .line 1234
+    .line 1167
     instance-of v7, v1, Landroid/text/Spanned;
 
     if-eqz v7, :cond_7
 
     move-object v4, v1
 
-    .line 1235
+    .line 1168
     check-cast v4, Landroid/text/Spanned;
 
-    .line 1236
+    .line 1169
     .local v4, "spanned":Landroid/text/Spanned;
     const-class v7, Landroid/text/ParcelableSpan;
 
@@ -1559,33 +1565,33 @@
 
     move-result-object v5
 
-    .line 1238
+    .line 1171
     .local v5, "spans":[Ljava/lang/Object;
     array-length v2, v5
 
-    .line 1239
+    .line 1172
     .local v2, "i":I
     :cond_5
     :goto_2
     if-lez v2, :cond_7
 
-    .line 1240
+    .line 1173
     add-int/lit8 v2, v2, -0x1
 
-    .line 1241
+    .line 1174
     aget-object v7, v5, v2
 
     invoke-interface {v4, v7}, Landroid/text/Spanned;->getSpanStart(Ljava/lang/Object;)I
 
     move-result v3
 
-    .line 1242
+    .line 1175
     .local v3, "j":I
     if-ge v3, p2, :cond_6
 
     move p2, v3
 
-    .line 1243
+    .line 1176
     :cond_6
     aget-object v7, v5, v2
 
@@ -1593,14 +1599,14 @@
 
     move-result v3
 
-    .line 1244
+    .line 1177
     if-le v3, p3, :cond_5
 
     move p3, v3
 
     goto :goto_2
 
-    .line 1247
+    .line 1180
     .end local v2    # "i":I
     .end local v3    # "j":I
     .end local v4    # "spanned":Landroid/text/Spanned;
@@ -1608,46 +1614,46 @@
     :cond_7
     iput p2, p5, Landroid/view/inputmethod/ExtractedText;->partialStartOffset:I
 
-    .line 1248
+    .line 1181
     sub-int v7, p3, p4
 
     iput v7, p5, Landroid/view/inputmethod/ExtractedText;->partialEndOffset:I
 
-    .line 1250
+    .line 1183
     if-le p2, v0, :cond_9
 
-    .line 1251
+    .line 1184
     move p2, v0
 
-    .line 1255
+    .line 1188
     :cond_8
     :goto_3
     if-le p3, v0, :cond_a
 
-    .line 1256
+    .line 1189
     move p3, v0
 
     goto :goto_0
 
-    .line 1252
+    .line 1185
     :cond_9
     if-gez p2, :cond_8
 
-    .line 1253
+    .line 1186
     const/4 p2, 0x0
 
     goto :goto_3
 
-    .line 1257
+    .line 1190
     :cond_a
     if-gez p3, :cond_0
 
-    .line 1258
+    .line 1191
     const/4 p3, 0x0
 
     goto :goto_0
 
-    .line 1265
+    .line 1198
     :cond_b
     invoke-static {v1, p2, p3}, Landroid/text/TextUtils;->substring(Ljava/lang/CharSequence;II)Ljava/lang/String;
 
@@ -1657,15 +1663,15 @@
 
     goto :goto_1
 
-    .line 1269
+    .line 1202
     .end local v0    # "N":I
     :cond_c
     iput v6, p5, Landroid/view/inputmethod/ExtractedText;->partialStartOffset:I
 
-    .line 1270
+    .line 1203
     iput v6, p5, Landroid/view/inputmethod/ExtractedText;->partialEndOffset:I
 
-    .line 1271
+    .line 1204
     const-string v7, ""
 
     iput-object v7, p5, Landroid/view/inputmethod/ExtractedText;->text:Ljava/lang/CharSequence;
@@ -1679,19 +1685,19 @@
     .prologue
     const/4 v1, 0x0
 
-    .line 1636
+    .line 1574
     iget-object v2, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     instance-of v2, v2, Landroid/inputmethodservice/ExtractEditText;
 
     if-nez v2, :cond_0
 
-    .line 1637
+    .line 1575
     invoke-static {}, Landroid/view/inputmethod/InputMethodManager;->peekInstance()Landroid/view/inputmethod/InputMethodManager;
 
     move-result-object v0
 
-    .line 1638
+    .line 1576
     .local v0, "imm":Landroid/view/inputmethod/InputMethodManager;
     if-eqz v0, :cond_0
 
@@ -1703,7 +1709,7 @@
 
     const/4 v1, 0x1
 
-    .line 1640
+    .line 1578
     .end local v0    # "imm":Landroid/view/inputmethod/InputMethodManager;
     :cond_0
     return v1
@@ -1716,12 +1722,12 @@
     .param p3, "searchStartIndex"    # I
 
     .prologue
-    .line 1506
+    .line 1420
     iget-object v4, p0, Landroid/widget/Editor;->mTextDisplayLists:[Landroid/widget/Editor$TextDisplayList;
 
     array-length v3, v4
 
-    .line 1507
+    .line 1421
     .local v3, "length":I
     move v1, p3
 
@@ -1729,10 +1735,10 @@
     :goto_0
     if-ge v1, v3, :cond_2
 
-    .line 1508
+    .line 1422
     const/4 v0, 0x0
 
-    .line 1509
+    .line 1423
     .local v0, "blockIndexFound":Z
     const/4 v2, 0x0
 
@@ -1740,30 +1746,30 @@
     :goto_1
     if-ge v2, p2, :cond_0
 
-    .line 1510
+    .line 1424
     aget v4, p1, v2
 
     if-ne v4, v1, :cond_1
 
-    .line 1511
+    .line 1425
     const/4 v0, 0x1
 
-    .line 1515
+    .line 1429
     :cond_0
     if-eqz v0, :cond_3
 
-    .line 1507
+    .line 1421
     add-int/lit8 v1, v1, 0x1
 
     goto :goto_0
 
-    .line 1509
+    .line 1423
     :cond_1
     add-int/lit8 v2, v2, 0x1
 
     goto :goto_1
 
-    .line 1520
+    .line 1434
     .end local v0    # "blockIndexFound":Z
     .end local v2    # "j":I
     :cond_2
@@ -1781,7 +1787,7 @@
 
     move v1, v3
 
-    .line 1521
+    .line 1435
     .end local v1    # "i":I
     :cond_3
     return v1
@@ -1792,7 +1798,7 @@
     .param p1, "offset"    # I
 
     .prologue
-    .line 785
+    .line 734
     iget-object v5, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v5}, Landroid/widget/TextView;->getText()Ljava/lang/CharSequence;
@@ -1803,13 +1809,13 @@
 
     move-result v4
 
-    .line 786
+    .line 735
     .local v4, "textLength":I
     add-int/lit8 v5, p1, 0x1
 
     if-ge v5, v4, :cond_0
 
-    .line 787
+    .line 736
     iget-object v5, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v5}, Landroid/widget/TextView;->getText()Ljava/lang/CharSequence;
@@ -1820,7 +1826,7 @@
 
     move-result v0
 
-    .line 788
+    .line 737
     .local v0, "currentChar":C
     iget-object v5, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
@@ -1834,7 +1840,7 @@
 
     move-result v1
 
-    .line 789
+    .line 738
     .local v1, "nextChar":C
     invoke-static {v0, v1}, Ljava/lang/Character;->isSurrogatePair(CC)Z
 
@@ -1842,24 +1848,24 @@
 
     if-eqz v5, :cond_0
 
-    .line 790
+    .line 739
     add-int/lit8 v5, p1, 0x2
 
     invoke-static {p1, v5}, Landroid/text/TextUtils;->packRangeInLong(II)J
 
     move-result-wide v6
 
-    .line 806
+    .line 755
     .end local v0    # "currentChar":C
     .end local v1    # "nextChar":C
     :goto_0
     return-wide v6
 
-    .line 793
+    .line 742
     :cond_0
     if-ge p1, v4, :cond_1
 
-    .line 794
+    .line 743
     add-int/lit8 v5, p1, 0x1
 
     invoke-static {p1, v5}, Landroid/text/TextUtils;->packRangeInLong(II)J
@@ -1868,13 +1874,13 @@
 
     goto :goto_0
 
-    .line 796
+    .line 745
     :cond_1
     add-int/lit8 v5, p1, -0x2
 
     if-ltz v5, :cond_2
 
-    .line 797
+    .line 746
     iget-object v5, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v5}, Landroid/widget/TextView;->getText()Ljava/lang/CharSequence;
@@ -1887,7 +1893,7 @@
 
     move-result v2
 
-    .line 798
+    .line 747
     .local v2, "previousChar":C
     iget-object v5, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
@@ -1901,7 +1907,7 @@
 
     move-result v3
 
-    .line 799
+    .line 748
     .local v3, "previousPreviousChar":C
     invoke-static {v3, v2}, Ljava/lang/Character;->isSurrogatePair(CC)Z
 
@@ -1909,7 +1915,7 @@
 
     if-eqz v5, :cond_2
 
-    .line 800
+    .line 749
     add-int/lit8 v5, p1, -0x2
 
     invoke-static {v5, p1}, Landroid/text/TextUtils;->packRangeInLong(II)J
@@ -1918,7 +1924,7 @@
 
     goto :goto_0
 
-    .line 803
+    .line 752
     .end local v2    # "previousChar":C
     .end local v3    # "previousPreviousChar":C
     :cond_2
@@ -1926,7 +1932,7 @@
 
     if-ltz v5, :cond_3
 
-    .line 804
+    .line 753
     add-int/lit8 v5, p1, -0x1
 
     invoke-static {v5, p1}, Landroid/text/TextUtils;->packRangeInLong(II)J
@@ -1935,276 +1941,12 @@
 
     goto :goto_0
 
-    .line 806
+    .line 755
     :cond_3
     invoke-static {p1, p1}, Landroid/text/TextUtils;->packRangeInLong(II)J
 
     move-result-wide v6
 
-    goto :goto_0
-.end method
-
-.method private getCurrentLineAdjustedForSlop(Landroid/text/Layout;IF)I
-    .locals 14
-    .param p1, "layout"    # Landroid/text/Layout;
-    .param p2, "prevLine"    # I
-    .param p3, "y"    # F
-
-    .prologue
-    .line 5012
-    iget-object v12, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
-
-    move/from16 v0, p3
-
-    invoke-virtual {v12, v0}, Landroid/widget/TextView;->getLineAtCoordinate(F)I
-
-    move-result v8
-
-    .line 5013
-    .local v8, "trueLine":I
-    if-eqz p1, :cond_0
-
-    invoke-virtual {p1}, Landroid/text/Layout;->getLineCount()I
-
-    move-result v12
-
-    move/from16 v0, p2
-
-    if-gt v0, v12, :cond_0
-
-    invoke-virtual {p1}, Landroid/text/Layout;->getLineCount()I
-
-    move-result v12
-
-    if-lez v12, :cond_0
-
-    if-gez p2, :cond_1
-
-    .line 5045
-    .end local v8    # "trueLine":I
-    :cond_0
-    :goto_0
-    return v8
-
-    .line 5019
-    .restart local v8    # "trueLine":I
-    :cond_1
-    sub-int v12, v8, p2
-
-    invoke-static {v12}, Ljava/lang/Math;->abs(I)I
-
-    move-result v12
-
-    const/4 v13, 0x2
-
-    if-ge v12, v13, :cond_0
-
-    .line 5024
-    iget-object v12, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
-
-    invoke-virtual {v12}, Landroid/widget/TextView;->viewportToContentVerticalOffset()I
-
-    move-result v12
-
-    int-to-float v9, v12
-
-    .line 5025
-    .local v9, "verticalOffset":F
-    invoke-virtual {p1}, Landroid/text/Layout;->getLineCount()I
-
-    move-result v4
-
-    .line 5026
-    .local v4, "lineCount":I
-    iget-object v12, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
-
-    invoke-virtual {v12}, Landroid/widget/TextView;->getLineHeight()I
-
-    move-result v12
-
-    int-to-float v12, v12
-
-    const/high16 v13, 0x3f000000    # 0.5f
-
-    mul-float v7, v12, v13
-
-    .line 5028
-    .local v7, "slop":F
-    const/4 v12, 0x0
-
-    invoke-virtual {p1, v12}, Landroid/text/Layout;->getLineTop(I)I
-
-    move-result v12
-
-    int-to-float v12, v12
-
-    add-float v2, v12, v9
-
-    .line 5029
-    .local v2, "firstLineTop":F
-    invoke-virtual/range {p1 .. p2}, Landroid/text/Layout;->getLineTop(I)I
-
-    move-result v12
-
-    int-to-float v12, v12
-
-    add-float v6, v12, v9
-
-    .line 5030
-    .local v6, "prevLineTop":F
-    sub-float v12, v6, v7
-
-    add-float v13, v2, v7
-
-    invoke-static {v12, v13}, Ljava/lang/Math;->max(FF)F
-
-    move-result v11
-
-    .line 5032
-    .local v11, "yTopBound":F
-    add-int/lit8 v12, v4, -0x1
-
-    invoke-virtual {p1, v12}, Landroid/text/Layout;->getLineBottom(I)I
-
-    move-result v12
-
-    int-to-float v12, v12
-
-    add-float v3, v12, v9
-
-    .line 5033
-    .local v3, "lastLineBottom":F
-    invoke-virtual/range {p1 .. p2}, Landroid/text/Layout;->getLineBottom(I)I
-
-    move-result v12
-
-    int-to-float v12, v12
-
-    add-float v5, v12, v9
-
-    .line 5034
-    .local v5, "prevLineBottom":F
-    add-float v12, v5, v7
-
-    sub-float v13, v3, v7
-
-    invoke-static {v12, v13}, Ljava/lang/Math;->min(FF)F
-
-    move-result v10
-
-    .line 5038
-    .local v10, "yBottomBound":F
-    cmpg-float v12, p3, v11
-
-    if-gtz v12, :cond_2
-
-    .line 5039
-    add-int/lit8 v12, p2, -0x1
-
-    const/4 v13, 0x0
-
-    invoke-static {v12, v13}, Ljava/lang/Math;->max(II)I
-
-    move-result v1
-
-    .local v1, "currLine":I
-    :goto_1
-    move v8, v1
-
-    .line 5045
-    goto :goto_0
-
-    .line 5040
-    .end local v1    # "currLine":I
-    :cond_2
-    cmpl-float v12, p3, v10
-
-    if-ltz v12, :cond_3
-
-    .line 5041
-    add-int/lit8 v12, p2, 0x1
-
-    add-int/lit8 v13, v4, -0x1
-
-    invoke-static {v12, v13}, Ljava/lang/Math;->min(II)I
-
-    move-result v1
-
-    .restart local v1    # "currLine":I
-    goto :goto_1
-
-    .line 5043
-    .end local v1    # "currLine":I
-    :cond_3
-    move/from16 v1, p2
-
-    .restart local v1    # "currLine":I
-    goto :goto_1
-.end method
-
-.method private static getDescendantViewScale(Landroid/view/View;)F
-    .locals 5
-    .param p0, "descendant"    # Landroid/view/View;
-
-    .prologue
-    .line 4019
-    const/high16 v0, 0x3f800000    # 1.0f
-
-    .line 4020
-    .local v0, "scale":F
-    invoke-virtual {p0}, Landroid/view/View;->getScaleX()F
-
-    move-result v3
-
-    mul-float/2addr v0, v3
-
-    .line 4022
-    invoke-virtual {p0}, Landroid/view/View;->getParent()Landroid/view/ViewParent;
-
-    move-result-object v2
-
-    .line 4023
-    .local v2, "viewParent":Landroid/view/ViewParent;
-    :goto_0
-    instance-of v3, v2, Landroid/view/View;
-
-    if-eqz v3, :cond_0
-
-    move-object v1, v2
-
-    .line 4024
-    check-cast v1, Landroid/view/View;
-
-    .line 4025
-    .local v1, "view":Landroid/view/View;
-    invoke-virtual {v1}, Landroid/view/View;->getId()I
-
-    move-result v3
-
-    const v4, 0x1020002
-
-    if-ne v3, v4, :cond_1
-
-    .line 4032
-    .end local v1    # "view":Landroid/view/View;
-    :cond_0
-    return v0
-
-    .line 4028
-    .restart local v1    # "view":Landroid/view/View;
-    :cond_1
-    invoke-virtual {v1}, Landroid/view/View;->getScaleX()F
-
-    move-result v3
-
-    mul-float/2addr v0, v3
-
-    .line 4030
-    invoke-virtual {v1}, Landroid/view/View;->getParent()Landroid/view/ViewParent;
-
-    move-result-object v2
-
-    .line 4031
     goto :goto_0
 .end method
 
@@ -2218,7 +1960,7 @@
 
     const/high16 v7, 0x3f000000    # 0.5f
 
-    .line 409
+    .line 391
     iget-object v6, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v6}, Landroid/widget/TextView;->getResources()Landroid/content/res/Resources;
@@ -2231,13 +1973,13 @@
 
     iget v4, v6, Landroid/util/DisplayMetrics;->density:F
 
-    .line 411
+    .line 393
     .local v4, "scale":F
     iget-object v6, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     iget-object v0, v6, Landroid/widget/TextView;->mDrawables:Landroid/widget/TextView$Drawables;
 
-    .line 413
+    .line 395
     .local v0, "dr":Landroid/widget/TextView$Drawables;
     iget-object v6, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
@@ -2245,11 +1987,11 @@
 
     move-result v2
 
-    .line 416
+    .line 398
     .local v2, "layoutDirection":I
     packed-switch v2, :pswitch_data_0
 
-    .line 419
+    .line 401
     if-eqz v0, :cond_0
 
     iget v5, v0, Landroid/widget/TextView$Drawables;->mDrawableSizeRight:I
@@ -2267,7 +2009,7 @@
 
     add-int v3, v5, v6
 
-    .line 420
+    .line 402
     .local v3, "offset":I
     iget-object v5, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
@@ -2293,12 +2035,12 @@
 
     add-int v1, v5, v3
 
-    .line 428
+    .line 410
     .local v1, "errorX":I
     :goto_0
     return v1
 
-    .line 424
+    .line 406
     .end local v1    # "errorX":I
     .end local v3    # "offset":I
     :pswitch_0
@@ -2317,7 +2059,7 @@
 
     sub-int v3, v5, v6
 
-    .line 425
+    .line 407
     .restart local v3    # "offset":I
     iget-object v5, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
@@ -2330,7 +2072,7 @@
     .restart local v1    # "errorX":I
     goto :goto_0
 
-    .line 416
+    .line 398
     nop
 
     :pswitch_data_0
@@ -2345,14 +2087,14 @@
     .prologue
     const/4 v2, 0x0
 
-    .line 440
+    .line 422
     iget-object v7, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v7}, Landroid/widget/TextView;->getCompoundPaddingTop()I
 
     move-result v0
 
-    .line 441
+    .line 423
     .local v0, "compoundPaddingTop":I
     iget-object v7, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
@@ -2378,13 +2120,13 @@
 
     sub-int v6, v7, v0
 
-    .line 444
+    .line 426
     .local v6, "vspace":I
     iget-object v7, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     iget-object v1, v7, Landroid/widget/TextView;->mDrawables:Landroid/widget/TextView$Drawables;
 
-    .line 446
+    .line 428
     .local v1, "dr":Landroid/widget/TextView$Drawables;
     iget-object v7, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
@@ -2392,16 +2134,16 @@
 
     move-result v4
 
-    .line 448
+    .line 430
     .local v4, "layoutDirection":I
     packed-switch v4, :pswitch_data_0
 
-    .line 451
+    .line 433
     if-eqz v1, :cond_0
 
     iget v2, v1, Landroid/widget/TextView$Drawables;->mDrawableHeightRight:I
 
-    .line 458
+    .line 440
     .local v2, "height":I
     :cond_0
     :goto_0
@@ -2411,7 +2153,7 @@
 
     add-int v3, v0, v7
 
-    .line 464
+    .line 446
     .local v3, "icontop":I
     iget-object v7, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
@@ -2425,7 +2167,7 @@
 
     iget v5, v7, Landroid/util/DisplayMetrics;->density:F
 
-    .line 465
+    .line 447
     .local v5, "scale":F
     add-int v7, v3, v2
 
@@ -2451,7 +2193,7 @@
 
     return v7
 
-    .line 454
+    .line 436
     .end local v2    # "height":I
     .end local v3    # "icontop":I
     .end local v5    # "scale":F
@@ -2464,7 +2206,7 @@
     :cond_1
     goto :goto_0
 
-    .line 448
+    .line 430
     nop
 
     :pswitch_data_0
@@ -2477,23 +2219,23 @@
     .locals 2
 
     .prologue
-    .line 1084
+    .line 1027
     iget-object v1, p0, Landroid/widget/Editor;->mSelectionModifierCursorController:Landroid/widget/Editor$SelectionModifierCursorController;
 
     if-eqz v1, :cond_1
 
-    .line 1085
+    .line 1028
     iget-object v1, p0, Landroid/widget/Editor;->mSelectionModifierCursorController:Landroid/widget/Editor$SelectionModifierCursorController;
 
     invoke-virtual {v1}, Landroid/widget/Editor$SelectionModifierCursorController;->getMinTouchOffset()I
 
     move-result v0
 
-    .line 1086
+    .line 1029
     .local v0, "lastTapPosition":I
     if-ltz v0, :cond_1
 
-    .line 1088
+    .line 1031
     iget-object v1, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v1}, Landroid/widget/TextView;->getText()Ljava/lang/CharSequence;
@@ -2506,7 +2248,7 @@
 
     if-le v0, v1, :cond_0
 
-    .line 1089
+    .line 1032
     iget-object v1, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v1}, Landroid/widget/TextView;->getText()Ljava/lang/CharSequence;
@@ -2517,7 +2259,7 @@
 
     move-result v0
 
-    .line 1095
+    .line 1038
     .end local v0    # "lastTapPosition":I
     :cond_0
     :goto_0
@@ -2533,24 +2275,24 @@
     .locals 6
 
     .prologue
-    .line 952
+    .line 897
     invoke-virtual {p0}, Landroid/widget/Editor;->getSelectionController()Landroid/widget/Editor$SelectionModifierCursorController;
 
     move-result-object v2
 
-    .line 953
+    .line 898
     .local v2, "selectionController":Landroid/widget/Editor$SelectionModifierCursorController;
     invoke-virtual {v2}, Landroid/widget/Editor$SelectionModifierCursorController;->getMinTouchOffset()I
 
     move-result v1
 
-    .line 954
+    .line 899
     .local v1, "minOffset":I
     invoke-virtual {v2}, Landroid/widget/Editor$SelectionModifierCursorController;->getMaxTouchOffset()I
 
     move-result v0
 
-    .line 955
+    .line 900
     .local v0, "maxOffset":I
     invoke-static {v1, v0}, Landroid/text/TextUtils;->packRangeInLong(II)J
 
@@ -2563,12 +2305,12 @@
     .locals 2
 
     .prologue
-    .line 832
+    .line 781
     iget-object v0, p0, Landroid/widget/Editor;->mPositionListener:Landroid/widget/Editor$PositionListener;
 
     if-nez v0, :cond_0
 
-    .line 833
+    .line 782
     new-instance v0, Landroid/widget/Editor$PositionListener;
 
     const/4 v1, 0x0
@@ -2577,7 +2319,7 @@
 
     iput-object v0, p0, Landroid/widget/Editor;->mPositionListener:Landroid/widget/Editor$PositionListener;
 
-    .line 835
+    .line 784
     :cond_0
     iget-object v0, p0, Landroid/widget/Editor;->mPositionListener:Landroid/widget/Editor$PositionListener;
 
@@ -2592,7 +2334,7 @@
     .param p4, "clamped"    # Z
 
     .prologue
-    .line 1606
+    .line 1520
     invoke-virtual {p1}, Landroid/text/Layout;->getText()Ljava/lang/CharSequence;
 
     move-result-object v0
@@ -2615,12 +2357,12 @@
 
     if-nez v0, :cond_0
 
-    .line 1609
+    .line 1523
     invoke-virtual {p2, p3, p4}, Landroid/text/Layout;->getPrimaryHorizontal(IZ)F
 
     move-result v0
 
-    .line 1611
+    .line 1525
     :goto_0
     return v0
 
@@ -2641,7 +2383,7 @@
 
     const/4 v5, 0x0
 
-    .line 1868
+    .line 1797
     iget-object v2, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v2}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
@@ -2658,11 +2400,11 @@
 
     check-cast v0, Landroid/widget/TextView;
 
-    .line 1871
+    .line 1800
     .local v0, "shadowView":Landroid/widget/TextView;
     if-nez v0, :cond_0
 
-    .line 1872
+    .line 1801
     new-instance v2, Ljava/lang/IllegalArgumentException;
 
     const-string v3, "Unable to inflate text drag thumbnail"
@@ -2671,7 +2413,7 @@
 
     throw v2
 
-    .line 1875
+    .line 1804
     :cond_0
     invoke-interface {p1}, Ljava/lang/CharSequence;->length()I
 
@@ -2681,18 +2423,18 @@
 
     if-le v2, v3, :cond_1
 
-    .line 1876
+    .line 1805
     sget v2, Landroid/widget/Editor;->DRAG_SHADOW_MAX_TEXT_LENGTH:I
 
     invoke-interface {p1, v5, v2}, Ljava/lang/CharSequence;->subSequence(II)Ljava/lang/CharSequence;
 
     move-result-object p1
 
-    .line 1878
+    .line 1807
     :cond_1
     invoke-virtual {v0, p1}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 1879
+    .line 1808
     iget-object v2, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v2}, Landroid/widget/TextView;->getTextColors()Landroid/content/res/ColorStateList;
@@ -2701,7 +2443,7 @@
 
     invoke-virtual {v0, v2}, Landroid/widget/TextView;->setTextColor(Landroid/content/res/ColorStateList;)V
 
-    .line 1881
+    .line 1810
     iget-object v2, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v2}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
@@ -2712,28 +2454,28 @@
 
     invoke-virtual {v0, v2, v3}, Landroid/widget/TextView;->setTextAppearance(Landroid/content/Context;I)V
 
-    .line 1882
+    .line 1811
     const/16 v2, 0x11
 
     invoke-virtual {v0, v2}, Landroid/widget/TextView;->setGravity(I)V
 
-    .line 1884
+    .line 1813
     new-instance v2, Landroid/view/ViewGroup$LayoutParams;
 
     invoke-direct {v2, v6, v6}, Landroid/view/ViewGroup$LayoutParams;-><init>(II)V
 
     invoke-virtual {v0, v2}, Landroid/widget/TextView;->setLayoutParams(Landroid/view/ViewGroup$LayoutParams;)V
 
-    .line 1887
+    .line 1816
     invoke-static {v5, v5}, Landroid/view/View$MeasureSpec;->makeMeasureSpec(II)I
 
     move-result v1
 
-    .line 1888
+    .line 1817
     .local v1, "size":I
     invoke-virtual {v0, v1, v1}, Landroid/widget/TextView;->measure(II)V
 
-    .line 1890
+    .line 1819
     invoke-virtual {v0}, Landroid/widget/TextView;->getMeasuredWidth()I
 
     move-result v2
@@ -2744,10 +2486,10 @@
 
     invoke-virtual {v0, v5, v5, v2, v3}, Landroid/widget/TextView;->layout(IIII)V
 
-    .line 1891
+    .line 1820
     invoke-virtual {v0}, Landroid/widget/TextView;->invalidate()V
 
-    .line 1892
+    .line 1821
     new-instance v2, Landroid/view/View$DragShadowBuilder;
 
     invoke-direct {v2, v0}, Landroid/view/View$DragShadowBuilder;-><init>(Landroid/view/View;)V
@@ -2759,7 +2501,7 @@
     .locals 1
 
     .prologue
-    .line 665
+    .line 647
     iget-object v0, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v0}, Landroid/widget/TextView;->getTransformationMethod()Landroid/text/method/TransformationMethod;
@@ -2775,7 +2517,7 @@
     .locals 1
 
     .prologue
-    .line 537
+    .line 519
     iget-object v0, p0, Landroid/widget/Editor;->mSuggestionsPopupWindow:Landroid/widget/Editor$SuggestionsPopupWindow;
 
     if-eqz v0, :cond_0
@@ -2788,19 +2530,19 @@
 
     if-nez v0, :cond_0
 
-    .line 539
+    .line 521
     iget-object v0, p0, Landroid/widget/Editor;->mSuggestionsPopupWindow:Landroid/widget/Editor$SuggestionsPopupWindow;
 
     invoke-virtual {v0}, Landroid/widget/Editor$SuggestionsPopupWindow;->hide()V
 
-    .line 541
+    .line 523
     :cond_0
     invoke-direct {p0}, Landroid/widget/Editor;->hideInsertionPointCursorController()V
 
-    .line 542
+    .line 524
     invoke-virtual {p0}, Landroid/widget/Editor;->stopSelectionActionMode()V
 
-    .line 543
+    .line 525
     return-void
 .end method
 
@@ -2808,12 +2550,12 @@
     .locals 1
 
     .prologue
-    .line 391
+    .line 373
     iget-object v0, p0, Landroid/widget/Editor;->mErrorPopup:Landroid/widget/Editor$ErrorPopup;
 
     if-eqz v0, :cond_0
 
-    .line 392
+    .line 374
     iget-object v0, p0, Landroid/widget/Editor;->mErrorPopup:Landroid/widget/Editor$ErrorPopup;
 
     invoke-virtual {v0}, Landroid/widget/Editor$ErrorPopup;->isShowing()Z
@@ -2822,18 +2564,18 @@
 
     if-eqz v0, :cond_0
 
-    .line 393
+    .line 375
     iget-object v0, p0, Landroid/widget/Editor;->mErrorPopup:Landroid/widget/Editor$ErrorPopup;
 
     invoke-virtual {v0}, Landroid/widget/Editor$ErrorPopup;->dismiss()V
 
-    .line 397
+    .line 379
     :cond_0
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Landroid/widget/Editor;->mShowErrorAfterAttach:Z
 
-    .line 398
+    .line 380
     return-void
 .end method
 
@@ -2841,17 +2583,17 @@
     .locals 1
 
     .prologue
-    .line 517
+    .line 499
     iget-object v0, p0, Landroid/widget/Editor;->mInsertionPointCursorController:Landroid/widget/Editor$InsertionPointCursorController;
 
     if-eqz v0, :cond_0
 
-    .line 518
+    .line 500
     iget-object v0, p0, Landroid/widget/Editor;->mInsertionPointCursorController:Landroid/widget/Editor$InsertionPointCursorController;
 
     invoke-virtual {v0}, Landroid/widget/Editor$InsertionPointCursorController;->hide()V
 
-    .line 520
+    .line 502
     :cond_0
     return-void
 .end method
@@ -2860,17 +2602,17 @@
     .locals 1
 
     .prologue
-    .line 531
+    .line 513
     iget-object v0, p0, Landroid/widget/Editor;->mSpanController:Landroid/widget/Editor$SpanController;
 
     if-eqz v0, :cond_0
 
-    .line 532
+    .line 514
     iget-object v0, p0, Landroid/widget/Editor;->mSpanController:Landroid/widget/Editor$SpanController;
 
     invoke-virtual {v0}, Landroid/widget/Editor$SpanController;->hide()V
 
-    .line 534
+    .line 516
     :cond_0
     return-void
 .end method
@@ -2879,7 +2621,7 @@
     .locals 6
 
     .prologue
-    .line 1660
+    .line 1598
     iget-object v3, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v3}, Landroid/widget/TextView;->getText()Ljava/lang/CharSequence;
@@ -2888,7 +2630,7 @@
 
     check-cast v1, Landroid/text/Spannable;
 
-    .line 1661
+    .line 1599
     .local v1, "spannable":Landroid/text/Spannable;
     iget-object v3, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
@@ -2910,7 +2652,7 @@
 
     check-cast v2, [Landroid/text/style/SuggestionSpan;
 
-    .line 1663
+    .line 1601
     .local v2, "suggestionSpans":[Landroid/text/style/SuggestionSpan;
     const/4 v0, 0x0
 
@@ -2920,7 +2662,7 @@
 
     if-ge v0, v3, :cond_1
 
-    .line 1664
+    .line 1602
     aget-object v3, v2, v0
 
     invoke-virtual {v3}, Landroid/text/style/SuggestionSpan;->getFlags()I
@@ -2931,20 +2673,20 @@
 
     if-eqz v3, :cond_0
 
-    .line 1665
+    .line 1603
     const/4 v3, 0x1
 
-    .line 1668
+    .line 1606
     :goto_1
     return v3
 
-    .line 1663
+    .line 1601
     :cond_0
     add-int/lit8 v0, v0, 0x1
 
     goto :goto_0
 
-    .line 1668
+    .line 1606
     :cond_1
     const/4 v3, 0x0
 
@@ -2957,26 +2699,26 @@
     .prologue
     const/4 v2, 0x0
 
-    .line 1647
+    .line 1585
     iget-object v3, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v3}, Landroid/widget/TextView;->getText()Ljava/lang/CharSequence;
 
     move-result-object v1
 
-    .line 1648
+    .line 1586
     .local v1, "text":Ljava/lang/CharSequence;
     instance-of v3, v1, Landroid/text/Spannable;
 
     if-nez v3, :cond_1
 
-    .line 1652
+    .line 1590
     .end local v1    # "text":Ljava/lang/CharSequence;
     :cond_0
     :goto_0
     return v2
 
-    .line 1650
+    .line 1588
     .restart local v1    # "text":Ljava/lang/CharSequence;
     :cond_1
     check-cast v1, Landroid/text/Spannable;
@@ -3002,7 +2744,7 @@
 
     check-cast v0, [Landroid/text/style/SuggestionSpan;
 
-    .line 1652
+    .line 1590
     .local v0, "suggestionSpans":[Landroid/text/style/SuggestionSpan;
     array-length v3, v0
 
@@ -3014,102 +2756,72 @@
 .end method
 
 .method private isOffsetVisible(I)Z
-    .locals 8
+    .locals 6
     .param p1, "offset"    # I
 
     .prologue
-    const/4 v5, 0x0
+    .line 833
+    iget-object v4, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
-    .line 884
-    iget-object v6, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
-
-    invoke-virtual {v6}, Landroid/widget/TextView;->getLayout()Landroid/text/Layout;
+    invoke-virtual {v4}, Landroid/widget/TextView;->getLayout()Landroid/text/Layout;
 
     move-result-object v0
 
-    .line 885
+    .line 834
     .local v0, "layout":Landroid/text/Layout;
-    if-nez v0, :cond_1
+    if-nez v0, :cond_0
 
-    .line 891
-    :cond_0
+    const/4 v4, 0x0
+
+    .line 839
     :goto_0
-    return v5
+    return v4
 
-    .line 887
-    :cond_1
+    .line 836
+    :cond_0
     invoke-virtual {v0, p1}, Landroid/text/Layout;->getLineForOffset(I)I
 
     move-result v1
 
-    .line 888
+    .line 837
     .local v1, "line":I
     invoke-virtual {v0, v1}, Landroid/text/Layout;->getLineBottom(I)I
 
     move-result v2
 
-    .line 889
+    .line 838
     .local v2, "lineBottom":I
-    invoke-virtual {v0, v1}, Landroid/text/Layout;->getLineTop(I)I
-
-    move-result v3
-
-    .line 890
-    .local v3, "lineTop":I
     invoke-virtual {v0, p1}, Landroid/text/Layout;->getPrimaryHorizontal(I)F
 
-    move-result v6
+    move-result v4
 
-    float-to-int v4, v6
+    float-to-int v3, v4
 
-    .line 891
-    .local v4, "primaryHorizontal":I
-    iget-object v6, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+    .line 839
+    .local v3, "primaryHorizontal":I
+    iget-object v4, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
-    invoke-virtual {v6}, Landroid/widget/TextView;->viewportToContentHorizontalOffset()I
+    invoke-virtual {v4}, Landroid/widget/TextView;->viewportToContentHorizontalOffset()I
 
-    move-result v6
+    move-result v4
 
-    add-int/2addr v6, v4
+    add-int/2addr v4, v3
 
-    iget-object v7, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+    int-to-float v4, v4
 
-    invoke-virtual {v7}, Landroid/widget/TextView;->viewportToContentVerticalOffset()I
+    iget-object v5, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
-    move-result v7
+    invoke-virtual {v5}, Landroid/widget/TextView;->viewportToContentVerticalOffset()I
 
-    add-int/2addr v7, v2
+    move-result v5
 
-    invoke-direct {p0, v6, v7}, Landroid/widget/Editor;->isPositionVisible(II)Z
+    add-int/2addr v5, v2
 
-    move-result v6
+    int-to-float v5, v5
 
-    if-nez v6, :cond_2
+    invoke-direct {p0, v4, v5}, Landroid/widget/Editor;->isPositionVisible(FF)Z
 
-    iget-object v6, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
-
-    invoke-virtual {v6}, Landroid/widget/TextView;->viewportToContentHorizontalOffset()I
-
-    move-result v6
-
-    add-int/2addr v6, v4
-
-    iget-object v7, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
-
-    invoke-virtual {v7}, Landroid/widget/TextView;->viewportToContentVerticalOffset()I
-
-    move-result v7
-
-    add-int/2addr v7, v3
-
-    invoke-direct {p0, v6, v7}, Landroid/widget/Editor;->isPositionVisible(II)Z
-
-    move-result v6
-
-    if-eqz v6, :cond_0
-
-    :cond_2
-    const/4 v5, 0x1
+    move-result v4
 
     goto :goto_0
 .end method
@@ -3122,23 +2834,23 @@
     .prologue
     const/4 v2, 0x0
 
-    .line 902
+    .line 847
     iget-object v3, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v3}, Landroid/widget/TextView;->getLayout()Landroid/text/Layout;
 
     move-result-object v0
 
-    .line 903
+    .line 848
     .local v0, "layout":Landroid/text/Layout;
     if-nez v0, :cond_1
 
-    .line 910
+    .line 855
     :cond_0
     :goto_0
     return v2
 
-    .line 905
+    .line 850
     :cond_1
     iget-object v3, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
@@ -3146,7 +2858,7 @@
 
     move-result v1
 
-    .line 906
+    .line 851
     .local v1, "line":I
     iget-object v3, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
@@ -3154,7 +2866,7 @@
 
     move-result p1
 
-    .line 908
+    .line 853
     invoke-virtual {v0, v1}, Landroid/text/Layout;->getLineLeft(I)F
 
     move-result v3
@@ -3163,7 +2875,7 @@
 
     if-ltz v3, :cond_0
 
-    .line 909
+    .line 854
     invoke-virtual {v0, v1}, Landroid/text/Layout;->getLineRight(I)F
 
     move-result v3
@@ -3172,16 +2884,16 @@
 
     if-gtz v3, :cond_0
 
-    .line 910
+    .line 855
     const/4 v2, 0x1
 
     goto :goto_0
 .end method
 
-.method private isPositionVisible(II)Z
+.method private isPositionVisible(FF)Z
     .locals 11
-    .param p1, "positionX"    # I
-    .param p2, "positionY"    # I
+    .param p1, "positionX"    # F
+    .param p2, "positionY"    # F
 
     .prologue
     const/4 v10, 0x0
@@ -3190,44 +2902,40 @@
 
     const/4 v4, 0x0
 
-    .line 844
+    .line 793
     sget-object v6, Landroid/widget/Editor;->TEMP_POSITION:[F
 
     monitor-enter v6
 
-    .line 845
+    .line 794
     :try_start_0
     sget-object v2, Landroid/widget/Editor;->TEMP_POSITION:[F
 
-    .line 846
+    .line 795
     .local v2, "position":[F
     const/4 v7, 0x0
 
-    int-to-float v8, p1
+    aput p1, v2, v7
 
-    aput v8, v2, v7
-
-    .line 847
+    .line 796
     const/4 v7, 0x1
 
-    int-to-float v8, p2
+    aput p2, v2, v7
 
-    aput v8, v2, v7
-
-    .line 848
+    .line 797
     iget-object v3, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
-    .line 850
+    .line 799
     .local v3, "view":Landroid/view/View;
     :goto_0
     if-eqz v3, :cond_5
 
-    .line 851
+    .line 800
     iget-object v7, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     if-eq v3, v7, :cond_0
 
-    .line 853
+    .line 802
     const/4 v7, 0x0
 
     aget v8, v2, v7
@@ -3242,7 +2950,7 @@
 
     aput v8, v2, v7
 
-    .line 854
+    .line 803
     const/4 v7, 0x1
 
     aget v8, v2, v7
@@ -3257,7 +2965,7 @@
 
     aput v8, v2, v7
 
-    .line 857
+    .line 806
     :cond_0
     const/4 v7, 0x0
 
@@ -3303,15 +3011,15 @@
 
     if-lez v7, :cond_2
 
-    .line 859
+    .line 808
     :cond_1
     monitor-exit v6
 
-    .line 880
+    .line 829
     :goto_1
     return v4
 
-    .line 862
+    .line 811
     :cond_2
     invoke-virtual {v3}, Landroid/view/View;->getMatrix()Landroid/graphics/Matrix;
 
@@ -3323,14 +3031,14 @@
 
     if-nez v7, :cond_3
 
-    .line 863
+    .line 812
     invoke-virtual {v3}, Landroid/view/View;->getMatrix()Landroid/graphics/Matrix;
 
     move-result-object v7
 
     invoke-virtual {v7, v2}, Landroid/graphics/Matrix;->mapPoints([F)V
 
-    .line 866
+    .line 815
     :cond_3
     const/4 v7, 0x0
 
@@ -3346,7 +3054,7 @@
 
     aput v8, v2, v7
 
-    .line 867
+    .line 816
     const/4 v7, 0x1
 
     aget v8, v2, v7
@@ -3361,18 +3069,18 @@
 
     aput v8, v2, v7
 
-    .line 869
+    .line 818
     invoke-virtual {v3}, Landroid/view/View;->getParent()Landroid/view/ViewParent;
 
     move-result-object v1
 
-    .line 870
+    .line 819
     .local v1, "parent":Landroid/view/ViewParent;
     instance-of v7, v1, Landroid/view/View;
 
     if-eqz v7, :cond_4
 
-    .line 871
+    .line 820
     move-object v0, v1
 
     check-cast v0, Landroid/view/View;
@@ -3381,23 +3089,23 @@
 
     goto :goto_0
 
-    .line 874
+    .line 823
     :cond_4
     const/4 v3, 0x0
 
     goto :goto_0
 
-    .line 877
+    .line 826
     .end local v1    # "parent":Landroid/view/ViewParent;
     :cond_5
     monitor-exit v6
 
     move v4, v5
 
-    .line 880
+    .line 829
     goto :goto_1
 
-    .line 877
+    .line 826
     .end local v2    # "position":[F
     .end local v3    # "view":Landroid/view/View;
     :catchall_0
@@ -3414,20 +3122,20 @@
     .locals 1
 
     .prologue
-    .line 582
+    .line 564
     iget-object v0, p0, Landroid/widget/Editor;->mBlink:Landroid/widget/Editor$Blink;
 
     if-eqz v0, :cond_0
 
-    .line 583
+    .line 565
     iget-object v0, p0, Landroid/widget/Editor;->mBlink:Landroid/widget/Editor$Blink;
 
     invoke-virtual {v0}, Landroid/widget/Editor$Blink;->uncancel()V
 
-    .line 584
+    .line 566
     invoke-virtual {p0}, Landroid/widget/Editor;->makeBlink()V
 
-    .line 586
+    .line 568
     :cond_0
     return-void
 .end method
@@ -3436,21 +3144,21 @@
     .locals 18
 
     .prologue
-    .line 673
+    .line 655
     invoke-direct/range {p0 .. p0}, Landroid/widget/Editor;->canSelectText()Z
 
     move-result v16
 
     if-nez v16, :cond_0
 
-    .line 674
+    .line 656
     const/16 v16, 0x0
 
-    .line 735
+    .line 715
     :goto_0
     return v16
 
-    .line 677
+    .line 659
     :cond_0
     invoke-direct/range {p0 .. p0}, Landroid/widget/Editor;->hasPasswordTransformationMethod()Z
 
@@ -3458,7 +3166,7 @@
 
     if-eqz v16, :cond_1
 
-    .line 681
+    .line 663
     move-object/from16 v0, p0
 
     iget-object v0, v0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
@@ -3471,7 +3179,7 @@
 
     goto :goto_0
 
-    .line 684
+    .line 666
     :cond_1
     move-object/from16 v0, p0
 
@@ -3483,15 +3191,15 @@
 
     move-result v2
 
-    .line 685
+    .line 667
     .local v2, "inputType":I
     and-int/lit8 v3, v2, 0xf
 
-    .line 686
+    .line 668
     .local v3, "klass":I
     and-int/lit16 v14, v2, 0xff0
 
-    .line 689
+    .line 671
     .local v14, "variation":I
     const/16 v16, 0x2
 
@@ -3535,7 +3243,7 @@
 
     if-ne v14, v0, :cond_3
 
-    .line 696
+    .line 678
     :cond_2
     move-object/from16 v0, p0
 
@@ -3549,25 +3257,25 @@
 
     goto :goto_0
 
-    .line 699
+    .line 681
     :cond_3
     invoke-direct/range {p0 .. p0}, Landroid/widget/Editor;->getLastTouchOffsets()J
 
     move-result-wide v4
 
-    .line 700
+    .line 682
     .local v4, "lastTouchOffsets":J
     invoke-static {v4, v5}, Landroid/text/TextUtils;->unpackRangeStartFromLong(J)I
 
     move-result v7
 
-    .line 701
+    .line 683
     .local v7, "minOffset":I
     invoke-static {v4, v5}, Landroid/text/TextUtils;->unpackRangeEndFromLong(J)I
 
     move-result v6
 
-    .line 704
+    .line 686
     .local v6, "maxOffset":I
     if-ltz v7, :cond_4
 
@@ -3594,7 +3302,7 @@
 
     goto :goto_0
 
-    .line 705
+    .line 687
     :cond_5
     if-ltz v6, :cond_6
 
@@ -3621,7 +3329,7 @@
 
     goto/16 :goto_0
 
-    .line 710
+    .line 692
     :cond_7
     move-object/from16 v0, p0
 
@@ -3647,7 +3355,7 @@
 
     check-cast v13, [Landroid/text/style/URLSpan;
 
-    .line 712
+    .line 694
     .local v13, "urlSpans":[Landroid/text/style/URLSpan;
     array-length v0, v13
 
@@ -3661,12 +3369,12 @@
 
     if-lt v0, v1, :cond_9
 
-    .line 713
+    .line 695
     const/16 v16, 0x0
 
     aget-object v12, v13, v16
 
-    .line 714
+    .line 696
     .local v12, "urlSpan":Landroid/text/style/URLSpan;
     move-object/from16 v0, p0
 
@@ -3686,7 +3394,7 @@
 
     move-result v11
 
-    .line 715
+    .line 697
     .local v11, "selectionStart":I
     move-object/from16 v0, p0
 
@@ -3706,16 +3414,11 @@
 
     move-result v10
 
-    .line 732
+    .line 714
     .end local v12    # "urlSpan":Landroid/text/style/URLSpan;
     .local v10, "selectionEnd":I
     :cond_8
     :goto_1
-    move-object/from16 v0, p0
-
-    invoke-direct {v0, v11, v10}, Landroid/widget/Editor;->setSelectionTranslation(II)V
-
-    .line 734
     move-object/from16 v0, p0
 
     iget-object v0, v0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
@@ -3732,14 +3435,14 @@
 
     invoke-static {v0, v11, v10}, Landroid/text/Selection;->setSelection(Landroid/text/Spannable;II)V
 
-    .line 735
+    .line 715
     if-le v10, v11, :cond_b
 
     const/16 v16, 0x1
 
     goto/16 :goto_0
 
-    .line 717
+    .line 699
     .end local v10    # "selectionEnd":I
     .end local v11    # "selectionStart":I
     :cond_9
@@ -3747,7 +3450,7 @@
 
     move-result-object v15
 
-    .line 718
+    .line 700
     .local v15, "wordIterator":Landroid/text/method/WordIterator;
     move-object/from16 v0, p0
 
@@ -3763,18 +3466,18 @@
 
     invoke-virtual {v15, v0, v7, v6}, Landroid/text/method/WordIterator;->setCharSequence(Ljava/lang/CharSequence;II)V
 
-    .line 720
+    .line 702
     invoke-virtual {v15, v7}, Landroid/text/method/WordIterator;->getBeginning(I)I
 
     move-result v11
 
-    .line 721
+    .line 703
     .restart local v11    # "selectionStart":I
     invoke-virtual {v15, v6}, Landroid/text/method/WordIterator;->getEnd(I)I
 
     move-result v10
 
-    .line 723
+    .line 705
     .restart local v10    # "selectionEnd":I
     const/16 v16, -0x1
 
@@ -3790,7 +3493,7 @@
 
     if-ne v11, v10, :cond_8
 
-    .line 726
+    .line 708
     :cond_a
     move-object/from16 v0, p0
 
@@ -3798,20 +3501,20 @@
 
     move-result-wide v8
 
-    .line 727
+    .line 709
     .local v8, "range":J
     invoke-static {v8, v9}, Landroid/text/TextUtils;->unpackRangeStartFromLong(J)I
 
     move-result v11
 
-    .line 728
+    .line 710
     invoke-static {v8, v9}, Landroid/text/TextUtils;->unpackRangeEndFromLong(J)I
 
     move-result v10
 
     goto :goto_1
 
-    .line 735
+    .line 715
     .end local v8    # "range":J
     .end local v15    # "wordIterator":Landroid/text/method/WordIterator;
     :cond_b
@@ -3824,7 +3527,7 @@
     .locals 7
 
     .prologue
-    .line 1329
+    .line 1262
     iget-object v1, p0, Landroid/widget/Editor;->mInputMethodState:Landroid/widget/Editor$InputMethodState;
 
     if-eqz v1, :cond_1
@@ -3835,23 +3538,23 @@
 
     if-gtz v1, :cond_1
 
-    .line 1330
+    .line 1263
     invoke-static {}, Landroid/view/inputmethod/InputMethodManager;->peekInstance()Landroid/view/inputmethod/InputMethodManager;
 
     move-result-object v0
 
-    .line 1331
+    .line 1264
     .local v0, "imm":Landroid/view/inputmethod/InputMethodManager;
     if-eqz v0, :cond_1
 
-    .line 1332
+    .line 1265
     iget-object v1, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v1}, Landroid/widget/TextView;->getSelectionStart()I
 
     move-result v2
 
-    .line 1333
+    .line 1266
     .local v2, "selectionStart":I
     iget-object v1, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
@@ -3859,15 +3562,15 @@
 
     move-result v3
 
-    .line 1334
+    .line 1267
     .local v3, "selectionEnd":I
     const/4 v4, -0x1
 
-    .line 1335
+    .line 1268
     .local v4, "candStart":I
     const/4 v5, -0x1
 
-    .line 1336
+    .line 1269
     .local v5, "candEnd":I
     iget-object v1, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
@@ -3879,7 +3582,7 @@
 
     if-eqz v1, :cond_0
 
-    .line 1337
+    .line 1270
     iget-object v1, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v1}, Landroid/widget/TextView;->getText()Ljava/lang/CharSequence;
@@ -3888,25 +3591,25 @@
 
     check-cast v6, Landroid/text/Spannable;
 
-    .line 1338
+    .line 1271
     .local v6, "sp":Landroid/text/Spannable;
     invoke-static {v6}, Lcom/android/internal/widget/EditableInputConnection;->getComposingSpanStart(Landroid/text/Spannable;)I
 
     move-result v4
 
-    .line 1339
+    .line 1272
     invoke-static {v6}, Lcom/android/internal/widget/EditableInputConnection;->getComposingSpanEnd(Landroid/text/Spannable;)I
 
     move-result v5
 
-    .line 1343
+    .line 1276
     .end local v6    # "sp":Landroid/text/Spannable;
     :cond_0
     iget-object v1, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual/range {v0 .. v5}, Landroid/view/inputmethod/InputMethodManager;->updateSelection(Landroid/view/View;IIII)V
 
-    .line 1347
+    .line 1280
     .end local v0    # "imm":Landroid/view/inputmethod/InputMethodManager;
     .end local v2    # "selectionStart":I
     .end local v3    # "selectionEnd":I
@@ -3921,16 +3624,16 @@
     .param p1, "icon"    # Landroid/graphics/drawable/Drawable;
 
     .prologue
-    .line 379
+    .line 361
     iget-object v1, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     iget-object v0, v1, Landroid/widget/TextView;->mDrawables:Landroid/widget/TextView$Drawables;
 
-    .line 380
+    .line 362
     .local v0, "dr":Landroid/widget/TextView$Drawables;
     if-nez v0, :cond_0
 
-    .line 381
+    .line 363
     iget-object v1, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     new-instance v0, Landroid/widget/TextView$Drawables;
@@ -3947,184 +3650,29 @@
     .restart local v0    # "dr":Landroid/widget/TextView$Drawables;
     iput-object v0, v1, Landroid/widget/TextView;->mDrawables:Landroid/widget/TextView$Drawables;
 
-    .line 383
+    .line 365
     :cond_0
     iget-object v1, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v0, p1, v1}, Landroid/widget/TextView$Drawables;->setErrorDrawable(Landroid/graphics/drawable/Drawable;Landroid/widget/TextView;)V
 
-    .line 385
+    .line 367
     iget-object v1, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v1}, Landroid/widget/TextView;->resetResolvedDrawables()V
 
-    .line 386
+    .line 368
     iget-object v1, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v1}, Landroid/widget/TextView;->invalidate()V
 
-    .line 387
+    .line 369
     iget-object v1, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v1}, Landroid/widget/TextView;->requestLayout()V
 
-    .line 388
+    .line 370
     return-void
-.end method
-
-.method private setSelectionTranslation(II)V
-    .locals 10
-    .param p1, "selectionStart"    # I
-    .param p2, "selectionEnd"    # I
-
-    .prologue
-    const/high16 v9, 0x40000000    # 2.0f
-
-    const/4 v8, 0x1
-
-    const/4 v7, 0x0
-
-    .line 739
-    invoke-virtual {p0}, Landroid/widget/Editor;->hasSelectionController()Z
-
-    move-result v6
-
-    if-nez v6, :cond_0
-
-    .line 767
-    :goto_0
-    return-void
-
-    .line 743
-    :cond_0
-    const/4 v6, 0x2
-
-    new-array v5, v6, [F
-
-    fill-array-data v5, :array_0
-
-    .line 744
-    .local v5, "translationArray":[F
-    iget-object v6, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
-
-    invoke-virtual {v6}, Landroid/widget/TextView;->getLayout()Landroid/text/Layout;
-
-    move-result-object v0
-
-    .line 746
-    .local v0, "layout":Landroid/text/Layout;
-    if-eqz v0, :cond_2
-
-    if-le p2, p1, :cond_2
-
-    .line 747
-    invoke-virtual {v0, p1}, Landroid/text/Layout;->getPrimaryHorizontal(I)F
-
-    move-result v3
-
-    .line 748
-    .local v3, "positionStart":F
-    invoke-virtual {v0, p2}, Landroid/text/Layout;->getPrimaryHorizontal(I)F
-
-    move-result v1
-
-    .line 749
-    .local v1, "positionEnd":F
-    iget-object v6, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
-
-    invoke-virtual {v6}, Landroid/widget/TextView;->getText()Ljava/lang/CharSequence;
-
-    move-result-object v6
-
-    invoke-static {v6}, Landroid/text/Selection;->getSelectionStart(Ljava/lang/CharSequence;)I
-
-    move-result v4
-
-    .line 751
-    .local v4, "selectionOld":I
-    if-lt v4, p1, :cond_1
-
-    if-le v4, p2, :cond_3
-
-    .line 752
-    :cond_1
-    sub-float v6, v1, v3
-
-    div-float/2addr v6, v9
-
-    aput v6, v5, v7
-
-    .line 753
-    sub-float v6, v3, v1
-
-    div-float/2addr v6, v9
-
-    aput v6, v5, v8
-
-    .line 766
-    .end local v1    # "positionEnd":F
-    .end local v3    # "positionStart":F
-    .end local v4    # "selectionOld":I
-    :cond_2
-    :goto_1
-    invoke-virtual {p0}, Landroid/widget/Editor;->getSelectionController()Landroid/widget/Editor$SelectionModifierCursorController;
-
-    move-result-object v6
-
-    invoke-virtual {v6, v5}, Landroid/widget/Editor$SelectionModifierCursorController;->setTranslationCache([F)V
-
-    goto :goto_0
-
-    .line 755
-    .restart local v1    # "positionEnd":F
-    .restart local v3    # "positionStart":F
-    .restart local v4    # "selectionOld":I
-    :cond_3
-    invoke-virtual {v0, v4}, Landroid/text/Layout;->getPrimaryHorizontal(I)F
-
-    move-result v2
-
-    .line 756
-    .local v2, "positionOld":F
-    if-ne v4, p1, :cond_4
-
-    .line 757
-    sub-float v6, v2, v1
-
-    aput v6, v5, v8
-
-    goto :goto_1
-
-    .line 758
-    :cond_4
-    if-ne v4, p2, :cond_5
-
-    .line 759
-    sub-float v6, v2, v3
-
-    aput v6, v5, v7
-
-    goto :goto_1
-
-    .line 761
-    :cond_5
-    sub-float v6, v2, v3
-
-    aput v6, v5, v7
-
-    .line 762
-    sub-float v6, v2, v1
-
-    aput v6, v5, v8
-
-    goto :goto_1
-
-    .line 743
-    :array_0
-    .array-data 4
-        0x0
-        0x0
-    .end array-data
 .end method
 
 .method private shouldBlink()Z
@@ -4133,8 +3681,8 @@
     .prologue
     const/4 v2, 0x0
 
-    .line 1814
-    invoke-virtual {p0}, Landroid/widget/Editor;->isCursorVisible()Z
+    .line 1743
+    invoke-static/range {p0 .. p0}, Landroid/widget/Editor$FlymeInjector;->isFlymeCursorVisible(Landroid/widget/Editor;)Z
 
     move-result v3
 
@@ -4148,12 +3696,12 @@
 
     if-nez v3, :cond_1
 
-    .line 1822
+    .line 1751
     :cond_0
     :goto_0
     return v2
 
-    .line 1816
+    .line 1745
     :cond_1
     iget-object v3, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
@@ -4161,22 +3709,22 @@
 
     move-result v1
 
-    .line 1817
+    .line 1746
     .local v1, "start":I
     if-ltz v1, :cond_0
 
-    .line 1819
+    .line 1748
     iget-object v3, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v3}, Landroid/widget/TextView;->getSelectionEnd()I
 
     move-result v0
 
-    .line 1820
+    .line 1749
     .local v0, "end":I
     if-ltz v0, :cond_0
 
-    .line 1822
+    .line 1751
     if-ne v1, v0, :cond_0
 
     const/4 v2, 0x1
@@ -4192,7 +3740,7 @@
 
     const/high16 v7, 0x3f000000    # 0.5f
 
-    .line 330
+    .line 312
     iget-object v4, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v4}, Landroid/widget/TextView;->getWindowToken()Landroid/os/IBinder;
@@ -4201,20 +3749,20 @@
 
     if-nez v4, :cond_0
 
-    .line 331
+    .line 313
     iput-boolean v8, p0, Landroid/widget/Editor;->mShowErrorAfterAttach:Z
 
-    .line 354
+    .line 336
     :goto_0
     return-void
 
-    .line 335
+    .line 317
     :cond_0
     iget-object v4, p0, Landroid/widget/Editor;->mErrorPopup:Landroid/widget/Editor$ErrorPopup;
 
     if-nez v4, :cond_1
 
-    .line 336
+    .line 318
     iget-object v4, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v4}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
@@ -4225,7 +3773,7 @@
 
     move-result-object v1
 
-    .line 337
+    .line 319
     .local v1, "inflater":Landroid/view/LayoutInflater;
     const v4, 0x10900ec
 
@@ -4237,7 +3785,7 @@
 
     check-cast v0, Landroid/widget/TextView;
 
-    .line 340
+    .line 322
     .local v0, "err":Landroid/widget/TextView;
     iget-object v4, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
@@ -4251,7 +3799,7 @@
 
     iget v2, v4, Landroid/util/DisplayMetrics;->density:F
 
-    .line 341
+    .line 323
     .local v2, "scale":F
     new-instance v4, Landroid/widget/Editor$ErrorPopup;
 
@@ -4275,19 +3823,19 @@
 
     iput-object v4, p0, Landroid/widget/Editor;->mErrorPopup:Landroid/widget/Editor$ErrorPopup;
 
-    .line 342
+    .line 324
     iget-object v4, p0, Landroid/widget/Editor;->mErrorPopup:Landroid/widget/Editor$ErrorPopup;
 
     const/4 v5, 0x0
 
     invoke-virtual {v4, v5}, Landroid/widget/Editor$ErrorPopup;->setFocusable(Z)V
 
-    .line 345
+    .line 327
     iget-object v4, p0, Landroid/widget/Editor;->mErrorPopup:Landroid/widget/Editor$ErrorPopup;
 
     invoke-virtual {v4, v8}, Landroid/widget/Editor$ErrorPopup;->setInputMethodMode(I)V
 
-    .line 348
+    .line 330
     .end local v0    # "err":Landroid/widget/TextView;
     .end local v1    # "inflater":Landroid/view/LayoutInflater;
     .end local v2    # "scale":F
@@ -4300,7 +3848,7 @@
 
     check-cast v3, Landroid/widget/TextView;
 
-    .line 349
+    .line 331
     .local v3, "tv":Landroid/widget/TextView;
     iget-object v4, p0, Landroid/widget/Editor;->mErrorPopup:Landroid/widget/Editor$ErrorPopup;
 
@@ -4308,12 +3856,12 @@
 
     invoke-direct {p0, v4, v5, v3}, Landroid/widget/Editor;->chooseSize(Landroid/widget/PopupWindow;Ljava/lang/CharSequence;Landroid/widget/TextView;)V
 
-    .line 350
+    .line 332
     iget-object v4, p0, Landroid/widget/Editor;->mError:Ljava/lang/CharSequence;
 
     invoke-virtual {v3, v4}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 352
+    .line 334
     iget-object v4, p0, Landroid/widget/Editor;->mErrorPopup:Landroid/widget/Editor$ErrorPopup;
 
     iget-object v5, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
@@ -4328,7 +3876,7 @@
 
     invoke-virtual {v4, v5, v6, v7}, Landroid/widget/Editor$ErrorPopup;->showAsDropDown(Landroid/view/View;II)V
 
-    .line 353
+    .line 335
     iget-object v4, p0, Landroid/widget/Editor;->mErrorPopup:Landroid/widget/Editor$ErrorPopup;
 
     iget-object v5, p0, Landroid/widget/Editor;->mErrorPopup:Landroid/widget/Editor$ErrorPopup;
@@ -4346,17 +3894,17 @@
     .locals 1
 
     .prologue
-    .line 576
+    .line 558
     iget-object v0, p0, Landroid/widget/Editor;->mBlink:Landroid/widget/Editor$Blink;
 
     if-eqz v0, :cond_0
 
-    .line 577
+    .line 559
     iget-object v0, p0, Landroid/widget/Editor;->mBlink:Landroid/widget/Editor$Blink;
 
     invoke-virtual {v0}, Landroid/widget/Editor$Blink;->cancel()V
 
-    .line 579
+    .line 561
     :cond_0
     return-void
 .end method
@@ -4367,14 +3915,14 @@
     .prologue
     const/4 v7, 0x0
 
-    .line 810
+    .line 759
     iget-object v6, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v6}, Landroid/widget/TextView;->getSelectionStart()I
 
     move-result v4
 
-    .line 811
+    .line 760
     .local v4, "selectionStart":I
     iget-object v6, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
@@ -4382,29 +3930,29 @@
 
     move-result v3
 
-    .line 813
+    .line 762
     .local v3, "selectionEnd":I
     if-ne v4, v3, :cond_0
 
-    .line 828
+    .line 777
     :goto_0
     return v7
 
-    .line 817
+    .line 766
     :cond_0
     if-le v4, v3, :cond_1
 
-    .line 818
+    .line 767
     move v5, v4
 
-    .line 819
+    .line 768
     .local v5, "tmp":I
     move v4, v3
 
-    .line 820
+    .line 769
     move v3, v5
 
-    .line 821
+    .line 770
     iget-object v6, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v6}, Landroid/widget/TextView;->getText()Ljava/lang/CharSequence;
@@ -4415,26 +3963,26 @@
 
     invoke-static {v6, v4, v3}, Landroid/text/Selection;->setSelection(Landroid/text/Spannable;II)V
 
-    .line 824
+    .line 773
     .end local v5    # "tmp":I
     :cond_1
     invoke-virtual {p0}, Landroid/widget/Editor;->getSelectionController()Landroid/widget/Editor$SelectionModifierCursorController;
 
     move-result-object v2
 
-    .line 825
+    .line 774
     .local v2, "selectionController":Landroid/widget/Editor$SelectionModifierCursorController;
     invoke-virtual {v2}, Landroid/widget/Editor$SelectionModifierCursorController;->getMinTouchOffset()I
 
     move-result v1
 
-    .line 826
+    .line 775
     .local v1, "minOffset":I
     invoke-virtual {v2}, Landroid/widget/Editor$SelectionModifierCursorController;->getMaxTouchOffset()I
 
     move-result v0
 
-    .line 828
+    .line 777
     .local v0, "maxOffset":I
     if-lt v1, v4, :cond_2
 
@@ -4454,28 +4002,28 @@
 .end method
 
 .method private updateCursorPosition(IIIF)V
-    .locals 7
+    .locals 6
     .param p1, "cursorIndex"    # I
     .param p2, "top"    # I
     .param p3, "bottom"    # I
     .param p4, "horizontal"    # F
 
     .prologue
-    const/high16 v6, 0x3f000000    # 0.5f
+    const/high16 v5, 0x3f000000    # 0.5f
 
-    .line 1761
+    .line 1690
     iget-object v2, p0, Landroid/widget/Editor;->mCursorDrawable:[Landroid/graphics/drawable/Drawable;
 
     aget-object v2, v2, p1
 
     if-nez v2, :cond_0
 
-    .line 1762
+    .line 1691
     iget-object v2, p0, Landroid/widget/Editor;->mCursorDrawable:[Landroid/graphics/drawable/Drawable;
 
     iget-object v3, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
-    invoke-virtual {v3}, Landroid/widget/TextView;->getResources()Landroid/content/res/Resources;
+    invoke-virtual {v3}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
 
     move-result-object v3
 
@@ -4483,23 +4031,13 @@
 
     iget v4, v4, Landroid/widget/TextView;->mCursorDrawableRes:I
 
-    iget-object v5, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
-
-    invoke-virtual {v5}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
-
-    move-result-object v5
-
-    invoke-virtual {v5}, Landroid/content/Context;->getTheme()Landroid/content/res/Resources$Theme;
-
-    move-result-object v5
-
-    invoke-virtual {v3, v4, v5}, Landroid/content/res/Resources;->getDrawable(ILandroid/content/res/Resources$Theme;)Landroid/graphics/drawable/Drawable;
+    invoke-virtual {v3, v4}, Landroid/content/Context;->getDrawable(I)Landroid/graphics/drawable/Drawable;
 
     move-result-object v3
 
     aput-object v3, v2, p1
 
-    .line 1765
+    .line 1694
     :cond_0
     iget-object v2, p0, Landroid/widget/Editor;->mTempRect:Landroid/graphics/Rect;
 
@@ -4511,7 +4049,7 @@
 
     iput-object v2, p0, Landroid/widget/Editor;->mTempRect:Landroid/graphics/Rect;
 
-    .line 1766
+    .line 1695
     :cond_1
     iget-object v2, p0, Landroid/widget/Editor;->mCursorDrawable:[Landroid/graphics/drawable/Drawable;
 
@@ -4521,7 +4059,7 @@
 
     invoke-virtual {v2, v3}, Landroid/graphics/drawable/Drawable;->getPadding(Landroid/graphics/Rect;)Z
 
-    .line 1767
+    .line 1696
     iget-object v2, p0, Landroid/widget/Editor;->mCursorDrawable:[Landroid/graphics/drawable/Drawable;
 
     aget-object v2, v2, p1
@@ -4530,15 +4068,15 @@
 
     move-result v1
 
-    .line 1768
+    .line 1697
     .local v1, "width":I
-    sub-float v2, p4, v6
+    sub-float v2, p4, v5
 
-    invoke-static {v6, v2}, Ljava/lang/Math;->max(FF)F
+    invoke-static {v5, v2}, Ljava/lang/Math;->max(FF)F
 
     move-result p4
 
-    .line 1769
+    .line 1698
     float-to-int v2, p4
 
     iget-object v3, p0, Landroid/widget/Editor;->mTempRect:Landroid/graphics/Rect;
@@ -4547,7 +4085,7 @@
 
     sub-int v0, v2, v3
 
-    .line 1770
+    .line 1699
     .local v0, "left":I
     iget-object v2, p0, Landroid/widget/Editor;->mCursorDrawable:[Landroid/graphics/drawable/Drawable;
 
@@ -4569,7 +4107,7 @@
 
     invoke-virtual {v2, v0, v3, v4, v5}, Landroid/graphics/drawable/Drawable;->setBounds(IIII)V
 
-    .line 1772
+    .line 1701
     return-void
 .end method
 
@@ -4580,17 +4118,17 @@
     .param p3, "createSpellChecker"    # Z
 
     .prologue
-    .line 550
+    .line 532
     iget-object v0, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v0, p1}, Landroid/widget/TextView;->removeAdjacentSuggestionSpans(I)V
 
-    .line 551
+    .line 533
     iget-object v0, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v0, p2}, Landroid/widget/TextView;->removeAdjacentSuggestionSpans(I)V
 
-    .line 553
+    .line 535
     iget-object v0, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v0}, Landroid/widget/TextView;->isTextEditable()Z
@@ -4613,14 +4151,14 @@
 
     if-nez v0, :cond_1
 
-    .line 555
+    .line 537
     iget-object v0, p0, Landroid/widget/Editor;->mSpellChecker:Landroid/widget/SpellChecker;
 
     if-nez v0, :cond_0
 
     if-eqz p3, :cond_0
 
-    .line 556
+    .line 538
     new-instance v0, Landroid/widget/SpellChecker;
 
     iget-object v1, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
@@ -4629,18 +4167,18 @@
 
     iput-object v0, p0, Landroid/widget/Editor;->mSpellChecker:Landroid/widget/SpellChecker;
 
-    .line 558
+    .line 540
     :cond_0
     iget-object v0, p0, Landroid/widget/Editor;->mSpellChecker:Landroid/widget/SpellChecker;
 
     if-eqz v0, :cond_1
 
-    .line 559
+    .line 541
     iget-object v0, p0, Landroid/widget/Editor;->mSpellChecker:Landroid/widget/SpellChecker;
 
     invoke-virtual {v0, p1, p2}, Landroid/widget/SpellChecker;->spellCheck(II)V
 
-    .line 562
+    .line 544
     :cond_1
     return-void
 .end method
@@ -4656,42 +4194,42 @@
 
     const/4 v2, 0x0
 
-    .line 1965
+    .line 1894
     invoke-interface {p1}, Landroid/text/Spannable;->length()I
 
     move-result v0
 
-    .line 1967
+    .line 1896
     .local v0, "textLength":I
     iget-object v1, p0, Landroid/widget/Editor;->mKeyListener:Landroid/text/method/KeyListener;
 
     if-eqz v1, :cond_0
 
-    .line 1968
+    .line 1897
     iget-object v1, p0, Landroid/widget/Editor;->mKeyListener:Landroid/text/method/KeyListener;
 
     invoke-interface {p1, v1, v2, v0, v3}, Landroid/text/Spannable;->setSpan(Ljava/lang/Object;III)V
 
-    .line 1971
+    .line 1900
     :cond_0
     iget-object v1, p0, Landroid/widget/Editor;->mSpanController:Landroid/widget/Editor$SpanController;
 
     if-nez v1, :cond_1
 
-    .line 1972
+    .line 1901
     new-instance v1, Landroid/widget/Editor$SpanController;
 
     invoke-direct {v1, p0}, Landroid/widget/Editor$SpanController;-><init>(Landroid/widget/Editor;)V
 
     iput-object v1, p0, Landroid/widget/Editor;->mSpanController:Landroid/widget/Editor$SpanController;
 
-    .line 1974
+    .line 1903
     :cond_1
     iget-object v1, p0, Landroid/widget/Editor;->mSpanController:Landroid/widget/Editor$SpanController;
 
     invoke-interface {p1, v1, v2, v0, v3}, Landroid/text/Spannable;->setSpan(Ljava/lang/Object;III)V
 
-    .line 1975
+    .line 1904
     return-void
 .end method
 
@@ -4703,7 +4241,7 @@
     .param p4, "numberPasswordInputType"    # Z
 
     .prologue
-    .line 593
+    .line 575
     iget v0, p0, Landroid/widget/Editor;->mInputType:I
 
     and-int/lit8 v0, v0, 0xf
@@ -4712,12 +4250,12 @@
 
     if-ne v0, v1, :cond_3
 
-    .line 594
+    .line 576
     if-nez p1, :cond_0
 
     if-eqz p2, :cond_1
 
-    .line 595
+    .line 577
     :cond_0
     iget v0, p0, Landroid/widget/Editor;->mInputType:I
 
@@ -4727,11 +4265,11 @@
 
     iput v0, p0, Landroid/widget/Editor;->mInputType:I
 
-    .line 598
+    .line 580
     :cond_1
     if-eqz p3, :cond_2
 
-    .line 599
+    .line 581
     iget v0, p0, Landroid/widget/Editor;->mInputType:I
 
     and-int/lit16 v0, v0, -0xff1
@@ -4740,12 +4278,12 @@
 
     iput v0, p0, Landroid/widget/Editor;->mInputType:I
 
-    .line 608
+    .line 590
     :cond_2
     :goto_0
     return-void
 
-    .line 602
+    .line 584
     :cond_3
     iget v0, p0, Landroid/widget/Editor;->mInputType:I
 
@@ -4755,10 +4293,10 @@
 
     if-ne v0, v1, :cond_2
 
-    .line 603
+    .line 585
     if-eqz p4, :cond_2
 
-    .line 604
+    .line 586
     iget v0, p0, Landroid/widget/Editor;->mInputType:I
 
     and-int/lit16 v0, v0, -0xff1
@@ -4774,7 +4312,7 @@
     .locals 1
 
     .prologue
-    .line 1801
+    .line 1730
     iget-object v0, p0, Landroid/widget/Editor;->mSuggestionsPopupWindow:Landroid/widget/Editor$SuggestionsPopupWindow;
 
     if-eqz v0, :cond_0
@@ -4808,42 +4346,42 @@
 
     const/4 v3, 0x0
 
-    .line 1154
+    .line 1087
     iput-boolean v5, p0, Landroid/widget/Editor;->mInBatchEditControllers:Z
 
-    .line 1155
+    .line 1088
     iget-object v0, p0, Landroid/widget/Editor;->mInputMethodState:Landroid/widget/Editor$InputMethodState;
 
-    .line 1156
+    .line 1089
     .local v0, "ims":Landroid/widget/Editor$InputMethodState;
     if-eqz v0, :cond_0
 
-    .line 1157
+    .line 1090
     iget v2, v0, Landroid/widget/Editor$InputMethodState;->mBatchEditNesting:I
 
     add-int/lit8 v1, v2, 0x1
 
     iput v1, v0, Landroid/widget/Editor$InputMethodState;->mBatchEditNesting:I
 
-    .line 1158
+    .line 1091
     .local v1, "nesting":I
     if-ne v1, v5, :cond_0
 
-    .line 1159
+    .line 1092
     iput-boolean v3, v0, Landroid/widget/Editor$InputMethodState;->mCursorChanged:Z
 
-    .line 1160
+    .line 1093
     iput v3, v0, Landroid/widget/Editor$InputMethodState;->mChangedDelta:I
 
-    .line 1161
+    .line 1094
     iget-boolean v2, v0, Landroid/widget/Editor$InputMethodState;->mContentChanged:Z
 
     if-eqz v2, :cond_1
 
-    .line 1164
+    .line 1097
     iput v3, v0, Landroid/widget/Editor$InputMethodState;->mChangedStart:I
 
-    .line 1165
+    .line 1098
     iget-object v2, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v2}, Landroid/widget/TextView;->getText()Ljava/lang/CharSequence;
@@ -4856,26 +4394,26 @@
 
     iput v2, v0, Landroid/widget/Editor$InputMethodState;->mChangedEnd:I
 
-    .line 1171
+    .line 1104
     :goto_0
     iget-object v2, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v2}, Landroid/widget/TextView;->onBeginBatchEdit()V
 
-    .line 1174
+    .line 1107
     .end local v1    # "nesting":I
     :cond_0
     return-void
 
-    .line 1167
+    .line 1100
     .restart local v1    # "nesting":I
     :cond_1
     iput v4, v0, Landroid/widget/Editor$InputMethodState;->mChangedStart:I
 
-    .line 1168
+    .line 1101
     iput v4, v0, Landroid/widget/Editor$InputMethodState;->mChangedEnd:I
 
-    .line 1169
+    .line 1102
     iput-boolean v3, v0, Landroid/widget/Editor$InputMethodState;->mContentChanged:Z
 
     goto :goto_0
@@ -4885,19 +4423,19 @@
     .locals 1
 
     .prologue
-    .line 469
+    .line 451
     iget-object v0, p0, Landroid/widget/Editor;->mInputContentType:Landroid/widget/Editor$InputContentType;
 
     if-nez v0, :cond_0
 
-    .line 470
+    .line 452
     new-instance v0, Landroid/widget/Editor$InputContentType;
 
     invoke-direct {v0}, Landroid/widget/Editor$InputContentType;-><init>()V
 
     iput-object v0, p0, Landroid/widget/Editor;->mInputContentType:Landroid/widget/Editor$InputContentType;
 
-    .line 472
+    .line 454
     :cond_0
     return-void
 .end method
@@ -4906,19 +4444,19 @@
     .locals 1
 
     .prologue
-    .line 475
+    .line 457
     iget-object v0, p0, Landroid/widget/Editor;->mInputMethodState:Landroid/widget/Editor$InputMethodState;
 
     if-nez v0, :cond_0
 
-    .line 476
+    .line 458
     new-instance v0, Landroid/widget/Editor$InputMethodState;
 
     invoke-direct {v0}, Landroid/widget/Editor$InputMethodState;-><init>()V
 
     iput-object v0, p0, Landroid/widget/Editor;->mInputMethodState:Landroid/widget/Editor$InputMethodState;
 
-    .line 478
+    .line 460
     :cond_0
     return-void
 .end method
@@ -4927,33 +4465,33 @@
     .locals 3
 
     .prologue
-    .line 1177
+    .line 1110
     const/4 v2, 0x0
 
     iput-boolean v2, p0, Landroid/widget/Editor;->mInBatchEditControllers:Z
 
-    .line 1178
+    .line 1111
     iget-object v0, p0, Landroid/widget/Editor;->mInputMethodState:Landroid/widget/Editor$InputMethodState;
 
-    .line 1179
+    .line 1112
     .local v0, "ims":Landroid/widget/Editor$InputMethodState;
     if-eqz v0, :cond_0
 
-    .line 1180
+    .line 1113
     iget v2, v0, Landroid/widget/Editor$InputMethodState;->mBatchEditNesting:I
 
     add-int/lit8 v1, v2, -0x1
 
     iput v1, v0, Landroid/widget/Editor$InputMethodState;->mBatchEditNesting:I
 
-    .line 1181
+    .line 1114
     .local v1, "nesting":I
     if-nez v1, :cond_0
 
-    .line 1182
+    .line 1115
     invoke-virtual {p0, v0}, Landroid/widget/Editor;->finishBatchEdit(Landroid/widget/Editor$InputMethodState;)V
 
-    .line 1185
+    .line 1118
     .end local v1    # "nesting":I
     :cond_0
     return-void
@@ -4963,10 +4501,10 @@
     .locals 2
 
     .prologue
-    .line 1188
+    .line 1121
     iget-object v0, p0, Landroid/widget/Editor;->mInputMethodState:Landroid/widget/Editor$InputMethodState;
 
-    .line 1189
+    .line 1122
     .local v0, "ims":Landroid/widget/Editor$InputMethodState;
     if-eqz v0, :cond_0
 
@@ -4974,15 +4512,15 @@
 
     if-eqz v1, :cond_0
 
-    .line 1190
+    .line 1123
     const/4 v1, 0x0
 
     iput v1, v0, Landroid/widget/Editor$InputMethodState;->mBatchEditNesting:I
 
-    .line 1191
+    .line 1124
     invoke-virtual {p0, v0}, Landroid/widget/Editor;->finishBatchEdit(Landroid/widget/Editor$InputMethodState;)V
 
-    .line 1193
+    .line 1126
     :cond_0
     return-void
 .end method
@@ -4995,7 +4533,7 @@
     .prologue
     const/4 v2, -0x1
 
-    .line 1214
+    .line 1147
     move-object v0, p0
 
     move-object v1, p1
@@ -5018,12 +4556,12 @@
     .param p1, "ims"    # Landroid/widget/Editor$InputMethodState;
 
     .prologue
-    .line 1196
+    .line 1129
     iget-object v0, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v0}, Landroid/widget/TextView;->onEndBatchEdit()V
 
-    .line 1198
+    .line 1131
     iget-boolean v0, p1, Landroid/widget/Editor$InputMethodState;->mContentChanged:Z
 
     if-nez v0, :cond_0
@@ -5032,30 +4570,30 @@
 
     if-eqz v0, :cond_2
 
-    .line 1199
+    .line 1132
     :cond_0
     iget-object v0, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v0}, Landroid/widget/TextView;->updateAfterEdit()V
 
-    .line 1200
+    .line 1133
     invoke-virtual {p0}, Landroid/widget/Editor;->reportExtractedText()Z
 
-    .line 1207
+    .line 1140
     :cond_1
     :goto_0
     invoke-direct {p0}, Landroid/widget/Editor;->sendUpdateSelection()V
 
-    .line 1208
+    .line 1141
     return-void
 
-    .line 1201
+    .line 1134
     :cond_2
     iget-boolean v0, p1, Landroid/widget/Editor$InputMethodState;->mCursorChanged:Z
 
     if-eqz v0, :cond_1
 
-    .line 1203
+    .line 1136
     iget-object v0, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v0}, Landroid/widget/TextView;->invalidateCursor()V
@@ -5069,42 +4607,42 @@
     .prologue
     const/4 v1, 0x0
 
-    .line 1731
+    .line 1660
     iget-boolean v2, p0, Landroid/widget/Editor;->mInsertionControllerEnabled:Z
 
     if-nez v2, :cond_0
 
-    .line 1742
+    .line 1671
     :goto_0
     return-object v1
 
-    .line 1735
+    .line 1664
     :cond_0
     iget-object v2, p0, Landroid/widget/Editor;->mInsertionPointCursorController:Landroid/widget/Editor$InsertionPointCursorController;
 
     if-nez v2, :cond_1
 
-    .line 1736
-    new-instance v2, Landroid/widget/Editor$InsertionPointCursorController;
+    .line 1665
+    new-instance v2, Landroid/widget/Editor$FlymeInsertionPointCursorController;
 
-    invoke-direct {v2, p0, v1}, Landroid/widget/Editor$InsertionPointCursorController;-><init>(Landroid/widget/Editor;Landroid/widget/Editor$1;)V
+    invoke-direct {v2, p0}, Landroid/widget/Editor$FlymeInsertionPointCursorController;-><init>(Landroid/widget/Editor;)V
 
     iput-object v2, p0, Landroid/widget/Editor;->mInsertionPointCursorController:Landroid/widget/Editor$InsertionPointCursorController;
 
-    .line 1738
+    .line 1667
     iget-object v1, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v1}, Landroid/widget/TextView;->getViewTreeObserver()Landroid/view/ViewTreeObserver;
 
     move-result-object v0
 
-    .line 1739
+    .line 1668
     .local v0, "observer":Landroid/view/ViewTreeObserver;
     iget-object v1, p0, Landroid/widget/Editor;->mInsertionPointCursorController:Landroid/widget/Editor$InsertionPointCursorController;
 
     invoke-virtual {v0, v1}, Landroid/view/ViewTreeObserver;->addOnTouchModeChangeListener(Landroid/view/ViewTreeObserver$OnTouchModeChangeListener;)V
 
-    .line 1742
+    .line 1671
     .end local v0    # "observer":Landroid/view/ViewTreeObserver;
     :cond_1
     iget-object v1, p0, Landroid/widget/Editor;->mInsertionPointCursorController:Landroid/widget/Editor$InsertionPointCursorController;
@@ -5116,45 +4654,45 @@
     .locals 2
 
     .prologue
-    .line 1746
+    .line 1675
     iget-boolean v1, p0, Landroid/widget/Editor;->mSelectionControllerEnabled:Z
 
     if-nez v1, :cond_0
 
-    .line 1747
+    .line 1676
     const/4 v1, 0x0
 
-    .line 1757
+    .line 1686
     :goto_0
     return-object v1
 
-    .line 1750
+    .line 1679
     :cond_0
     iget-object v1, p0, Landroid/widget/Editor;->mSelectionModifierCursorController:Landroid/widget/Editor$SelectionModifierCursorController;
 
     if-nez v1, :cond_1
 
-    .line 1751
+    .line 1680
     new-instance v1, Landroid/widget/Editor$SelectionModifierCursorController;
 
     invoke-direct {v1, p0}, Landroid/widget/Editor$SelectionModifierCursorController;-><init>(Landroid/widget/Editor;)V
 
     iput-object v1, p0, Landroid/widget/Editor;->mSelectionModifierCursorController:Landroid/widget/Editor$SelectionModifierCursorController;
 
-    .line 1753
+    .line 1682
     iget-object v1, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v1}, Landroid/widget/TextView;->getViewTreeObserver()Landroid/view/ViewTreeObserver;
 
     move-result-object v0
 
-    .line 1754
+    .line 1683
     .local v0, "observer":Landroid/view/ViewTreeObserver;
     iget-object v1, p0, Landroid/widget/Editor;->mSelectionModifierCursorController:Landroid/widget/Editor$SelectionModifierCursorController;
 
     invoke-virtual {v0, v1}, Landroid/view/ViewTreeObserver;->addOnTouchModeChangeListener(Landroid/view/ViewTreeObserver$OnTouchModeChangeListener;)V
 
-    .line 1757
+    .line 1686
     .end local v0    # "observer":Landroid/view/ViewTreeObserver;
     :cond_1
     iget-object v1, p0, Landroid/widget/Editor;->mSelectionModifierCursorController:Landroid/widget/Editor$SelectionModifierCursorController;
@@ -5166,12 +4704,12 @@
     .locals 2
 
     .prologue
-    .line 778
+    .line 727
     iget-object v0, p0, Landroid/widget/Editor;->mWordIterator:Landroid/text/method/WordIterator;
 
     if-nez v0, :cond_0
 
-    .line 779
+    .line 728
     new-instance v0, Landroid/text/method/WordIterator;
 
     iget-object v1, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
@@ -5184,7 +4722,7 @@
 
     iput-object v0, p0, Landroid/widget/Editor;->mWordIterator:Landroid/text/method/WordIterator;
 
-    .line 781
+    .line 730
     :cond_0
     iget-object v0, p0, Landroid/widget/Editor;->mWordIterator:Landroid/text/method/WordIterator;
 
@@ -5195,7 +4733,7 @@
     .locals 1
 
     .prologue
-    .line 1720
+    .line 1649
     iget-boolean v0, p0, Landroid/widget/Editor;->mInsertionControllerEnabled:Z
 
     return v0
@@ -5205,7 +4743,7 @@
     .locals 1
 
     .prologue
-    .line 1727
+    .line 1656
     iget-boolean v0, p0, Landroid/widget/Editor;->mSelectionControllerEnabled:Z
 
     return v0
@@ -5215,13 +4753,13 @@
     .locals 0
 
     .prologue
-    .line 526
+    .line 508
     invoke-direct {p0}, Landroid/widget/Editor;->hideCursorControllers()V
 
-    .line 527
+    .line 509
     invoke-direct {p0}, Landroid/widget/Editor;->hideSpanControllers()V
 
-    .line 528
+    .line 510
     return-void
 .end method
 
@@ -5229,12 +4767,12 @@
     .locals 3
 
     .prologue
-    .line 1566
+    .line 1480
     iget-object v1, p0, Landroid/widget/Editor;->mTextDisplayLists:[Landroid/widget/Editor$TextDisplayList;
 
     if-eqz v1, :cond_1
 
-    .line 1567
+    .line 1481
     const/4 v0, 0x0
 
     .local v0, "i":I
@@ -5245,7 +4783,7 @@
 
     if-ge v0, v1, :cond_1
 
-    .line 1568
+    .line 1482
     iget-object v1, p0, Landroid/widget/Editor;->mTextDisplayLists:[Landroid/widget/Editor$TextDisplayList;
 
     aget-object v1, v1, v0
@@ -5260,13 +4798,13 @@
 
     iput-boolean v2, v1, Landroid/widget/Editor$TextDisplayList;->isDirty:Z
 
-    .line 1567
+    .line 1481
     :cond_0
     add-int/lit8 v0, v0, 0x1
 
     goto :goto_0
 
-    .line 1571
+    .line 1485
     .end local v0    # "i":I
     :cond_1
     return-void
@@ -5279,7 +4817,7 @@
     .param p3, "end"    # I
 
     .prologue
-    .line 1537
+    .line 1451
     iget-object v8, p0, Landroid/widget/Editor;->mTextDisplayLists:[Landroid/widget/Editor$TextDisplayList;
 
     if-eqz v8, :cond_2
@@ -5288,12 +4826,12 @@
 
     if-eqz v8, :cond_2
 
-    .line 1538
+    .line 1452
     invoke-virtual {p1, p2}, Landroid/text/Layout;->getLineForOffset(I)I
 
     move-result v4
 
-    .line 1539
+    .line 1453
     .local v4, "firstLine":I
     invoke-virtual {p1, p3}, Landroid/text/Layout;->getLineForOffset(I)I
 
@@ -5302,56 +4840,56 @@
     .local v6, "lastLine":I
     move-object v3, p1
 
-    .line 1541
+    .line 1455
     check-cast v3, Landroid/text/DynamicLayout;
 
-    .line 1542
+    .line 1456
     .local v3, "dynamicLayout":Landroid/text/DynamicLayout;
     invoke-virtual {v3}, Landroid/text/DynamicLayout;->getBlockEndLines()[I
 
     move-result-object v0
 
-    .line 1543
+    .line 1457
     .local v0, "blockEndLines":[I
     invoke-virtual {v3}, Landroid/text/DynamicLayout;->getBlockIndices()[I
 
     move-result-object v2
 
-    .line 1544
+    .line 1458
     .local v2, "blockIndices":[I
     invoke-virtual {v3}, Landroid/text/DynamicLayout;->getNumberOfBlocks()I
 
     move-result v7
 
-    .line 1546
+    .line 1460
     .local v7, "numberOfBlocks":I
     const/4 v5, 0x0
 
-    .line 1548
+    .line 1462
     .local v5, "i":I
     :goto_0
     if-ge v5, v7, :cond_0
 
-    .line 1549
+    .line 1463
     aget v8, v0, v5
 
     if-lt v8, v4, :cond_3
 
-    .line 1554
+    .line 1468
     :cond_0
     :goto_1
     if-ge v5, v7, :cond_2
 
-    .line 1555
+    .line 1469
     aget v1, v2, v5
 
-    .line 1556
+    .line 1470
     .local v1, "blockIndex":I
     const/4 v8, -0x1
 
     if-eq v1, v8, :cond_1
 
-    .line 1557
+    .line 1471
     iget-object v8, p0, Landroid/widget/Editor;->mTextDisplayLists:[Landroid/widget/Editor$TextDisplayList;
 
     aget-object v8, v8, v1
@@ -5360,13 +4898,13 @@
 
     iput-boolean v9, v8, Landroid/widget/Editor$TextDisplayList;->isDirty:Z
 
-    .line 1559
+    .line 1473
     :cond_1
     aget v8, v0, v5
 
     if-lt v8, v6, :cond_4
 
-    .line 1563
+    .line 1477
     .end local v0    # "blockEndLines":[I
     .end local v1    # "blockIndex":I
     .end local v2    # "blockIndices":[I
@@ -5378,7 +4916,7 @@
     :cond_2
     return-void
 
-    .line 1550
+    .line 1464
     .restart local v0    # "blockEndLines":[I
     .restart local v2    # "blockIndices":[I
     .restart local v3    # "dynamicLayout":Landroid/text/DynamicLayout;
@@ -5391,12 +4929,12 @@
 
     goto :goto_0
 
-    .line 1560
+    .line 1474
     .restart local v1    # "blockIndex":I
     :cond_4
     add-int/lit8 v5, v5, 0x1
 
-    .line 1561
+    .line 1475
     goto :goto_1
 .end method
 
@@ -5404,7 +4942,7 @@
     .locals 1
 
     .prologue
-    .line 482
+    .line 464
     iget-boolean v0, p0, Landroid/widget/Editor;->mCursorVisible:Z
 
     if-eqz v0, :cond_0
@@ -5428,56 +4966,25 @@
     goto :goto_0
 .end method
 
-.method public isInSwipeSelectionMode()Z
-    .locals 1
-
-    .prologue
-    .line 1147
-    invoke-virtual {p0}, Landroid/widget/Editor;->getSelectionController()Landroid/widget/Editor$SelectionModifierCursorController;
-
-    move-result-object v0
-
-    if-eqz v0, :cond_0
-
-    .line 1148
-    invoke-virtual {p0}, Landroid/widget/Editor;->getSelectionController()Landroid/widget/Editor$SelectionModifierCursorController;
-
-    move-result-object v0
-
-    # getter for: Landroid/widget/Editor$SelectionModifierCursorController;->mInSwipeSelectionMode:Z
-    invoke-static {v0}, Landroid/widget/Editor$SelectionModifierCursorController;->access$100(Landroid/widget/Editor$SelectionModifierCursorController;)Z
-
-    move-result v0
-
-    .line 1150
-    :goto_0
-    return v0
-
-    :cond_0
-    const/4 v0, 0x0
-
-    goto :goto_0
-.end method
-
 .method makeBlink()V
     .locals 6
 
     .prologue
-    .line 1826
+    .line 1755
     invoke-direct {p0}, Landroid/widget/Editor;->shouldBlink()Z
 
     move-result v0
 
     if-eqz v0, :cond_2
 
-    .line 1827
+    .line 1756
     invoke-static {}, Landroid/os/SystemClock;->uptimeMillis()J
 
     move-result-wide v0
 
     iput-wide v0, p0, Landroid/widget/Editor;->mShowCursor:J
 
-    .line 1828
+    .line 1757
     iget-object v0, p0, Landroid/widget/Editor;->mBlink:Landroid/widget/Editor$Blink;
 
     if-nez v0, :cond_0
@@ -5490,7 +4997,7 @@
 
     iput-object v0, p0, Landroid/widget/Editor;->mBlink:Landroid/widget/Editor$Blink;
 
-    .line 1829
+    .line 1758
     :cond_0
     iget-object v0, p0, Landroid/widget/Editor;->mBlink:Landroid/widget/Editor$Blink;
 
@@ -5498,7 +5005,7 @@
 
     invoke-virtual {v0, v1}, Landroid/widget/Editor$Blink;->removeCallbacks(Ljava/lang/Runnable;)V
 
-    .line 1830
+    .line 1759
     iget-object v0, p0, Landroid/widget/Editor;->mBlink:Landroid/widget/Editor$Blink;
 
     iget-object v1, p0, Landroid/widget/Editor;->mBlink:Landroid/widget/Editor$Blink;
@@ -5511,12 +5018,12 @@
 
     invoke-virtual {v0, v1, v2, v3}, Landroid/widget/Editor$Blink;->postAtTime(Ljava/lang/Runnable;J)Z
 
-    .line 1834
+    .line 1763
     :cond_1
     :goto_0
     return-void
 
-    .line 1832
+    .line 1761
     :cond_2
     iget-object v0, p0, Landroid/widget/Editor;->mBlink:Landroid/widget/Editor$Blink;
 
@@ -5532,61 +5039,63 @@
 .end method
 
 .method onAttachedToWindow()V
-    .locals 4
+    .locals 5
 
     .prologue
+    const/4 v4, 0x1
+
     const/4 v3, 0x0
 
-    .line 250
+    .line 228
     iget-boolean v1, p0, Landroid/widget/Editor;->mShowErrorAfterAttach:Z
 
     if-eqz v1, :cond_0
 
-    .line 251
+    .line 229
     invoke-direct {p0}, Landroid/widget/Editor;->showError()V
 
-    .line 252
+    .line 230
     iput-boolean v3, p0, Landroid/widget/Editor;->mShowErrorAfterAttach:Z
 
-    .line 254
+    .line 232
     :cond_0
     iput-boolean v3, p0, Landroid/widget/Editor;->mTemporaryDetach:Z
 
-    .line 256
+    .line 234
     iget-object v1, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v1}, Landroid/widget/TextView;->getViewTreeObserver()Landroid/view/ViewTreeObserver;
 
     move-result-object v0
 
-    .line 259
+    .line 237
     .local v0, "observer":Landroid/view/ViewTreeObserver;
     iget-object v1, p0, Landroid/widget/Editor;->mInsertionPointCursorController:Landroid/widget/Editor$InsertionPointCursorController;
 
     if-eqz v1, :cond_1
 
-    .line 260
+    .line 238
     iget-object v1, p0, Landroid/widget/Editor;->mInsertionPointCursorController:Landroid/widget/Editor$InsertionPointCursorController;
 
     invoke-virtual {v0, v1}, Landroid/view/ViewTreeObserver;->addOnTouchModeChangeListener(Landroid/view/ViewTreeObserver$OnTouchModeChangeListener;)V
 
-    .line 262
+    .line 240
     :cond_1
     iget-object v1, p0, Landroid/widget/Editor;->mSelectionModifierCursorController:Landroid/widget/Editor$SelectionModifierCursorController;
 
     if-eqz v1, :cond_2
 
-    .line 263
+    .line 241
     iget-object v1, p0, Landroid/widget/Editor;->mSelectionModifierCursorController:Landroid/widget/Editor$SelectionModifierCursorController;
 
     invoke-virtual {v1}, Landroid/widget/Editor$SelectionModifierCursorController;->resetTouchOffsets()V
 
-    .line 264
+    .line 242
     iget-object v1, p0, Landroid/widget/Editor;->mSelectionModifierCursorController:Landroid/widget/Editor$SelectionModifierCursorController;
 
     invoke-virtual {v0, v1}, Landroid/view/ViewTreeObserver;->addOnTouchModeChangeListener(Landroid/view/ViewTreeObserver$OnTouchModeChangeListener;)V
 
-    .line 266
+    .line 244
     :cond_2
     iget-object v1, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
@@ -5598,11 +5107,9 @@
 
     move-result v1
 
-    const/4 v2, 0x1
+    invoke-direct {p0, v3, v1, v4}, Landroid/widget/Editor;->updateSpellCheckSpans(IIZ)V
 
-    invoke-direct {p0, v3, v1, v2}, Landroid/widget/Editor;->updateSpellCheckSpans(IIZ)V
-
-    .line 269
+    .line 247
     iget-object v1, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v1}, Landroid/widget/TextView;->hasTransientState()Z
@@ -5625,16 +5132,25 @@
 
     if-eq v1, v2, :cond_3
 
-    .line 274
+    .line 252
     iget-object v1, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v1, v3}, Landroid/widget/TextView;->setHasTransientState(Z)V
 
-    .line 277
+    .line 255
     invoke-virtual {p0}, Landroid/widget/Editor;->startSelectionActionMode()Z
 
-    .line 279
+    .line 258
     :cond_3
+    invoke-direct {p0}, Landroid/widget/Editor;->getPositionListener()Landroid/widget/Editor$PositionListener;
+
+    move-result-object v1
+
+    iget-object v2, p0, Landroid/widget/Editor;->mCursorAnchorInfoNotifier:Landroid/widget/Editor$CursorAnchorInfoNotifier;
+
+    invoke-virtual {v1, v2, v4}, Landroid/widget/Editor$PositionListener;->addSubscriber(Landroid/widget/Editor$TextViewPositionListener;Z)V
+
+    .line 259
     return-void
 .end method
 
@@ -5643,28 +5159,28 @@
     .param p1, "info"    # Landroid/view/inputmethod/CorrectionInfo;
 
     .prologue
-    .line 1783
+    .line 1712
     iget-object v0, p0, Landroid/widget/Editor;->mCorrectionHighlighter:Landroid/widget/Editor$CorrectionHighlighter;
 
     if-nez v0, :cond_0
 
-    .line 1784
+    .line 1713
     new-instance v0, Landroid/widget/Editor$CorrectionHighlighter;
 
     invoke-direct {v0, p0}, Landroid/widget/Editor$CorrectionHighlighter;-><init>(Landroid/widget/Editor;)V
 
     iput-object v0, p0, Landroid/widget/Editor;->mCorrectionHighlighter:Landroid/widget/Editor$CorrectionHighlighter;
 
-    .line 1789
+    .line 1718
     :goto_0
     iget-object v0, p0, Landroid/widget/Editor;->mCorrectionHighlighter:Landroid/widget/Editor$CorrectionHighlighter;
 
     invoke-virtual {v0, p1}, Landroid/widget/Editor$CorrectionHighlighter;->highlight(Landroid/view/inputmethod/CorrectionInfo;)V
 
-    .line 1790
+    .line 1719
     return-void
 
-    .line 1786
+    .line 1715
     :cond_0
     iget-object v0, p0, Landroid/widget/Editor;->mCorrectionHighlighter:Landroid/widget/Editor$CorrectionHighlighter;
 
@@ -5682,102 +5198,111 @@
     .prologue
     const/4 v2, 0x0
 
-    .line 282
+    .line 262
+    invoke-direct {p0}, Landroid/widget/Editor;->getPositionListener()Landroid/widget/Editor$PositionListener;
+
+    move-result-object v0
+
+    iget-object v1, p0, Landroid/widget/Editor;->mCursorAnchorInfoNotifier:Landroid/widget/Editor$CursorAnchorInfoNotifier;
+
+    invoke-virtual {v0, v1}, Landroid/widget/Editor$PositionListener;->removeSubscriber(Landroid/widget/Editor$TextViewPositionListener;)V
+
+    .line 264
     iget-object v0, p0, Landroid/widget/Editor;->mError:Ljava/lang/CharSequence;
 
     if-eqz v0, :cond_0
 
-    .line 283
+    .line 265
     invoke-direct {p0}, Landroid/widget/Editor;->hideError()V
 
-    .line 286
+    .line 268
     :cond_0
     iget-object v0, p0, Landroid/widget/Editor;->mBlink:Landroid/widget/Editor$Blink;
 
     if-eqz v0, :cond_1
 
-    .line 287
+    .line 269
     iget-object v0, p0, Landroid/widget/Editor;->mBlink:Landroid/widget/Editor$Blink;
 
     iget-object v1, p0, Landroid/widget/Editor;->mBlink:Landroid/widget/Editor$Blink;
 
     invoke-virtual {v0, v1}, Landroid/widget/Editor$Blink;->removeCallbacks(Ljava/lang/Runnable;)V
 
-    .line 290
+    .line 272
     :cond_1
     iget-object v0, p0, Landroid/widget/Editor;->mInsertionPointCursorController:Landroid/widget/Editor$InsertionPointCursorController;
 
     if-eqz v0, :cond_2
 
-    .line 291
+    .line 273
     iget-object v0, p0, Landroid/widget/Editor;->mInsertionPointCursorController:Landroid/widget/Editor$InsertionPointCursorController;
 
     invoke-virtual {v0}, Landroid/widget/Editor$InsertionPointCursorController;->onDetached()V
 
-    .line 294
+    .line 276
     :cond_2
     iget-object v0, p0, Landroid/widget/Editor;->mSelectionModifierCursorController:Landroid/widget/Editor$SelectionModifierCursorController;
 
     if-eqz v0, :cond_3
 
-    .line 295
+    .line 277
     iget-object v0, p0, Landroid/widget/Editor;->mSelectionModifierCursorController:Landroid/widget/Editor$SelectionModifierCursorController;
 
     invoke-virtual {v0}, Landroid/widget/Editor$SelectionModifierCursorController;->onDetached()V
 
-    .line 298
+    .line 280
     :cond_3
     iget-object v0, p0, Landroid/widget/Editor;->mShowSuggestionRunnable:Ljava/lang/Runnable;
 
     if-eqz v0, :cond_4
 
-    .line 299
+    .line 281
     iget-object v0, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     iget-object v1, p0, Landroid/widget/Editor;->mShowSuggestionRunnable:Ljava/lang/Runnable;
 
     invoke-virtual {v0, v1}, Landroid/widget/TextView;->removeCallbacks(Ljava/lang/Runnable;)Z
 
-    .line 302
+    .line 284
     :cond_4
     invoke-direct {p0}, Landroid/widget/Editor;->destroyDisplayListsData()V
 
-    .line 304
+    .line 286
     iget-object v0, p0, Landroid/widget/Editor;->mSpellChecker:Landroid/widget/SpellChecker;
 
     if-eqz v0, :cond_5
 
-    .line 305
+    .line 287
     iget-object v0, p0, Landroid/widget/Editor;->mSpellChecker:Landroid/widget/SpellChecker;
 
     invoke-virtual {v0}, Landroid/widget/SpellChecker;->closeSession()V
 
-    .line 308
+    .line 290
     const/4 v0, 0x0
 
     iput-object v0, p0, Landroid/widget/Editor;->mSpellChecker:Landroid/widget/SpellChecker;
 
-    .line 311
+    .line 293
     :cond_5
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Landroid/widget/Editor;->mPreserveDetachedSelection:Z
 
-    .line 312
+    .line 294
     invoke-virtual {p0}, Landroid/widget/Editor;->hideControllers()V
 
-    .line 313
+    .line 295
     iput-boolean v2, p0, Landroid/widget/Editor;->mPreserveDetachedSelection:Z
 
-    .line 314
+    .line 296
     iput-boolean v2, p0, Landroid/widget/Editor;->mTemporaryDetach:Z
 
-    .line 315
+    .line 297
     return-void
 .end method
 
 .method onDraw(Landroid/graphics/Canvas;Landroid/text/Layout;Landroid/graphics/Path;Landroid/graphics/Paint;I)V
-    .locals 20
+    .locals 6
     .param p1, "canvas"    # Landroid/graphics/Canvas;
     .param p2, "layout"    # Landroid/text/Layout;
     .param p3, "highlight"    # Landroid/graphics/Path;
@@ -5785,314 +5310,130 @@
     .param p5, "cursorOffsetVertical"    # I
 
     .prologue
-    .line 1351
-    move-object/from16 v0, p0
+    .line 1284
+    iget-object v5, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
-    iget-object v7, v0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+    invoke-virtual {v5}, Landroid/widget/TextView;->getSelectionStart()I
 
-    invoke-virtual {v7}, Landroid/widget/TextView;->getSelectionStart()I
+    move-result v4
 
-    move-result v15
+    .line 1285
+    .local v4, "selectionStart":I
+    iget-object v5, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
-    .line 1352
-    .local v15, "selectionStart":I
-    move-object/from16 v0, p0
+    invoke-virtual {v5}, Landroid/widget/TextView;->getSelectionEnd()I
 
-    iget-object v7, v0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+    move-result v3
 
-    invoke-virtual {v7}, Landroid/widget/TextView;->getSelectionEnd()I
+    .line 1287
+    .local v3, "selectionEnd":I
+    iget-object v1, p0, Landroid/widget/Editor;->mInputMethodState:Landroid/widget/Editor$InputMethodState;
 
-    move-result v14
+    .line 1288
+    .local v1, "ims":Landroid/widget/Editor$InputMethodState;
+    if-eqz v1, :cond_1
 
-    .line 1354
-    .local v14, "selectionEnd":I
-    move-object/from16 v0, p0
+    iget v5, v1, Landroid/widget/Editor$InputMethodState;->mBatchEditNesting:I
 
-    iget-object v12, v0, Landroid/widget/Editor;->mInputMethodState:Landroid/widget/Editor$InputMethodState;
+    if-nez v5, :cond_1
 
-    .line 1355
-    .local v12, "ims":Landroid/widget/Editor$InputMethodState;
-    if-eqz v12, :cond_2
-
-    iget v7, v12, Landroid/widget/Editor$InputMethodState;->mBatchEditNesting:I
-
-    if-nez v7, :cond_2
-
-    .line 1356
+    .line 1289
     invoke-static {}, Landroid/view/inputmethod/InputMethodManager;->peekInstance()Landroid/view/inputmethod/InputMethodManager;
 
-    move-result-object v6
+    move-result-object v0
 
-    .line 1357
-    .local v6, "imm":Landroid/view/inputmethod/InputMethodManager;
-    if-eqz v6, :cond_2
+    .line 1290
+    .local v0, "imm":Landroid/view/inputmethod/InputMethodManager;
+    if-eqz v0, :cond_1
 
-    .line 1358
-    move-object/from16 v0, p0
+    .line 1291
+    iget-object v5, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
-    iget-object v7, v0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+    invoke-virtual {v0, v5}, Landroid/view/inputmethod/InputMethodManager;->isActive(Landroid/view/View;)Z
 
-    invoke-virtual {v6, v7}, Landroid/view/inputmethod/InputMethodManager;->isActive(Landroid/view/View;)Z
+    move-result v5
 
-    move-result v7
+    if-eqz v5, :cond_1
 
-    if-eqz v7, :cond_1
+    .line 1292
+    const/4 v2, 0x0
 
-    .line 1359
-    const/4 v13, 0x0
+    .line 1293
+    .local v2, "reported":Z
+    iget-boolean v5, v1, Landroid/widget/Editor$InputMethodState;->mContentChanged:Z
 
-    .line 1360
-    .local v13, "reported":Z
-    iget-boolean v7, v12, Landroid/widget/Editor$InputMethodState;->mContentChanged:Z
+    if-nez v5, :cond_0
 
-    if-nez v7, :cond_0
+    iget-boolean v5, v1, Landroid/widget/Editor$InputMethodState;->mSelectionModeChanged:Z
 
-    iget-boolean v7, v12, Landroid/widget/Editor$InputMethodState;->mSelectionModeChanged:Z
+    if-eqz v5, :cond_1
 
-    if-eqz v7, :cond_1
-
-    .line 1364
+    .line 1297
     :cond_0
-    invoke-virtual/range {p0 .. p0}, Landroid/widget/Editor;->reportExtractedText()Z
+    invoke-virtual {p0}, Landroid/widget/Editor;->reportExtractedText()Z
 
-    .line 1368
-    .end local v13    # "reported":Z
+    .line 1303
+    .end local v0    # "imm":Landroid/view/inputmethod/InputMethodManager;
+    .end local v2    # "reported":Z
     :cond_1
-    move-object/from16 v0, p0
+    iget-object v5, p0, Landroid/widget/Editor;->mCorrectionHighlighter:Landroid/widget/Editor$CorrectionHighlighter;
 
-    iget-object v7, v0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+    if-eqz v5, :cond_2
 
-    invoke-virtual {v6, v7}, Landroid/view/inputmethod/InputMethodManager;->isWatchingCursor(Landroid/view/View;)Z
+    .line 1304
+    iget-object v5, p0, Landroid/widget/Editor;->mCorrectionHighlighter:Landroid/widget/Editor$CorrectionHighlighter;
 
-    move-result v7
+    invoke-virtual {v5, p1, p5}, Landroid/widget/Editor$CorrectionHighlighter;->draw(Landroid/graphics/Canvas;I)V
 
-    if-eqz v7, :cond_2
-
-    if-eqz p3, :cond_2
-
-    .line 1369
-    iget-object v7, v12, Landroid/widget/Editor$InputMethodState;->mTmpRectF:Landroid/graphics/RectF;
-
-    const/4 v8, 0x1
-
-    move-object/from16 v0, p3
-
-    invoke-virtual {v0, v7, v8}, Landroid/graphics/Path;->computeBounds(Landroid/graphics/RectF;Z)V
-
-    .line 1370
-    iget-object v7, v12, Landroid/widget/Editor$InputMethodState;->mTmpOffset:[F
-
-    const/4 v8, 0x0
-
-    iget-object v9, v12, Landroid/widget/Editor$InputMethodState;->mTmpOffset:[F
-
-    const/4 v10, 0x1
-
-    const/4 v11, 0x0
-
-    aput v11, v9, v10
-
-    aput v11, v7, v8
-
-    .line 1372
-    invoke-virtual/range {p1 .. p1}, Landroid/graphics/Canvas;->getMatrix()Landroid/graphics/Matrix;
-
-    move-result-object v7
-
-    iget-object v8, v12, Landroid/widget/Editor$InputMethodState;->mTmpOffset:[F
-
-    invoke-virtual {v7, v8}, Landroid/graphics/Matrix;->mapPoints([F)V
-
-    .line 1373
-    iget-object v7, v12, Landroid/widget/Editor$InputMethodState;->mTmpRectF:Landroid/graphics/RectF;
-
-    iget-object v8, v12, Landroid/widget/Editor$InputMethodState;->mTmpOffset:[F
-
-    const/4 v9, 0x0
-
-    aget v8, v8, v9
-
-    iget-object v9, v12, Landroid/widget/Editor$InputMethodState;->mTmpOffset:[F
-
-    const/4 v10, 0x1
-
-    aget v9, v9, v10
-
-    invoke-virtual {v7, v8, v9}, Landroid/graphics/RectF;->offset(FF)V
-
-    .line 1375
-    iget-object v7, v12, Landroid/widget/Editor$InputMethodState;->mTmpRectF:Landroid/graphics/RectF;
-
-    const/4 v8, 0x0
-
-    move/from16 v0, p5
-
-    int-to-float v9, v0
-
-    invoke-virtual {v7, v8, v9}, Landroid/graphics/RectF;->offset(FF)V
-
-    .line 1377
-    iget-object v7, v12, Landroid/widget/Editor$InputMethodState;->mCursorRectInWindow:Landroid/graphics/Rect;
-
-    iget-object v8, v12, Landroid/widget/Editor$InputMethodState;->mTmpRectF:Landroid/graphics/RectF;
-
-    iget v8, v8, Landroid/graphics/RectF;->left:F
-
-    float-to-double v8, v8
-
-    const-wide/high16 v10, 0x3fe0000000000000L    # 0.5
-
-    add-double/2addr v8, v10
-
-    double-to-int v8, v8
-
-    iget-object v9, v12, Landroid/widget/Editor$InputMethodState;->mTmpRectF:Landroid/graphics/RectF;
-
-    iget v9, v9, Landroid/graphics/RectF;->top:F
-
-    float-to-double v10, v9
-
-    const-wide/high16 v16, 0x3fe0000000000000L    # 0.5
-
-    add-double v10, v10, v16
-
-    double-to-int v9, v10
-
-    iget-object v10, v12, Landroid/widget/Editor$InputMethodState;->mTmpRectF:Landroid/graphics/RectF;
-
-    iget v10, v10, Landroid/graphics/RectF;->right:F
-
-    float-to-double v10, v10
-
-    const-wide/high16 v16, 0x3fe0000000000000L    # 0.5
-
-    add-double v10, v10, v16
-
-    double-to-int v10, v10
-
-    iget-object v11, v12, Landroid/widget/Editor$InputMethodState;->mTmpRectF:Landroid/graphics/RectF;
-
-    iget v11, v11, Landroid/graphics/RectF;->bottom:F
-
-    float-to-double v0, v11
-
-    move-wide/from16 v16, v0
-
-    const-wide/high16 v18, 0x3fe0000000000000L    # 0.5
-
-    add-double v16, v16, v18
-
-    move-wide/from16 v0, v16
-
-    double-to-int v11, v0
-
-    invoke-virtual {v7, v8, v9, v10, v11}, Landroid/graphics/Rect;->set(IIII)V
-
-    .line 1382
-    move-object/from16 v0, p0
-
-    iget-object v7, v0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
-
-    iget-object v8, v12, Landroid/widget/Editor$InputMethodState;->mCursorRectInWindow:Landroid/graphics/Rect;
-
-    iget v8, v8, Landroid/graphics/Rect;->left:I
-
-    iget-object v9, v12, Landroid/widget/Editor$InputMethodState;->mCursorRectInWindow:Landroid/graphics/Rect;
-
-    iget v9, v9, Landroid/graphics/Rect;->top:I
-
-    iget-object v10, v12, Landroid/widget/Editor$InputMethodState;->mCursorRectInWindow:Landroid/graphics/Rect;
-
-    iget v10, v10, Landroid/graphics/Rect;->right:I
-
-    iget-object v11, v12, Landroid/widget/Editor$InputMethodState;->mCursorRectInWindow:Landroid/graphics/Rect;
-
-    iget v11, v11, Landroid/graphics/Rect;->bottom:I
-
-    invoke-virtual/range {v6 .. v11}, Landroid/view/inputmethod/InputMethodManager;->updateCursor(Landroid/view/View;IIII)V
-
-    .line 1389
-    .end local v6    # "imm":Landroid/view/inputmethod/InputMethodManager;
+    .line 1307
     :cond_2
-    move-object/from16 v0, p0
+    if-eqz p3, :cond_3
 
-    iget-object v7, v0, Landroid/widget/Editor;->mCorrectionHighlighter:Landroid/widget/Editor$CorrectionHighlighter;
+    if-ne v4, v3, :cond_3
 
-    if-eqz v7, :cond_3
+    iget v5, p0, Landroid/widget/Editor;->mCursorCount:I
 
-    .line 1390
-    move-object/from16 v0, p0
+    if-lez v5, :cond_3
 
-    iget-object v7, v0, Landroid/widget/Editor;->mCorrectionHighlighter:Landroid/widget/Editor$CorrectionHighlighter;
+    invoke-static/range {p0 .. p0}, Landroid/widget/Editor$FlymeInjector;->isFlymeCursorVisible(Landroid/widget/Editor;)Z
 
-    move-object/from16 v0, p1
+    move-result v5
 
-    move/from16 v1, p5
+    if-eqz v5, :cond_flyme_0
 
-    invoke-virtual {v7, v0, v1}, Landroid/widget/Editor$CorrectionHighlighter;->draw(Landroid/graphics/Canvas;I)V
+    .line 1308
+    invoke-direct {p0, p1, p5}, Landroid/widget/Editor;->drawCursor(Landroid/graphics/Canvas;I)V
 
-    .line 1393
+    :cond_flyme_0
+    .line 1311
+    const/4 p3, 0x0
+
+    .line 1314
     :cond_3
-    if-eqz p3, :cond_4
+    iget-object v5, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
-    if-ne v15, v14, :cond_4
+    invoke-virtual {v5}, Landroid/widget/TextView;->canHaveDisplayList()Z
 
-    move-object/from16 v0, p0
+    move-result v5
 
-    iget v7, v0, Landroid/widget/Editor;->mCursorCount:I
+    if-eqz v5, :cond_4
 
-    if-lez v7, :cond_4
+    invoke-virtual {p1}, Landroid/graphics/Canvas;->isHardwareAccelerated()Z
 
-    .line 1394
-    move-object/from16 v0, p0
+    move-result v5
 
-    move-object/from16 v1, p1
+    if-eqz v5, :cond_4
 
-    move/from16 v2, p5
-
-    invoke-direct {v0, v1, v2}, Landroid/widget/Editor;->drawCursor(Landroid/graphics/Canvas;I)V
-
-    .line 1397
-    const/16 p3, 0x0
-
-    .line 1400
-    :cond_4
-    move-object/from16 v0, p0
-
-    iget-object v7, v0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
-
-    invoke-virtual {v7}, Landroid/widget/TextView;->canHaveDisplayList()Z
-
-    move-result v7
-
-    if-eqz v7, :cond_5
-
-    invoke-virtual/range {p1 .. p1}, Landroid/graphics/Canvas;->isHardwareAccelerated()Z
-
-    move-result v7
-
-    if-eqz v7, :cond_5
-
-    .line 1401
+    .line 1315
     invoke-direct/range {p0 .. p5}, Landroid/widget/Editor;->drawHardwareAccelerated(Landroid/graphics/Canvas;Landroid/text/Layout;Landroid/graphics/Path;Landroid/graphics/Paint;I)V
 
-    .line 1406
+    .line 1320
     :goto_0
     return-void
 
-    .line 1404
-    :cond_5
-    move-object/from16 v0, p2
-
-    move-object/from16 v1, p1
-
-    move-object/from16 v2, p3
-
-    move-object/from16 v3, p4
-
-    move/from16 v4, p5
-
-    invoke-virtual {v0, v1, v2, v3, v4}, Landroid/text/Layout;->draw(Landroid/graphics/Canvas;Landroid/graphics/Path;Landroid/graphics/Paint;I)V
+    .line 1318
+    :cond_4
+    invoke-virtual {p2, p1, p3, p4, p5}, Landroid/text/Layout;->draw(Landroid/graphics/Canvas;Landroid/graphics/Path;Landroid/graphics/Paint;I)V
 
     goto :goto_0
 .end method
@@ -6102,7 +5443,7 @@
     .param p1, "event"    # Landroid/view/DragEvent;
 
     .prologue
-    .line 1907
+    .line 1836
     new-instance v4, Ljava/lang/StringBuilder;
 
     const-string v21, ""
@@ -6111,19 +5452,19 @@
 
     invoke-direct {v4, v0}, Ljava/lang/StringBuilder;-><init>(Ljava/lang/String;)V
 
-    .line 1908
+    .line 1837
     .local v4, "content":Ljava/lang/StringBuilder;
     invoke-virtual/range {p1 .. p1}, Landroid/view/DragEvent;->getClipData()Landroid/content/ClipData;
 
     move-result-object v3
 
-    .line 1909
+    .line 1838
     .local v3, "clipData":Landroid/content/ClipData;
     invoke-virtual {v3}, Landroid/content/ClipData;->getItemCount()I
 
     move-result v11
 
-    .line 1910
+    .line 1839
     .local v11, "itemCount":I
     const/4 v9, 0x0
 
@@ -6131,12 +5472,12 @@
     :goto_0
     if-ge v9, v11, :cond_0
 
-    .line 1911
+    .line 1840
     invoke-virtual {v3, v9}, Landroid/content/ClipData;->getItemAt(I)Landroid/content/ClipData$Item;
 
     move-result-object v10
 
-    .line 1912
+    .line 1841
     .local v10, "item":Landroid/content/ClipData$Item;
     move-object/from16 v0, p0
 
@@ -6158,12 +5499,12 @@
 
     invoke-virtual {v4, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/CharSequence;)Ljava/lang/StringBuilder;
 
-    .line 1910
+    .line 1839
     add-int/lit8 v9, v9, 0x1
 
     goto :goto_0
 
-    .line 1915
+    .line 1844
     .end local v10    # "item":Landroid/content/ClipData$Item;
     :cond_0
     move-object/from16 v0, p0
@@ -6184,17 +5525,17 @@
 
     move-result v16
 
-    .line 1917
+    .line 1846
     .local v16, "offset":I
     invoke-virtual/range {p1 .. p1}, Landroid/view/DragEvent;->getLocalState()Ljava/lang/Object;
 
     move-result-object v12
 
-    .line 1918
+    .line 1847
     .local v12, "localState":Ljava/lang/Object;
     const/4 v6, 0x0
 
-    .line 1919
+    .line 1848
     .local v6, "dragLocalState":Landroid/widget/Editor$DragLocalState;
     instance-of v0, v12, Landroid/widget/Editor$DragLocalState;
 
@@ -6204,10 +5545,10 @@
 
     move-object v6, v12
 
-    .line 1920
+    .line 1849
     check-cast v6, Landroid/widget/Editor$DragLocalState;
 
-    .line 1922
+    .line 1851
     :cond_1
     if-eqz v6, :cond_3
 
@@ -6229,12 +5570,12 @@
 
     const/4 v5, 0x1
 
-    .line 1925
+    .line 1854
     .local v5, "dragDropIntoItself":Z
     :goto_1
     if-eqz v5, :cond_4
 
-    .line 1926
+    .line 1855
     iget v0, v6, Landroid/widget/Editor$DragLocalState;->start:I
 
     move/from16 v21, v0
@@ -6255,19 +5596,19 @@
 
     if-ge v0, v1, :cond_4
 
-    .line 1962
+    .line 1891
     :cond_2
     :goto_2
     return-void
 
-    .line 1922
+    .line 1851
     .end local v5    # "dragDropIntoItself":Z
     :cond_3
     const/4 v5, 0x0
 
     goto :goto_1
 
-    .line 1932
+    .line 1861
     .restart local v5    # "dragDropIntoItself":Z
     :cond_4
     move-object/from16 v0, p0
@@ -6284,15 +5625,15 @@
 
     move-result v17
 
-    .line 1933
+    .line 1862
     .local v17, "originalLength":I
     move/from16 v14, v16
 
-    .line 1934
+    .line 1863
     .local v14, "min":I
     move/from16 v13, v16
 
-    .line 1936
+    .line 1865
     .local v13, "max":I
     move-object/from16 v0, p0
 
@@ -6310,7 +5651,7 @@
 
     invoke-static {v0, v13}, Landroid/text/Selection;->setSelection(Landroid/text/Spannable;I)V
 
-    .line 1937
+    .line 1866
     move-object/from16 v0, p0
 
     iget-object v0, v0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
@@ -6321,21 +5662,21 @@
 
     invoke-virtual {v0, v14, v13, v4}, Landroid/widget/TextView;->replaceText_internal(IILjava/lang/CharSequence;)V
 
-    .line 1939
+    .line 1868
     if-eqz v5, :cond_2
 
-    .line 1940
+    .line 1869
     iget v8, v6, Landroid/widget/Editor$DragLocalState;->start:I
 
-    .line 1941
+    .line 1870
     .local v8, "dragSourceStart":I
     iget v7, v6, Landroid/widget/Editor$DragLocalState;->end:I
 
-    .line 1942
+    .line 1871
     .local v7, "dragSourceEnd":I
     if-gt v13, v8, :cond_5
 
-    .line 1944
+    .line 1873
     move-object/from16 v0, p0
 
     iget-object v0, v0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
@@ -6352,14 +5693,14 @@
 
     sub-int v19, v21, v17
 
-    .line 1945
+    .line 1874
     .local v19, "shift":I
     add-int v8, v8, v19
 
-    .line 1946
+    .line 1875
     add-int v7, v7, v19
 
-    .line 1950
+    .line 1879
     .end local v19    # "shift":I
     :cond_5
     move-object/from16 v0, p0
@@ -6372,7 +5713,7 @@
 
     invoke-virtual {v0, v8, v7}, Landroid/widget/TextView;->deleteText_internal(II)V
 
-    .line 1953
+    .line 1882
     const/16 v21, 0x0
 
     add-int/lit8 v22, v8, -0x1
@@ -6381,7 +5722,7 @@
 
     move-result v18
 
-    .line 1954
+    .line 1883
     .local v18, "prevCharIdx":I
     move-object/from16 v0, p0
 
@@ -6403,7 +5744,7 @@
 
     move-result v15
 
-    .line 1955
+    .line 1884
     .local v15, "nextCharIdx":I
     add-int/lit8 v21, v18, 0x1
 
@@ -6411,7 +5752,7 @@
 
     if-le v15, v0, :cond_2
 
-    .line 1956
+    .line 1885
     move-object/from16 v0, p0
 
     iget-object v0, v0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
@@ -6426,7 +5767,7 @@
 
     move-result-object v20
 
-    .line 1957
+    .line 1886
     .local v20, "t":Ljava/lang/CharSequence;
     const/16 v21, 0x0
 
@@ -6452,7 +5793,7 @@
 
     if-eqz v21, :cond_2
 
-    .line 1958
+    .line 1887
     move-object/from16 v0, p0
 
     iget-object v0, v0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
@@ -6482,27 +5823,27 @@
 
     const/4 v7, 0x0
 
-    .line 959
+    .line 904
     invoke-static {}, Landroid/os/SystemClock;->uptimeMillis()J
 
     move-result-wide v8
 
     iput-wide v8, p0, Landroid/widget/Editor;->mShowCursor:J
 
-    .line 960
+    .line 905
     invoke-virtual {p0}, Landroid/widget/Editor;->ensureEndedBatchEdit()V
 
-    .line 962
-    if-eqz p1, :cond_a
+    .line 907
+    if-eqz p1, :cond_b
 
-    .line 963
+    .line 908
     iget-object v5, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v5}, Landroid/widget/TextView;->getSelectionStart()I
 
     move-result v4
 
-    .line 964
+    .line 909
     .local v4, "selStart":I
     iget-object v5, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
@@ -6510,13 +5851,13 @@
 
     move-result v3
 
-    .line 968
+    .line 913
     .local v3, "selEnd":I
     iget-boolean v5, p0, Landroid/widget/Editor;->mSelectAllOnFocus:Z
 
-    if-eqz v5, :cond_8
+    if-eqz v5, :cond_9
 
-    if-nez v4, :cond_8
+    if-nez v4, :cond_9
 
     iget-object v5, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
@@ -6528,16 +5869,16 @@
 
     move-result v5
 
-    if-ne v3, v5, :cond_8
+    if-ne v3, v5, :cond_9
 
     move v0, v6
 
-    .line 971
+    .line 916
     .local v0, "isFocusHighlighted":Z
     :goto_0
     iget-boolean v5, p0, Landroid/widget/Editor;->mFrozenWithFocus:Z
 
-    if-eqz v5, :cond_9
+    if-eqz v5, :cond_a
 
     iget-object v5, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
@@ -6545,16 +5886,16 @@
 
     move-result v5
 
-    if-eqz v5, :cond_9
+    if-eqz v5, :cond_a
 
-    if-nez v0, :cond_9
+    if-nez v0, :cond_a
 
     move v5, v6
 
     :goto_1
     iput-boolean v5, p0, Landroid/widget/Editor;->mCreatedWithASelection:Z
 
-    .line 974
+    .line 919
     iget-boolean v5, p0, Landroid/widget/Editor;->mFrozenWithFocus:Z
 
     if-eqz v5, :cond_0
@@ -6563,17 +5904,17 @@
 
     if-gez v3, :cond_6
 
-    .line 977
+    .line 922
     :cond_0
     invoke-direct {p0}, Landroid/widget/Editor;->getLastTapPosition()I
 
     move-result v1
 
-    .line 978
+    .line 923
     .local v1, "lastTapPosition":I
     if-ltz v1, :cond_1
 
-    .line 979
+    .line 924
     iget-object v5, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v5}, Landroid/widget/TextView;->getText()Ljava/lang/CharSequence;
@@ -6584,7 +5925,7 @@
 
     invoke-static {v5, v1}, Landroid/text/Selection;->setSelection(Landroid/text/Spannable;I)V
 
-    .line 983
+    .line 928
     :cond_1
     iget-object v5, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
@@ -6592,11 +5933,11 @@
 
     move-result-object v2
 
-    .line 984
+    .line 929
     .local v2, "mMovement":Landroid/text/method/MovementMethod;
     if-eqz v2, :cond_2
 
-    .line 985
+    .line 930
     iget-object v8, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     iget-object v5, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
@@ -6609,7 +5950,7 @@
 
     invoke-interface {v2, v8, v5, p2}, Landroid/text/method/MovementMethod;->onTakeFocus(Landroid/widget/TextView;Landroid/text/Spannable;I)V
 
-    .line 993
+    .line 938
     :cond_2
     iget-object v5, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
@@ -6626,7 +5967,7 @@
 
     if-ltz v3, :cond_4
 
-    .line 1004
+    .line 949
     iget-object v5, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v5}, Landroid/widget/TextView;->getText()Ljava/lang/CharSequence;
@@ -6637,97 +5978,98 @@
 
     invoke-static {v5, v4, v3}, Landroid/text/Selection;->setSelection(Landroid/text/Spannable;II)V
 
-    .line 1007
+    .line 952
     :cond_4
     iget-boolean v5, p0, Landroid/widget/Editor;->mSelectAllOnFocus:Z
 
     if-eqz v5, :cond_5
 
-    .line 1008
+    .line 953
     iget-object v5, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v5}, Landroid/widget/TextView;->selectAllText()Z
 
-    .line 1011
+    .line 956
     :cond_5
     iput-boolean v6, p0, Landroid/widget/Editor;->mTouchFocusSelected:Z
 
-    .line 1014
+    .line 959
     .end local v1    # "lastTapPosition":I
     .end local v2    # "mMovement":Landroid/text/method/MovementMethod;
     :cond_6
     iput-boolean v7, p0, Landroid/widget/Editor;->mFrozenWithFocus:Z
 
-    .line 1015
+    .line 960
     iput-boolean v7, p0, Landroid/widget/Editor;->mSelectionMoved:Z
 
-    .line 1017
+    .line 962
     iget-object v5, p0, Landroid/widget/Editor;->mError:Ljava/lang/CharSequence;
 
     if-eqz v5, :cond_7
 
-    .line 1018
+    .line 963
     invoke-direct {p0}, Landroid/widget/Editor;->showError()V
 
-    .line 1021
+    .line 966
     :cond_7
     invoke-virtual {p0}, Landroid/widget/Editor;->makeBlink()V
 
-    .line 1050
+    .line 993
     .end local v0    # "isFocusHighlighted":Z
     .end local v3    # "selEnd":I
     .end local v4    # "selStart":I
+    :cond_8
     :goto_2
     return-void
 
     .restart local v3    # "selEnd":I
     .restart local v4    # "selStart":I
-    :cond_8
+    :cond_9
     move v0, v7
 
-    .line 968
+    .line 913
     goto :goto_0
 
     .restart local v0    # "isFocusHighlighted":Z
-    :cond_9
+    :cond_a
     move v5, v7
 
-    .line 971
+    .line 916
     goto :goto_1
 
-    .line 1023
+    .line 968
     .end local v0    # "isFocusHighlighted":Z
     .end local v3    # "selEnd":I
     .end local v4    # "selStart":I
-    :cond_a
+    :cond_b
     iget-object v5, p0, Landroid/widget/Editor;->mError:Ljava/lang/CharSequence;
 
-    if-eqz v5, :cond_b
+    if-eqz v5, :cond_c
 
-    .line 1024
+    .line 969
     invoke-direct {p0}, Landroid/widget/Editor;->hideError()V
 
-    .line 1027
-    :cond_b
+    .line 972
+    :cond_c
     iget-object v5, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v5}, Landroid/widget/TextView;->onEndBatchEdit()V
 
-    .line 1029
+    .line 974
     iget-object v5, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     instance-of v5, v5, Landroid/inputmethodservice/ExtractEditText;
 
     if-eqz v5, :cond_d
 
-    .line 1032
+    .line 977
     iget-object v5, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v5}, Landroid/widget/TextView;->getSelectionStart()I
 
     move-result v4
 
-    .line 1033
+    .line 978
     .restart local v4    # "selStart":I
     iget-object v5, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
@@ -6735,11 +6077,11 @@
 
     move-result v3
 
-    .line 1034
+    .line 979
     .restart local v3    # "selEnd":I
     invoke-virtual {p0}, Landroid/widget/Editor;->hideControllers()V
 
-    .line 1035
+    .line 980
     iget-object v5, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v5}, Landroid/widget/TextView;->getText()Ljava/lang/CharSequence;
@@ -6750,26 +6092,22 @@
 
     invoke-static {v5, v4, v3}, Landroid/text/Selection;->setSelection(Landroid/text/Spannable;II)V
 
-    .line 1044
+    .line 989
     .end local v3    # "selEnd":I
     .end local v4    # "selStart":I
     :goto_3
     iget-object v5, p0, Landroid/widget/Editor;->mSelectionModifierCursorController:Landroid/widget/Editor$SelectionModifierCursorController;
 
-    if-eqz v5, :cond_c
+    if-eqz v5, :cond_8
 
-    .line 1045
+    .line 990
     iget-object v5, p0, Landroid/widget/Editor;->mSelectionModifierCursorController:Landroid/widget/Editor$SelectionModifierCursorController;
 
     invoke-virtual {v5}, Landroid/widget/Editor$SelectionModifierCursorController;->resetTouchOffsets()V
 
-    .line 1048
-    :cond_c
-    iput-boolean v6, p0, Landroid/widget/Editor;->mFirstTouchUp:Z
-
     goto :goto_2
 
-    .line 1037
+    .line 982
     :cond_d
     iget-boolean v5, p0, Landroid/widget/Editor;->mTemporaryDetach:Z
 
@@ -6777,18 +6115,18 @@
 
     iput-boolean v6, p0, Landroid/widget/Editor;->mPreserveDetachedSelection:Z
 
-    .line 1038
+    .line 983
     :cond_e
     invoke-virtual {p0}, Landroid/widget/Editor;->hideControllers()V
 
-    .line 1039
+    .line 984
     iget-boolean v5, p0, Landroid/widget/Editor;->mTemporaryDetach:Z
 
     if-eqz v5, :cond_f
 
     iput-boolean v7, p0, Landroid/widget/Editor;->mPreserveDetachedSelection:Z
 
-    .line 1040
+    .line 985
     :cond_f
     invoke-direct {p0}, Landroid/widget/Editor;->downgradeEasyCorrectionSpans()V
 
@@ -6799,12 +6137,12 @@
     .locals 1
 
     .prologue
-    .line 771
+    .line 720
     const/4 v0, 0x0
 
     iput-object v0, p0, Landroid/widget/Editor;->mWordIterator:Landroid/text/method/WordIterator;
 
-    .line 772
+    .line 721
     return-void
 .end method
 
@@ -6813,26 +6151,26 @@
     .param p1, "screenState"    # I
 
     .prologue
-    .line 565
+    .line 547
     packed-switch p1, :pswitch_data_0
 
-    .line 573
+    .line 555
     :goto_0
     return-void
 
-    .line 567
+    .line 549
     :pswitch_0
     invoke-direct {p0}, Landroid/widget/Editor;->resumeBlink()V
 
     goto :goto_0
 
-    .line 570
+    .line 552
     :pswitch_1
     invoke-direct {p0}, Landroid/widget/Editor;->suspendBlink()V
 
     goto :goto_0
 
-    .line 565
+    .line 547
     :pswitch_data_0
     .packed-switch 0x0
         :pswitch_1
@@ -6844,17 +6182,17 @@
     .locals 1
 
     .prologue
-    .line 1805
+    .line 1734
     iget-object v0, p0, Landroid/widget/Editor;->mPositionListener:Landroid/widget/Editor$PositionListener;
 
     if-eqz v0, :cond_0
 
-    .line 1806
+    .line 1735
     iget-object v0, p0, Landroid/widget/Editor;->mPositionListener:Landroid/widget/Editor$PositionListener;
 
     invoke-virtual {v0}, Landroid/widget/Editor$PositionListener;->onScrollChanged()V
 
-    .line 1808
+    .line 1737
     :cond_0
     return-void
 .end method
@@ -6866,39 +6204,39 @@
     .prologue
     const/4 v2, 0x0
 
-    .line 1123
+    .line 1066
     invoke-virtual {p0}, Landroid/widget/Editor;->hasSelectionController()Z
 
     move-result v0
 
     if-eqz v0, :cond_0
 
-    .line 1124
+    .line 1067
     invoke-virtual {p0}, Landroid/widget/Editor;->getSelectionController()Landroid/widget/Editor$SelectionModifierCursorController;
 
     move-result-object v0
 
     invoke-virtual {v0, p1}, Landroid/widget/Editor$SelectionModifierCursorController;->onTouchEvent(Landroid/view/MotionEvent;)V
 
-    .line 1127
+    .line 1070
     :cond_0
     iget-object v0, p0, Landroid/widget/Editor;->mShowSuggestionRunnable:Ljava/lang/Runnable;
 
     if-eqz v0, :cond_1
 
-    .line 1128
+    .line 1071
     iget-object v0, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     iget-object v1, p0, Landroid/widget/Editor;->mShowSuggestionRunnable:Ljava/lang/Runnable;
 
     invoke-virtual {v0, v1}, Landroid/widget/TextView;->removeCallbacks(Ljava/lang/Runnable;)Z
 
-    .line 1129
+    .line 1072
     const/4 v0, 0x0
 
     iput-object v0, p0, Landroid/widget/Editor;->mShowSuggestionRunnable:Ljava/lang/Runnable;
 
-    .line 1132
+    .line 1075
     :cond_1
     invoke-virtual {p1}, Landroid/view/MotionEvent;->getActionMasked()I
 
@@ -6906,216 +6244,171 @@
 
     if-nez v0, :cond_2
 
-    .line 1133
+    .line 1076
     invoke-virtual {p1}, Landroid/view/MotionEvent;->getX()F
 
     move-result v0
 
     iput v0, p0, Landroid/widget/Editor;->mLastDownPositionX:F
 
-    .line 1134
+    .line 1077
     invoke-virtual {p1}, Landroid/view/MotionEvent;->getY()F
 
     move-result v0
 
     iput v0, p0, Landroid/widget/Editor;->mLastDownPositionY:F
 
-    .line 1138
+    .line 1081
     iput-boolean v2, p0, Landroid/widget/Editor;->mTouchFocusSelected:Z
 
-    .line 1139
+    .line 1082
     iput-boolean v2, p0, Landroid/widget/Editor;->mIgnoreActionUpEvent:Z
 
-    .line 1141
+    .line 1084
     :cond_2
     return-void
 .end method
 
 .method onTouchUpEvent(Landroid/view/MotionEvent;)V
-    .locals 10
+    .locals 8
     .param p1, "event"    # Landroid/view/MotionEvent;
 
     .prologue
-    const/4 v4, 0x1
+    .line 1610
+    iget-boolean v3, p0, Landroid/widget/Editor;->mSelectAllOnFocus:Z
 
-    const/4 v5, 0x0
+    if-eqz v3, :cond_2
 
-    .line 1672
-    invoke-virtual {p0}, Landroid/widget/Editor;->hasInsertionController()Z
+    iget-object v3, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
-    move-result v6
+    invoke-virtual {v3}, Landroid/widget/TextView;->didTouchFocusSelect()Z
 
-    if-eqz v6, :cond_2
+    move-result v3
 
-    invoke-virtual {p0}, Landroid/widget/Editor;->getInsertionController()Landroid/widget/Editor$InsertionPointCursorController;
+    if-eqz v3, :cond_2
 
-    move-result-object v6
+    const/4 v1, 0x1
 
-    # invokes: Landroid/widget/Editor$InsertionPointCursorController;->getHandle()Landroid/widget/Editor$InsertionHandleView;
-    invoke-static {v6}, Landroid/widget/Editor$InsertionPointCursorController;->access$200(Landroid/widget/Editor$InsertionPointCursorController;)Landroid/widget/Editor$InsertionHandleView;
-
-    move-result-object v6
-
-    invoke-virtual {v6}, Landroid/widget/Editor$InsertionHandleView;->isPopshowing()Z
-
-    move-result v6
-
-    if-eqz v6, :cond_2
-
-    move v0, v4
-
-    .line 1674
-    .local v0, "isShowing":Z
+    .line 1611
+    .local v1, "selectAllGotFocus":Z
     :goto_0
-    iget-boolean v6, p0, Landroid/widget/Editor;->mSelectAllOnFocus:Z
-
-    if-eqz v6, :cond_3
-
-    iget-object v6, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
-
-    invoke-virtual {v6}, Landroid/widget/TextView;->didTouchFocusSelect()Z
-
-    move-result v6
-
-    if-eqz v6, :cond_3
-
-    move v2, v4
-
-    .line 1675
-    .local v2, "selectAllGotFocus":Z
-    :goto_1
     invoke-virtual {p0}, Landroid/widget/Editor;->hideControllers()V
 
-    .line 1676
-    iget-object v4, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+    .line 1612
+    iget-object v3, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
-    invoke-virtual {v4}, Landroid/widget/TextView;->getText()Ljava/lang/CharSequence;
+    invoke-virtual {v3}, Landroid/widget/TextView;->getText()Ljava/lang/CharSequence;
 
-    move-result-object v3
+    move-result-object v2
 
-    .line 1677
-    .local v3, "text":Ljava/lang/CharSequence;
-    if-nez v2, :cond_1
+    .line 1613
+    .local v2, "text":Ljava/lang/CharSequence;
+    if-nez v1, :cond_1
 
-    invoke-interface {v3}, Ljava/lang/CharSequence;->length()I
+    invoke-interface {v2}, Ljava/lang/CharSequence;->length()I
 
-    move-result v4
+    move-result v3
 
-    if-lez v4, :cond_1
+    if-lez v3, :cond_1
 
-    .line 1679
-    iget-object v4, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+    .line 1615
+    iget-object v3, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {p1}, Landroid/view/MotionEvent;->getX()F
 
-    move-result v6
+    move-result v4
 
     invoke-virtual {p1}, Landroid/view/MotionEvent;->getY()F
 
-    move-result v7
+    move-result v5
 
-    invoke-virtual {v4, v6, v7}, Landroid/widget/TextView;->getOffsetForPosition(FF)I
+    invoke-virtual {v3, v4, v5}, Landroid/widget/TextView;->getOffsetForPosition(FF)I
 
-    move-result v1
+    move-result v0
 
-    .line 1680
-    .local v1, "offset":I
-    check-cast v3, Landroid/text/Spannable;
+    .line 1616
+    .local v0, "offset":I
+    check-cast v2, Landroid/text/Spannable;
 
-    .end local v3    # "text":Ljava/lang/CharSequence;
-    invoke-static {v3, v1}, Landroid/text/Selection;->setSelection(Landroid/text/Spannable;I)V
+    .end local v2    # "text":Ljava/lang/CharSequence;
+    invoke-static {v2, v0}, Landroid/text/Selection;->setSelection(Landroid/text/Spannable;I)V
 
-    .line 1681
-    iget-object v4, p0, Landroid/widget/Editor;->mSpellChecker:Landroid/widget/SpellChecker;
+    .line 1617
+    iget-object v3, p0, Landroid/widget/Editor;->mSpellChecker:Landroid/widget/SpellChecker;
 
-    if-eqz v4, :cond_0
+    if-eqz v3, :cond_0
 
-    .line 1684
-    iget-object v4, p0, Landroid/widget/Editor;->mSpellChecker:Landroid/widget/SpellChecker;
+    .line 1619
+    iget-object v3, p0, Landroid/widget/Editor;->mSpellChecker:Landroid/widget/SpellChecker;
 
-    invoke-virtual {v4}, Landroid/widget/SpellChecker;->onSelectionChanged()V
+    invoke-virtual {v3}, Landroid/widget/SpellChecker;->onSelectionChanged()V
 
-    .line 1686
+    .line 1621
     :cond_0
     invoke-direct {p0}, Landroid/widget/Editor;->extractedTextModeWillBeStarted()Z
 
-    move-result v4
+    move-result v3
 
-    if-nez v4, :cond_1
+    if-nez v3, :cond_1
 
-    .line 1687
+    .line 1622
     invoke-direct {p0}, Landroid/widget/Editor;->isCursorInsideEasyCorrectionSpan()Z
 
-    move-result v4
+    move-result v3
 
-    if-eqz v4, :cond_4
+    if-eqz v3, :cond_3
 
-    .line 1688
-    new-instance v4, Landroid/widget/Editor$1;
+    .line 1623
+    new-instance v3, Landroid/widget/Editor$1;
 
-    invoke-direct {v4, p0}, Landroid/widget/Editor$1;-><init>(Landroid/widget/Editor;)V
+    invoke-direct {v3, p0}, Landroid/widget/Editor$1;-><init>(Landroid/widget/Editor;)V
 
-    iput-object v4, p0, Landroid/widget/Editor;->mShowSuggestionRunnable:Ljava/lang/Runnable;
+    iput-object v3, p0, Landroid/widget/Editor;->mShowSuggestionRunnable:Ljava/lang/Runnable;
 
-    .line 1694
-    iget-object v4, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+    .line 1629
+    iget-object v3, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
-    iget-object v6, p0, Landroid/widget/Editor;->mShowSuggestionRunnable:Ljava/lang/Runnable;
+    iget-object v4, p0, Landroid/widget/Editor;->mShowSuggestionRunnable:Ljava/lang/Runnable;
 
     invoke-static {}, Landroid/view/ViewConfiguration;->getDoubleTapTimeout()I
 
-    move-result v7
+    move-result v5
 
-    int-to-long v8, v7
+    int-to-long v6, v5
 
-    invoke-virtual {v4, v6, v8, v9}, Landroid/widget/TextView;->postDelayed(Ljava/lang/Runnable;J)Z
+    invoke-virtual {v3, v4, v6, v7}, Landroid/widget/TextView;->postDelayed(Ljava/lang/Runnable;J)Z
 
-    .line 1702
-    .end local v1    # "offset":I
+    .line 1636
+    .end local v0    # "offset":I
     :cond_1
-    :goto_2
-    iput-boolean v5, p0, Landroid/widget/Editor;->mFirstTouchUp:Z
-
-    .line 1703
+    :goto_1
     return-void
 
-    .end local v0    # "isShowing":Z
-    .end local v2    # "selectAllGotFocus":Z
+    .line 1610
+    .end local v1    # "selectAllGotFocus":Z
     :cond_2
-    move v0, v5
+    const/4 v1, 0x0
 
-    .line 1672
     goto :goto_0
 
-    .restart local v0    # "isShowing":Z
+    .line 1631
+    .restart local v0    # "offset":I
+    .restart local v1    # "selectAllGotFocus":Z
     :cond_3
-    move v2, v5
-
-    .line 1674
-    goto :goto_1
-
-    .line 1696
-    .restart local v1    # "offset":I
-    .restart local v2    # "selectAllGotFocus":Z
-    :cond_4
     invoke-virtual {p0}, Landroid/widget/Editor;->hasInsertionController()Z
 
-    move-result v4
+    move-result v3
 
-    if-eqz v4, :cond_1
+    if-eqz v3, :cond_1
 
-    iget-boolean v4, p0, Landroid/widget/Editor;->mFirstTouchUp:Z
-
-    if-nez v4, :cond_1
-
-    .line 1697
+    .line 1632
     invoke-virtual {p0}, Landroid/widget/Editor;->getInsertionController()Landroid/widget/Editor$InsertionPointCursorController;
 
-    move-result-object v4
+    move-result-object v3
 
-    invoke-virtual {v4}, Landroid/widget/Editor$InsertionPointCursorController;->show()V
+    invoke-virtual {v3}, Landroid/widget/Editor$InsertionPointCursorController;->show()V
 
-    goto :goto_2
+    goto :goto_1
 .end method
 
 .method onWindowFocusChanged(Z)V
@@ -7123,66 +6416,66 @@
     .param p1, "hasWindowFocus"    # Z
 
     .prologue
-    .line 1099
+    .line 1042
     if-eqz p1, :cond_1
 
-    .line 1100
+    .line 1043
     iget-object v0, p0, Landroid/widget/Editor;->mBlink:Landroid/widget/Editor$Blink;
 
     if-eqz v0, :cond_0
 
-    .line 1101
+    .line 1044
     iget-object v0, p0, Landroid/widget/Editor;->mBlink:Landroid/widget/Editor$Blink;
 
     invoke-virtual {v0}, Landroid/widget/Editor$Blink;->uncancel()V
 
-    .line 1102
+    .line 1045
     invoke-virtual {p0}, Landroid/widget/Editor;->makeBlink()V
 
-    .line 1120
+    .line 1063
     :cond_0
     :goto_0
     return-void
 
-    .line 1105
+    .line 1048
     :cond_1
     iget-object v0, p0, Landroid/widget/Editor;->mBlink:Landroid/widget/Editor$Blink;
 
     if-eqz v0, :cond_2
 
-    .line 1106
+    .line 1049
     iget-object v0, p0, Landroid/widget/Editor;->mBlink:Landroid/widget/Editor$Blink;
 
     invoke-virtual {v0}, Landroid/widget/Editor$Blink;->cancel()V
 
-    .line 1108
+    .line 1051
     :cond_2
     iget-object v0, p0, Landroid/widget/Editor;->mInputContentType:Landroid/widget/Editor$InputContentType;
 
     if-eqz v0, :cond_3
 
-    .line 1109
+    .line 1052
     iget-object v0, p0, Landroid/widget/Editor;->mInputContentType:Landroid/widget/Editor$InputContentType;
 
     const/4 v1, 0x0
 
     iput-boolean v1, v0, Landroid/widget/Editor$InputContentType;->enterDown:Z
 
-    .line 1112
+    .line 1055
     :cond_3
     invoke-virtual {p0}, Landroid/widget/Editor;->hideControllers()V
 
-    .line 1113
+    .line 1056
     iget-object v0, p0, Landroid/widget/Editor;->mSuggestionsPopupWindow:Landroid/widget/Editor$SuggestionsPopupWindow;
 
     if-eqz v0, :cond_4
 
-    .line 1114
+    .line 1057
     iget-object v0, p0, Landroid/widget/Editor;->mSuggestionsPopupWindow:Landroid/widget/Editor$SuggestionsPopupWindow;
 
     invoke-virtual {v0}, Landroid/widget/Editor$SuggestionsPopupWindow;->onParentLostFocus()V
 
-    .line 1118
+    .line 1061
     :cond_4
     invoke-virtual {p0}, Landroid/widget/Editor;->ensureEndedBatchEdit()V
 
@@ -7194,7 +6487,7 @@
     .param p1, "handled"    # Z
 
     .prologue
-    .line 915
+    .line 860
     if-nez p1, :cond_0
 
     iget v6, p0, Landroid/widget/Editor;->mLastDownPositionX:F
@@ -7211,7 +6504,7 @@
 
     if-eqz v6, :cond_0
 
-    .line 917
+    .line 862
     iget-object v6, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     iget v7, p0, Landroid/widget/Editor;->mLastDownPositionX:F
@@ -7222,11 +6515,11 @@
 
     move-result v3
 
-    .line 919
+    .line 864
     .local v3, "offset":I
     invoke-virtual {p0}, Landroid/widget/Editor;->stopSelectionActionMode()V
 
-    .line 920
+    .line 865
     iget-object v6, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v6}, Landroid/widget/TextView;->getText()Ljava/lang/CharSequence;
@@ -7237,44 +6530,40 @@
 
     invoke-static {v6, v3}, Landroid/text/Selection;->setSelection(Landroid/text/Spannable;I)V
 
-    .line 921
+    .line 866
     invoke-virtual {p0}, Landroid/widget/Editor;->getInsertionController()Landroid/widget/Editor$InsertionPointCursorController;
 
     move-result-object v6
 
     invoke-virtual {v6}, Landroid/widget/Editor$InsertionPointCursorController;->showWithActionPopup()V
 
-    .line 922
+    .line 867
     const/4 p1, 0x1
 
-    .line 925
+    .line 870
     .end local v3    # "offset":I
     :cond_0
     if-nez p1, :cond_1
 
-    iget-object v6, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
-
-    invoke-virtual {v6}, Landroid/widget/TextView;->hasSelection()Z
-
-    move-result v6
+    iget-object v6, p0, Landroid/widget/Editor;->mSelectionActionMode:Landroid/view/ActionMode;
 
     if-eqz v6, :cond_1
 
-    .line 926
+    .line 871
     invoke-direct {p0}, Landroid/widget/Editor;->touchPositionIsInSelection()Z
 
     move-result v6
 
     if-eqz v6, :cond_3
 
-    .line 928
+    .line 873
     iget-object v6, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v6}, Landroid/widget/TextView;->getSelectionStart()I
 
     move-result v5
 
-    .line 929
+    .line 874
     .local v5, "start":I
     iget-object v6, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
@@ -7282,7 +6571,7 @@
 
     move-result v1
 
-    .line 930
+    .line 875
     .local v1, "end":I
     iget-object v6, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
@@ -7290,7 +6579,7 @@
 
     move-result-object v4
 
-    .line 931
+    .line 876
     .local v4, "selectedText":Ljava/lang/CharSequence;
     const/4 v6, 0x0
 
@@ -7298,7 +6587,7 @@
 
     move-result-object v0
 
-    .line 932
+    .line 877
     .local v0, "data":Landroid/content/ClipData;
     new-instance v2, Landroid/widget/Editor$DragLocalState;
 
@@ -7306,7 +6595,7 @@
 
     invoke-direct {v2, v6, v5, v1}, Landroid/widget/Editor$DragLocalState;-><init>(Landroid/widget/TextView;II)V
 
-    .line 933
+    .line 878
     .local v2, "localState":Landroid/widget/Editor$DragLocalState;
     iget-object v6, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
@@ -7318,10 +6607,10 @@
 
     invoke-virtual {v6, v0, v7, v2, v8}, Landroid/widget/TextView;->startDrag(Landroid/content/ClipData;Landroid/view/View$DragShadowBuilder;Ljava/lang/Object;I)Z
 
-    .line 934
+    .line 879
     invoke-virtual {p0}, Landroid/widget/Editor;->stopSelectionActionMode()V
 
-    .line 940
+    .line 885
     .end local v0    # "data":Landroid/content/ClipData;
     .end local v1    # "end":I
     .end local v2    # "localState":Landroid/widget/Editor$DragLocalState;
@@ -7330,20 +6619,20 @@
     :goto_0
     const/4 p1, 0x1
 
-    .line 944
+    .line 889
     :cond_1
     if-nez p1, :cond_2
 
-    .line 945
+    .line 890
     invoke-virtual {p0}, Landroid/widget/Editor;->startSelectionActionMode()Z
 
     move-result p1
 
-    .line 948
+    .line 893
     :cond_2
     return p1
 
-    .line 936
+    .line 881
     :cond_3
     invoke-virtual {p0}, Landroid/widget/Editor;->getSelectionController()Landroid/widget/Editor$SelectionModifierCursorController;
 
@@ -7351,10 +6640,10 @@
 
     invoke-virtual {v6}, Landroid/widget/Editor$SelectionModifierCursorController;->hide()V
 
-    .line 937
+    .line 882
     invoke-direct {p0}, Landroid/widget/Editor;->selectCurrentWord()Z
 
-    .line 938
+    .line 883
     invoke-virtual {p0}, Landroid/widget/Editor;->getSelectionController()Landroid/widget/Editor$SelectionModifierCursorController;
 
     move-result-object v6
@@ -7374,10 +6663,10 @@
 
     const/4 v4, 0x0
 
-    .line 486
+    .line 468
     const/4 v3, 0x0
 
-    .line 488
+    .line 470
     .local v3, "windowSupportsHandles":Z
     iget-object v6, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
@@ -7389,7 +6678,7 @@
 
     move-result-object v1
 
-    .line 489
+    .line 471
     .local v1, "params":Landroid/view/ViewGroup$LayoutParams;
     instance-of v6, v1, Landroid/view/WindowManager$LayoutParams;
 
@@ -7397,10 +6686,10 @@
 
     move-object v2, v1
 
-    .line 490
+    .line 472
     check-cast v2, Landroid/view/WindowManager$LayoutParams;
 
-    .line 491
+    .line 473
     .local v2, "windowParams":Landroid/view/WindowManager$LayoutParams;
     iget v6, v2, Landroid/view/WindowManager$LayoutParams;->type:I
 
@@ -7417,7 +6706,7 @@
     :cond_0
     move v3, v5
 
-    .line 495
+    .line 477
     .end local v2    # "windowParams":Landroid/view/WindowManager$LayoutParams;
     :cond_1
     :goto_0
@@ -7433,7 +6722,7 @@
 
     move v0, v5
 
-    .line 496
+    .line 478
     .local v0, "enabled":Z
     :goto_1
     if-eqz v0, :cond_6
@@ -7449,7 +6738,7 @@
     :goto_2
     iput-boolean v6, p0, Landroid/widget/Editor;->mInsertionControllerEnabled:Z
 
-    .line 497
+    .line 479
     if-eqz v0, :cond_7
 
     iget-object v6, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
@@ -7463,51 +6752,53 @@
     :goto_3
     iput-boolean v5, p0, Landroid/widget/Editor;->mSelectionControllerEnabled:Z
 
-    .line 499
+    .line 481
     iget-boolean v4, p0, Landroid/widget/Editor;->mInsertionControllerEnabled:Z
 
     if-nez v4, :cond_2
 
-    .line 500
+    .line 482
     invoke-direct {p0}, Landroid/widget/Editor;->hideInsertionPointCursorController()V
 
-    .line 501
+    .line 483
     iget-object v4, p0, Landroid/widget/Editor;->mInsertionPointCursorController:Landroid/widget/Editor$InsertionPointCursorController;
 
     if-eqz v4, :cond_2
 
-    .line 502
+    .line 484
     iget-object v4, p0, Landroid/widget/Editor;->mInsertionPointCursorController:Landroid/widget/Editor$InsertionPointCursorController;
 
     invoke-virtual {v4}, Landroid/widget/Editor$InsertionPointCursorController;->onDetached()V
 
-    .line 503
+    .line 485
     iput-object v8, p0, Landroid/widget/Editor;->mInsertionPointCursorController:Landroid/widget/Editor$InsertionPointCursorController;
 
-    .line 507
+    .line 489
     :cond_2
     iget-boolean v4, p0, Landroid/widget/Editor;->mSelectionControllerEnabled:Z
 
     if-nez v4, :cond_3
 
-    .line 508
+    .line 490
     invoke-virtual {p0}, Landroid/widget/Editor;->stopSelectionActionMode()V
 
-    .line 509
+    .line 491
     iget-object v4, p0, Landroid/widget/Editor;->mSelectionModifierCursorController:Landroid/widget/Editor$SelectionModifierCursorController;
 
     if-eqz v4, :cond_3
 
-    .line 510
+    .line 492
     iget-object v4, p0, Landroid/widget/Editor;->mSelectionModifierCursorController:Landroid/widget/Editor$SelectionModifierCursorController;
 
     invoke-virtual {v4}, Landroid/widget/Editor$SelectionModifierCursorController;->onDetached()V
 
-    .line 511
+    .line 493
     iput-object v8, p0, Landroid/widget/Editor;->mSelectionModifierCursorController:Landroid/widget/Editor$SelectionModifierCursorController;
 
-    .line 514
+    .line 496
     :cond_3
+    invoke-static/range {p0 .. p0}, Landroid/widget/Editor$FlymeInjector;->updateBackground(Landroid/widget/Editor;)V
+
     return-void
 
     .end local v0    # "enabled":Z
@@ -7515,27 +6806,27 @@
     :cond_4
     move v3, v4
 
-    .line 491
+    .line 473
     goto :goto_0
 
     .end local v2    # "windowParams":Landroid/view/WindowManager$LayoutParams;
     :cond_5
     move v0, v4
 
-    .line 495
+    .line 477
     goto :goto_1
 
     .restart local v0    # "enabled":Z
     :cond_6
     move v6, v4
 
-    .line 496
+    .line 478
     goto :goto_2
 
     :cond_7
     move v5, v4
 
-    .line 497
+    .line 479
     goto :goto_3
 .end method
 
@@ -7547,17 +6838,17 @@
 
     const/4 v9, 0x0
 
-    .line 1289
+    .line 1222
     iget-object v8, p0, Landroid/widget/Editor;->mInputMethodState:Landroid/widget/Editor$InputMethodState;
 
-    .line 1290
+    .line 1223
     .local v8, "ims":Landroid/widget/Editor$InputMethodState;
     if-eqz v8, :cond_2
 
-    .line 1291
+    .line 1224
     iget-boolean v6, v8, Landroid/widget/Editor$InputMethodState;->mContentChanged:Z
 
-    .line 1292
+    .line 1225
     .local v6, "contentChanged":Z
     if-nez v6, :cond_0
 
@@ -7565,42 +6856,42 @@
 
     if-eqz v0, :cond_2
 
-    .line 1293
+    .line 1226
     :cond_0
     iput-boolean v9, v8, Landroid/widget/Editor$InputMethodState;->mContentChanged:Z
 
-    .line 1294
+    .line 1227
     iput-boolean v9, v8, Landroid/widget/Editor$InputMethodState;->mSelectionModeChanged:Z
 
-    .line 1295
+    .line 1228
     iget-object v1, v8, Landroid/widget/Editor$InputMethodState;->mExtractedTextRequest:Landroid/view/inputmethod/ExtractedTextRequest;
 
-    .line 1296
+    .line 1229
     .local v1, "req":Landroid/view/inputmethod/ExtractedTextRequest;
     if-eqz v1, :cond_2
 
-    .line 1297
+    .line 1230
     invoke-static {}, Landroid/view/inputmethod/InputMethodManager;->peekInstance()Landroid/view/inputmethod/InputMethodManager;
 
     move-result-object v7
 
-    .line 1298
+    .line 1231
     .local v7, "imm":Landroid/view/inputmethod/InputMethodManager;
     if-eqz v7, :cond_2
 
-    .line 1303
+    .line 1236
     iget v0, v8, Landroid/widget/Editor$InputMethodState;->mChangedStart:I
 
     if-gez v0, :cond_1
 
     if-nez v6, :cond_1
 
-    .line 1304
+    .line 1237
     const/4 v0, -0x2
 
     iput v0, v8, Landroid/widget/Editor$InputMethodState;->mChangedStart:I
 
-    .line 1306
+    .line 1239
     :cond_1
     iget v2, v8, Landroid/widget/Editor$InputMethodState;->mChangedStart:I
 
@@ -7618,7 +6909,7 @@
 
     if-eqz v0, :cond_2
 
-    .line 1314
+    .line 1247
     iget-object v0, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     iget v2, v1, Landroid/view/inputmethod/ExtractedTextRequest;->token:I
@@ -7627,22 +6918,22 @@
 
     invoke-virtual {v7, v0, v2, v3}, Landroid/view/inputmethod/InputMethodManager;->updateExtractedText(Landroid/view/View;ILandroid/view/inputmethod/ExtractedText;)V
 
-    .line 1315
+    .line 1248
     iput v10, v8, Landroid/widget/Editor$InputMethodState;->mChangedStart:I
 
-    .line 1316
+    .line 1249
     iput v10, v8, Landroid/widget/Editor$InputMethodState;->mChangedEnd:I
 
-    .line 1317
+    .line 1250
     iput v9, v8, Landroid/widget/Editor$InputMethodState;->mChangedDelta:I
 
-    .line 1318
+    .line 1251
     iput-boolean v9, v8, Landroid/widget/Editor$InputMethodState;->mContentChanged:Z
 
-    .line 1319
+    .line 1252
     const/4 v0, 0x1
 
-    .line 1325
+    .line 1258
     .end local v1    # "req":Landroid/view/inputmethod/ExtractedTextRequest;
     .end local v6    # "contentChanged":Z
     .end local v7    # "imm":Landroid/view/inputmethod/InputMethodManager;
@@ -7661,17 +6952,19 @@
     .param p2, "after"    # I
 
     .prologue
-    .line 1074
+    .line 1017
     add-int v0, p1, p2
 
     const/4 v1, 0x0
 
     invoke-direct {p0, p1, v0, v1}, Landroid/widget/Editor;->updateSpellCheckSpans(IIZ)V
 
-    .line 1079
+    .line 1022
     invoke-direct {p0}, Landroid/widget/Editor;->hideCursorControllers()V
 
-    .line 1080
+    invoke-static/range {p0 .. p0}, Landroid/widget/Editor$FlymeInjector;->stopDragSelectionMode(Landroid/widget/Editor;)V
+
+    .line 1023
     return-void
 .end method
 
@@ -7683,32 +6976,32 @@
     .prologue
     const/4 v1, 0x0
 
-    .line 357
+    .line 339
     invoke-static {p1}, Landroid/text/TextUtils;->stringOrSpannedString(Ljava/lang/CharSequence;)Ljava/lang/CharSequence;
 
     move-result-object v0
 
     iput-object v0, p0, Landroid/widget/Editor;->mError:Ljava/lang/CharSequence;
 
-    .line 358
+    .line 340
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Landroid/widget/Editor;->mErrorWasChanged:Z
 
-    .line 360
+    .line 342
     iget-object v0, p0, Landroid/widget/Editor;->mError:Ljava/lang/CharSequence;
 
-    if-nez v0, :cond_2
+    if-nez v0, :cond_3
 
-    .line 361
+    .line 343
     invoke-direct {p0, v1}, Landroid/widget/Editor;->setErrorIcon(Landroid/graphics/drawable/Drawable;)V
 
-    .line 362
+    .line 344
     iget-object v0, p0, Landroid/widget/Editor;->mErrorPopup:Landroid/widget/Editor$ErrorPopup;
 
     if-eqz v0, :cond_1
 
-    .line 363
+    .line 345
     iget-object v0, p0, Landroid/widget/Editor;->mErrorPopup:Landroid/widget/Editor$ErrorPopup;
 
     invoke-virtual {v0}, Landroid/widget/Editor$ErrorPopup;->isShowing()Z
@@ -7717,34 +7010,40 @@
 
     if-eqz v0, :cond_0
 
-    .line 364
+    .line 346
     iget-object v0, p0, Landroid/widget/Editor;->mErrorPopup:Landroid/widget/Editor$ErrorPopup;
 
     invoke-virtual {v0}, Landroid/widget/Editor$ErrorPopup;->dismiss()V
 
-    .line 367
+    .line 349
     :cond_0
     iput-object v1, p0, Landroid/widget/Editor;->mErrorPopup:Landroid/widget/Editor$ErrorPopup;
 
-    .line 376
+    .line 351
     :cond_1
+    const/4 v0, 0x0
+
+    iput-boolean v0, p0, Landroid/widget/Editor;->mShowErrorAfterAttach:Z
+
+    .line 358
+    :cond_2
     :goto_0
     return-void
 
-    .line 371
-    :cond_2
+    .line 353
+    :cond_3
     invoke-direct {p0, p2}, Landroid/widget/Editor;->setErrorIcon(Landroid/graphics/drawable/Drawable;)V
 
-    .line 372
+    .line 354
     iget-object v0, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     invoke-virtual {v0}, Landroid/widget/TextView;->isFocused()Z
 
     move-result v0
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_2
 
-    .line 373
+    .line 355
     invoke-direct {p0}, Landroid/widget/Editor;->showError()V
 
     goto :goto_0
@@ -7754,12 +7053,12 @@
     .locals 7
 
     .prologue
-    .line 632
+    .line 614
     iget-object v0, p0, Landroid/widget/Editor;->mErrorPopup:Landroid/widget/Editor$ErrorPopup;
 
     if-eqz v0, :cond_0
 
-    .line 633
+    .line 615
     iget-object v0, p0, Landroid/widget/Editor;->mErrorPopup:Landroid/widget/Editor$ErrorPopup;
 
     invoke-virtual {v0}, Landroid/widget/Editor$ErrorPopup;->getContentView()Landroid/view/View;
@@ -7768,7 +7067,7 @@
 
     check-cast v6, Landroid/widget/TextView;
 
-    .line 634
+    .line 616
     .local v6, "tv":Landroid/widget/TextView;
     iget-object v0, p0, Landroid/widget/Editor;->mErrorPopup:Landroid/widget/Editor$ErrorPopup;
 
@@ -7776,7 +7075,7 @@
 
     invoke-direct {p0, v0, v1, v6}, Landroid/widget/Editor;->chooseSize(Landroid/widget/PopupWindow;Ljava/lang/CharSequence;Landroid/widget/TextView;)V
 
-    .line 635
+    .line 617
     iget-object v0, p0, Landroid/widget/Editor;->mErrorPopup:Landroid/widget/Editor$ErrorPopup;
 
     iget-object v1, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
@@ -7803,7 +7102,7 @@
 
     invoke-virtual/range {v0 .. v5}, Landroid/widget/Editor$ErrorPopup;->update(Landroid/view/View;IIII)V
 
-    .line 638
+    .line 620
     .end local v6    # "tv":Landroid/widget/TextView;
     :cond_0
     return-void
@@ -7813,115 +7112,214 @@
     .locals 1
 
     .prologue
-    .line 1793
+    .line 1722
     iget-object v0, p0, Landroid/widget/Editor;->mSuggestionsPopupWindow:Landroid/widget/Editor$SuggestionsPopupWindow;
 
     if-nez v0, :cond_0
 
-    .line 1794
+    .line 1723
     new-instance v0, Landroid/widget/Editor$SuggestionsPopupWindow;
 
     invoke-direct {v0, p0}, Landroid/widget/Editor$SuggestionsPopupWindow;-><init>(Landroid/widget/Editor;)V
 
     iput-object v0, p0, Landroid/widget/Editor;->mSuggestionsPopupWindow:Landroid/widget/Editor$SuggestionsPopupWindow;
 
-    .line 1796
+    .line 1725
     :cond_0
     invoke-virtual {p0}, Landroid/widget/Editor;->hideControllers()V
 
-    .line 1797
+    .line 1726
     iget-object v0, p0, Landroid/widget/Editor;->mSuggestionsPopupWindow:Landroid/widget/Editor$SuggestionsPopupWindow;
 
     invoke-virtual {v0}, Landroid/widget/Editor$SuggestionsPopupWindow;->show()V
 
-    .line 1798
+    .line 1727
     return-void
 .end method
 
 .method startSelectionActionMode()Z
-    .locals 2
+    .locals 7
 
     .prologue
-    const/4 v0, 0x0
+    iget-object v0, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
-    .line 1619
-    invoke-direct {p0}, Landroid/widget/Editor;->canSelectText()Z
+    if-eqz v0, :cond_flyme_0
 
-    move-result v1
+    invoke-virtual/range {p0 .. p0}, Landroid/widget/Editor;->startSelectionActionModeMz()Z
 
-    if-eqz v1, :cond_0
+    move-result v0
 
-    iget-object v1, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
-
-    invoke-virtual {v1}, Landroid/widget/TextView;->requestFocus()Z
-
-    move-result v1
-
-    if-nez v1, :cond_1
-
-    .line 1632
-    :cond_0
-    :goto_0
     return v0
 
-    .line 1623
+    :cond_flyme_0
+
+    const/4 v6, 0x0
+
+    const/4 v4, 0x0
+
+    .line 1533
+    iget-object v5, p0, Landroid/widget/Editor;->mSelectionActionMode:Landroid/view/ActionMode;
+
+    if-eqz v5, :cond_1
+
+    move v2, v4
+
+    .line 1570
+    :cond_0
+    :goto_0
+    return v2
+
+    .line 1538
     :cond_1
-    iget-object v1, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+    invoke-direct {p0}, Landroid/widget/Editor;->canSelectText()Z
 
-    invoke-virtual {v1}, Landroid/widget/TextView;->hasSelection()Z
+    move-result v5
 
-    move-result v1
+    if-eqz v5, :cond_2
 
-    if-nez v1, :cond_2
+    iget-object v5, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
-    .line 1625
+    invoke-virtual {v5}, Landroid/widget/TextView;->requestFocus()Z
+
+    move-result v5
+
+    if-nez v5, :cond_3
+
+    .line 1539
+    :cond_2
+    const-string v5, "TextView"
+
+    const-string v6, "TextView does not support text selection. Action mode cancelled."
+
+    invoke-static {v5, v6}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+
+    move v2, v4
+
+    .line 1541
+    goto :goto_0
+
+    .line 1544
+    :cond_3
+    iget-object v5, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    invoke-virtual {v5}, Landroid/widget/TextView;->hasSelection()Z
+
+    move-result v5
+
+    if-nez v5, :cond_4
+
+    .line 1546
     invoke-direct {p0}, Landroid/widget/Editor;->selectCurrentWord()Z
 
-    move-result v1
+    move-result v5
 
+    if-nez v5, :cond_4
+
+    move v2, v4
+
+    .line 1548
+    goto :goto_0
+
+    .line 1552
+    :cond_4
+    invoke-direct {p0}, Landroid/widget/Editor;->extractedTextModeWillBeStarted()Z
+
+    move-result v3
+
+    .line 1556
+    .local v3, "willExtract":Z
+    if-nez v3, :cond_5
+
+    .line 1557
+    new-instance v0, Landroid/widget/Editor$SelectionActionModeCallback;
+
+    invoke-direct {v0, p0, v6}, Landroid/widget/Editor$SelectionActionModeCallback;-><init>(Landroid/widget/Editor;Landroid/widget/Editor$1;)V
+
+    .line 1558
+    .local v0, "actionModeCallback":Landroid/view/ActionMode$Callback;
+    iget-object v5, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    invoke-virtual {v5, v0}, Landroid/widget/TextView;->startActionMode(Landroid/view/ActionMode$Callback;)Landroid/view/ActionMode;
+
+    move-result-object v5
+
+    iput-object v5, p0, Landroid/widget/Editor;->mSelectionActionMode:Landroid/view/ActionMode;
+
+    .line 1561
+    .end local v0    # "actionModeCallback":Landroid/view/ActionMode$Callback;
+    :cond_5
+    iget-object v5, p0, Landroid/widget/Editor;->mSelectionActionMode:Landroid/view/ActionMode;
+
+    if-nez v5, :cond_6
+
+    if-eqz v3, :cond_7
+
+    :cond_6
+    const/4 v2, 0x1
+
+    .line 1562
+    .local v2, "selectionStarted":Z
+    :goto_1
+    if-eqz v2, :cond_0
+
+    iget-object v5, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    invoke-virtual {v5}, Landroid/widget/TextView;->isTextSelectable()Z
+
+    move-result v5
+
+    if-nez v5, :cond_0
+
+    iget-boolean v5, p0, Landroid/widget/Editor;->mShowSoftInputOnFocus:Z
+
+    if-eqz v5, :cond_0
+
+    .line 1564
+    invoke-static {}, Landroid/view/inputmethod/InputMethodManager;->peekInstance()Landroid/view/inputmethod/InputMethodManager;
+
+    move-result-object v1
+
+    .line 1565
+    .local v1, "imm":Landroid/view/inputmethod/InputMethodManager;
     if-eqz v1, :cond_0
 
-    .line 1631
-    :cond_2
-    invoke-virtual {p0}, Landroid/widget/Editor;->getSelectionController()Landroid/widget/Editor$SelectionModifierCursorController;
+    .line 1566
+    iget-object v5, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
-    move-result-object v0
-
-    invoke-virtual {v0}, Landroid/widget/Editor$SelectionModifierCursorController;->show()V
-
-    .line 1632
-    const/4 v0, 0x1
+    invoke-virtual {v1, v5, v4, v6}, Landroid/view/inputmethod/InputMethodManager;->showSoftInput(Landroid/view/View;ILandroid/os/ResultReceiver;)Z
 
     goto :goto_0
+
+    .end local v1    # "imm":Landroid/view/inputmethod/InputMethodManager;
+    .end local v2    # "selectionStarted":Z
+    :cond_7
+    move v2, v4
+
+    .line 1561
+    goto :goto_1
 .end method
 
 .method protected stopSelectionActionMode()V
     .locals 1
 
     .prologue
-    .line 1706
+    invoke-static/range {p0 .. p0}, Landroid/widget/Editor$FlymeInjector;->removeSelectonActionModeRunnable(Landroid/widget/Editor;)V
+
+    .line 1639
     iget-object v0, p0, Landroid/widget/Editor;->mSelectionActionMode:Landroid/view/ActionMode;
 
     if-eqz v0, :cond_0
 
-    .line 1708
+    .line 1641
     iget-object v0, p0, Landroid/widget/Editor;->mSelectionActionMode:Landroid/view/ActionMode;
 
     invoke-virtual {v0}, Landroid/view/ActionMode;->finish()V
 
-    .line 1711
+    .line 1643
     :cond_0
-    iget-object v0, p0, Landroid/widget/Editor;->mSelectionModifierCursorController:Landroid/widget/Editor$SelectionModifierCursorController;
 
-    if-eqz v0, :cond_1
+    invoke-static/range {p0 .. p0}, Landroid/widget/Editor$FlymeInjector;->hideSelectionModifierCursorController(Landroid/widget/Editor;)V
 
-    .line 1712
-    iget-object v0, p0, Landroid/widget/Editor;->mSelectionModifierCursorController:Landroid/widget/Editor$SelectionModifierCursorController;
-
-    invoke-virtual {v0}, Landroid/widget/Editor$SelectionModifierCursorController;->hide()V
-
-    .line 1714
-    :cond_1
     return-void
 .end method
 
@@ -7935,22 +7333,22 @@
 
     const/4 v9, 0x2
 
-    .line 1574
+    .line 1488
     iget-object v8, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
     iget v8, v8, Landroid/widget/TextView;->mCursorDrawableRes:I
 
     if-nez v8, :cond_1
 
-    .line 1575
+    .line 1489
     iput v11, p0, Landroid/widget/Editor;->mCursorCount:I
 
-    .line 1602
+    .line 1516
     :cond_0
     :goto_0
     return-void
 
-    .line 1579
+    .line 1493
     :cond_1
     iget-object v8, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
@@ -7958,7 +7356,7 @@
 
     move-result-object v3
 
-    .line 1580
+    .line 1494
     .local v3, "layout":Landroid/text/Layout;
     iget-object v8, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
@@ -7966,7 +7364,7 @@
 
     move-result-object v2
 
-    .line 1581
+    .line 1495
     .local v2, "hintLayout":Landroid/text/Layout;
     iget-object v8, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
 
@@ -7974,19 +7372,19 @@
 
     move-result v6
 
-    .line 1582
+    .line 1496
     .local v6, "offset":I
     invoke-virtual {v3, v6}, Landroid/text/Layout;->getLineForOffset(I)I
 
     move-result v4
 
-    .line 1583
+    .line 1497
     .local v4, "line":I
     invoke-virtual {v3, v4}, Landroid/text/Layout;->getLineTop(I)I
 
     move-result v7
 
-    .line 1584
+    .line 1498
     .local v7, "top":I
     add-int/lit8 v8, v4, 0x1
 
@@ -7994,7 +7392,7 @@
 
     move-result v0
 
-    .line 1586
+    .line 1500
     .local v0, "bottom":I
     invoke-virtual {v3, v6}, Landroid/text/Layout;->isLevelBoundary(I)Z
 
@@ -8007,45 +7405,45 @@
     :goto_1
     iput v8, p0, Landroid/widget/Editor;->mCursorCount:I
 
-    .line 1588
+    .line 1502
     move v5, v0
 
-    .line 1589
+    .line 1503
     .local v5, "middle":I
     iget v8, p0, Landroid/widget/Editor;->mCursorCount:I
 
     if-ne v8, v9, :cond_2
 
-    .line 1591
+    .line 1505
     add-int v8, v7, v0
 
     shr-int/lit8 v5, v8, 0x1
 
-    .line 1594
+    .line 1508
     :cond_2
     invoke-virtual {v3, v4}, Landroid/text/Layout;->shouldClampCursor(I)Z
 
     move-result v1
 
-    .line 1595
+    .line 1509
     .local v1, "clamped":Z
     invoke-direct {p0, v3, v2, v6, v1}, Landroid/widget/Editor;->getPrimaryHorizontal(Landroid/text/Layout;Landroid/text/Layout;IZ)F
 
     move-result v8
 
-    invoke-direct {p0, v11, v7, v5, v8}, Landroid/widget/Editor;->updateCursorPosition(IIIF)V
+    invoke-direct {p0, v11, v7, v5, v8}, Landroid/widget/Editor;->updateCursorPositionMz(IIIF)V
 
-    .line 1598
+    .line 1512
     iget v8, p0, Landroid/widget/Editor;->mCursorCount:I
 
     if-ne v8, v9, :cond_0
 
-    .line 1599
+    .line 1513
     invoke-virtual {v3, v6, v1}, Landroid/text/Layout;->getSecondaryHorizontal(IZ)F
 
     move-result v8
 
-    invoke-direct {p0, v10, v5, v0, v8}, Landroid/widget/Editor;->updateCursorPosition(IIIF)V
+    invoke-direct {p0, v10, v5, v0, v8}, Landroid/widget/Editor;->updateCursorPositionMz(IIIF)V
 
     goto :goto_0
 
@@ -8054,6 +7452,1579 @@
     :cond_3
     move v8, v10
 
-    .line 1586
+    .line 1500
     goto :goto_1
+.end method
+
+.method private setSelectionOnTouchUpEvent(Landroid/text/Spannable;IZ)V
+    .locals 12
+    .param p1, "text"    # Landroid/text/Spannable;
+    .param p2, "offset"    # I
+    .param p3, "optionVisibleBeforeTouch"    # Z
+
+    .prologue
+    const/4 v9, 0x1
+
+    const/4 v8, 0x0
+
+    .line 5292
+    const/4 v7, 0x0
+
+    .line 5293
+    .local v7, "windowSupportsHandles":Z
+    iget-object v10, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    invoke-virtual {v10}, Landroid/widget/TextView;->getRootView()Landroid/view/View;
+
+    move-result-object v10
+
+    invoke-virtual {v10}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+
+    move-result-object v5
+
+    .line 5294
+    .local v5, "params":Landroid/view/ViewGroup$LayoutParams;
+    instance-of v10, v5, Landroid/view/WindowManager$LayoutParams;
+
+    if-eqz v10, :cond_1
+
+    move-object v6, v5
+
+    .line 5295
+    check-cast v6, Landroid/view/WindowManager$LayoutParams;
+
+    .line 5296
+    .local v6, "windowParams":Landroid/view/WindowManager$LayoutParams;
+    iget v10, v6, Landroid/view/WindowManager$LayoutParams;->type:I
+
+    const/16 v11, 0x3e8
+
+    if-lt v10, v11, :cond_0
+
+    iget v10, v6, Landroid/view/WindowManager$LayoutParams;->type:I
+
+    const/16 v11, 0x7cf
+
+    if-le v10, v11, :cond_3
+
+    :cond_0
+    move v7, v9
+
+    .line 5299
+    .end local v6    # "windowParams":Landroid/view/WindowManager$LayoutParams;
+    :cond_1
+    :goto_0
+    if-eqz v7, :cond_4
+
+    iget-object v10, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    invoke-virtual {v10}, Landroid/widget/TextView;->getLayout()Landroid/text/Layout;
+
+    move-result-object v10
+
+    if-eqz v10, :cond_4
+
+    move v1, v9
+
+    .line 5300
+    .local v1, "enabled":Z
+    :goto_1
+    if-eqz v1, :cond_5
+
+    iget-object v10, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    invoke-virtual {v10}, Landroid/widget/TextView;->textCanBeSelected()Z
+
+    move-result v10
+
+    if-eqz v10, :cond_5
+
+    move v4, v9
+
+    .line 5301
+    .local v4, "mShowEnabled":Z
+    :goto_2
+    invoke-static {}, Landroid/view/inputmethod/InputMethodManager;->peekInstance()Landroid/view/inputmethod/InputMethodManager;
+
+    move-result-object v2
+
+    .line 5302
+    .local v2, "imm":Landroid/view/inputmethod/InputMethodManager;
+    if-eqz v2, :cond_6
+
+    invoke-virtual {v2}, Landroid/view/inputmethod/InputMethodManager;->isSoftInputShown()Z
+
+    move-result v3
+
+    .line 5303
+    .local v3, "isSoftInputShown":Z
+    :goto_3
+    if-nez p3, :cond_7
+
+    iget-object v10, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    invoke-virtual {v10}, Landroid/widget/TextView;->didTouchFocusSelect()Z
+
+    move-result v10
+
+    if-nez v10, :cond_7
+
+    iget-object v10, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    invoke-virtual {v10}, Landroid/widget/TextView;->mzIsCursorVisible()Z
+
+    move-result v10
+
+    if-eqz v10, :cond_7
+
+    if-eqz v3, :cond_7
+
+    if-eqz v4, :cond_7
+
+    if-ltz p2, :cond_7
+
+    instance-of v10, p1, Landroid/text/Editable;
+
+    if-eqz v10, :cond_7
+
+    invoke-static {p1}, Landroid/text/Selection;->getSelectionStart(Ljava/lang/CharSequence;)I
+
+    move-result v10
+
+    if-ne p2, v10, :cond_7
+
+    invoke-static {p1}, Landroid/text/Selection;->getSelectionEnd(Ljava/lang/CharSequence;)I
+
+    move-result v10
+
+    if-ne p2, v10, :cond_7
+
+    move v0, v9
+
+    .line 5310
+    .local v0, "canStartSelectionActionMode":Z
+    :goto_4
+    invoke-static {p1, p2}, Landroid/text/Selection;->setSelection(Landroid/text/Spannable;I)V
+
+    .line 5311
+    if-eqz v0, :cond_2
+
+    .line 5312
+    invoke-virtual {p0}, Landroid/widget/Editor;->startSelectionActionMode()Z
+
+    .line 5314
+    :cond_2
+    return-void
+
+    .end local v0    # "canStartSelectionActionMode":Z
+    .end local v1    # "enabled":Z
+    .end local v2    # "imm":Landroid/view/inputmethod/InputMethodManager;
+    .end local v3    # "isSoftInputShown":Z
+    .end local v4    # "mShowEnabled":Z
+    .restart local v6    # "windowParams":Landroid/view/WindowManager$LayoutParams;
+    :cond_3
+    move v7, v8
+
+    .line 5296
+    goto :goto_0
+
+    .end local v6    # "windowParams":Landroid/view/WindowManager$LayoutParams;
+    :cond_4
+    move v1, v8
+
+    .line 5299
+    goto :goto_1
+
+    .restart local v1    # "enabled":Z
+    :cond_5
+    move v4, v8
+
+    .line 5300
+    goto :goto_2
+
+    .restart local v2    # "imm":Landroid/view/inputmethod/InputMethodManager;
+    .restart local v4    # "mShowEnabled":Z
+    :cond_6
+    move v3, v8
+
+    .line 5302
+    goto :goto_3
+
+    .restart local v3    # "isSoftInputShown":Z
+    :cond_7
+    move v0, v8
+
+    .line 5303
+    goto :goto_4
+.end method
+
+.method private updateCursorPositionMz(IIIF)V
+    .locals 14
+    .param p1, "cursorIndex"    # I
+    .param p2, "top"    # I
+    .param p3, "bottom"    # I
+    .param p4, "horizontal"    # F
+
+    .prologue
+    .line 5539
+    iget-object v10, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    invoke-virtual {v10}, Landroid/widget/TextView;->getSelectionStart()I
+
+    move-result v8
+
+    .line 5540
+    .local v8, "offset":I
+    iget-object v10, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    invoke-virtual {v10}, Landroid/widget/TextView;->getLayout()Landroid/text/Layout;
+
+    move-result-object v5
+
+    .line 5541
+    .local v5, "layout":Landroid/text/Layout;
+    invoke-virtual {v5, v8}, Landroid/text/Layout;->getLineForOffset(I)I
+
+    move-result v7
+
+    .line 5542
+    .local v7, "line":I
+    iget-object v10, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    invoke-virtual {v10}, Landroid/widget/TextView;->getPaint()Landroid/text/TextPaint;
+
+    move-result-object v10
+
+    invoke-virtual {v10}, Landroid/text/TextPaint;->getFontMetricsInt()Landroid/graphics/Paint$FontMetricsInt;
+
+    move-result-object v4
+
+    .line 5543
+    .local v4, "fi":Landroid/graphics/Paint$FontMetricsInt;
+    invoke-virtual {v5, v7}, Landroid/text/Layout;->getLineDescent(I)I
+
+    move-result v10
+
+    sub-int v1, p3, v10
+
+    .line 5544
+    .local v1, "baseLine":I
+    iget v10, v4, Landroid/graphics/Paint$FontMetricsInt;->ascent:I
+
+    add-int v3, v1, v10
+
+    .line 5545
+    .local v3, "charTop":I
+    iget v10, v4, Landroid/graphics/Paint$FontMetricsInt;->descent:I
+
+    add-int v2, v1, v10
+
+    .line 5546
+    .local v2, "charBottom":I
+    if-gez v3, :cond_2
+
+    const/16 p2, 0x0
+
+    .line 5547
+    :goto_0
+    invoke-virtual {v5}, Landroid/text/Layout;->getHeight()I
+
+    move-result v10
+
+    if-le v2, v10, :cond_3
+
+    invoke-virtual {v5}, Landroid/text/Layout;->getHeight()I
+
+    move-result p3
+
+    .line 5548
+    :goto_1
+    iget-object v10, p0, Landroid/widget/Editor;->mCursorDrawable:[Landroid/graphics/drawable/Drawable;
+
+    aget-object v10, v10, p1
+
+    if-nez v10, :cond_0
+
+    .line 5549
+    iget-object v10, p0, Landroid/widget/Editor;->mCursorDrawable:[Landroid/graphics/drawable/Drawable;
+
+    iget-object v11, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    invoke-virtual {v11}, Landroid/widget/TextView;->getContext()Landroid/content/Context;
+
+    move-result-object v11
+
+    iget-object v12, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    iget v12, v12, Landroid/widget/TextView;->mCursorDrawableRes:I
+
+    invoke-virtual {v11, v12}, Landroid/content/Context;->getDrawable(I)Landroid/graphics/drawable/Drawable;
+
+    move-result-object v11
+
+    aput-object v11, v10, p1
+
+    .line 5552
+    :cond_0
+    iget-object v10, p0, Landroid/widget/Editor;->mTempRect:Landroid/graphics/Rect;
+
+    if-nez v10, :cond_1
+
+    new-instance v10, Landroid/graphics/Rect;
+
+    invoke-direct {v10}, Landroid/graphics/Rect;-><init>()V
+
+    iput-object v10, p0, Landroid/widget/Editor;->mTempRect:Landroid/graphics/Rect;
+
+    .line 5553
+    :cond_1
+    iget-object v10, p0, Landroid/widget/Editor;->mCursorDrawable:[Landroid/graphics/drawable/Drawable;
+
+    aget-object v10, v10, p1
+
+    iget-object v11, p0, Landroid/widget/Editor;->mTempRect:Landroid/graphics/Rect;
+
+    invoke-virtual {v10, v11}, Landroid/graphics/drawable/Drawable;->getPadding(Landroid/graphics/Rect;)Z
+
+    .line 5554
+    iget-object v10, p0, Landroid/widget/Editor;->mCursorDrawable:[Landroid/graphics/drawable/Drawable;
+
+    aget-object v10, v10, p1
+
+    invoke-virtual {v10}, Landroid/graphics/drawable/Drawable;->getIntrinsicWidth()I
+
+    move-result v9
+
+    .line 5555
+    .local v9, "width":I
+    const/high16 v10, 0x3f000000    # 0.5f
+
+    const/high16 v11, 0x3f000000    # 0.5f
+
+    sub-float v11, p4, v11
+
+    invoke-static {v10, v11}, Ljava/lang/Math;->max(FF)F
+
+    move-result p4
+
+    .line 5556
+    move/from16 v0, p4
+
+    float-to-int v10, v0
+
+    iget-object v11, p0, Landroid/widget/Editor;->mTempRect:Landroid/graphics/Rect;
+
+    iget v11, v11, Landroid/graphics/Rect;->left:I
+
+    sub-int v6, v10, v11
+
+    .line 5557
+    .local v6, "left":I
+    iget-object v10, p0, Landroid/widget/Editor;->mCursorDrawable:[Landroid/graphics/drawable/Drawable;
+
+    aget-object v10, v10, p1
+
+    iget-object v11, p0, Landroid/widget/Editor;->mTempRect:Landroid/graphics/Rect;
+
+    iget v11, v11, Landroid/graphics/Rect;->top:I
+
+    sub-int v11, p2, v11
+
+    add-int v12, v6, v9
+
+    iget-object v13, p0, Landroid/widget/Editor;->mTempRect:Landroid/graphics/Rect;
+
+    iget v13, v13, Landroid/graphics/Rect;->bottom:I
+
+    add-int v13, v13, p3
+
+    invoke-virtual {v10, v6, v11, v12, v13}, Landroid/graphics/drawable/Drawable;->setBounds(IIII)V
+
+    .line 5559
+    return-void
+
+    .end local v6    # "left":I
+    .end local v9    # "width":I
+    :cond_2
+    move/from16 p2, v3
+
+    .line 5546
+    goto :goto_0
+
+    :cond_3
+    move/from16 p3, v2
+
+    .line 5547
+    goto :goto_1
+.end method
+
+.method flymeGetFieldTextView()Landroid/widget/TextView;
+    .locals 1
+
+    .prologue
+    .line 4985
+    iget-object v0, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    return-object v0
+.end method
+
+.method flymeInvokeMethodGetPositionListener()Landroid/widget/Editor$PositionListener;
+    .locals 1
+
+    .prologue
+    .line 808
+    invoke-direct {p0}, Landroid/widget/Editor;->getPositionListener()Landroid/widget/Editor$PositionListener;
+
+    move-result-object v0
+
+    return-object v0
+.end method
+
+.method flymeInvokeMethodIsPositionVisible(FF)Z
+    .locals 1
+    .param p1, "positionX"    # F
+    .param p2, "positionY"    # F
+
+    .prologue
+    .line 857
+    invoke-direct {p0, p1, p2}, Landroid/widget/Editor;->isPositionVisible(FF)Z
+
+    move-result v0
+
+    return v0
+.end method
+
+.method public getActiveBound(Landroid/graphics/Rect;Z)V
+    .locals 7
+    .param p1, "bound"    # Landroid/graphics/Rect;
+    .param p2, "autoclip"    # Z
+
+    .prologue
+    .line 5364
+    iget-object v5, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    invoke-virtual {v5, p1}, Landroid/widget/TextView;->getFocusedRect(Landroid/graphics/Rect;)V
+
+    .line 5365
+    iget-object v5, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    invoke-virtual {v5}, Landroid/widget/TextView;->getScrollX()I
+
+    move-result v5
+
+    neg-int v5, v5
+
+    iget-object v6, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    invoke-virtual {v6}, Landroid/widget/TextView;->getScrollY()I
+
+    move-result v6
+
+    neg-int v6, v6
+
+    invoke-virtual {p1, v5, v6}, Landroid/graphics/Rect;->offset(II)V
+
+    .line 5366
+    if-nez p2, :cond_1
+
+    .line 5396
+    :cond_0
+    :goto_0
+    return-void
+
+    .line 5370
+    :cond_1
+    iget-object v5, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    invoke-virtual {v5}, Landroid/widget/TextView;->getCompoundPaddingLeft()I
+
+    move-result v1
+
+    .line 5371
+    .local v1, "clipLeft":I
+    iget-object v5, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    invoke-virtual {v5}, Landroid/widget/TextView;->getExtendedPaddingTop()I
+
+    move-result v3
+
+    .line 5372
+    .local v3, "clipTop":I
+    iget-object v5, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    invoke-virtual {v5}, Landroid/widget/TextView;->getWidth()I
+
+    move-result v5
+
+    iget-object v6, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    invoke-virtual {v6}, Landroid/widget/TextView;->getCompoundPaddingRight()I
+
+    move-result v6
+
+    sub-int v2, v5, v6
+
+    .line 5373
+    .local v2, "clipRight":I
+    iget-object v5, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    invoke-virtual {v5}, Landroid/widget/TextView;->getHeight()I
+
+    move-result v5
+
+    iget-object v6, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    invoke-virtual {v6}, Landroid/widget/TextView;->getExtendedPaddingBottom()I
+
+    move-result v6
+
+    sub-int v0, v5, v6
+
+    .line 5374
+    .local v0, "clipBottom":I
+    iget v5, p1, Landroid/graphics/Rect;->left:I
+
+    if-ge v5, v1, :cond_2
+
+    .line 5375
+    iput v1, p1, Landroid/graphics/Rect;->left:I
+
+    .line 5377
+    :cond_2
+    iget v5, p1, Landroid/graphics/Rect;->top:I
+
+    if-ge v5, v3, :cond_3
+
+    .line 5378
+    iput v3, p1, Landroid/graphics/Rect;->top:I
+
+    .line 5380
+    :cond_3
+    iget v5, p1, Landroid/graphics/Rect;->right:I
+
+    if-le v5, v2, :cond_4
+
+    .line 5381
+    iput v2, p1, Landroid/graphics/Rect;->right:I
+
+    .line 5383
+    :cond_4
+    iget v5, p1, Landroid/graphics/Rect;->bottom:I
+
+    if-le v5, v0, :cond_5
+
+    .line 5384
+    iput v0, p1, Landroid/graphics/Rect;->bottom:I
+
+    .line 5386
+    :cond_5
+    iget v5, p1, Landroid/graphics/Rect;->left:I
+
+    iget v6, p1, Landroid/graphics/Rect;->right:I
+
+    if-le v5, v6, :cond_6
+
+    .line 5387
+    iget v4, p1, Landroid/graphics/Rect;->left:I
+
+    .line 5388
+    .local v4, "tmp":I
+    iget v5, p1, Landroid/graphics/Rect;->right:I
+
+    iput v5, p1, Landroid/graphics/Rect;->left:I
+
+    .line 5389
+    iput v4, p1, Landroid/graphics/Rect;->right:I
+
+    .line 5391
+    .end local v4    # "tmp":I
+    :cond_6
+    iget v5, p1, Landroid/graphics/Rect;->top:I
+
+    iget v6, p1, Landroid/graphics/Rect;->bottom:I
+
+    if-le v5, v6, :cond_0
+
+    .line 5392
+    iget v4, p1, Landroid/graphics/Rect;->top:I
+
+    .line 5393
+    .restart local v4    # "tmp":I
+    iget v5, p1, Landroid/graphics/Rect;->bottom:I
+
+    iput v5, p1, Landroid/graphics/Rect;->top:I
+
+    .line 5394
+    iput v4, p1, Landroid/graphics/Rect;->bottom:I
+
+    goto :goto_0
+.end method
+
+.method final hasComposingSpan(Landroid/text/Spannable;)Z
+    .locals 6
+    .param p1, "text"    # Landroid/text/Spannable;
+
+    .prologue
+    const/4 v2, 0x1
+
+    const/4 v3, 0x0
+
+    .line 5060
+    if-nez p1, :cond_1
+
+    move v2, v3
+
+    .line 5069
+    :cond_0
+    :goto_0
+    return v2
+
+    .line 5064
+    :cond_1
+    iget-object v4, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    instance-of v4, v4, Landroid/inputmethodservice/ExtractEditText;
+
+    if-eqz v4, :cond_3
+
+    .line 5065
+    invoke-interface {p1}, Landroid/text/Spannable;->length()I
+
+    move-result v4
+
+    const-class v5, Landroid/text/style/UnderlineSpan;
+
+    invoke-interface {p1, v3, v4, v5}, Landroid/text/Spannable;->getSpans(IILjava/lang/Class;)[Ljava/lang/Object;
+
+    move-result-object v0
+
+    .line 5066
+    .local v0, "spans":[Ljava/lang/Object;
+    if-eqz v0, :cond_2
+
+    array-length v4, v0
+
+    if-gtz v4, :cond_0
+
+    :cond_2
+    move v2, v3
+
+    goto :goto_0
+
+    .line 5068
+    .end local v0    # "spans":[Ljava/lang/Object;
+    :cond_3
+    invoke-static {p1}, Lcom/android/internal/widget/EditableInputConnection;->getComposingSpanStart(Landroid/text/Spannable;)I
+
+    move-result v1
+
+    .line 5069
+    .local v1, "st":I
+    if-ltz v1, :cond_4
+
+    invoke-static {p1}, Lcom/android/internal/widget/EditableInputConnection;->getComposingSpanEnd(Landroid/text/Spannable;)I
+
+    move-result v4
+
+    if-ne v1, v4, :cond_0
+
+    :cond_4
+    move v2, v3
+
+    goto :goto_0
+.end method
+
+.method public isAttached()Z
+    .locals 4
+
+    .prologue
+    const/4 v2, 0x0
+
+    .line 5508
+    iget-object v3, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    invoke-virtual {v3}, Landroid/widget/TextView;->isAttachedToWindow()Z
+
+    move-result v3
+
+    if-nez v3, :cond_1
+
+    .line 5523
+    :cond_0
+    :goto_0
+    return v2
+
+    .line 5511
+    :cond_1
+    iget-object v1, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    .line 5512
+    .local v1, "view":Landroid/view/View;
+    :goto_1
+    if-eqz v1, :cond_3
+
+    .line 5513
+    invoke-virtual {v1}, Landroid/view/View;->getParent()Landroid/view/ViewParent;
+
+    move-result-object v0
+
+    .line 5514
+    .local v0, "parent":Landroid/view/ViewParent;
+    if-eqz v0, :cond_0
+
+    .line 5517
+    instance-of v3, v0, Landroid/view/View;
+
+    if-eqz v3, :cond_2
+
+    move-object v1, v0
+
+    .line 5518
+    check-cast v1, Landroid/view/View;
+
+    goto :goto_1
+
+    .line 5520
+    :cond_2
+    const/4 v1, 0x0
+
+    goto :goto_1
+
+    .line 5523
+    .end local v0    # "parent":Landroid/view/ViewParent;
+    :cond_3
+    const/4 v2, 0x1
+
+    goto :goto_0
+.end method
+
+.method public isInDragSelectionMode()Z
+    .locals 1
+
+    .prologue
+    .line 5078
+    iget-boolean v0, p0, Landroid/widget/Editor;->mIsInDragSelectionMode:Z
+
+    return v0
+.end method
+
+.method public mzCanSelectText()Z
+    .locals 1
+
+    .prologue
+    .line 5531
+    invoke-direct {p0}, Landroid/widget/Editor;->canSelectText()Z
+
+    move-result v0
+
+    return v0
+.end method
+
+.method onCursorVisbilityChanged(Z)V
+    .locals 2
+    .param p1, "visible"    # Z
+
+    .prologue
+    .line 5094
+    invoke-static {}, Landroid/os/SystemClock;->uptimeMillis()J
+
+    move-result-wide v0
+
+    iput-wide v0, p0, Landroid/widget/Editor;->mShowCursor:J
+
+    .line 5095
+    if-eqz p1, :cond_1
+
+    .line 5096
+    invoke-virtual {p0}, Landroid/widget/Editor;->makeBlink()V
+
+    .line 5103
+    :cond_0
+    :goto_0
+    invoke-virtual {p0}, Landroid/widget/Editor;->prepareCursorControllers()V
+
+    .line 5104
+    return-void
+
+    .line 5098
+    :cond_1
+    iget-object v0, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    if-eqz v0, :cond_0
+
+    .line 5099
+    iget-object v0, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    invoke-virtual {v0}, Landroid/widget/TextView;->postInvalidate()V
+
+    goto :goto_0
+.end method
+
+.method onPreDraw()Z
+    .locals 1
+
+    .prologue
+    .line 5211
+    iget-boolean v0, p0, Landroid/widget/Editor;->mCreatedWithASelection:Z
+
+    if-eqz v0, :cond_0
+
+    .line 5212
+    invoke-virtual {p0}, Landroid/widget/Editor;->startSelectionActionMode()Z
+
+    .line 5213
+    const/4 v0, 0x0
+
+    iput-boolean v0, p0, Landroid/widget/Editor;->mCreatedWithASelection:Z
+
+    .line 5220
+    :cond_0
+    iget-object v0, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    instance-of v0, v0, Landroid/inputmethodservice/ExtractEditText;
+
+    if-eqz v0, :cond_2
+
+    iget-object v0, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    invoke-virtual {v0}, Landroid/widget/TextView;->hasSelection()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_2
+
+    .line 5222
+    iget-object v0, p0, Landroid/widget/Editor;->mSelectionModifierCursorController:Landroid/widget/Editor$SelectionModifierCursorController;
+
+    if-eqz v0, :cond_1
+
+    iget-object v0, p0, Landroid/widget/Editor;->mSelectionModifierCursorController:Landroid/widget/Editor$SelectionModifierCursorController;
+
+    invoke-virtual {v0}, Landroid/widget/Editor$SelectionModifierCursorController;->isDragging()Z
+
+    move-result v0
+
+    if-nez v0, :cond_2
+
+    .line 5224
+    :cond_1
+    invoke-virtual {p0}, Landroid/widget/Editor;->startSelectionActionMode()Z
+
+    .line 5227
+    :cond_2
+    invoke-direct {p0}, Landroid/widget/Editor;->getPositionListener()Landroid/widget/Editor$PositionListener;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Landroid/widget/Editor$PositionListener;->onPreDraw()Z
+
+    .line 5228
+    const/4 v0, 0x1
+
+    return v0
+.end method
+
+.method onSelectionChanged(II)V
+    .locals 1
+    .param p1, "selStart"    # I
+    .param p2, "selEnd"    # I
+
+    .prologue
+    .line 5111
+    if-ltz p1, :cond_0
+
+    if-ne p1, p2, :cond_0
+
+    iget-object v0, p0, Landroid/widget/Editor;->mSelectionActionModeCallback:Landroid/widget/Editor$SelectionActionModeCallback;
+
+    if-eqz v0, :cond_0
+
+    iget-object v0, p0, Landroid/widget/Editor;->mSelectionActionModeCallback:Landroid/widget/Editor$SelectionActionModeCallback;
+
+    iget-boolean v0, v0, Landroid/widget/Editor$SelectionActionModeCallback;->mInSelectionMode:Z
+
+    if-eqz v0, :cond_0
+
+    .line 5114
+    invoke-virtual {p0}, Landroid/widget/Editor;->stopSelectionActionMode()V
+
+    .line 5116
+    :cond_0
+    return-void
+.end method
+
+.method onTouchEventMz(Landroid/view/MotionEvent;)Z
+    .locals 3
+    .param p1, "event"    # Landroid/view/MotionEvent;
+
+    .prologue
+    const/4 v1, 0x0
+
+    .line 5169
+    invoke-virtual {p0}, Landroid/widget/Editor;->hasInsertionController()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    invoke-virtual {p0}, Landroid/widget/Editor;->getInsertionController()Landroid/widget/Editor$InsertionPointCursorController;
+
+    move-result-object v0
+
+    check-cast v0, Landroid/widget/Editor$FlymeInsertionPointCursorController;
+
+    invoke-virtual {v0, p1}, Landroid/widget/Editor$FlymeInsertionPointCursorController;->onTouchEvent(Landroid/view/MotionEvent;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 5171
+    const/4 v0, 0x1
+
+    .line 5199
+    :goto_0
+    return v0
+
+    .line 5174
+    :cond_0
+    invoke-virtual {p0}, Landroid/widget/Editor;->hasSelectionController()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_1
+
+    .line 5175
+    invoke-virtual {p0}, Landroid/widget/Editor;->getSelectionController()Landroid/widget/Editor$SelectionModifierCursorController;
+
+    move-result-object v0
+
+    invoke-virtual {v0, p1}, Landroid/widget/Editor$SelectionModifierCursorController;->onTouchEvent(Landroid/view/MotionEvent;)V
+
+    .line 5178
+    :cond_1
+    iget-object v0, p0, Landroid/widget/Editor;->mShowSuggestionRunnable:Ljava/lang/Runnable;
+
+    if-eqz v0, :cond_2
+
+    .line 5179
+    iget-object v0, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    iget-object v2, p0, Landroid/widget/Editor;->mShowSuggestionRunnable:Ljava/lang/Runnable;
+
+    invoke-virtual {v0, v2}, Landroid/widget/TextView;->removeCallbacks(Ljava/lang/Runnable;)Z
+
+    .line 5180
+    const/4 v0, 0x0
+
+    iput-object v0, p0, Landroid/widget/Editor;->mShowSuggestionRunnable:Ljava/lang/Runnable;
+
+    .line 5183
+    :cond_2
+    invoke-virtual {p1}, Landroid/view/MotionEvent;->getActionMasked()I
+
+    move-result v0
+
+    if-nez v0, :cond_3
+
+    .line 5184
+    invoke-virtual {p1}, Landroid/view/MotionEvent;->getX()F
+
+    move-result v0
+
+    iput v0, p0, Landroid/widget/Editor;->mLastDownPositionX:F
+
+    .line 5185
+    invoke-virtual {p1}, Landroid/view/MotionEvent;->getY()F
+
+    move-result v0
+
+    iput v0, p0, Landroid/widget/Editor;->mLastDownPositionY:F
+
+    .line 5189
+    iput-boolean v1, p0, Landroid/widget/Editor;->mTouchFocusSelected:Z
+
+    .line 5190
+    iput-boolean v1, p0, Landroid/widget/Editor;->mIgnoreActionUpEvent:Z
+
+    .line 5192
+    iget-object v0, p0, Landroid/widget/Editor;->mOptionWrapper:Landroid/widget/Editor$OptionWrapper;
+
+    if-eqz v0, :cond_3
+
+    .line 5193
+    iget-object v0, p0, Landroid/widget/Editor;->mOptionWrapper:Landroid/widget/Editor$OptionWrapper;
+
+    invoke-virtual {v0}, Landroid/widget/Editor$OptionWrapper;->onEditorTouchDown()V
+
+    .line 5198
+    :cond_3
+    invoke-direct {p0}, Landroid/widget/Editor;->hideInsertionPointCursorController()V
+
+    move v0, v1
+
+    .line 5199
+    goto :goto_0
+.end method
+
+.method onTouchUpEventMz(Landroid/view/MotionEvent;)V
+    .locals 8
+    .param p1, "event"    # Landroid/view/MotionEvent;
+
+    .prologue
+    const/4 v4, 0x1
+
+    const/4 v5, 0x0
+
+    .line 5322
+    iget-boolean v6, p0, Landroid/widget/Editor;->mSelectAllOnFocus:Z
+
+    if-eqz v6, :cond_2
+
+    iget-object v6, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    invoke-virtual {v6}, Landroid/widget/TextView;->didTouchFocusSelect()Z
+
+    move-result v6
+
+    if-eqz v6, :cond_2
+
+    move v2, v4
+
+    .line 5323
+    .local v2, "selectAllGotFocus":Z
+    :goto_0
+    iget-object v6, p0, Landroid/widget/Editor;->mSelectionActionMode:Landroid/view/ActionMode;
+
+    if-eqz v6, :cond_3
+
+    iget-object v6, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    invoke-virtual {v6}, Landroid/widget/TextView;->hasSelection()Z
+
+    move-result v6
+
+    if-nez v6, :cond_0
+
+    iget-object v6, p0, Landroid/widget/Editor;->mOptionWrapper:Landroid/widget/Editor$OptionWrapper;
+
+    if-eqz v6, :cond_3
+
+    iget-object v6, p0, Landroid/widget/Editor;->mOptionWrapper:Landroid/widget/Editor$OptionWrapper;
+
+    invoke-virtual {v6}, Landroid/widget/Editor$OptionWrapper;->isVisibleBeforeTouch()Z
+
+    move-result v6
+
+    if-eqz v6, :cond_3
+
+    :cond_0
+    move v1, v4
+
+    .line 5325
+    .local v1, "optionVisibleBeforeTouch":Z
+    :goto_1
+    invoke-virtual {p0}, Landroid/widget/Editor;->hideControllers()V
+
+    .line 5326
+    if-eqz v2, :cond_4
+
+    .line 5349
+    :cond_1
+    :goto_2
+    return-void
+
+    .end local v1    # "optionVisibleBeforeTouch":Z
+    .end local v2    # "selectAllGotFocus":Z
+    :cond_2
+    move v2, v5
+
+    .line 5322
+    goto :goto_0
+
+    .restart local v2    # "selectAllGotFocus":Z
+    :cond_3
+    move v1, v5
+
+    .line 5323
+    goto :goto_1
+
+    .line 5328
+    .restart local v1    # "optionVisibleBeforeTouch":Z
+    :cond_4
+    iget-object v4, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    invoke-virtual {v4}, Landroid/widget/TextView;->getText()Ljava/lang/CharSequence;
+
+    move-result-object v3
+
+    .line 5329
+    .local v3, "text":Ljava/lang/CharSequence;
+    invoke-interface {v3}, Ljava/lang/CharSequence;->length()I
+
+    move-result v4
+
+    if-nez v4, :cond_5
+
+    .line 5330
+    check-cast v3, Landroid/text/Spannable;
+
+    .end local v3    # "text":Ljava/lang/CharSequence;
+    invoke-direct {p0, v3, v5, v1}, Landroid/widget/Editor;->setSelectionOnTouchUpEvent(Landroid/text/Spannable;IZ)V
+
+    goto :goto_2
+
+    .line 5333
+    .restart local v3    # "text":Ljava/lang/CharSequence;
+    :cond_5
+    iget-object v4, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    invoke-virtual {p1}, Landroid/view/MotionEvent;->getX()F
+
+    move-result v5
+
+    invoke-virtual {p1}, Landroid/view/MotionEvent;->getY()F
+
+    move-result v6
+
+    invoke-virtual {v4, v5, v6}, Landroid/widget/TextView;->getOffsetForPosition(FF)I
+
+    move-result v0
+
+    .line 5334
+    .local v0, "offset":I
+    check-cast v3, Landroid/text/Spannable;
+
+    .end local v3    # "text":Ljava/lang/CharSequence;
+    invoke-direct {p0, v3, v0, v1}, Landroid/widget/Editor;->setSelectionOnTouchUpEvent(Landroid/text/Spannable;IZ)V
+
+    .line 5335
+    iget-object v4, p0, Landroid/widget/Editor;->mSpellChecker:Landroid/widget/SpellChecker;
+
+    if-eqz v4, :cond_6
+
+    .line 5338
+    iget-object v4, p0, Landroid/widget/Editor;->mSpellChecker:Landroid/widget/SpellChecker;
+
+    invoke-virtual {v4}, Landroid/widget/SpellChecker;->onSelectionChanged()V
+
+    .line 5340
+    :cond_6
+    invoke-direct {p0}, Landroid/widget/Editor;->extractedTextModeWillBeStarted()Z
+
+    move-result v4
+
+    if-nez v4, :cond_1
+
+    .line 5341
+    invoke-direct {p0}, Landroid/widget/Editor;->isCursorInsideEasyCorrectionSpan()Z
+
+    move-result v4
+
+    if-eqz v4, :cond_1
+
+    .line 5342
+    new-instance v4, Landroid/widget/Editor$FlymeShowSuggestionsRunnable;
+
+    invoke-direct {v4, p0}, Landroid/widget/Editor$FlymeShowSuggestionsRunnable;-><init>(Landroid/widget/Editor;)V
+
+    iput-object v4, p0, Landroid/widget/Editor;->mShowSuggestionRunnable:Ljava/lang/Runnable;
+
+    .line 5344
+    iget-object v4, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    iget-object v5, p0, Landroid/widget/Editor;->mShowSuggestionRunnable:Ljava/lang/Runnable;
+
+    invoke-static {}, Landroid/view/ViewConfiguration;->getDoubleTapTimeout()I
+
+    move-result v6
+
+    int-to-long v6, v6
+
+    invoke-virtual {v4, v5, v6, v7}, Landroid/widget/TextView;->postDelayed(Ljava/lang/Runnable;J)Z
+
+    goto :goto_2
+.end method
+
+.method public performLongClickMz(Z)Z
+    .locals 5
+    .param p1, "handled"    # Z
+
+    .prologue
+    .line 5132
+    const/4 v1, 0x0
+
+    .line 5133
+    .local v1, "res":Z
+    iget-object v2, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    invoke-virtual {v2}, Landroid/widget/TextView;->getEditableText()Landroid/text/Editable;
+
+    move-result-object v2
+
+    invoke-virtual {p0, v2}, Landroid/widget/Editor;->hasComposingSpan(Landroid/text/Spannable;)Z
+
+    move-result v2
+
+    if-nez v2, :cond_0
+
+    invoke-direct {p0}, Landroid/widget/Editor;->extractedTextModeWillBeStarted()Z
+
+    move-result v2
+
+    if-eqz v2, :cond_1
+
+    .line 5134
+    :cond_0
+    const/4 v2, 0x0
+
+    .line 5161
+    :goto_0
+    return v2
+
+    .line 5137
+    :cond_1
+    invoke-direct {p0}, Landroid/widget/Editor;->touchPositionIsInSelection()Z
+
+    move-result v2
+
+    if-eqz v2, :cond_2
+
+    .line 5138
+    invoke-virtual {p0}, Landroid/widget/Editor;->startSelectionActionMode()Z
+
+    move-result v2
+
+    goto :goto_0
+
+    .line 5141
+    :cond_2
+    if-nez p1, :cond_4
+
+    iget-boolean v2, p0, Landroid/widget/Editor;->mSelectionControllerEnabled:Z
+
+    if-eqz v2, :cond_4
+
+    iget-object v2, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    invoke-virtual {v2}, Landroid/widget/TextView;->getDefaultOptionsVisible()Z
+
+    move-result v2
+
+    if-eqz v2, :cond_4
+
+    iget-boolean v2, p0, Landroid/widget/Editor;->mIsInDragSelectionMode:Z
+
+    if-nez v2, :cond_4
+
+    .line 5143
+    iget-object v2, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    iget v3, p0, Landroid/widget/Editor;->mLastDownPositionX:F
+
+    iget v4, p0, Landroid/widget/Editor;->mLastDownPositionY:F
+
+    invoke-virtual {v2, v3, v4}, Landroid/widget/TextView;->getOffsetForPosition(FF)I
+
+    move-result v0
+
+    .line 5145
+    .local v0, "offset":I
+    const/4 v2, -0x1
+
+    if-eq v0, v2, :cond_3
+
+    .line 5146
+    iget-object v2, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    invoke-virtual {v2}, Landroid/widget/TextView;->getText()Ljava/lang/CharSequence;
+
+    move-result-object v2
+
+    check-cast v2, Landroid/text/Spannable;
+
+    invoke-static {v2, v0}, Landroid/text/Selection;->setSelection(Landroid/text/Spannable;I)V
+
+    .line 5147
+    :cond_3
+    invoke-virtual {p0}, Landroid/widget/Editor;->startSelectionActionMode()Z
+
+    move-result v1
+
+    .line 5150
+    .end local v0    # "offset":I
+    :cond_4
+    if-nez p1, :cond_5
+
+    iget-boolean v2, p0, Landroid/widget/Editor;->mInsertionControllerEnabled:Z
+
+    if-eqz v2, :cond_5
+
+    iget-object v2, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    invoke-virtual {v2}, Landroid/widget/TextView;->getDefaultMagnifierVisible()Z
+
+    move-result v2
+
+    if-eqz v2, :cond_5
+
+    iget-boolean v2, p0, Landroid/widget/Editor;->mIsInDragSelectionMode:Z
+
+    if-nez v2, :cond_5
+
+    .line 5152
+    iget-object v2, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    iget v3, p0, Landroid/widget/Editor;->mLastDownPositionX:F
+
+    iget v4, p0, Landroid/widget/Editor;->mLastDownPositionY:F
+
+    invoke-virtual {v2, v3, v4}, Landroid/widget/TextView;->getOffsetForPosition(FF)I
+
+    move-result v0
+
+    .line 5154
+    .restart local v0    # "offset":I
+    iget-object v2, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    invoke-virtual {v2}, Landroid/widget/TextView;->getParent()Landroid/view/ViewParent;
+
+    move-result-object v2
+
+    const/4 v3, 0x1
+
+    invoke-interface {v2, v3}, Landroid/view/ViewParent;->requestDisallowInterceptTouchEvent(Z)V
+
+    .line 5155
+    invoke-virtual {p0}, Landroid/widget/Editor;->stopSelectionActionMode()V
+
+    .line 5156
+    iget-object v2, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    invoke-virtual {v2}, Landroid/widget/TextView;->getText()Ljava/lang/CharSequence;
+
+    move-result-object v2
+
+    check-cast v2, Landroid/text/Spannable;
+
+    invoke-static {v2, v0}, Landroid/text/Selection;->setSelection(Landroid/text/Spannable;I)V
+
+    .line 5157
+    invoke-virtual {p0}, Landroid/widget/Editor;->getInsertionController()Landroid/widget/Editor$InsertionPointCursorController;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Landroid/widget/Editor$InsertionPointCursorController;->show()V
+
+    .line 5158
+    const/4 v1, 0x1
+
+    .end local v0    # "offset":I
+    :cond_5
+    move v2, v1
+
+    .line 5161
+    goto :goto_0
+.end method
+
+.method selectCurrentWordMz()Z
+    .locals 1
+
+    .prologue
+    .line 5123
+    invoke-direct {p0}, Landroid/widget/Editor;->selectCurrentWord()Z
+
+    move-result v0
+
+    return v0
+.end method
+
+.method public setEnableDragSelection(Z)V
+    .locals 0
+    .param p1, "enabled"    # Z
+
+    .prologue
+    .line 5086
+    iput-boolean p1, p0, Landroid/widget/Editor;->mEnableDragSelection:Z
+
+    .line 5087
+    return-void
+.end method
+
+.method startSelectionActionMode(J)V
+    .locals 3
+    .param p1, "delay"    # J
+
+    .prologue
+    .line 5236
+    iget-object v0, p0, Landroid/widget/Editor;->mSelectonActionModeRunnable:Ljava/lang/Runnable;
+
+    if-nez v0, :cond_0
+
+    .line 5237
+    new-instance v0, Landroid/widget/Editor$FlymeStartSelectionActionModeRunnable;
+
+    invoke-direct {v0, p0}, Landroid/widget/Editor$FlymeStartSelectionActionModeRunnable;-><init>(Landroid/widget/Editor;)V
+
+    iput-object v0, p0, Landroid/widget/Editor;->mSelectonActionModeRunnable:Ljava/lang/Runnable;
+
+    .line 5241
+    :goto_0
+    iget-object v0, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    iget-object v1, p0, Landroid/widget/Editor;->mSelectonActionModeRunnable:Ljava/lang/Runnable;
+
+    invoke-virtual {v0, v1, p1, p2}, Landroid/widget/TextView;->postDelayed(Ljava/lang/Runnable;J)Z
+
+    .line 5242
+    return-void
+
+    .line 5239
+    :cond_0
+    iget-object v0, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    iget-object v1, p0, Landroid/widget/Editor;->mSelectonActionModeRunnable:Ljava/lang/Runnable;
+
+    invoke-virtual {v0, v1}, Landroid/widget/TextView;->removeCallbacks(Ljava/lang/Runnable;)Z
+
+    goto :goto_0
+.end method
+
+.method startSelectionActionModeMz()Z
+    .locals 3
+
+    .prologue
+    const/4 v0, 0x0
+
+    .line 5257
+    iget-object v1, p0, Landroid/widget/Editor;->mSelectionActionMode:Landroid/view/ActionMode;
+
+    if-eqz v1, :cond_1
+
+    iget-object v1, p0, Landroid/widget/Editor;->mOptionWrapper:Landroid/widget/Editor$OptionWrapper;
+
+    if-eqz v1, :cond_1
+
+    .line 5258
+    iget-object v0, p0, Landroid/widget/Editor;->mOptionWrapper:Landroid/widget/Editor$OptionWrapper;
+
+    invoke-virtual {v0}, Landroid/widget/Editor$OptionWrapper;->show()Z
+
+    move-result v0
+
+    .line 5281
+    :cond_0
+    :goto_0
+    return v0
+
+    .line 5261
+    :cond_1
+    iget-object v1, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    invoke-virtual {v1}, Landroid/widget/TextView;->getDefaultOptionsVisible()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_0
+
+    iget-object v1, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    invoke-virtual {v1}, Landroid/widget/TextView;->getEditableText()Landroid/text/Editable;
+
+    move-result-object v1
+
+    invoke-virtual {p0, v1}, Landroid/widget/Editor;->hasComposingSpan(Landroid/text/Spannable;)Z
+
+    move-result v1
+
+    if-nez v1, :cond_0
+
+    iget-object v1, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    invoke-virtual {v1}, Landroid/widget/TextView;->requestFocus()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_0
+
+    invoke-direct {p0}, Landroid/widget/Editor;->canSelectText()Z
+
+    move-result v1
+
+    if-nez v1, :cond_2
+
+    iget-object v1, p0, Landroid/widget/Editor;->mTextView:Landroid/widget/TextView;
+
+    invoke-virtual {v1}, Landroid/widget/TextView;->canPaste()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_0
+
+    .line 5266
+    :cond_2
+    invoke-direct {p0}, Landroid/widget/Editor;->extractedTextModeWillBeStarted()Z
+
+    move-result v1
+
+    if-eqz v1, :cond_3
+
+    .line 5267
+    const/4 v0, 0x1
+
+    goto :goto_0
+
+    .line 5270
+    :cond_3
+    iget-object v1, p0, Landroid/widget/Editor;->mOptionWrapper:Landroid/widget/Editor$OptionWrapper;
+
+    if-nez v1, :cond_4
+
+    .line 5271
+    new-instance v1, Landroid/widget/Editor$OptionWrapper;
+
+    invoke-direct {v1, p0}, Landroid/widget/Editor$OptionWrapper;-><init>(Landroid/widget/Editor;)V
+
+    iput-object v1, p0, Landroid/widget/Editor;->mOptionWrapper:Landroid/widget/Editor$OptionWrapper;
+
+    .line 5274
+    :cond_4
+    iget-object v1, p0, Landroid/widget/Editor;->mSelectionActionModeCallback:Landroid/widget/Editor$SelectionActionModeCallback;
+
+    if-nez v1, :cond_5
+
+    .line 5275
+    new-instance v1, Landroid/widget/Editor$SelectionActionModeCallback;
+
+    const/4 v2, 0x0
+
+    invoke-direct {v1, p0, v2}, Landroid/widget/Editor$SelectionActionModeCallback;-><init>(Landroid/widget/Editor;Landroid/widget/Editor$1;)V
+
+    iput-object v1, p0, Landroid/widget/Editor;->mSelectionActionModeCallback:Landroid/widget/Editor$SelectionActionModeCallback;
+
+    .line 5277
+    :cond_5
+    iget-object v1, p0, Landroid/widget/Editor;->mOptionWrapper:Landroid/widget/Editor$OptionWrapper;
+
+    iget-object v2, p0, Landroid/widget/Editor;->mSelectionActionModeCallback:Landroid/widget/Editor$SelectionActionModeCallback;
+
+    invoke-virtual {v1, v2}, Landroid/widget/Editor$OptionWrapper;->startActionMode(Landroid/view/ActionMode$Callback;)Landroid/view/ActionMode;
+
+    move-result-object v1
+
+    iput-object v1, p0, Landroid/widget/Editor;->mSelectionActionMode:Landroid/view/ActionMode;
+
+    .line 5278
+    iget-object v1, p0, Landroid/widget/Editor;->mSelectionActionMode:Landroid/view/ActionMode;
+
+    if-eqz v1, :cond_0
+
+    .line 5279
+    iget-object v0, p0, Landroid/widget/Editor;->mOptionWrapper:Landroid/widget/Editor$OptionWrapper;
+
+    invoke-virtual {v0}, Landroid/widget/Editor$OptionWrapper;->show()Z
+
+    move-result v0
+
+    goto :goto_0
 .end method

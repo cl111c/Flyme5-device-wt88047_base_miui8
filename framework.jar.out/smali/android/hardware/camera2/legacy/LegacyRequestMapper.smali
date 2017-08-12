@@ -208,62 +208,50 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 655
     const-string v0, "auto"
 
     :goto_0
     return-object v0
 
-    .line 638
     :pswitch_0
     const-string v0, "auto"
 
     goto :goto_0
 
-    .line 640
     :pswitch_1
     const-string v0, "incandescent"
 
     goto :goto_0
 
-    .line 642
     :pswitch_2
     const-string v0, "fluorescent"
 
     goto :goto_0
 
-    .line 644
     :pswitch_3
-    const-string/jumbo v0, "warm-fluorescent"
+    const-string v0, "warm-fluorescent"
 
     goto :goto_0
 
-    .line 646
     :pswitch_4
     const-string v0, "daylight"
 
     goto :goto_0
 
-    .line 648
     :pswitch_5
     const-string v0, "cloudy-daylight"
 
     goto :goto_0
 
-    .line 650
     :pswitch_6
-    const-string/jumbo v0, "twilight"
+    const-string v0, "twilight"
 
     goto :goto_0
 
-    .line 652
     :pswitch_7
-    const-string/jumbo v0, "shade"
+    const-string v0, "shade"
 
     goto :goto_0
-
-    .line 636
-    nop
 
     :pswitch_data_0
     .packed-switch 0x1
@@ -2588,6 +2576,8 @@
     invoke-virtual {v0, v1, v2}, Landroid/hardware/Camera$Parameters;->setJpegThumbnailSize(II)V
 
     goto/16 :goto_b
+
+    nop
 
     .line 321
     :pswitch_data_0

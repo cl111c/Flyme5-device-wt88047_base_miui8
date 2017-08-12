@@ -638,16 +638,17 @@
 
     if-eq v11, v12, :cond_0
 
-    .line 469
     const-string v3, ""
 
-    .line 472
     .local v3, "nameToSet":Ljava/lang/String;
     const-string v11, "display_name"
 
+    invoke-direct {p0, p1, v7}, Lcom/android/internal/telephony/SubscriptionInfoUpdater;->getFlymeCardDisplayName(ILjava/lang/String;)Ljava/lang/String;
+
+    move-result-object v3
+
     invoke-virtual {v2, v11, v3}, Landroid/content/ContentValues;->put(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 473
     new-instance v11, Ljava/lang/StringBuilder;
 
     invoke-direct {v11}, Ljava/lang/StringBuilder;-><init>()V
@@ -3706,4 +3707,47 @@
     .line 532
     :cond_0
     return-void
+.end method
+
+.method private getFlymeCardDisplayName(ILjava/lang/String;)Ljava/lang/String;
+    .locals 2
+
+    .prologue
+    invoke-static {p2}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v0
+
+    if-nez v0, :cond_0
+
+    move-object v0, p2
+
+    :goto_0
+    return-object v0
+
+    :cond_0
+    new-instance v0, Ljava/lang/StringBuilder;
+
+    invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v1, "CARD "
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    add-int/lit8 v1, p1, 0x1
+
+    invoke-static {v1}, Ljava/lang/Integer;->toString(I)Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v0
+
+    goto :goto_0
 .end method

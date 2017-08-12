@@ -1,0 +1,143 @@
+.method public setUserSelectedOutgoingPhoneAccount(Landroid/telecom/PhoneAccountHandle;)V
+    .locals 4
+
+    .prologue
+    const/4 v1, 0x1
+
+    const/4 v2, 0x0
+
+    .line 231
+    if-nez p1, :cond_0
+
+    .line 233
+    iget-object v0, p0, Lcom/android/server/telecom/PhoneAccountRegistrar;->mState:Lcom/android/server/telecom/PhoneAccountRegistrar$State;
+
+    const/4 v1, 0x0
+
+    iput-object v1, v0, Lcom/android/server/telecom/PhoneAccountRegistrar$State;->defaultOutgoing:Landroid/telecom/PhoneAccountHandle;
+
+    .line 267
+    :goto_0
+    invoke-direct {p0}, Lcom/android/server/telecom/PhoneAccountRegistrar;->write()V
+
+    .line 268
+    invoke-direct {p0}, Lcom/android/server/telecom/PhoneAccountRegistrar;->fireDefaultOutgoingChanged()V
+
+    .line 269
+    :goto_1
+    return-void
+
+    .line 236
+    :cond_0
+    iget-object v0, p0, Lcom/android/server/telecom/PhoneAccountRegistrar;->mState:Lcom/android/server/telecom/PhoneAccountRegistrar$State;
+
+    iget-object v0, v0, Lcom/android/server/telecom/PhoneAccountRegistrar$State;->accounts:Ljava/util/List;
+
+    invoke-interface {v0}, Ljava/util/List;->iterator()Ljava/util/Iterator;
+
+    move-result-object v3
+
+    :cond_1
+    invoke-interface {v3}, Ljava/util/Iterator;->hasNext()Z
+
+    move-result v0
+
+    if-eqz v0, :cond_5
+
+    invoke-interface {v3}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Landroid/telecom/PhoneAccount;
+
+    .line 237
+    invoke-virtual {v0}, Landroid/telecom/PhoneAccount;->getAccountHandle()Landroid/telecom/PhoneAccountHandle;
+
+    move-result-object v0
+
+    invoke-static {p1, v0}, Ljava/util/Objects;->equals(Ljava/lang/Object;Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_1
+
+    move v0, v1
+
+    .line 243
+    :goto_2
+    if-nez v0, :cond_2
+
+    .line 244
+    const-string v0, "Trying to set nonexistent default outgoing %s"
+
+    new-array v1, v1, [Ljava/lang/Object;
+
+    aput-object p1, v1, v2
+
+    invoke-static {p0, v0, v1}, Lcom/android/server/telecom/Log;->w(Ljava/lang/Object;Ljava/lang/String;[Ljava/lang/Object;)V
+
+    goto :goto_1
+
+    .line 249
+    :cond_2
+    invoke-virtual {p0, p1}, Lcom/android/server/telecom/PhoneAccountRegistrar;->getPhoneAccountInternal(Landroid/telecom/PhoneAccountHandle;)Landroid/telecom/PhoneAccount;
+
+    move-result-object v0
+
+    const/4 v3, 0x2
+
+    invoke-virtual {v0, v3}, Landroid/telecom/PhoneAccount;->hasCapabilities(I)Z
+
+    move-result v0
+
+    if-nez v0, :cond_3
+
+    .line 251
+    const-string v0, "Trying to set non-call-provider default outgoing %s"
+
+    new-array v1, v1, [Ljava/lang/Object;
+
+    aput-object p1, v1, v2
+
+    invoke-static {p0, v0, v1}, Lcom/android/server/telecom/Log;->w(Ljava/lang/Object;Ljava/lang/String;[Ljava/lang/Object;)V
+
+    goto :goto_1
+
+    .line 256
+    :cond_3
+    invoke-virtual {p0, p1}, Lcom/android/server/telecom/PhoneAccountRegistrar;->getPhoneAccountInternal(Landroid/telecom/PhoneAccountHandle;)Landroid/telecom/PhoneAccount;
+
+    move-result-object v0
+
+    const/4 v1, 0x4
+
+    invoke-virtual {v0, v1}, Landroid/telecom/PhoneAccount;->hasCapabilities(I)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_4
+
+    .line 260
+    invoke-virtual {p0, p1}, Lcom/android/server/telecom/PhoneAccountRegistrar;->getSubscriptionIdForPhoneAccount(Landroid/telecom/PhoneAccountHandle;)I
+
+    move-result v0
+
+    .line 261
+    iget-object v1, p0, Lcom/android/server/telecom/PhoneAccountRegistrar;->mSubscriptionManager:Landroid/telephony/SubscriptionManager;
+
+    invoke-virtual {v1, v0}, Landroid/telephony/SubscriptionManager;->setDefaultVoiceSubIdExtended(I)V
+
+    .line 264
+    :cond_4
+    iget-object v0, p0, Lcom/android/server/telecom/PhoneAccountRegistrar;->mState:Lcom/android/server/telecom/PhoneAccountRegistrar$State;
+
+    iput-object p1, v0, Lcom/android/server/telecom/PhoneAccountRegistrar$State;->defaultOutgoing:Landroid/telecom/PhoneAccountHandle;
+
+    goto :goto_0
+
+    :cond_5
+    move v0, v2
+
+    goto :goto_2
+.end method
+

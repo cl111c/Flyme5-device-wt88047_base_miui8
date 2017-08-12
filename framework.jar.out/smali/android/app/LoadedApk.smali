@@ -9,6 +9,7 @@
         Landroid/app/LoadedApk$1;,
         Landroid/app/LoadedApk$ServiceDispatcher;,
         Landroid/app/LoadedApk$ReceiverDispatcher;,
+        Landroid/app/LoadedApk$FlymeInjector;,
         Landroid/app/LoadedApk$WarningContextClassLoader;
     }
 .end annotation
@@ -987,8 +988,6 @@
     goto :goto_1
 .end method
 
-
-# virtual methods
 .method public forgetReceiverDispatcher(Landroid/content/Context;Landroid/content/BroadcastReceiver;)Landroid/content/IIntentReceiver;
     .locals 8
     .param p1, "context"    # Landroid/content/Context;
@@ -2538,14 +2537,10 @@
 
     iput-object v0, p0, Landroid/app/LoadedApk;->mResources:Landroid/content/res/Resources;
 
-    .line 536
     iget-object v0, p0, Landroid/app/LoadedApk;->mResources:Landroid/content/res/Resources;
 
     iget-object v1, p0, Landroid/app/LoadedApk;->mPackageName:Ljava/lang/String;
 
-    invoke-static {v0, v1}, Landroid/miui/ResourcesManager;->initMiuiResource(Landroid/content/res/Resources;Ljava/lang/String;)V
-
-    .line 538
     :cond_0
     iget-object v0, p0, Landroid/app/LoadedApk;->mResources:Landroid/content/res/Resources;
 
@@ -2855,19 +2850,17 @@
 
     invoke-virtual {v9, v1}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
 
-    .line 571
     iput-object v1, p0, Landroid/app/LoadedApk;->mApplication:Landroid/app/Application;
 
-    .line 573
+    invoke-static {}, Landroid/app/LoadedApk$FlymeInjector;->cleanFlymeTypeface()V
+
     if-eqz p2, :cond_6
 
-    .line 575
     :try_start_1
     invoke-virtual {p2, v1}, Landroid/app/Instrumentation;->callApplicationOnCreate(Landroid/app/Application;)V
     :try_end_1
     .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_1
 
-    .line 586
     :cond_6
     iget-object v9, p0, Landroid/app/LoadedApk;->mActivityThread:Landroid/app/ActivityThread;
 
@@ -3051,7 +3044,7 @@
 
     check-cast v9, Ljava/lang/String;
 
-    invoke-direct {p0, v10, v9, v7}, Landroid/app/LoadedApk;->rewriteRValues(Ljava/lang/ClassLoader;Ljava/lang/String;I)V
+    invoke-static {p0, v10, v9, v7}, Landroid/app/LoadedApk$FlymeInjector;->rewriteRValues(Landroid/app/LoadedApk;Ljava/lang/ClassLoader;Ljava/lang/String;I)V
 
     goto :goto_1
 .end method
@@ -3448,5 +3441,19 @@
     invoke-virtual {v0, p1}, Landroid/view/DisplayAdjustments;->setCompatibilityInfo(Landroid/content/res/CompatibilityInfo;)V
 
     .line 227
+    return-void
+.end method
+
+
+# virtual methods
+.method flymeInvokeMethodRewriteRValues(Ljava/lang/ClassLoader;Ljava/lang/String;I)V
+    .locals 0
+    .param p1, "cl"    # Ljava/lang/ClassLoader;
+    .param p2, "packageName"    # Ljava/lang/String;
+    .param p3, "id"    # I
+
+    .prologue
+    invoke-direct {p0, p1, p2, p3}, Landroid/app/LoadedApk;->rewriteRValues(Ljava/lang/ClassLoader;Ljava/lang/String;I)V
+
     return-void
 .end method

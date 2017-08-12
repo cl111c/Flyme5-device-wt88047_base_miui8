@@ -686,16 +686,13 @@
     .end annotation
 
     .prologue
-    .line 149
     .local p6, "rList":Ljava/util/List;, "Ljava/util/List<Landroid/content/pm/ResolveInfo;>;"
-    sget v1, Lmiui/R$style;->Theme_Light_Dialog_Alert:I
+    sget v1, Lcom/flyme/internal/R$style;->Theme_Flyme_Light_Dialog_Alert:I
 
     invoke-virtual {p0, v1}, Lcom/android/internal/app/ResolverActivity;->setTheme(I)V
 
-    .line 150
     invoke-super {p0, p1}, Lmiui/app/AlertActivity;->onCreate(Landroid/os/Bundle;)V
 
-    .line 154
     invoke-virtual {p0}, Lcom/android/internal/app/ResolverActivity;->getIntent()Landroid/content/Intent;
 
     move-result-object v1
@@ -948,7 +945,7 @@
 
     move-result-object v2
 
-    const/high16 v3, 0x1040000
+    const/high16 v3, #android:string@cancel#i
 
     invoke-virtual {v2, v3}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
 

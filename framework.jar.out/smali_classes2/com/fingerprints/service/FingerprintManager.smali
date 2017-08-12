@@ -14,6 +14,10 @@
         Lcom/fingerprints/service/FingerprintManager$GuidedResult;,
         Lcom/fingerprints/service/FingerprintManager$GuidedMaskList;,
         Lcom/fingerprints/service/FingerprintManager$GuidedData;,
+        Lcom/fingerprints/service/FingerprintManager$EventHandler;,
+        Lcom/fingerprints/service/FingerprintManager$DeleteTemplateCallback;,
+        Lcom/fingerprints/service/FingerprintManager$AlipayIdentifyCallback;,
+        Lcom/fingerprints/service/FingerprintManager$IdentifyListener;,
         Lcom/fingerprints/service/FingerprintManager$GuidedDataCallback;,
         Lcom/fingerprints/service/FingerprintManager$CaptureCallback;
     }
@@ -91,11 +95,37 @@
 
 .field private static TAG:Ljava/lang/String;
 
+.field private static mBundle:Landroid/os/Bundle;
+
+.field private static mGuidedDataBundle:Landroid/os/Bundle;
+
 
 # instance fields
+.field private mCaptureCallback:Lcom/fingerprints/service/FingerprintManager$CaptureCallback;
+
 .field mClient:Lcom/fingerprints/service/IFingerprintClient;
 
+.field private mDeleteTemplateCallback:Lcom/fingerprints/service/FingerprintManager$DeleteTemplateCallback;
+
+.field private mEnrolCallback:Lcom/fingerprints/service/FingerprintManager$EnrolCallback;
+
 .field mEventHandler:Landroid/os/Handler;
+
+.field private mEventhHandler:Lcom/fingerprints/service/FingerprintManager$EventHandler;
+
+.field private mGuidedDataCallback:Lcom/fingerprints/service/FingerprintManager$GuidedDataCallback;
+
+.field private mIdentifyCallback:Lcom/fingerprints/service/FingerprintManager$IdentifyCallback;
+
+.field private mIdentifyListener:Lcom/fingerprints/service/FingerprintManager$IdentifyListener;
+
+.field private mReadyToStore:Z
+
+.field private mService:Lcom/fingerprints/service/IFingerprintService;
+
+.field private mUserdata:I
+
+.field mzHanderThread:Landroid/os/HandlerThread;
 
 
 # direct methods
@@ -463,4 +493,227 @@
 .end method
 
 .method public abstract startIdentify(Lcom/fingerprints/service/FingerprintManager$IdentifyCallback;[I)V
+.end method
+
+.method private constructor <init>(Landroid/os/IBinder;Landroid/os/Looper;)V
+    .locals 0
+    .param p1, "service"    # Landroid/os/IBinder;
+    .param p2, "looper"    # Landroid/os/Looper;
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Landroid/os/RemoteException;
+        }
+    .end annotation
+
+    .prologue
+    return-void
+.end method
+
+.method private PackGuidedData()V
+    .locals 0
+
+    .prologue
+    return-void
+.end method
+
+.method static synthetic access$000()Ljava/lang/String;
+    .locals 1
+
+    .prologue
+    sget-object v0, Lcom/fingerprints/service/FingerprintManager;->TAG:Ljava/lang/String;
+
+    return-object v0
+.end method
+
+.method static synthetic access$100(Lcom/fingerprints/service/FingerprintManager;)Lcom/fingerprints/service/FingerprintManager$CaptureCallback;
+    .locals 1
+    .param p0, "x0"    # Lcom/fingerprints/service/FingerprintManager;
+
+    .prologue
+    const/4 v0, 0x0
+
+    return-object v0
+.end method
+
+.method static synthetic access$1000(Lcom/fingerprints/service/FingerprintManager;)Lcom/fingerprints/service/FingerprintManager$EventHandler;
+    .locals 1
+    .param p0, "x0"    # Lcom/fingerprints/service/FingerprintManager;
+
+    .prologue
+    const/4 v0, 0x0
+
+    return-object v0
+.end method
+
+.method static synthetic access$1100()Landroid/os/Bundle;
+    .locals 1
+
+    .prologue
+    const/4 v0, 0x0
+
+    return-object v0
+.end method
+
+.method static synthetic access$200(Lcom/fingerprints/service/FingerprintManager;)Lcom/fingerprints/service/FingerprintManager$IdentifyListener;
+    .locals 1
+    .param p0, "x0"    # Lcom/fingerprints/service/FingerprintManager;
+
+    .prologue
+    const/4 v0, 0x0
+
+    return-object v0
+.end method
+
+.method static synthetic access$300(Lcom/fingerprints/service/FingerprintManager;)I
+    .locals 1
+    .param p0, "x0"    # Lcom/fingerprints/service/FingerprintManager;
+
+    .prologue
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
+.method static synthetic access$400(Lcom/fingerprints/service/FingerprintManager;)Lcom/fingerprints/service/FingerprintManager$EnrolCallback;
+    .locals 1
+    .param p0, "x0"    # Lcom/fingerprints/service/FingerprintManager;
+
+    .prologue
+    const/4 v0, 0x0
+
+    return-object v0
+.end method
+
+.method static synthetic access$402(Lcom/fingerprints/service/FingerprintManager;Lcom/fingerprints/service/FingerprintManager$EnrolCallback;)Lcom/fingerprints/service/FingerprintManager$EnrolCallback;
+    .locals 0
+    .param p0, "x0"    # Lcom/fingerprints/service/FingerprintManager;
+    .param p1, "x1"    # Lcom/fingerprints/service/FingerprintManager$EnrolCallback;
+
+    .prologue
+    return-object p1
+.end method
+
+.method static synthetic access$500(Lcom/fingerprints/service/FingerprintManager;)Lcom/fingerprints/service/FingerprintManager$IdentifyCallback;
+    .locals 1
+    .param p0, "x0"    # Lcom/fingerprints/service/FingerprintManager;
+
+    .prologue
+    const/4 v0, 0x0
+
+    return-object v0
+.end method
+
+.method static synthetic access$600(Lcom/fingerprints/service/FingerprintManager;)Z
+    .locals 1
+    .param p0, "x0"    # Lcom/fingerprints/service/FingerprintManager;
+
+    .prologue
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
+.method static synthetic access$602(Lcom/fingerprints/service/FingerprintManager;Z)Z
+    .locals 0
+    .param p0, "x0"    # Lcom/fingerprints/service/FingerprintManager;
+    .param p1, "x1"    # Z
+
+    .prologue
+    return p1
+.end method
+
+.method static synthetic access$700(Lcom/fingerprints/service/FingerprintManager;)V
+    .locals 0
+    .param p0, "x0"    # Lcom/fingerprints/service/FingerprintManager;
+
+    .prologue
+    return-void
+.end method
+
+.method static synthetic access$800()Landroid/os/Bundle;
+    .locals 1
+
+    .prologue
+    const/4 v0, 0x0
+
+    return-object v0
+.end method
+
+.method static synthetic access$900(Lcom/fingerprints/service/FingerprintManager;)Lcom/fingerprints/service/FingerprintManager$DeleteTemplateCallback;
+    .locals 1
+    .param p0, "x0"    # Lcom/fingerprints/service/FingerprintManager;
+
+    .prologue
+    const/4 v0, 0x0
+
+    return-object v0
+.end method
+
+.method public static notifyScreenOff()V
+    .locals 0
+
+    .prologue
+    return-void
+.end method
+
+.method public static notifyScreenOn()V
+    .locals 0
+
+    .prologue
+    return-void
+.end method
+
+.method public deleteFingerData(Lcom/fingerprints/service/FingerprintManager$DeleteTemplateCallback;[I)V
+    .locals 0
+    .param p1, "deleteTemplateCallback"    # Lcom/fingerprints/service/FingerprintManager$DeleteTemplateCallback;
+    .param p2, "fingerIds"    # [I
+
+    .prologue
+    return-void
+.end method
+
+.method public isFingerEnable()Z
+    .locals 1
+
+    .prologue
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
+.method public isSurpport()Z
+    .locals 1
+
+    .prologue
+    const/4 v0, 0x0
+
+    return v0
+.end method
+
+.method public shouldRestartByScreenOn()V
+    .locals 0
+
+    .prologue
+    return-void
+.end method
+
+.method public startIdentify(Lcom/fingerprints/service/FingerprintManager$IdentifyListener;[III)V
+    .locals 0
+    .param p1, "identifyListener"    # Lcom/fingerprints/service/FingerprintManager$IdentifyListener;
+    .param p2, "ids"    # [I
+    .param p3, "timeout"    # I
+    .param p4, "userdata"    # I
+
+    .prologue
+    return-void
+.end method
+
+.method public updateTA(Ljava/lang/String;)Z
+    .locals 1
+    .param p1, "taPath"    # Ljava/lang/String;
+
+    .prologue
+    const/4 v0, 0x0
+
+    return v0
 .end method

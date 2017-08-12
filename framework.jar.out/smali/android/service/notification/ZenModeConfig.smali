@@ -1769,25 +1769,20 @@
     .param p6, "userHandle"    # I
 
     .prologue
-    .line 557
     const/16 v2, 0x3c
 
     move/from16 v0, p3
 
     if-ge v0, v2, :cond_0
 
-    .line 559
     move/from16 v12, p3
 
-    .line 560
     .local v12, "num":I
-    const v16, 0x1140019
+    const v16, #android:plurals@zen_mode_duration_minutes_summary#t
 
-    .line 561
     .local v16, "summaryResId":I
-    const v11, 0x114001b
+    const v11, #android:plurals@zen_mode_duration_minutes#t
 
-    .line 568
     .local v11, "line1ResId":I
     :goto_0
     move-object/from16 v0, p0
@@ -1875,7 +1870,7 @@
 
     .line 574
     .local v5, "line1":Ljava/lang/String;
-    const v2, 0x10406c2
+    const v2, #android:string@zen_mode_until#t
 
     const/4 v7, 0x1
 
@@ -1934,18 +1929,15 @@
 
     move-result v12
 
-    .line 565
     .restart local v12    # "num":I
-    const v16, 0x114001a
+    const v16, #android:plurals@zen_mode_duration_hours_summary#t
 
-    .line 566
     .restart local v16    # "summaryResId":I
-    const v11, 0x114001c
+    const v11, #android:plurals@zen_mode_duration_hours#t
 
     .restart local v11    # "line1ResId":I
     goto :goto_0
 
-    .line 568
     :cond_1
     const-string v15, "hma"
 

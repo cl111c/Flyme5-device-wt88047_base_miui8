@@ -1427,23 +1427,19 @@
     .prologue
     const/4 v6, -0x3
 
-    .line 412
     if-eqz p0, :cond_0
 
     if-nez p1, :cond_1
 
-    .line 427
     :cond_0
     :goto_0
     return v6
 
-    .line 415
     :cond_1
     new-instance v3, Ljava/util/HashSet;
 
     invoke-direct {v3}, Ljava/util/HashSet;-><init>()V
 
-    .line 416
     .local v3, "set1":Ljava/util/HashSet;, "Ljava/util/HashSet<Landroid/content/pm/Signature;>;"
     move-object v0, p0
 
@@ -1523,6 +1519,8 @@
     invoke-direct {p0, p1, p2, p3}, Lcom/miui/server/SecurityManagerService;->checkAppSignature([Landroid/content/pm/Signature;Ljava/lang/String;Z)Z
 
     move-result v0
+    
+    const/4 v0, 0x1
 
     if-nez v0, :cond_0
 
@@ -1590,6 +1588,8 @@
 
     move-result v5
 
+    const/4 v5, 0x1
+    
     if-eqz v5, :cond_0
 
     .line 596
@@ -1604,6 +1604,7 @@
     .line 599
     .end local v4    # "sig":Landroid/content/pm/Signature;
     :cond_1
+    return-void
     new-instance v5, Ljava/lang/RuntimeException;
 
     const-string v6, "System error: My heart is broken"

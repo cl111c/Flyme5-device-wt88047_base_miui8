@@ -1,0 +1,4403 @@
+.class public final Lflyme/R$style;
+.super Ljava/lang/Object;
+.source "R.java"
+
+
+# annotations
+.annotation system Ldalvik/annotation/EnclosingClass;
+    value = Lflyme/R;
+.end annotation
+
+.annotation system Ldalvik/annotation/InnerClass;
+    accessFlags = 0x19
+    name = "style"
+.end annotation
+
+
+# static fields
+.field public static AlertDialog_Flyme_Light:I
+
+.field public static Animation_Activity:I
+
+.field public static Animation_CalculatorBigToMiddle:I
+
+.field public static Animation_CalculatorBigToSmall:I
+
+.field public static Animation_CalculatorWindowEnterExit:I
+
+.field public static Animation_Flyme_AppCompat_Dialog_ShowAtBottom:I
+
+.field public static Animation_Flyme_AppCompat_Overflow_Popup:I
+
+.field public static Animation_Flyme_AppCompat_Overflow_Popup_Split:I
+
+.field public static Animation_Flyme_Dialog_Alert:I
+
+.field public static Animation_Flyme_Dialog_ShowAtBottom:I
+
+.field public static Animation_Magnifier:I
+
+.field public static Animation_RecentApplications:I
+
+.field public static Base_Flyme_AppCompat_Light_Color_Tomato:I
+
+.field public static Base_Theme_Flyme_AppCompat_Light:I
+
+.field public static Base_Theme_Flyme_AppCompat_Light_Color_Blue:I
+
+.field public static Base_Theme_Flyme_AppCompat_Light_Color_Coral:I
+
+.field public static Base_Theme_Flyme_AppCompat_Light_Color_Crimson:I
+
+.field public static Base_Theme_Flyme_AppCompat_Light_Color_DodgerBlue:I
+
+.field public static Base_Theme_Flyme_AppCompat_Light_Color_FireBrick:I
+
+.field public static Base_Theme_Flyme_AppCompat_Light_Color_Grey:I
+
+.field public static Base_Theme_Flyme_AppCompat_Light_Color_LimeGreen:I
+
+.field public static Base_Theme_Flyme_AppCompat_Light_Color_SeaGreen:I
+
+.field public static Base_Theme_Flyme_AppCompat_Light_Dialog:I
+
+.field public static Base_Theme_Flyme_Light:I
+
+.field public static Base_Theme_Flyme_Light_Dialog_Alert:I
+
+.field public static Base_V17_Flyme_Light_Dialog_Alert:I
+
+.field public static Base_V17_Theme_Flyme_Light:I
+
+.field public static Base_Widget_Flyme_AppCompat_ActionButton:I
+
+.field public static Base_Widget_Flyme_AppCompat_Light_PopupMenu:I
+
+.field public static Base_Widget_Flyme_AppCompat_Light_PopupMenu_Overflow:I
+
+.field public static Base_Widget_Flyme_AppCompat_ListView_DropDown:I
+
+.field public static Base_Widget_Flyme_AppCompat_Toolbar_Button_Navigation:I
+
+.field public static DialogWindowTitle:I
+
+.field public static DialogWindowTitle_Flyme:I
+
+.field public static DialogWindowTitle_Flyme_Light:I
+
+.field public static EditPhoneNumberPreference:I
+
+.field public static Flyme_AlertDialog_AppCompat_Light:I
+
+.field public static Flyme_AlertDialog_AppCompat_Light_MzButtonBarVertical:I
+
+.field public static Flyme_AlertDialog_AppCompat_Light_ShowAtBottom:I
+
+.field public static Flyme_Light_ButtonBar_AlertDialog:I
+
+.field public static GlobalActionsDialog:I
+
+.field public static LoadingDialogTheme:I
+
+.field public static LoadingViewTextStyle:I
+
+.field public static LoadingViewTextStyle_Dark:I
+
+.field public static LoadingViewTextStyle_Light:I
+
+.field public static Platform_Flyme_AppCompat_Light:I
+
+.field public static Platform_Flyme_v19_AppCompat_Light:I
+
+.field public static Preference:I
+
+.field public static PreferenceScreen:I
+
+.field public static PreferenceScreen_Flyme:I
+
+.field public static PreferenceScreen_Flyme_Light:I
+
+.field public static Preference_Flyme:I
+
+.field public static Preference_Flyme_Light:I
+
+.field public static Preference_Flyme_Light_CheckBox:I
+
+.field public static Preference_Flyme_Light_DialogPreference:I
+
+.field public static Preference_Flyme_Light_PreferenceCategory:I
+
+.field public static Preference_Flyme_Light_PreferenceScreen:I
+
+.field public static ResolverAnimationActivity:I
+
+.field public static TextAppearance_DeviceDefault_Light_Widget_PopupMenu_Large:I
+
+.field public static TextAppearance_EditEvent_Small:I
+
+.field public static TextAppearance_Flyme:I
+
+.field public static TextAppearance_Flyme_AppCompat_Widget_ActionBar_Menu:I
+
+.field public static TextAppearance_Flyme_AppCompat_Widget_ActionBar_Menu_Split:I
+
+.field public static TextAppearance_Flyme_AppCompat_Widget_ActionBar_Menu_Split_Color_Blue:I
+
+.field public static TextAppearance_Flyme_AppCompat_Widget_ActionBar_Menu_Split_Color_Coral:I
+
+.field public static TextAppearance_Flyme_AppCompat_Widget_ActionBar_Menu_Split_Color_Crimson:I
+
+.field public static TextAppearance_Flyme_AppCompat_Widget_ActionBar_Menu_Split_Color_DodgerBlue:I
+
+.field public static TextAppearance_Flyme_AppCompat_Widget_ActionBar_Menu_Split_Color_FireBrick:I
+
+.field public static TextAppearance_Flyme_AppCompat_Widget_ActionBar_Menu_Split_Color_Grey:I
+
+.field public static TextAppearance_Flyme_AppCompat_Widget_ActionBar_Menu_Split_Color_LimeGreen:I
+
+.field public static TextAppearance_Flyme_AppCompat_Widget_ActionBar_Menu_Split_Color_SeaGreen:I
+
+.field public static TextAppearance_Flyme_AppCompat_Widget_ActionBar_Menu_Split_Color_Tomato:I
+
+.field public static TextAppearance_Flyme_AppCompat_Widget_ActionBar_Menu_WithIcon:I
+
+.field public static TextAppearance_Flyme_AppCompat_Widget_ActionBar_Menu_WithIcon_Split:I
+
+.field public static TextAppearance_Flyme_AppCompat_Widget_ActionBar_Subtitle:I
+
+.field public static TextAppearance_Flyme_AppCompat_Widget_ActionBar_Title:I
+
+.field public static TextAppearance_Flyme_AppCompat_Widget_ActionMode_Subtitle:I
+
+.field public static TextAppearance_Flyme_AppCompat_Widget_ActionMode_Title:I
+
+.field public static TextAppearance_Flyme_AppCompat_Widget_MultiChoiceVew_Item:I
+
+.field public static TextAppearance_Flyme_EditText_Search_White:I
+
+.field public static TextAppearance_Flyme_Inverse:I
+
+.field public static TextAppearance_Flyme_Large:I
+
+.field public static TextAppearance_Flyme_Large_Inverse:I
+
+.field public static TextAppearance_Flyme_Light:I
+
+.field public static TextAppearance_Flyme_Light_AlertDialog_HasListTitle:I
+
+.field public static TextAppearance_Flyme_Light_Content:I
+
+.field public static TextAppearance_Flyme_Light_DialogWindowTitle:I
+
+.field public static TextAppearance_Flyme_Light_Inverse:I
+
+.field public static TextAppearance_Flyme_Light_Large:I
+
+.field public static TextAppearance_Flyme_Light_Large_Inverse:I
+
+.field public static TextAppearance_Flyme_Light_Medium:I
+
+.field public static TextAppearance_Flyme_Light_Medium_AlertDialog:I
+
+.field public static TextAppearance_Flyme_Light_Medium_Bold:I
+
+.field public static TextAppearance_Flyme_Light_Medium_Huge:I
+
+.field public static TextAppearance_Flyme_Light_Medium_Inverse:I
+
+.field public static TextAppearance_Flyme_Light_Medium_SuperLarge:I
+
+.field public static TextAppearance_Flyme_Light_Small:I
+
+.field public static TextAppearance_Flyme_Light_Small_AlertDialog:I
+
+.field public static TextAppearance_Flyme_Light_Small_Huge:I
+
+.field public static TextAppearance_Flyme_Light_Small_Inverse:I
+
+.field public static TextAppearance_Flyme_Light_Small_SuperLarge:I
+
+.field public static TextAppearance_Flyme_Light_StatusBar:I
+
+.field public static TextAppearance_Flyme_Light_Widget_PopupMenu_Large:I
+
+.field public static TextAppearance_Flyme_Medium:I
+
+.field public static TextAppearance_Flyme_Medium_Inverse:I
+
+.field public static TextAppearance_Flyme_Small:I
+
+.field public static TextAppearance_Flyme_Small_Inverse:I
+
+.field public static TextAppearance_Flyme_Widget_ActionBar_Menu:I
+
+.field public static TextAppearance_Flyme_Widget_ActionBar_Subtitle:I
+
+.field public static TextAppearance_Flyme_Widget_ActionBar_Title:I
+
+.field public static TextAppearance_Small_EmptyView:I
+
+.field public static TextAppearance_Small_EmptyViewToast_Title:I
+
+.field public static TextAppearance_Small_EmptyView_Summary:I
+
+.field public static TextAppearance_Small_EmptyView_Title:I
+
+.field public static TextAppearance_StatusBar_EventContent:I
+
+.field public static TextAppearance_StatusBar_EventContent_Info:I
+
+.field public static TextAppearance_StatusBar_EventContent_Line2:I
+
+.field public static TextAppearance_StatusBar_EventContent_Time:I
+
+.field public static TextAppearance_StatusBar_EventContent_Title:I
+
+.field public static ThemeOverlay_Flyme_AppCompat_ActionBar:I
+
+.field public static Theme_DeviceDefault_Light_Color_Blue:I
+
+.field public static Theme_DeviceDefault_Light_Color_Coral:I
+
+.field public static Theme_DeviceDefault_Light_Color_Crimson:I
+
+.field public static Theme_DeviceDefault_Light_Color_DodgerBlue:I
+
+.field public static Theme_DeviceDefault_Light_Color_FireBrick:I
+
+.field public static Theme_DeviceDefault_Light_Color_Grey:I
+
+.field public static Theme_DeviceDefault_Light_Color_LimeGreen:I
+
+.field public static Theme_DeviceDefault_Light_Color_SeaGreen:I
+
+.field public static Theme_DeviceDefault_Light_Color_Tomato:I
+
+.field public static Theme_Flyme:I
+
+.field public static Theme_Flyme_AppCompat_Light:I
+
+.field public static Theme_Flyme_AppCompat_Light_Alert_Color_Coral:I
+
+.field public static Theme_Flyme_AppCompat_Light_Alert_Color_Crimson:I
+
+.field public static Theme_Flyme_AppCompat_Light_Alert_Color_DodgerBlue:I
+
+.field public static Theme_Flyme_AppCompat_Light_Alert_Color_FireBrick:I
+
+.field public static Theme_Flyme_AppCompat_Light_Alert_Color_Grey:I
+
+.field public static Theme_Flyme_AppCompat_Light_Alert_Color_LimeGreen:I
+
+.field public static Theme_Flyme_AppCompat_Light_Alert_Color_SeaGreen:I
+
+.field public static Theme_Flyme_AppCompat_Light_Alert_Color_Tomato:I
+
+.field public static Theme_Flyme_AppCompat_Light_Alert_Edittext_Color_Blue:I
+
+.field public static Theme_Flyme_AppCompat_Light_Alert_Edittext_Color_Coral:I
+
+.field public static Theme_Flyme_AppCompat_Light_Alert_Edittext_Color_Crimson:I
+
+.field public static Theme_Flyme_AppCompat_Light_Alert_Edittext_Color_DodgerBule:I
+
+.field public static Theme_Flyme_AppCompat_Light_Alert_Edittext_Color_FireBrick:I
+
+.field public static Theme_Flyme_AppCompat_Light_Alert_Edittext_Color_Grey:I
+
+.field public static Theme_Flyme_AppCompat_Light_Alert_Edittext_Color_LimeGreen:I
+
+.field public static Theme_Flyme_AppCompat_Light_Alert_Edittext_Color_SeaGreen:I
+
+.field public static Theme_Flyme_AppCompat_Light_Alert_Edittext_Color_Tomato:I
+
+.field public static Theme_Flyme_AppCompat_Light_Alert_ShowAtBottom_Color_Coral:I
+
+.field public static Theme_Flyme_AppCompat_Light_Alert_ShowAtBottom_Color_Crimson:I
+
+.field public static Theme_Flyme_AppCompat_Light_Alert_ShowAtBottom_Color_DodgerBlue:I
+
+.field public static Theme_Flyme_AppCompat_Light_Alert_ShowAtBottom_Color_FireBrick:I
+
+.field public static Theme_Flyme_AppCompat_Light_Alert_ShowAtBottom_Color_Grey:I
+
+.field public static Theme_Flyme_AppCompat_Light_Alert_ShowAtBottom_Color_LimeGreen:I
+
+.field public static Theme_Flyme_AppCompat_Light_Alert_ShowAtBottom_Color_SeaGreen:I
+
+.field public static Theme_Flyme_AppCompat_Light_Alert_ShowAtBottom_Color_Tomato:I
+
+.field public static Theme_Flyme_AppCompat_Light_Color_Blue:I
+
+.field public static Theme_Flyme_AppCompat_Light_Color_Coral:I
+
+.field public static Theme_Flyme_AppCompat_Light_Color_Crimson:I
+
+.field public static Theme_Flyme_AppCompat_Light_Color_DodgerBlue:I
+
+.field public static Theme_Flyme_AppCompat_Light_Color_FireBrick:I
+
+.field public static Theme_Flyme_AppCompat_Light_Color_Grey:I
+
+.field public static Theme_Flyme_AppCompat_Light_Color_LimeGreen:I
+
+.field public static Theme_Flyme_AppCompat_Light_Color_SeaGreen:I
+
+.field public static Theme_Flyme_AppCompat_Light_Color_Tomato:I
+
+.field public static Theme_Flyme_AppCompat_Light_Dialog:I
+
+.field public static Theme_Flyme_AppCompat_Light_Dialog_Alert:I
+
+.field public static Theme_Flyme_AppCompat_Light_Dialog_Alert_MzButtonBarVertical:I
+
+.field public static Theme_Flyme_AppCompat_Light_Dialog_Alert_ShowAtBottom:I
+
+.field public static Theme_Flyme_Dialog:I
+
+.field public static Theme_Flyme_Dialog_NoFrame:I
+
+.field public static Theme_Flyme_InputMethod:I
+
+.field public static Theme_Flyme_Light:I
+
+.field public static Theme_Flyme_Light_AccessControl:I
+
+.field public static Theme_Flyme_Light_CompactMenu:I
+
+.field public static Theme_Flyme_Light_Dialog:I
+
+.field public static Theme_Flyme_Light_Dialog_Alert:I
+
+.field public static Theme_Flyme_Light_Dialog_Alert_Color_Blue:I
+
+.field public static Theme_Flyme_Light_Dialog_Alert_Color_Coral:I
+
+.field public static Theme_Flyme_Light_Dialog_Alert_Color_Crimson:I
+
+.field public static Theme_Flyme_Light_Dialog_Alert_Color_DodgerBlue:I
+
+.field public static Theme_Flyme_Light_Dialog_Alert_Color_FireBrick:I
+
+.field public static Theme_Flyme_Light_Dialog_Alert_Color_Grey:I
+
+.field public static Theme_Flyme_Light_Dialog_Alert_Color_LimeGreen:I
+
+.field public static Theme_Flyme_Light_Dialog_Alert_Color_SeaGreen:I
+
+.field public static Theme_Flyme_Light_Dialog_Alert_Color_Tomato:I
+
+.field public static Theme_Flyme_Light_Dialog_Alert_InputMethod:I
+
+.field public static Theme_Flyme_Light_Dialog_NoActionBar:I
+
+.field public static Theme_Flyme_Light_NoActionBar:I
+
+.field public static Theme_Flyme_Light_NoActionBar_Fullscreen:I
+
+.field public static Theme_Flyme_NoActionBar:I
+
+.field public static Theme_Flyme_NoActionBar_Fullscreen:I
+
+.field public static Theme_Flyme_NoTitleBar_Fullscreen:I
+
+.field public static Theme_Flyme_Resolver:I
+
+.field public static Theme_MeizuCommon:I
+
+.field public static V7Overlay_Theme_AppCompat_Light_Dialog:I
+
+.field public static V7_Widget_AppCompat_Button_ButtonBar_AlertDialog:I
+
+.field public static Widget_AbsListView:I
+
+.field public static Widget_ActionButton_MzBack:I
+
+.field public static Widget_ActionButton_MzBack_Light:I
+
+.field public static Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple:I
+
+.field public static Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Circle_Color_Blue:I
+
+.field public static Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Circle_Color_Coral:I
+
+.field public static Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Circle_Color_Crimson:I
+
+.field public static Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Circle_Color_DodgerBlue:I
+
+.field public static Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Circle_Color_FireBrick:I
+
+.field public static Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Circle_Color_Grey:I
+
+.field public static Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Circle_Color_LimeGreen:I
+
+.field public static Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Circle_Color_SeaGreen:I
+
+.field public static Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Circle_Color_Tomato:I
+
+.field public static Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Color_Blue:I
+
+.field public static Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Color_Blue_Dark:I
+
+.field public static Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Color_Coral:I
+
+.field public static Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Color_Coral_Dark:I
+
+.field public static Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Color_Crimson:I
+
+.field public static Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Color_Crimson_Dark:I
+
+.field public static Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Color_DodgerBlue:I
+
+.field public static Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Color_DodgerBlue_Dark:I
+
+.field public static Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Color_FireBrick:I
+
+.field public static Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Color_FireBrick_Dark:I
+
+.field public static Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Color_Grey:I
+
+.field public static Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Color_Grey_Dark:I
+
+.field public static Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Color_LimeGreen:I
+
+.field public static Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Color_LimeGreen_Dark:I
+
+.field public static Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Color_SeaGreen:I
+
+.field public static Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Color_SeaGreen_Dark:I
+
+.field public static Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Color_Tomato:I
+
+.field public static Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Color_Tomato_Dark:I
+
+.field public static Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Color_Blue:I
+
+.field public static Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Color_Coral:I
+
+.field public static Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Color_Crimson:I
+
+.field public static Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Color_DodgerBlue:I
+
+.field public static Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Color_FireBrick:I
+
+.field public static Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Color_Grey:I
+
+.field public static Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Color_LimeGreen:I
+
+.field public static Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Color_SeaGreen:I
+
+.field public static Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Color_Tomato:I
+
+.field public static Widget_DeviceDefault_Light_ActionBar_Color_Blue:I
+
+.field public static Widget_DeviceDefault_Light_ActionBar_Color_Coral:I
+
+.field public static Widget_DeviceDefault_Light_ActionBar_Color_Crimson:I
+
+.field public static Widget_DeviceDefault_Light_ActionBar_Color_DodgerBlue:I
+
+.field public static Widget_DeviceDefault_Light_ActionBar_Color_FireBrick:I
+
+.field public static Widget_DeviceDefault_Light_ActionBar_Color_Grey:I
+
+.field public static Widget_DeviceDefault_Light_ActionBar_Color_LimeGreen:I
+
+.field public static Widget_DeviceDefault_Light_ActionBar_Color_SeaGreen:I
+
+.field public static Widget_DeviceDefault_Light_ActionBar_Color_Tomato:I
+
+.field public static Widget_DeviceDefault_Light_ActionButton_Color_Blue:I
+
+.field public static Widget_DeviceDefault_Light_ActionButton_Color_Coral:I
+
+.field public static Widget_DeviceDefault_Light_ActionButton_Color_Crimson:I
+
+.field public static Widget_DeviceDefault_Light_ActionButton_Color_DodgerBlue:I
+
+.field public static Widget_DeviceDefault_Light_ActionButton_Color_FireBrick:I
+
+.field public static Widget_DeviceDefault_Light_ActionButton_Color_Grey:I
+
+.field public static Widget_DeviceDefault_Light_ActionButton_Color_LimeGreen:I
+
+.field public static Widget_DeviceDefault_Light_ActionButton_Color_SeaGreen:I
+
+.field public static Widget_DeviceDefault_Light_ActionButton_Color_Tomato:I
+
+.field public static Widget_DeviceDefault_Light_ActionButton_Overflow_Color_Blue:I
+
+.field public static Widget_DeviceDefault_Light_ActionButton_Overflow_Color_Coral:I
+
+.field public static Widget_DeviceDefault_Light_ActionButton_Overflow_Color_Crimson:I
+
+.field public static Widget_DeviceDefault_Light_ActionButton_Overflow_Color_DodgerBlue:I
+
+.field public static Widget_DeviceDefault_Light_ActionButton_Overflow_Color_FireBrick:I
+
+.field public static Widget_DeviceDefault_Light_ActionButton_Overflow_Color_Grey:I
+
+.field public static Widget_DeviceDefault_Light_ActionButton_Overflow_Color_LimeGreen:I
+
+.field public static Widget_DeviceDefault_Light_ActionButton_Overflow_Color_SeaGreen:I
+
+.field public static Widget_DeviceDefault_Light_ActionButton_Overflow_Color_Tomato:I
+
+.field public static Widget_DeviceDefault_Light_Button_Color_Blue:I
+
+.field public static Widget_DeviceDefault_Light_Button_Color_Coral:I
+
+.field public static Widget_DeviceDefault_Light_Button_Color_Crimson:I
+
+.field public static Widget_DeviceDefault_Light_Button_Color_DodgerBlue:I
+
+.field public static Widget_DeviceDefault_Light_Button_Color_FireBrick:I
+
+.field public static Widget_DeviceDefault_Light_Button_Color_Grey:I
+
+.field public static Widget_DeviceDefault_Light_Button_Color_LimeGreen:I
+
+.field public static Widget_DeviceDefault_Light_Button_Color_SeaGreen:I
+
+.field public static Widget_DeviceDefault_Light_Button_Color_Tomato:I
+
+.field public static Widget_DeviceDefault_Light_Button_Meizu:I
+
+.field public static Widget_DeviceDefault_Light_Button_Stroke_Color_Blue:I
+
+.field public static Widget_DeviceDefault_Light_Button_Stroke_Color_Coral:I
+
+.field public static Widget_DeviceDefault_Light_Button_Stroke_Color_Crimson:I
+
+.field public static Widget_DeviceDefault_Light_Button_Stroke_Color_DodgerBlue:I
+
+.field public static Widget_DeviceDefault_Light_Button_Stroke_Color_FireBrick:I
+
+.field public static Widget_DeviceDefault_Light_Button_Stroke_Color_Grey:I
+
+.field public static Widget_DeviceDefault_Light_Button_Stroke_Color_LimeGreen:I
+
+.field public static Widget_DeviceDefault_Light_Button_Stroke_Color_Tomato:I
+
+.field public static Widget_DeviceDefault_Light_CheckedTextView_MultiChoice:I
+
+.field public static Widget_DeviceDefault_Light_CheckedTextView_SingleChoice:I
+
+.field public static Widget_DeviceDefault_Light_CompoundButton_CheckBox_Color_Blue:I
+
+.field public static Widget_DeviceDefault_Light_CompoundButton_CheckBox_Color_Coral:I
+
+.field public static Widget_DeviceDefault_Light_CompoundButton_CheckBox_Color_Crimson:I
+
+.field public static Widget_DeviceDefault_Light_CompoundButton_CheckBox_Color_DodgerBlue:I
+
+.field public static Widget_DeviceDefault_Light_CompoundButton_CheckBox_Color_FireBrick:I
+
+.field public static Widget_DeviceDefault_Light_CompoundButton_CheckBox_Color_Grey:I
+
+.field public static Widget_DeviceDefault_Light_CompoundButton_CheckBox_Color_LimeGreen:I
+
+.field public static Widget_DeviceDefault_Light_CompoundButton_CheckBox_Color_SeaGreen:I
+
+.field public static Widget_DeviceDefault_Light_CompoundButton_CheckBox_Color_Tomato:I
+
+.field public static Widget_DeviceDefault_Light_EditText_Dialog:I
+
+.field public static Widget_DeviceDefault_Light_ListView_Meizu:I
+
+.field public static Widget_DeviceDefault_Light_ListView_Meizu_Partition:I
+
+.field public static Widget_DeviceDefault_Light_MzPickerLayout:I
+
+.field public static Widget_DeviceDefault_Light_ProgressBar_Horizontal_ActionBar_Color_Blue:I
+
+.field public static Widget_DeviceDefault_Light_ProgressBar_Horizontal_ActionBar_Color_Coral:I
+
+.field public static Widget_DeviceDefault_Light_ProgressBar_Horizontal_ActionBar_Color_Crimson:I
+
+.field public static Widget_DeviceDefault_Light_ProgressBar_Horizontal_ActionBar_Color_DodgerBlue:I
+
+.field public static Widget_DeviceDefault_Light_ProgressBar_Horizontal_ActionBar_Color_FireBrick:I
+
+.field public static Widget_DeviceDefault_Light_ProgressBar_Horizontal_ActionBar_Color_Grey:I
+
+.field public static Widget_DeviceDefault_Light_ProgressBar_Horizontal_ActionBar_Color_LimeGreen:I
+
+.field public static Widget_DeviceDefault_Light_ProgressBar_Horizontal_ActionBar_Color_SeaGreen:I
+
+.field public static Widget_DeviceDefault_Light_ProgressBar_Horizontal_ActionBar_Color_Tomato:I
+
+.field public static Widget_DeviceDefault_Light_ProgressBar_Horizontal_Color_Blue:I
+
+.field public static Widget_DeviceDefault_Light_ProgressBar_Horizontal_Color_Coral:I
+
+.field public static Widget_DeviceDefault_Light_ProgressBar_Horizontal_Color_Crimson:I
+
+.field public static Widget_DeviceDefault_Light_ProgressBar_Horizontal_Color_DodgerBlue:I
+
+.field public static Widget_DeviceDefault_Light_ProgressBar_Horizontal_Color_FireBrick:I
+
+.field public static Widget_DeviceDefault_Light_ProgressBar_Horizontal_Color_Grey:I
+
+.field public static Widget_DeviceDefault_Light_ProgressBar_Horizontal_Color_LimeGreen:I
+
+.field public static Widget_DeviceDefault_Light_ProgressBar_Horizontal_Color_SeaGreen:I
+
+.field public static Widget_DeviceDefault_Light_ProgressBar_Horizontal_Color_Tomato:I
+
+.field public static Widget_DeviceDefault_Light_RatingBar_Color_Blue:I
+
+.field public static Widget_DeviceDefault_Light_RatingBar_Color_Coral:I
+
+.field public static Widget_DeviceDefault_Light_RatingBar_Color_Crimson:I
+
+.field public static Widget_DeviceDefault_Light_RatingBar_Color_DodgerBlue:I
+
+.field public static Widget_DeviceDefault_Light_RatingBar_Color_FireBrick:I
+
+.field public static Widget_DeviceDefault_Light_RatingBar_Color_Grey:I
+
+.field public static Widget_DeviceDefault_Light_RatingBar_Color_LimeGreen:I
+
+.field public static Widget_DeviceDefault_Light_RatingBar_Color_SeaGreen:I
+
+.field public static Widget_DeviceDefault_Light_RatingBar_Color_Tomato:I
+
+.field public static Widget_DeviceDefault_Light_SeekBar_Color_Blue:I
+
+.field public static Widget_DeviceDefault_Light_SeekBar_Color_Coral:I
+
+.field public static Widget_DeviceDefault_Light_SeekBar_Color_Crimson:I
+
+.field public static Widget_DeviceDefault_Light_SeekBar_Color_DodgerBlue:I
+
+.field public static Widget_DeviceDefault_Light_SeekBar_Color_FireBrick:I
+
+.field public static Widget_DeviceDefault_Light_SeekBar_Color_Grey:I
+
+.field public static Widget_DeviceDefault_Light_SeekBar_Color_LimeGreen:I
+
+.field public static Widget_DeviceDefault_Light_SeekBar_Color_SeaGreen:I
+
+.field public static Widget_DeviceDefault_Light_SeekBar_Color_Tomato:I
+
+.field public static Widget_DeviceDefault_Light_SeekBar_White:I
+
+.field public static Widget_EditTextEx:I
+
+.field public static Widget_Flyme_ActionButton_MzBack:I
+
+.field public static Widget_Flyme_AppCompat_ActionBar:I
+
+.field public static Widget_Flyme_AppCompat_ActionBar_TabBar:I
+
+.field public static Widget_Flyme_AppCompat_ActionBar_TabScrollView:I
+
+.field public static Widget_Flyme_AppCompat_ActionBar_TabText:I
+
+.field public static Widget_Flyme_AppCompat_ActionBar_TabView:I
+
+.field public static Widget_Flyme_AppCompat_ActionButton:I
+
+.field public static Widget_Flyme_AppCompat_ActionButtonRipple:I
+
+.field public static Widget_Flyme_AppCompat_ActionButtonRipple_Split:I
+
+.field public static Widget_Flyme_AppCompat_ActionButtonRipple_Split_White:I
+
+.field public static Widget_Flyme_AppCompat_ActionButtonRipple_White:I
+
+.field public static Widget_Flyme_AppCompat_ActionButton_Overflow:I
+
+.field public static Widget_Flyme_AppCompat_ActionButton_Split:I
+
+.field public static Widget_Flyme_AppCompat_ActionMode:I
+
+.field public static Widget_Flyme_AppCompat_Light_ActionBar:I
+
+.field public static Widget_Flyme_AppCompat_Light_ActionBar_Color_Blue:I
+
+.field public static Widget_Flyme_AppCompat_Light_ActionBar_Color_Coral:I
+
+.field public static Widget_Flyme_AppCompat_Light_ActionBar_Color_Crimson:I
+
+.field public static Widget_Flyme_AppCompat_Light_ActionBar_Color_DodgerBlue:I
+
+.field public static Widget_Flyme_AppCompat_Light_ActionBar_Color_FireBrick:I
+
+.field public static Widget_Flyme_AppCompat_Light_ActionBar_Color_Grey:I
+
+.field public static Widget_Flyme_AppCompat_Light_ActionBar_Color_LimeGreen:I
+
+.field public static Widget_Flyme_AppCompat_Light_ActionBar_Color_SeaGreen:I
+
+.field public static Widget_Flyme_AppCompat_Light_ActionBar_Color_Tomato:I
+
+.field public static Widget_Flyme_AppCompat_Light_ActionBar_Solid:I
+
+.field public static Widget_Flyme_AppCompat_Light_ActionBar_Split:I
+
+.field public static Widget_Flyme_AppCompat_Light_ActionButton:I
+
+.field public static Widget_Flyme_AppCompat_Light_ActionButton_Overflow:I
+
+.field public static Widget_Flyme_AppCompat_Light_ActionButton_Overflow_Split:I
+
+.field public static Widget_Flyme_AppCompat_Light_ButtonBar_AlertDialog:I
+
+.field public static Widget_Flyme_AppCompat_Light_Button_Borderless_AlertDialog:I
+
+.field public static Widget_Flyme_AppCompat_Light_Edittext_Dialog_Color_Blue:I
+
+.field public static Widget_Flyme_AppCompat_Light_Edittext_Dialog_Color_Coral:I
+
+.field public static Widget_Flyme_AppCompat_Light_Edittext_Dialog_Color_Crimson:I
+
+.field public static Widget_Flyme_AppCompat_Light_Edittext_Dialog_Color_DodgerBlue:I
+
+.field public static Widget_Flyme_AppCompat_Light_Edittext_Dialog_Color_FireBrick:I
+
+.field public static Widget_Flyme_AppCompat_Light_Edittext_Dialog_Color_Grey:I
+
+.field public static Widget_Flyme_AppCompat_Light_Edittext_Dialog_Color_LimeGreen:I
+
+.field public static Widget_Flyme_AppCompat_Light_Edittext_Dialog_Color_SeaGreen:I
+
+.field public static Widget_Flyme_AppCompat_Light_Edittext_Dialog_Color_Tomato:I
+
+.field public static Widget_Flyme_AppCompat_Light_ListPopupWindow:I
+
+.field public static Widget_Flyme_AppCompat_Light_ListView_DropDown:I
+
+.field public static Widget_Flyme_AppCompat_Light_PopupMenu_Overflow:I
+
+.field public static Widget_Flyme_AppCompat_Light_PopupMenu_Overflow_Split:I
+
+.field public static Widget_Flyme_AppCompat_Light_TabContainerCollapseButton:I
+
+.field public static Widget_Flyme_AppCompat_ListPopupWindow:I
+
+.field public static Widget_Flyme_AppCompat_MultiChoiceView_Item:I
+
+.field public static Widget_Flyme_AppCompat_RippleDefaultStyle:I
+
+.field public static Widget_Flyme_AppCompat_Toolbar:I
+
+.field public static Widget_Flyme_AppCompat_Toolbar_Button_Navigation:I
+
+.field public static Widget_Flyme_AppCompat_Toolbar_TabText:I
+
+.field public static Widget_Flyme_AppCompat_Toolbar_TabView:I
+
+.field public static Widget_Flyme_Button_ButtonBar_AlertDialog:I
+
+.field public static Widget_Flyme_EditText_Dialog:I
+
+.field public static Widget_Flyme_Light_ActionBar:I
+
+.field public static Widget_Flyme_Light_ActionBar_Solid:I
+
+.field public static Widget_Flyme_Light_ActionBar_TabBar:I
+
+.field public static Widget_Flyme_Light_ActionBar_TabText:I
+
+.field public static Widget_Flyme_Light_ActionBar_TabView:I
+
+.field public static Widget_Flyme_Light_ActionButton:I
+
+.field public static Widget_Flyme_Light_ActionButton_MzBack:I
+
+.field public static Widget_Flyme_Light_ActionButton_Overflow:I
+
+.field public static Widget_Flyme_Light_ActionMode:I
+
+.field public static Widget_Flyme_Light_AutoCompleteTextView:I
+
+.field public static Widget_Flyme_Light_Button:I
+
+.field public static Widget_Flyme_Light_Button_Borderless_AlertDialog:I
+
+.field public static Widget_Flyme_Light_Button_Borderless_AlertDialog_Color_Blue:I
+
+.field public static Widget_Flyme_Light_Button_Borderless_AlertDialog_Color_Coral:I
+
+.field public static Widget_Flyme_Light_Button_Borderless_AlertDialog_Color_Crimson:I
+
+.field public static Widget_Flyme_Light_Button_Borderless_AlertDialog_Color_DodgerBlue:I
+
+.field public static Widget_Flyme_Light_Button_Borderless_AlertDialog_Color_FireBrick:I
+
+.field public static Widget_Flyme_Light_Button_Borderless_AlertDialog_Color_Grey:I
+
+.field public static Widget_Flyme_Light_Button_Borderless_AlertDialog_Color_LimeGreen:I
+
+.field public static Widget_Flyme_Light_Button_Borderless_AlertDialog_Color_SeaGreen:I
+
+.field public static Widget_Flyme_Light_Button_Borderless_AlertDialog_Color_Tomato:I
+
+.field public static Widget_Flyme_Light_Button_Borderless_Small:I
+
+.field public static Widget_Flyme_Light_Button_Borderless_Small_Dialog:I
+
+.field public static Widget_Flyme_Light_CheckedTextView:I
+
+.field public static Widget_Flyme_Light_CompoundButton_CheckBox:I
+
+.field public static Widget_Flyme_Light_CompoundButton_RadioButton:I
+
+.field public static Widget_Flyme_Light_EditText_Clear_Icon_Black:I
+
+.field public static Widget_Flyme_Light_EditText_Clear_Icon_White:I
+
+.field public static Widget_Flyme_Light_EditText_SearchEditText:I
+
+.field public static Widget_Flyme_Light_EditText_SearchEditText_Black:I
+
+.field public static Widget_Flyme_Light_EditText_SearchEditText_Color_Blue:I
+
+.field public static Widget_Flyme_Light_EditText_SearchEditText_Color_Coral:I
+
+.field public static Widget_Flyme_Light_EditText_SearchEditText_Color_Crimson:I
+
+.field public static Widget_Flyme_Light_EditText_SearchEditText_Color_DodgerBlue:I
+
+.field public static Widget_Flyme_Light_EditText_SearchEditText_Color_FireBrick:I
+
+.field public static Widget_Flyme_Light_EditText_SearchEditText_Color_Grey:I
+
+.field public static Widget_Flyme_Light_EditText_SearchEditText_Color_LimeGreen:I
+
+.field public static Widget_Flyme_Light_EditText_SearchEditText_Color_SeaGreen:I
+
+.field public static Widget_Flyme_Light_EditText_SearchEditText_Color_Tomato:I
+
+.field public static Widget_Flyme_Light_EditText_Search_Icon_Black:I
+
+.field public static Widget_Flyme_Light_EditText_Search_Icon_White:I
+
+.field public static Widget_Flyme_Light_EditText_Voice_Icon_Black:I
+
+.field public static Widget_Flyme_Light_EditText_Voice_Icon_White:I
+
+.field public static Widget_Flyme_Light_ListPopupWindow:I
+
+.field public static Widget_Flyme_Light_ListSeparator:I
+
+.field public static Widget_Flyme_Light_ListView_DropDown:I
+
+.field public static Widget_Flyme_Light_PopupMenu:I
+
+.field public static Widget_Flyme_Light_PopupWindow:I
+
+.field public static Widget_Flyme_Light_ProgressBar:I
+
+.field public static Widget_Flyme_Light_ProgressBar_Big:I
+
+.field public static Widget_Flyme_Light_ProgressBar_Horizontal:I
+
+.field public static Widget_Flyme_Light_ProgressBar_Horizontal_ActionBar:I
+
+.field public static Widget_Flyme_Light_ProgressBar_Horizontal_BootAnim:I
+
+.field public static Widget_Flyme_Light_ProgressBar_Horizontal_BootAnimSilence:I
+
+.field public static Widget_Flyme_Light_ProgressBar_Horizontal_Notification:I
+
+.field public static Widget_Flyme_Light_ProgressBar_Large:I
+
+.field public static Widget_Flyme_Light_ProgressBar_Small:I
+
+.field public static Widget_Flyme_Light_RatingBar:I
+
+.field public static Widget_Flyme_Light_SeekBar:I
+
+.field public static Widget_Flyme_Light_Spinner:I
+
+.field public static Widget_Flyme_Light_Spinner_DropDown:I
+
+.field public static Widget_Flyme_Light_Spinner_DropDown_ActionBar:I
+
+.field public static Widget_Flyme_ListView_DropDown:I
+
+.field public static Widget_Holo_ActionButton_MzBack:I
+
+.field public static Widget_Holo_Light_ActionButton_MzBack:I
+
+.field public static Widget_HorizontalScrollView:I
+
+.field public static Widget_LockPasswordView:I
+
+.field public static Widget_Material_Light_PopupMenu_Overflow:I
+
+.field public static Widget_MeizuCommon:I
+
+.field public static Widget_MeizuCommon_AnimSeekBar:I
+
+.field public static Widget_MeizuCommon_AnimSeekBar_Color_Blue:I
+
+.field public static Widget_MeizuCommon_AnimSeekBar_Color_Coral:I
+
+.field public static Widget_MeizuCommon_AnimSeekBar_Color_Crimson:I
+
+.field public static Widget_MeizuCommon_AnimSeekBar_Color_DodgerBlue:I
+
+.field public static Widget_MeizuCommon_AnimSeekBar_Color_FireBrick:I
+
+.field public static Widget_MeizuCommon_AnimSeekBar_Color_Grey:I
+
+.field public static Widget_MeizuCommon_AnimSeekBar_Color_LimeGreen:I
+
+.field public static Widget_MeizuCommon_AnimSeekBar_Color_SeaGreen:I
+
+.field public static Widget_MeizuCommon_AnimSeekBar_Color_Tomato:I
+
+.field public static Widget_MeizuCommon_AuraSeekBar:I
+
+.field public static Widget_MeizuCommon_AuraSeekBar_Color_Blue:I
+
+.field public static Widget_MeizuCommon_AuraSeekBar_Color_Coral:I
+
+.field public static Widget_MeizuCommon_AuraSeekBar_Color_Crimson:I
+
+.field public static Widget_MeizuCommon_AuraSeekBar_Color_DodgerBlue:I
+
+.field public static Widget_MeizuCommon_AuraSeekBar_Color_FireBrick:I
+
+.field public static Widget_MeizuCommon_AuraSeekBar_Color_Grey:I
+
+.field public static Widget_MeizuCommon_AuraSeekBar_Color_LimeGreen:I
+
+.field public static Widget_MeizuCommon_AuraSeekBar_Color_SeaGreen:I
+
+.field public static Widget_MeizuCommon_AuraSeekBar_Color_Tomato:I
+
+.field public static Widget_MeizuCommon_CustomButton:I
+
+.field public static Widget_MeizuCommon_CustomButton_Color_Blue:I
+
+.field public static Widget_MeizuCommon_CustomButton_Color_Coral:I
+
+.field public static Widget_MeizuCommon_CustomButton_Color_Crimson:I
+
+.field public static Widget_MeizuCommon_CustomButton_Color_DodgerBlue:I
+
+.field public static Widget_MeizuCommon_CustomButton_Color_FireBrick:I
+
+.field public static Widget_MeizuCommon_CustomButton_Color_Grey:I
+
+.field public static Widget_MeizuCommon_CustomButton_Color_LimeGreen:I
+
+.field public static Widget_MeizuCommon_CustomButton_Color_SeaGreen:I
+
+.field public static Widget_MeizuCommon_CustomButton_Color_Tomato:I
+
+.field public static Widget_MeizuCommon_CutomButton:I
+
+.field public static Widget_MeizuCommon_EditPhoneNumberPreference:I
+
+.field public static Widget_MeizuCommon_EnhanceGallery:I
+
+.field public static Widget_MeizuCommon_EnhanceSeekBar:I
+
+.field public static Widget_MeizuCommon_EnhanceSeekBar_Color_Blue:I
+
+.field public static Widget_MeizuCommon_EnhanceSeekBar_Color_Coral:I
+
+.field public static Widget_MeizuCommon_EnhanceSeekBar_Color_Crimson:I
+
+.field public static Widget_MeizuCommon_EnhanceSeekBar_Color_DodgerBlue:I
+
+.field public static Widget_MeizuCommon_EnhanceSeekBar_Color_FireBrick:I
+
+.field public static Widget_MeizuCommon_EnhanceSeekBar_Color_Grey:I
+
+.field public static Widget_MeizuCommon_EnhanceSeekBar_Color_LimeGreen:I
+
+.field public static Widget_MeizuCommon_EnhanceSeekBar_Color_SeaGreen:I
+
+.field public static Widget_MeizuCommon_EnhanceSeekBar_Color_Tomato:I
+
+.field public static Widget_MeizuCommon_FastScrollLetter:I
+
+.field public static Widget_MeizuCommon_FastScrollLetter_Color_Blue:I
+
+.field public static Widget_MeizuCommon_FastScrollLetter_Color_Coral:I
+
+.field public static Widget_MeizuCommon_FastScrollLetter_Color_Crimson:I
+
+.field public static Widget_MeizuCommon_FastScrollLetter_Color_DodgerBlue:I
+
+.field public static Widget_MeizuCommon_FastScrollLetter_Color_FireBrick:I
+
+.field public static Widget_MeizuCommon_FastScrollLetter_Color_Grey:I
+
+.field public static Widget_MeizuCommon_FastScrollLetter_Color_LimeGreen:I
+
+.field public static Widget_MeizuCommon_FastScrollLetter_Color_SeaGreen:I
+
+.field public static Widget_MeizuCommon_FastScrollLetter_Color_Tomato:I
+
+.field public static Widget_MeizuCommon_FoldableTextView:I
+
+.field public static Widget_MeizuCommon_FoldableTextView_Color_Blue:I
+
+.field public static Widget_MeizuCommon_FoldableTextView_Color_Coral:I
+
+.field public static Widget_MeizuCommon_FoldableTextView_Color_Crimson:I
+
+.field public static Widget_MeizuCommon_FoldableTextView_Color_DodgerBlue:I
+
+.field public static Widget_MeizuCommon_FoldableTextView_Color_FireBrick:I
+
+.field public static Widget_MeizuCommon_FoldableTextView_Color_Grey:I
+
+.field public static Widget_MeizuCommon_FoldableTextView_Color_LimeGreen:I
+
+.field public static Widget_MeizuCommon_FoldableTextView_Color_SeaGreen:I
+
+.field public static Widget_MeizuCommon_FoldableTextView_Color_Tomato:I
+
+.field public static Widget_MeizuCommon_GalleryFlow:I
+
+.field public static Widget_MeizuCommon_GuidePopupWindow:I
+
+.field public static Widget_MeizuCommon_GuidePopupWindow_Color_Blue:I
+
+.field public static Widget_MeizuCommon_GuidePopupWindow_Color_Coral:I
+
+.field public static Widget_MeizuCommon_GuidePopupWindow_Color_Crimson:I
+
+.field public static Widget_MeizuCommon_GuidePopupWindow_Color_DodgerBlue:I
+
+.field public static Widget_MeizuCommon_GuidePopupWindow_Color_FireBrick:I
+
+.field public static Widget_MeizuCommon_GuidePopupWindow_Color_Grey:I
+
+.field public static Widget_MeizuCommon_GuidePopupWindow_Color_LimeGreen:I
+
+.field public static Widget_MeizuCommon_GuidePopupWindow_Color_SeaGreen:I
+
+.field public static Widget_MeizuCommon_GuidePopupWindow_Color_Tomato:I
+
+.field public static Widget_MeizuCommon_LoadingView:I
+
+.field public static Widget_MeizuCommon_LoadingView_Color_Blue:I
+
+.field public static Widget_MeizuCommon_LoadingView_Color_Coral:I
+
+.field public static Widget_MeizuCommon_LoadingView_Color_Crimson:I
+
+.field public static Widget_MeizuCommon_LoadingView_Color_DodgerBlue:I
+
+.field public static Widget_MeizuCommon_LoadingView_Color_FireBrick:I
+
+.field public static Widget_MeizuCommon_LoadingView_Color_Grey:I
+
+.field public static Widget_MeizuCommon_LoadingView_Color_LimeGreen:I
+
+.field public static Widget_MeizuCommon_LoadingView_Color_SeaGreen:I
+
+.field public static Widget_MeizuCommon_LoadingView_Color_Tomato:I
+
+.field public static Widget_MeizuCommon_LoadingView_Dark:I
+
+.field public static Widget_MeizuCommon_LoadingView_Light:I
+
+.field public static Widget_MeizuCommon_McPickerLayout:I
+
+.field public static Widget_MeizuCommon_PagerIndicator:I
+
+.field public static Widget_MeizuCommon_ProgressBar:I
+
+.field public static Widget_MeizuCommon_RoundCornerRecordView:I
+
+.field public static Widget_MeizuCommon_SeekBar:I
+
+.field public static Widget_MeizuCommon_SeekBar_Vertical:I
+
+.field public static Widget_MeizuCommon_SeekBar_Vertical_Color_Blue:I
+
+.field public static Widget_MeizuCommon_SeekBar_Vertical_Color_Coral:I
+
+.field public static Widget_MeizuCommon_SeekBar_Vertical_Color_Crimson:I
+
+.field public static Widget_MeizuCommon_SeekBar_Vertical_Color_DodgerBlue:I
+
+.field public static Widget_MeizuCommon_SeekBar_Vertical_Color_FireBrick:I
+
+.field public static Widget_MeizuCommon_SeekBar_Vertical_Color_Grey:I
+
+.field public static Widget_MeizuCommon_SeekBar_Vertical_Color_LimeGreen:I
+
+.field public static Widget_MeizuCommon_SeekBar_Vertical_Color_SeaGreen:I
+
+.field public static Widget_MeizuCommon_SeekBar_Vertical_Color_Tomato:I
+
+.field public static Widget_MeizuCommon_SeekBar_Vertical_Dark:I
+
+.field public static Widget_MeizuCommon_SeletionButton:I
+
+.field public static Widget_MeizuCommon_SeletionButton_Color_Blue:I
+
+.field public static Widget_MeizuCommon_SeletionButton_Color_Coral:I
+
+.field public static Widget_MeizuCommon_SeletionButton_Color_Crimson:I
+
+.field public static Widget_MeizuCommon_SeletionButton_Color_DodgerBlue:I
+
+.field public static Widget_MeizuCommon_SeletionButton_Color_FireBrick:I
+
+.field public static Widget_MeizuCommon_SeletionButton_Color_Grey:I
+
+.field public static Widget_MeizuCommon_SeletionButton_Color_LimeGreen:I
+
+.field public static Widget_MeizuCommon_SeletionButton_Color_SeaGreen:I
+
+.field public static Widget_MeizuCommon_SeletionButton_Color_Tomato:I
+
+.field public static Widget_MeizuCommon_StretchSearchView:I
+
+.field public static Widget_MeizuCommon_StretchSearch_Color_Blue:I
+
+.field public static Widget_MeizuCommon_StretchSearch_Color_Coral:I
+
+.field public static Widget_MeizuCommon_StretchSearch_Color_Crimson:I
+
+.field public static Widget_MeizuCommon_StretchSearch_Color_DodgerBlue:I
+
+.field public static Widget_MeizuCommon_StretchSearch_Color_FireBrick:I
+
+.field public static Widget_MeizuCommon_StretchSearch_Color_Grey:I
+
+.field public static Widget_MeizuCommon_StretchSearch_Color_LimeGreen:I
+
+.field public static Widget_MeizuCommon_StretchSearch_Color_SeaGreen:I
+
+.field public static Widget_MeizuCommon_StretchSearch_Color_Tomato:I
+
+.field public static Widget_MeizuCommon_SubscribeButton:I
+
+.field public static Widget_MeizuCommon_SubscribeButton_Color_Blue:I
+
+.field public static Widget_MeizuCommon_SubscribeButton_Color_Coral:I
+
+.field public static Widget_MeizuCommon_SubscribeButton_Color_Crimson:I
+
+.field public static Widget_MeizuCommon_SubscribeButton_Color_DodgerBlue:I
+
+.field public static Widget_MeizuCommon_SubscribeButton_Color_FireBrick:I
+
+.field public static Widget_MeizuCommon_SubscribeButton_Color_Grey:I
+
+.field public static Widget_MeizuCommon_SubscribeButton_Color_LimeGreen:I
+
+.field public static Widget_MeizuCommon_SubscribeButton_Color_SeaGreen:I
+
+.field public static Widget_MeizuCommon_SubscribeButton_Color_Tomato:I
+
+.field public static Widget_MeizuCommon_Switch:I
+
+.field public static Widget_MeizuCommon_SwitchPreference:I
+
+.field public static Widget_MeizuCommon_Switch_Color_Blue:I
+
+.field public static Widget_MeizuCommon_Switch_Color_Coral:I
+
+.field public static Widget_MeizuCommon_Switch_Color_Crimson:I
+
+.field public static Widget_MeizuCommon_Switch_Color_DodgerBlue:I
+
+.field public static Widget_MeizuCommon_Switch_Color_FireBrick:I
+
+.field public static Widget_MeizuCommon_Switch_Color_Grey:I
+
+.field public static Widget_MeizuCommon_Switch_Color_LimeGreen:I
+
+.field public static Widget_MeizuCommon_Switch_Color_SeaGreen:I
+
+.field public static Widget_MeizuCommon_Switch_Color_Tomato:I
+
+.field public static Widget_MeizuCommon_TabScroller:I
+
+.field public static Widget_MeizuCommon_TabScroller_Color_Blue:I
+
+.field public static Widget_MeizuCommon_TabScroller_Color_Coral:I
+
+.field public static Widget_MeizuCommon_TabScroller_Color_Crimson:I
+
+.field public static Widget_MeizuCommon_TabScroller_Color_DodgerBlue:I
+
+.field public static Widget_MeizuCommon_TabScroller_Color_FireBrick:I
+
+.field public static Widget_MeizuCommon_TabScroller_Color_Grey:I
+
+.field public static Widget_MeizuCommon_TabScroller_Color_LimeGreen:I
+
+.field public static Widget_MeizuCommon_TabScroller_Color_SeaGreen:I
+
+.field public static Widget_MeizuCommon_TabScroller_Color_Tomato:I
+
+.field public static Widget_MeizuCommon_TipDrawable:I
+
+.field public static Widget_MeizuCommon_TipDrawable_Color_Blue:I
+
+.field public static Widget_MeizuCommon_TipDrawable_Color_Coral:I
+
+.field public static Widget_MeizuCommon_TipDrawable_Color_Crimson:I
+
+.field public static Widget_MeizuCommon_TipDrawable_Color_DodgerBlue:I
+
+.field public static Widget_MeizuCommon_TipDrawable_Color_FireBrick:I
+
+.field public static Widget_MeizuCommon_TipDrawable_Color_Grey:I
+
+.field public static Widget_MeizuCommon_TipDrawable_Color_LimeGreen:I
+
+.field public static Widget_MeizuCommon_TipDrawable_Color_SeaGreen:I
+
+.field public static Widget_MeizuCommon_TipDrawable_Color_Tomato:I
+
+.field public static Widget_MeizuCommon_WindowsTransparent:I
+
+.field public static Widget_StaggeredGridView:I
+
+.field public static borderlessButtonStyle:I
+
+
+# direct methods
+.method static constructor <clinit>()V
+    .locals 1
+
+    .prologue
+    .line 9912
+    const v0, 0x10001d
+
+    sput v0, Lflyme/R$style;->AlertDialog_Flyme_Light:I
+
+    .line 9915
+    const/high16 v0, 0x100000
+
+    sput v0, Lflyme/R$style;->Animation_Activity:I
+
+    .line 9916
+    const v0, 0x100002
+
+    sput v0, Lflyme/R$style;->Animation_CalculatorBigToMiddle:I
+
+    .line 9917
+    const v0, 0x100003
+
+    sput v0, Lflyme/R$style;->Animation_CalculatorBigToSmall:I
+
+    .line 9918
+    const v0, 0x100004
+
+    sput v0, Lflyme/R$style;->Animation_CalculatorWindowEnterExit:I
+
+    .line 9919
+    const v0, 0x100248
+
+    sput v0, Lflyme/R$style;->Animation_Flyme_AppCompat_Dialog_ShowAtBottom:I
+
+    .line 9920
+    const v0, 0x100251
+
+    sput v0, Lflyme/R$style;->Animation_Flyme_AppCompat_Overflow_Popup:I
+
+    .line 9921
+    const v0, 0x100252
+
+    sput v0, Lflyme/R$style;->Animation_Flyme_AppCompat_Overflow_Popup_Split:I
+
+    .line 9922
+    const v0, 0x10021a
+
+    sput v0, Lflyme/R$style;->Animation_Flyme_Dialog_Alert:I
+
+    .line 9923
+    const v0, 0x100219
+
+    sput v0, Lflyme/R$style;->Animation_Flyme_Dialog_ShowAtBottom:I
+
+    .line 9926
+    const v0, 0x10002c
+
+    sput v0, Lflyme/R$style;->Animation_Magnifier:I
+
+    .line 9930
+    const v0, 0x100001
+
+    sput v0, Lflyme/R$style;->Animation_RecentApplications:I
+
+    .line 9931
+    const v0, 0x1000a4
+
+    sput v0, Lflyme/R$style;->Base_Flyme_AppCompat_Light_Color_Tomato:I
+
+    .line 9934
+    const v0, 0x100265
+
+    sput v0, Lflyme/R$style;->Base_Theme_Flyme_AppCompat_Light:I
+
+    .line 9935
+    const v0, 0x100171
+
+    sput v0, Lflyme/R$style;->Base_Theme_Flyme_AppCompat_Light_Color_Blue:I
+
+    .line 9936
+    const v0, 0x10011f
+
+    sput v0, Lflyme/R$style;->Base_Theme_Flyme_AppCompat_Light_Color_Coral:I
+
+    .line 9937
+    const v0, 0x100053
+
+    sput v0, Lflyme/R$style;->Base_Theme_Flyme_AppCompat_Light_Color_Crimson:I
+
+    .line 9938
+    const v0, 0x100148
+
+    sput v0, Lflyme/R$style;->Base_Theme_Flyme_AppCompat_Light_Color_DodgerBlue:I
+
+    .line 9939
+    const v0, 0x1000cd
+
+    sput v0, Lflyme/R$style;->Base_Theme_Flyme_AppCompat_Light_Color_FireBrick:I
+
+    .line 9940
+    const v0, 0x100198
+
+    sput v0, Lflyme/R$style;->Base_Theme_Flyme_AppCompat_Light_Color_Grey:I
+
+    .line 9941
+    const v0, 0x1000f6
+
+    sput v0, Lflyme/R$style;->Base_Theme_Flyme_AppCompat_Light_Color_LimeGreen:I
+
+    .line 9942
+    const v0, 0x10007b
+
+    sput v0, Lflyme/R$style;->Base_Theme_Flyme_AppCompat_Light_Color_SeaGreen:I
+
+    .line 9943
+    const v0, 0x100268
+
+    sput v0, Lflyme/R$style;->Base_Theme_Flyme_AppCompat_Light_Dialog:I
+
+    .line 9944
+    const v0, 0x100258
+
+    sput v0, Lflyme/R$style;->Base_Theme_Flyme_Light:I
+
+    .line 9945
+    const v0, 0x10025d
+
+    sput v0, Lflyme/R$style;->Base_Theme_Flyme_Light_Dialog_Alert:I
+
+    .line 9946
+    const v0, 0x100263
+
+    sput v0, Lflyme/R$style;->Base_V17_Flyme_Light_Dialog_Alert:I
+
+    .line 9947
+    const v0, 0x100262
+
+    sput v0, Lflyme/R$style;->Base_V17_Theme_Flyme_Light:I
+
+    .line 9948
+    const v0, 0x100222
+
+    sput v0, Lflyme/R$style;->Base_Widget_Flyme_AppCompat_ActionButton:I
+
+    .line 9949
+    const v0, 0x10023a
+
+    sput v0, Lflyme/R$style;->Base_Widget_Flyme_AppCompat_Light_PopupMenu:I
+
+    .line 9950
+    const v0, 0x10023b
+
+    sput v0, Lflyme/R$style;->Base_Widget_Flyme_AppCompat_Light_PopupMenu_Overflow:I
+
+    .line 9951
+    const v0, 0x10023e
+
+    sput v0, Lflyme/R$style;->Base_Widget_Flyme_AppCompat_ListView_DropDown:I
+
+    .line 9952
+    const v0, 0x100240
+
+    sput v0, Lflyme/R$style;->Base_Widget_Flyme_AppCompat_Toolbar_Button_Navigation:I
+
+    .line 9953
+    const v0, 0x1001fd
+
+    sput v0, Lflyme/R$style;->DialogWindowTitle:I
+
+    .line 9954
+    const v0, 0x1001fe
+
+    sput v0, Lflyme/R$style;->DialogWindowTitle_Flyme:I
+
+    .line 9955
+    const v0, 0x100201
+
+    sput v0, Lflyme/R$style;->DialogWindowTitle_Flyme_Light:I
+
+    .line 9958
+    const v0, 0x10000e
+
+    sput v0, Lflyme/R$style;->EditPhoneNumberPreference:I
+
+    .line 9959
+    const v0, 0x100243
+
+    sput v0, Lflyme/R$style;->Flyme_AlertDialog_AppCompat_Light:I
+
+    .line 9960
+    const v0, 0x100245
+
+    sput v0, Lflyme/R$style;->Flyme_AlertDialog_AppCompat_Light_MzButtonBarVertical:I
+
+    .line 9961
+    const v0, 0x100244
+
+    sput v0, Lflyme/R$style;->Flyme_AlertDialog_AppCompat_Light_ShowAtBottom:I
+
+    .line 9962
+    const v0, 0x100204
+
+    sput v0, Lflyme/R$style;->Flyme_Light_ButtonBar_AlertDialog:I
+
+    .line 9965
+    const v0, 0x100014
+
+    sput v0, Lflyme/R$style;->GlobalActionsDialog:I
+
+    .line 9966
+    const v0, 0x1001b8
+
+    sput v0, Lflyme/R$style;->LoadingDialogTheme:I
+
+    .line 9967
+    const v0, 0x1001b3
+
+    sput v0, Lflyme/R$style;->LoadingViewTextStyle:I
+
+    .line 9970
+    const v0, 0x1001b5
+
+    sput v0, Lflyme/R$style;->LoadingViewTextStyle_Dark:I
+
+    .line 9973
+    const v0, 0x1001b4
+
+    sput v0, Lflyme/R$style;->LoadingViewTextStyle_Light:I
+
+    .line 9974
+    const v0, 0x100264
+
+    sput v0, Lflyme/R$style;->Platform_Flyme_AppCompat_Light:I
+
+    .line 9975
+    const v0, 0x10026d
+
+    sput v0, Lflyme/R$style;->Platform_Flyme_v19_AppCompat_Light:I
+
+    .line 9976
+    const v0, 0x10020c
+
+    sput v0, Lflyme/R$style;->Preference:I
+
+    .line 9977
+    const v0, 0x10020d
+
+    sput v0, Lflyme/R$style;->Preference_Flyme:I
+
+    .line 9978
+    const v0, 0x10020e
+
+    sput v0, Lflyme/R$style;->Preference_Flyme_Light:I
+
+    .line 9979
+    const v0, 0x10020a
+
+    sput v0, Lflyme/R$style;->Preference_Flyme_Light_CheckBox:I
+
+    .line 9980
+    const v0, 0x10020b
+
+    sput v0, Lflyme/R$style;->Preference_Flyme_Light_DialogPreference:I
+
+    .line 9981
+    const v0, 0x100209
+
+    sput v0, Lflyme/R$style;->Preference_Flyme_Light_PreferenceCategory:I
+
+    .line 9982
+    const v0, 0x100208
+
+    sput v0, Lflyme/R$style;->Preference_Flyme_Light_PreferenceScreen:I
+
+    .line 9983
+    const v0, 0x100205
+
+    sput v0, Lflyme/R$style;->PreferenceScreen:I
+
+    .line 9984
+    const v0, 0x100206
+
+    sput v0, Lflyme/R$style;->PreferenceScreen_Flyme:I
+
+    .line 9985
+    const v0, 0x100207
+
+    sput v0, Lflyme/R$style;->PreferenceScreen_Flyme_Light:I
+
+    .line 9988
+    const v0, 0x10026e
+
+    sput v0, Lflyme/R$style;->ResolverAnimationActivity:I
+
+    .line 9989
+    const v0, 0x1001f9
+
+    sput v0, Lflyme/R$style;->TextAppearance_DeviceDefault_Light_Widget_PopupMenu_Large:I
+
+    .line 9994
+    const v0, 0x10000d
+
+    sput v0, Lflyme/R$style;->TextAppearance_EditEvent_Small:I
+
+    .line 9997
+    const v0, 0x1001ca    # 1.47001E-39f
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme:I
+
+    .line 9998
+    const v0, 0x100236
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_AppCompat_Widget_ActionBar_Menu:I
+
+    .line 9999
+    const v0, 0x100237
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_AppCompat_Widget_ActionBar_Menu_Split:I
+
+    .line 10000
+    const v0, 0x100170
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_AppCompat_Widget_ActionBar_Menu_Split_Color_Blue:I
+
+    .line 10001
+    const v0, 0x10011e
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_AppCompat_Widget_ActionBar_Menu_Split_Color_Coral:I
+
+    .line 10002
+    const v0, 0x100052
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_AppCompat_Widget_ActionBar_Menu_Split_Color_Crimson:I
+
+    .line 10003
+    const v0, 0x100147
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_AppCompat_Widget_ActionBar_Menu_Split_Color_DodgerBlue:I
+
+    .line 10004
+    const v0, 0x1000cc
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_AppCompat_Widget_ActionBar_Menu_Split_Color_FireBrick:I
+
+    .line 10005
+    const v0, 0x100197
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_AppCompat_Widget_ActionBar_Menu_Split_Color_Grey:I
+
+    .line 10006
+    const v0, 0x1000f5
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_AppCompat_Widget_ActionBar_Menu_Split_Color_LimeGreen:I
+
+    .line 10007
+    const v0, 0x10007a
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_AppCompat_Widget_ActionBar_Menu_Split_Color_SeaGreen:I
+
+    .line 10008
+    const v0, 0x1000a3
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_AppCompat_Widget_ActionBar_Menu_Split_Color_Tomato:I
+
+    .line 10009
+    const v0, 0x100238
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_AppCompat_Widget_ActionBar_Menu_WithIcon:I
+
+    .line 10010
+    const v0, 0x100239
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_AppCompat_Widget_ActionBar_Menu_WithIcon_Split:I
+
+    .line 10011
+    const v0, 0x10022d
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_AppCompat_Widget_ActionBar_Subtitle:I
+
+    .line 10012
+    const v0, 0x10022c
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_AppCompat_Widget_ActionBar_Title:I
+
+    .line 10013
+    const v0, 0x10022f
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_AppCompat_Widget_ActionMode_Subtitle:I
+
+    .line 10014
+    const v0, 0x10022e
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_AppCompat_Widget_ActionMode_Title:I
+
+    .line 10015
+    const v0, 0x10024f
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_AppCompat_Widget_MultiChoiceVew_Item:I
+
+    .line 10018
+    const v0, 0x100218
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_EditText_Search_White:I
+
+    .line 10019
+    const v0, 0x1001cb
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_Inverse:I
+
+    .line 10020
+    const v0, 0x1001cc
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_Large:I
+
+    .line 10021
+    const v0, 0x1001cd
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_Large_Inverse:I
+
+    .line 10022
+    const v0, 0x1001d2
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_Light:I
+
+    .line 10026
+    const v0, 0x100027
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_Light_AlertDialog_HasListTitle:I
+
+    .line 10027
+    const v0, 0x100200
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_Light_Content:I
+
+    .line 10028
+    const v0, 0x1001ff
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_Light_DialogWindowTitle:I
+
+    .line 10029
+    const v0, 0x1001d3
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_Light_Inverse:I
+
+    .line 10030
+    const v0, 0x1001d4
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_Light_Large:I
+
+    .line 10031
+    const v0, 0x1001d5
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_Light_Large_Inverse:I
+
+    .line 10032
+    const v0, 0x1001d6
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_Light_Medium:I
+
+    .line 10033
+    const v0, 0x100202
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_Light_Medium_AlertDialog:I
+
+    .line 10036
+    const v0, 0x10001c
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_Light_Medium_Bold:I
+
+    .line 10039
+    const v0, 0x100021
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_Light_Medium_Huge:I
+
+    .line 10040
+    const v0, 0x1001d7
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_Light_Medium_Inverse:I
+
+    .line 10041
+    const v0, 0x100023
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_Light_Medium_SuperLarge:I
+
+    .line 10042
+    const v0, 0x1001d8
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_Light_Small:I
+
+    .line 10046
+    const v0, 0x100025
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_Light_Small_AlertDialog:I
+
+    .line 10047
+    const v0, 0x100022
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_Light_Small_Huge:I
+
+    .line 10048
+    const v0, 0x1001d9
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_Light_Small_Inverse:I
+
+    .line 10049
+    const v0, 0x100024
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_Light_Small_SuperLarge:I
+
+    .line 10052
+    const v0, 0x100005
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_Light_StatusBar:I
+
+    .line 10053
+    const v0, 0x1001da
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_Light_Widget_PopupMenu_Large:I
+
+    .line 10054
+    const v0, 0x1001ce
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_Medium:I
+
+    .line 10055
+    const v0, 0x1001cf
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_Medium_Inverse:I
+
+    .line 10056
+    const v0, 0x1001d0
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_Small:I
+
+    .line 10057
+    const v0, 0x1001d1
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_Small_Inverse:I
+
+    .line 10058
+    const v0, 0x1001c7    # 1.470006E-39f
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_Widget_ActionBar_Menu:I
+
+    .line 10059
+    const v0, 0x1001c5    # 1.470003E-39f
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_Widget_ActionBar_Subtitle:I
+
+    .line 10063
+    const v0, 0x1001c4    # 1.470001E-39f
+
+    sput v0, Lflyme/R$style;->TextAppearance_Flyme_Widget_ActionBar_Title:I
+
+    .line 10064
+    const v0, 0x1001ac
+
+    sput v0, Lflyme/R$style;->TextAppearance_Small_EmptyView:I
+
+    .line 10065
+    const v0, 0x1001af
+
+    sput v0, Lflyme/R$style;->TextAppearance_Small_EmptyView_Summary:I
+
+    .line 10066
+    const v0, 0x1001ad
+
+    sput v0, Lflyme/R$style;->TextAppearance_Small_EmptyView_Title:I
+
+    .line 10067
+    const v0, 0x1001ae
+
+    sput v0, Lflyme/R$style;->TextAppearance_Small_EmptyViewToast_Title:I
+
+    .line 10068
+    const v0, 0x100006
+
+    sput v0, Lflyme/R$style;->TextAppearance_StatusBar_EventContent:I
+
+    .line 10069
+    const v0, 0x100009
+
+    sput v0, Lflyme/R$style;->TextAppearance_StatusBar_EventContent_Info:I
+
+    .line 10070
+    const v0, 0x100008
+
+    sput v0, Lflyme/R$style;->TextAppearance_StatusBar_EventContent_Line2:I
+
+    .line 10071
+    const v0, 0x10000a
+
+    sput v0, Lflyme/R$style;->TextAppearance_StatusBar_EventContent_Time:I
+
+    .line 10072
+    const v0, 0x100007
+
+    sput v0, Lflyme/R$style;->TextAppearance_StatusBar_EventContent_Title:I
+
+    .line 10073
+    const v0, 0x10014d
+
+    sput v0, Lflyme/R$style;->Theme_DeviceDefault_Light_Color_Blue:I
+
+    .line 10074
+    const v0, 0x1000fb
+
+    sput v0, Lflyme/R$style;->Theme_DeviceDefault_Light_Color_Coral:I
+
+    .line 10075
+    const v0, 0x10002f
+
+    sput v0, Lflyme/R$style;->Theme_DeviceDefault_Light_Color_Crimson:I
+
+    .line 10076
+    const v0, 0x100124
+
+    sput v0, Lflyme/R$style;->Theme_DeviceDefault_Light_Color_DodgerBlue:I
+
+    .line 10077
+    const v0, 0x1000a9
+
+    sput v0, Lflyme/R$style;->Theme_DeviceDefault_Light_Color_FireBrick:I
+
+    .line 10078
+    const v0, 0x100174
+
+    sput v0, Lflyme/R$style;->Theme_DeviceDefault_Light_Color_Grey:I
+
+    .line 10079
+    const v0, 0x1000d2
+
+    sput v0, Lflyme/R$style;->Theme_DeviceDefault_Light_Color_LimeGreen:I
+
+    .line 10080
+    const v0, 0x100058
+
+    sput v0, Lflyme/R$style;->Theme_DeviceDefault_Light_Color_SeaGreen:I
+
+    .line 10081
+    const v0, 0x100080
+
+    sput v0, Lflyme/R$style;->Theme_DeviceDefault_Light_Color_Tomato:I
+
+    .line 10082
+    const v0, 0x100254
+
+    sput v0, Lflyme/R$style;->Theme_Flyme:I
+
+    .line 10083
+    const v0, 0x100266
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_AppCompat_Light:I
+
+    .line 10084
+    const v0, 0x100122
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_AppCompat_Light_Alert_Color_Coral:I
+
+    .line 10085
+    const v0, 0x100056
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_AppCompat_Light_Alert_Color_Crimson:I
+
+    .line 10086
+    const v0, 0x10014b
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_AppCompat_Light_Alert_Color_DodgerBlue:I
+
+    .line 10087
+    const v0, 0x1000d0
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_AppCompat_Light_Alert_Color_FireBrick:I
+
+    .line 10088
+    const v0, 0x10019b
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_AppCompat_Light_Alert_Color_Grey:I
+
+    .line 10089
+    const v0, 0x1000f9
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_AppCompat_Light_Alert_Color_LimeGreen:I
+
+    .line 10090
+    const v0, 0x10007e
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_AppCompat_Light_Alert_Color_SeaGreen:I
+
+    .line 10091
+    const v0, 0x1000a7
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_AppCompat_Light_Alert_Color_Tomato:I
+
+    .line 10092
+    const v0, 0x100173
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_AppCompat_Light_Alert_Edittext_Color_Blue:I
+
+    .line 10093
+    const v0, 0x100123
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_AppCompat_Light_Alert_Edittext_Color_Coral:I
+
+    .line 10094
+    const v0, 0x100057
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_AppCompat_Light_Alert_Edittext_Color_Crimson:I
+
+    .line 10095
+    const v0, 0x10014c
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_AppCompat_Light_Alert_Edittext_Color_DodgerBule:I
+
+    .line 10096
+    const v0, 0x1000d1
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_AppCompat_Light_Alert_Edittext_Color_FireBrick:I
+
+    .line 10097
+    const v0, 0x10019c
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_AppCompat_Light_Alert_Edittext_Color_Grey:I
+
+    .line 10098
+    const v0, 0x1000fa
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_AppCompat_Light_Alert_Edittext_Color_LimeGreen:I
+
+    .line 10099
+    const v0, 0x10007f
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_AppCompat_Light_Alert_Edittext_Color_SeaGreen:I
+
+    .line 10100
+    const v0, 0x1000a8
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_AppCompat_Light_Alert_Edittext_Color_Tomato:I
+
+    .line 10101
+    const v0, 0x100121
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_AppCompat_Light_Alert_ShowAtBottom_Color_Coral:I
+
+    .line 10102
+    const v0, 0x100055
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_AppCompat_Light_Alert_ShowAtBottom_Color_Crimson:I
+
+    .line 10103
+    const v0, 0x10014a
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_AppCompat_Light_Alert_ShowAtBottom_Color_DodgerBlue:I
+
+    .line 10104
+    const v0, 0x1000cf
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_AppCompat_Light_Alert_ShowAtBottom_Color_FireBrick:I
+
+    .line 10105
+    const v0, 0x10019a
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_AppCompat_Light_Alert_ShowAtBottom_Color_Grey:I
+
+    .line 10106
+    const v0, 0x1000f8
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_AppCompat_Light_Alert_ShowAtBottom_Color_LimeGreen:I
+
+    .line 10107
+    const v0, 0x10007d
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_AppCompat_Light_Alert_ShowAtBottom_Color_SeaGreen:I
+
+    .line 10108
+    const v0, 0x1000a6
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_AppCompat_Light_Alert_ShowAtBottom_Color_Tomato:I
+
+    .line 10109
+    const v0, 0x100172
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_AppCompat_Light_Color_Blue:I
+
+    .line 10110
+    const v0, 0x100120
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_AppCompat_Light_Color_Coral:I
+
+    .line 10111
+    const v0, 0x100054
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_AppCompat_Light_Color_Crimson:I
+
+    .line 10112
+    const v0, 0x100149
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_AppCompat_Light_Color_DodgerBlue:I
+
+    .line 10113
+    const v0, 0x1000ce
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_AppCompat_Light_Color_FireBrick:I
+
+    .line 10114
+    const v0, 0x100199
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_AppCompat_Light_Color_Grey:I
+
+    .line 10115
+    const v0, 0x1000f7
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_AppCompat_Light_Color_LimeGreen:I
+
+    .line 10116
+    const v0, 0x10007c
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_AppCompat_Light_Color_SeaGreen:I
+
+    .line 10117
+    const v0, 0x1000a5
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_AppCompat_Light_Color_Tomato:I
+
+    .line 10118
+    const v0, 0x100269
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_AppCompat_Light_Dialog:I
+
+    .line 10119
+    const v0, 0x10026a
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_AppCompat_Light_Dialog_Alert:I
+
+    .line 10120
+    const v0, 0x10026c
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_AppCompat_Light_Dialog_Alert_MzButtonBarVertical:I
+
+    .line 10121
+    const v0, 0x10026b
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_AppCompat_Light_Dialog_Alert_ShowAtBottom:I
+
+    .line 10122
+    const v0, 0x100257
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_Dialog:I
+
+    .line 10123
+    const v0, 0x100260
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_Dialog_NoFrame:I
+
+    .line 10126
+    const v0, 0x100029
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_InputMethod:I
+
+    .line 10127
+    const v0, 0x100259
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_Light:I
+
+    .line 10128
+    const v0, 0x10001e
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_Light_CompactMenu:I
+
+    .line 10129
+    const v0, 0x10025c
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_Light_Dialog:I
+
+    .line 10130
+    const v0, 0x10025e
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_Light_Dialog_Alert:I
+
+    .line 10131
+    const v0, 0x100166
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_Light_Dialog_Alert_Color_Blue:I
+
+    .line 10132
+    const v0, 0x100114
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_Light_Dialog_Alert_Color_Coral:I
+
+    .line 10133
+    const v0, 0x100048
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_Light_Dialog_Alert_Color_Crimson:I
+
+    .line 10134
+    const v0, 0x10013d
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_Light_Dialog_Alert_Color_DodgerBlue:I
+
+    .line 10135
+    const v0, 0x1000c2
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_Light_Dialog_Alert_Color_FireBrick:I
+
+    .line 10136
+    const v0, 0x10018d
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_Light_Dialog_Alert_Color_Grey:I
+
+    .line 10137
+    const v0, 0x1000eb
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_Light_Dialog_Alert_Color_LimeGreen:I
+
+    .line 10138
+    const v0, 0x100070
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_Light_Dialog_Alert_Color_SeaGreen:I
+
+    .line 10139
+    const v0, 0x100099
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_Light_Dialog_Alert_Color_Tomato:I
+
+    .line 10140
+    const v0, 0x10002a
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_Light_Dialog_Alert_InputMethod:I
+
+    .line 10141
+    const v0, 0x10025f
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_Light_Dialog_NoActionBar:I
+
+    .line 10142
+    const v0, 0x10025a
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_Light_NoActionBar:I
+
+    .line 10143
+    const v0, 0x10025b
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_Light_NoActionBar_Fullscreen:I
+
+    .line 10144
+    const v0, 0x100255
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_NoActionBar:I
+
+    .line 10145
+    const v0, 0x100256
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_NoActionBar_Fullscreen:I
+
+    .line 10146
+    const v0, 0x100261
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_NoTitleBar_Fullscreen:I
+
+    .line 10147
+    const v0, 0x10026f
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_Resolver:I
+
+    .line 10148
+    const v0, 0x1001c3    # 1.47E-39f
+
+    sput v0, Lflyme/R$style;->Theme_MeizuCommon:I
+
+    .line 10149
+    const v0, 0x100221
+
+    sput v0, Lflyme/R$style;->ThemeOverlay_Flyme_AppCompat_ActionBar:I
+
+    .line 10152
+    const v0, 0x100028
+
+    sput v0, Lflyme/R$style;->Theme_Flyme_Light_AccessControl:I
+
+    .line 10153
+    const v0, 0x10024e
+
+    sput v0, Lflyme/R$style;->V7_Widget_AppCompat_Button_ButtonBar_AlertDialog:I
+
+    .line 10154
+    const v0, 0x100267
+
+    sput v0, Lflyme/R$style;->V7Overlay_Theme_AppCompat_Light_Dialog:I
+
+    .line 10155
+    const v0, 0x10000b
+
+    sput v0, Lflyme/R$style;->Widget_AbsListView:I
+
+    .line 10156
+    const v0, 0x10000f
+
+    sput v0, Lflyme/R$style;->Widget_ActionButton_MzBack:I
+
+    .line 10157
+    const v0, 0x100010
+
+    sput v0, Lflyme/R$style;->Widget_ActionButton_MzBack_Light:I
+
+    .line 10160
+    const v0, 0x1001f4
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple:I
+
+    .line 10161
+    const v0, 0x100157
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Circle_Color_Blue:I
+
+    .line 10162
+    const v0, 0x100105
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Circle_Color_Coral:I
+
+    .line 10163
+    const v0, 0x100039
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Circle_Color_Crimson:I
+
+    .line 10164
+    const v0, 0x10012e
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Circle_Color_DodgerBlue:I
+
+    .line 10165
+    const v0, 0x1000b3
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Circle_Color_FireBrick:I
+
+    .line 10166
+    const v0, 0x10017e
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Circle_Color_Grey:I
+
+    .line 10167
+    const v0, 0x1000dc
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Circle_Color_LimeGreen:I
+
+    .line 10168
+    const v0, 0x100061
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Circle_Color_SeaGreen:I
+
+    .line 10169
+    const v0, 0x10008a
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Circle_Color_Tomato:I
+
+    .line 10170
+    const v0, 0x100158
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Color_Blue:I
+
+    .line 10171
+    const v0, 0x100159
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Color_Blue_Dark:I
+
+    .line 10172
+    const v0, 0x100106
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Color_Coral:I
+
+    .line 10173
+    const v0, 0x100107
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Color_Coral_Dark:I
+
+    .line 10174
+    const v0, 0x10003a
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Color_Crimson:I
+
+    .line 10175
+    const v0, 0x10003b
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Color_Crimson_Dark:I
+
+    .line 10176
+    const v0, 0x10012f
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Color_DodgerBlue:I
+
+    .line 10177
+    const v0, 0x100130
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Color_DodgerBlue_Dark:I
+
+    .line 10178
+    const v0, 0x1000b4
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Color_FireBrick:I
+
+    .line 10179
+    const v0, 0x1000b5
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Color_FireBrick_Dark:I
+
+    .line 10180
+    const v0, 0x10017f
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Color_Grey:I
+
+    .line 10181
+    const v0, 0x100180
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Color_Grey_Dark:I
+
+    .line 10182
+    const v0, 0x1000dd
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Color_LimeGreen:I
+
+    .line 10183
+    const v0, 0x1000de
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Color_LimeGreen_Dark:I
+
+    .line 10184
+    const v0, 0x100062
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Color_SeaGreen:I
+
+    .line 10185
+    const v0, 0x100063
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Color_SeaGreen_Dark:I
+
+    .line 10186
+    const v0, 0x10008b
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Color_Tomato:I
+
+    .line 10187
+    const v0, 0x10008c
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Arrow_Color_Tomato_Dark:I
+
+    .line 10190
+    const v0, 0x100156
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Color_Blue:I
+
+    .line 10193
+    const v0, 0x100104
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Color_Coral:I
+
+    .line 10196
+    const v0, 0x100038
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Color_Crimson:I
+
+    .line 10199
+    const v0, 0x10012d
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Color_DodgerBlue:I
+
+    .line 10202
+    const v0, 0x1000b2
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Color_FireBrick:I
+
+    .line 10205
+    const v0, 0x10017d
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Color_Grey:I
+
+    .line 10208
+    const v0, 0x1000db
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Color_LimeGreen:I
+
+    .line 10211
+    const v0, 0x100060
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Color_SeaGreen:I
+
+    .line 10214
+    const v0, 0x100089
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_CompoundButton_CheckButtonlessMultiple_Color_Tomato:I
+
+    .line 10215
+    const v0, 0x100153
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ActionBar_Color_Blue:I
+
+    .line 10216
+    const v0, 0x100101
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ActionBar_Color_Coral:I
+
+    .line 10217
+    const v0, 0x100035
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ActionBar_Color_Crimson:I
+
+    .line 10218
+    const v0, 0x10012a
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ActionBar_Color_DodgerBlue:I
+
+    .line 10219
+    const v0, 0x1000af
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ActionBar_Color_FireBrick:I
+
+    .line 10220
+    const v0, 0x10017a
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ActionBar_Color_Grey:I
+
+    .line 10221
+    const v0, 0x1000d8
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ActionBar_Color_LimeGreen:I
+
+    .line 10222
+    const v0, 0x10005d
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ActionBar_Color_SeaGreen:I
+
+    .line 10223
+    const v0, 0x100086
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ActionBar_Color_Tomato:I
+
+    .line 10224
+    const v0, 0x10015d
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ActionButton_Color_Blue:I
+
+    .line 10225
+    const v0, 0x10010b
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ActionButton_Color_Coral:I
+
+    .line 10226
+    const v0, 0x10003f
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ActionButton_Color_Crimson:I
+
+    .line 10227
+    const v0, 0x100134
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ActionButton_Color_DodgerBlue:I
+
+    .line 10228
+    const v0, 0x1000b9
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ActionButton_Color_FireBrick:I
+
+    .line 10229
+    const v0, 0x100184
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ActionButton_Color_Grey:I
+
+    .line 10230
+    const v0, 0x1000e2
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ActionButton_Color_LimeGreen:I
+
+    .line 10231
+    const v0, 0x100067
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ActionButton_Color_SeaGreen:I
+
+    .line 10232
+    const v0, 0x100090
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ActionButton_Color_Tomato:I
+
+    .line 10233
+    const v0, 0x10015e
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ActionButton_Overflow_Color_Blue:I
+
+    .line 10234
+    const v0, 0x10010c
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ActionButton_Overflow_Color_Coral:I
+
+    .line 10235
+    const v0, 0x100040
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ActionButton_Overflow_Color_Crimson:I
+
+    .line 10236
+    const v0, 0x100135
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ActionButton_Overflow_Color_DodgerBlue:I
+
+    .line 10237
+    const v0, 0x1000ba
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ActionButton_Overflow_Color_FireBrick:I
+
+    .line 10238
+    const v0, 0x100185
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ActionButton_Overflow_Color_Grey:I
+
+    .line 10239
+    const v0, 0x1000e3
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ActionButton_Overflow_Color_LimeGreen:I
+
+    .line 10240
+    const v0, 0x100068
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ActionButton_Overflow_Color_SeaGreen:I
+
+    .line 10241
+    const v0, 0x100091
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ActionButton_Overflow_Color_Tomato:I
+
+    .line 10242
+    const v0, 0x10014f
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_Button_Color_Blue:I
+
+    .line 10243
+    const v0, 0x1000fd
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_Button_Color_Coral:I
+
+    .line 10244
+    const v0, 0x100031
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_Button_Color_Crimson:I
+
+    .line 10245
+    const v0, 0x100126
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_Button_Color_DodgerBlue:I
+
+    .line 10246
+    const v0, 0x1000ab
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_Button_Color_FireBrick:I
+
+    .line 10247
+    const v0, 0x100176
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_Button_Color_Grey:I
+
+    .line 10248
+    const v0, 0x1000d4
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_Button_Color_LimeGreen:I
+
+    .line 10249
+    const v0, 0x10005a
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_Button_Color_SeaGreen:I
+
+    .line 10250
+    const v0, 0x100082
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_Button_Color_Tomato:I
+
+    .line 10251
+    const v0, 0x1001f6
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_Button_Meizu:I
+
+    .line 10252
+    const v0, 0x100150
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_Button_Stroke_Color_Blue:I
+
+    .line 10253
+    const v0, 0x1000fe
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_Button_Stroke_Color_Coral:I
+
+    .line 10254
+    const v0, 0x100032
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_Button_Stroke_Color_Crimson:I
+
+    .line 10255
+    const v0, 0x100127
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_Button_Stroke_Color_DodgerBlue:I
+
+    .line 10256
+    const v0, 0x1000ac
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_Button_Stroke_Color_FireBrick:I
+
+    .line 10257
+    const v0, 0x100177
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_Button_Stroke_Color_Grey:I
+
+    .line 10258
+    const v0, 0x1000d5
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_Button_Stroke_Color_LimeGreen:I
+
+    .line 10259
+    const v0, 0x100083
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_Button_Stroke_Color_Tomato:I
+
+    .line 10260
+    const v0, 0x1001fb
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_CheckedTextView_MultiChoice:I
+
+    .line 10261
+    const v0, 0x1001fa
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_CheckedTextView_SingleChoice:I
+
+    .line 10262
+    const v0, 0x10014e
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_CompoundButton_CheckBox_Color_Blue:I
+
+    .line 10263
+    const v0, 0x1000fc
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_CompoundButton_CheckBox_Color_Coral:I
+
+    .line 10264
+    const v0, 0x100030
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_CompoundButton_CheckBox_Color_Crimson:I
+
+    .line 10265
+    const v0, 0x100125
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_CompoundButton_CheckBox_Color_DodgerBlue:I
+
+    .line 10266
+    const v0, 0x1000aa
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_CompoundButton_CheckBox_Color_FireBrick:I
+
+    .line 10267
+    const v0, 0x100175
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_CompoundButton_CheckBox_Color_Grey:I
+
+    .line 10268
+    const v0, 0x1000d3
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_CompoundButton_CheckBox_Color_LimeGreen:I
+
+    .line 10269
+    const v0, 0x100059
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_CompoundButton_CheckBox_Color_SeaGreen:I
+
+    .line 10270
+    const v0, 0x100081
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_CompoundButton_CheckBox_Color_Tomato:I
+
+    .line 10273
+    const v0, 0x1001f5
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_EditText_Dialog:I
+
+    .line 10276
+    const v0, 0x1001f3
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ListView_Meizu:I
+
+    .line 10280
+    const v0, 0x1001f7
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ListView_Meizu_Partition:I
+
+    .line 10281
+    const v0, 0x1001f8
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_MzPickerLayout:I
+
+    .line 10282
+    const v0, 0x100160
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ProgressBar_Horizontal_ActionBar_Color_Blue:I
+
+    .line 10283
+    const v0, 0x10010e
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ProgressBar_Horizontal_ActionBar_Color_Coral:I
+
+    .line 10284
+    const v0, 0x100042
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ProgressBar_Horizontal_ActionBar_Color_Crimson:I
+
+    .line 10285
+    const v0, 0x100137
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ProgressBar_Horizontal_ActionBar_Color_DodgerBlue:I
+
+    .line 10286
+    const v0, 0x1000bc
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ProgressBar_Horizontal_ActionBar_Color_FireBrick:I
+
+    .line 10287
+    const v0, 0x100187
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ProgressBar_Horizontal_ActionBar_Color_Grey:I
+
+    .line 10288
+    const v0, 0x1000e5
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ProgressBar_Horizontal_ActionBar_Color_LimeGreen:I
+
+    .line 10289
+    const v0, 0x10006a
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ProgressBar_Horizontal_ActionBar_Color_SeaGreen:I
+
+    .line 10290
+    const v0, 0x100093
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ProgressBar_Horizontal_ActionBar_Color_Tomato:I
+
+    .line 10291
+    const v0, 0x100151
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ProgressBar_Horizontal_Color_Blue:I
+
+    .line 10292
+    const v0, 0x1000ff
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ProgressBar_Horizontal_Color_Coral:I
+
+    .line 10293
+    const v0, 0x100033
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ProgressBar_Horizontal_Color_Crimson:I
+
+    .line 10294
+    const v0, 0x100128
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ProgressBar_Horizontal_Color_DodgerBlue:I
+
+    .line 10295
+    const v0, 0x1000ad
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ProgressBar_Horizontal_Color_FireBrick:I
+
+    .line 10296
+    const v0, 0x100178
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ProgressBar_Horizontal_Color_Grey:I
+
+    .line 10297
+    const v0, 0x1000d6
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ProgressBar_Horizontal_Color_LimeGreen:I
+
+    .line 10298
+    const v0, 0x10005b
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ProgressBar_Horizontal_Color_SeaGreen:I
+
+    .line 10299
+    const v0, 0x100084
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_ProgressBar_Horizontal_Color_Tomato:I
+
+    .line 10300
+    const v0, 0x100162
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_RatingBar_Color_Blue:I
+
+    .line 10301
+    const v0, 0x100110
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_RatingBar_Color_Coral:I
+
+    .line 10302
+    const v0, 0x100044
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_RatingBar_Color_Crimson:I
+
+    .line 10303
+    const v0, 0x100139
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_RatingBar_Color_DodgerBlue:I
+
+    .line 10304
+    const v0, 0x1000be
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_RatingBar_Color_FireBrick:I
+
+    .line 10305
+    const v0, 0x100189
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_RatingBar_Color_Grey:I
+
+    .line 10306
+    const v0, 0x1000e7
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_RatingBar_Color_LimeGreen:I
+
+    .line 10307
+    const v0, 0x10006c
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_RatingBar_Color_SeaGreen:I
+
+    .line 10308
+    const v0, 0x100095
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_RatingBar_Color_Tomato:I
+
+    .line 10309
+    const v0, 0x100152
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_SeekBar_Color_Blue:I
+
+    .line 10310
+    const v0, 0x100100
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_SeekBar_Color_Coral:I
+
+    .line 10311
+    const v0, 0x100034
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_SeekBar_Color_Crimson:I
+
+    .line 10312
+    const v0, 0x100129
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_SeekBar_Color_DodgerBlue:I
+
+    .line 10313
+    const v0, 0x1000ae
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_SeekBar_Color_FireBrick:I
+
+    .line 10314
+    const v0, 0x100179
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_SeekBar_Color_Grey:I
+
+    .line 10315
+    const v0, 0x1000d7
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_SeekBar_Color_LimeGreen:I
+
+    .line 10316
+    const v0, 0x10005c
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_SeekBar_Color_SeaGreen:I
+
+    .line 10317
+    const v0, 0x100085
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_SeekBar_Color_Tomato:I
+
+    .line 10318
+    const v0, 0x1001fc
+
+    sput v0, Lflyme/R$style;->Widget_DeviceDefault_Light_SeekBar_White:I
+
+    .line 10321
+    const v0, 0x10002d
+
+    sput v0, Lflyme/R$style;->Widget_EditTextEx:I
+
+    .line 10322
+    const v0, 0x10001f
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_ActionButton_MzBack:I
+
+    .line 10323
+    const v0, 0x10021d
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_ActionBar:I
+
+    .line 10324
+    const v0, 0x100231
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_ActionBar_TabBar:I
+
+    .line 10325
+    const v0, 0x100242
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_ActionBar_TabScrollView:I
+
+    .line 10326
+    const v0, 0x100233
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_ActionBar_TabText:I
+
+    .line 10327
+    const v0, 0x100232
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_ActionBar_TabView:I
+
+    .line 10328
+    const v0, 0x100223
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_ActionButton:I
+
+    .line 10329
+    const v0, 0x100226
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_ActionButton_Overflow:I
+
+    .line 10330
+    const v0, 0x100224
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_ActionButton_Split:I
+
+    .line 10331
+    const v0, 0x100249
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_ActionButtonRipple:I
+
+    .line 10332
+    const v0, 0x10024b
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_ActionButtonRipple_Split:I
+
+    .line 10333
+    const v0, 0x10024c
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_ActionButtonRipple_Split_White:I
+
+    .line 10334
+    const v0, 0x10024a
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_ActionButtonRipple_White:I
+
+    .line 10335
+    const v0, 0x10022b
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_ActionMode:I
+
+    .line 10336
+    const v0, 0x10021e
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_Light_ActionBar:I
+
+    .line 10337
+    const v0, 0x10016f
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_Light_ActionBar_Color_Blue:I
+
+    .line 10338
+    const v0, 0x10011d
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_Light_ActionBar_Color_Coral:I
+
+    .line 10339
+    const v0, 0x100051
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_Light_ActionBar_Color_Crimson:I
+
+    .line 10340
+    const v0, 0x100146
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_Light_ActionBar_Color_DodgerBlue:I
+
+    .line 10341
+    const v0, 0x1000cb
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_Light_ActionBar_Color_FireBrick:I
+
+    .line 10342
+    const v0, 0x100196
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_Light_ActionBar_Color_Grey:I
+
+    .line 10343
+    const v0, 0x1000f4
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_Light_ActionBar_Color_LimeGreen:I
+
+    .line 10344
+    const v0, 0x100079
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_Light_ActionBar_Color_SeaGreen:I
+
+    .line 10345
+    const v0, 0x1000a2
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_Light_ActionBar_Color_Tomato:I
+
+    .line 10346
+    const v0, 0x10021f
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_Light_ActionBar_Solid:I
+
+    .line 10347
+    const v0, 0x100220
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_Light_ActionBar_Split:I
+
+    .line 10348
+    const v0, 0x100225
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_Light_ActionButton:I
+
+    .line 10349
+    const v0, 0x100227
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_Light_ActionButton_Overflow:I
+
+    .line 10350
+    const v0, 0x100228
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_Light_ActionButton_Overflow_Split:I
+
+    .line 10353
+    const v0, 0x100247
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_Light_Button_Borderless_AlertDialog:I
+
+    .line 10354
+    const v0, 0x100246
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_Light_ButtonBar_AlertDialog:I
+
+    .line 10355
+    const v0, 0x10016d
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_Light_Edittext_Dialog_Color_Blue:I
+
+    .line 10356
+    const v0, 0x10011b
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_Light_Edittext_Dialog_Color_Coral:I
+
+    .line 10357
+    const v0, 0x10004f
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_Light_Edittext_Dialog_Color_Crimson:I
+
+    .line 10358
+    const v0, 0x100144
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_Light_Edittext_Dialog_Color_DodgerBlue:I
+
+    .line 10359
+    const v0, 0x1000c9
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_Light_Edittext_Dialog_Color_FireBrick:I
+
+    .line 10360
+    const v0, 0x100194
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_Light_Edittext_Dialog_Color_Grey:I
+
+    .line 10361
+    const v0, 0x1000f2
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_Light_Edittext_Dialog_Color_LimeGreen:I
+
+    .line 10362
+    const v0, 0x100077
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_Light_Edittext_Dialog_Color_SeaGreen:I
+
+    .line 10363
+    const v0, 0x1000a0
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_Light_Edittext_Dialog_Color_Tomato:I
+
+    .line 10364
+    const v0, 0x10022a
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_Light_ListPopupWindow:I
+
+    .line 10365
+    const v0, 0x10023f
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_Light_ListView_DropDown:I
+
+    .line 10366
+    const v0, 0x10023c
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_Light_PopupMenu_Overflow:I
+
+    .line 10367
+    const v0, 0x10023d
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_Light_PopupMenu_Overflow_Split:I
+
+    .line 10368
+    const v0, 0x100250
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_Light_TabContainerCollapseButton:I
+
+    .line 10369
+    const v0, 0x100229
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_ListPopupWindow:I
+
+    .line 10370
+    const v0, 0x100253
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_MultiChoiceView_Item:I
+
+    .line 10371
+    const v0, 0x10024d
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_RippleDefaultStyle:I
+
+    .line 10372
+    const v0, 0x100230
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_Toolbar:I
+
+    .line 10373
+    const v0, 0x100241
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_Toolbar_Button_Navigation:I
+
+    .line 10374
+    const v0, 0x100235
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_Toolbar_TabText:I
+
+    .line 10375
+    const v0, 0x100234
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_AppCompat_Toolbar_TabView:I
+
+    .line 10376
+    const v0, 0x10021b
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Button_ButtonBar_AlertDialog:I
+
+    .line 10379
+    const v0, 0x1001f1
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_EditText_Dialog:I
+
+    .line 10380
+    const v0, 0x1001dc
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_ActionBar:I
+
+    .line 10381
+    const v0, 0x10001b
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_ActionBar_Solid:I
+
+    .line 10382
+    const v0, 0x1001de
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_ActionBar_TabBar:I
+
+    .line 10383
+    const v0, 0x1001e0
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_ActionBar_TabText:I
+
+    .line 10384
+    const v0, 0x1001df
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_ActionBar_TabView:I
+
+    .line 10387
+    const v0, 0x1001e1
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_ActionButton:I
+
+    .line 10388
+    const v0, 0x100020
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_ActionButton_MzBack:I
+
+    .line 10389
+    const v0, 0x1001e5
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_ActionButton_Overflow:I
+
+    .line 10390
+    const v0, 0x1001c6    # 1.470004E-39f
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_ActionMode:I
+
+    .line 10391
+    const v0, 0x1001e6
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_AutoCompleteTextView:I
+
+    .line 10392
+    const v0, 0x1001e7
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_Button:I
+
+    .line 10395
+    const v0, 0x100203
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_Button_Borderless_AlertDialog:I
+
+    .line 10396
+    const v0, 0x100167
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_Button_Borderless_AlertDialog_Color_Blue:I
+
+    .line 10397
+    const v0, 0x100115
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_Button_Borderless_AlertDialog_Color_Coral:I
+
+    .line 10398
+    const v0, 0x100049
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_Button_Borderless_AlertDialog_Color_Crimson:I
+
+    .line 10399
+    const v0, 0x10013e
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_Button_Borderless_AlertDialog_Color_DodgerBlue:I
+
+    .line 10400
+    const v0, 0x1000c3
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_Button_Borderless_AlertDialog_Color_FireBrick:I
+
+    .line 10401
+    const v0, 0x10018e
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_Button_Borderless_AlertDialog_Color_Grey:I
+
+    .line 10402
+    const v0, 0x1000ec
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_Button_Borderless_AlertDialog_Color_LimeGreen:I
+
+    .line 10403
+    const v0, 0x100071
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_Button_Borderless_AlertDialog_Color_SeaGreen:I
+
+    .line 10404
+    const v0, 0x10009a
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_Button_Borderless_AlertDialog_Color_Tomato:I
+
+    .line 10405
+    const v0, 0x10001a
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_Button_Borderless_Small:I
+
+    .line 10406
+    const v0, 0x100026
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_Button_Borderless_Small_Dialog:I
+
+    .line 10407
+    const v0, 0x1001e9
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_CheckedTextView:I
+
+    .line 10408
+    const v0, 0x1001e8
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_CompoundButton_CheckBox:I
+
+    .line 10409
+    const v0, 0x100210
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_CompoundButton_RadioButton:I
+
+    .line 10412
+    const v0, 0x100215
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_EditText_Clear_Icon_Black:I
+
+    .line 10415
+    const v0, 0x100212
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_EditText_Clear_Icon_White:I
+
+    .line 10418
+    const v0, 0x100214
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_EditText_Search_Icon_Black:I
+
+    .line 10422
+    const v0, 0x100211
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_EditText_Search_Icon_White:I
+
+    .line 10423
+    const v0, 0x10021c
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_EditText_SearchEditText:I
+
+    .line 10426
+    const v0, 0x100217
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_EditText_SearchEditText_Black:I
+
+    .line 10429
+    const v0, 0x10016c
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_EditText_SearchEditText_Color_Blue:I
+
+    .line 10432
+    const v0, 0x10011a
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_EditText_SearchEditText_Color_Coral:I
+
+    .line 10435
+    const v0, 0x10004e
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_EditText_SearchEditText_Color_Crimson:I
+
+    .line 10438
+    const v0, 0x100143
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_EditText_SearchEditText_Color_DodgerBlue:I
+
+    .line 10441
+    const v0, 0x1000c8
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_EditText_SearchEditText_Color_FireBrick:I
+
+    .line 10444
+    const v0, 0x100193
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_EditText_SearchEditText_Color_Grey:I
+
+    .line 10447
+    const v0, 0x1000f1
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_EditText_SearchEditText_Color_LimeGreen:I
+
+    .line 10450
+    const v0, 0x100076
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_EditText_SearchEditText_Color_SeaGreen:I
+
+    .line 10453
+    const v0, 0x10009f
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_EditText_SearchEditText_Color_Tomato:I
+
+    .line 10456
+    const v0, 0x100216
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_EditText_Voice_Icon_Black:I
+
+    .line 10459
+    const v0, 0x100213
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_EditText_Voice_Icon_White:I
+
+    .line 10460
+    const v0, 0x1001ea
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_ListPopupWindow:I
+
+    .line 10461
+    const v0, 0x10020f
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_ListSeparator:I
+
+    .line 10462
+    const v0, 0x1001c9    # 1.470008E-39f
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_ListView_DropDown:I
+
+    .line 10463
+    const v0, 0x1001eb
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_PopupMenu:I
+
+    .line 10464
+    const v0, 0x1001ec
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_PopupWindow:I
+
+    .line 10465
+    const v0, 0x1001ed
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_ProgressBar:I
+
+    .line 10466
+    const v0, 0x100019
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_ProgressBar_Big:I
+
+    .line 10467
+    const v0, 0x1001dd
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_ProgressBar_Horizontal:I
+
+    .line 10468
+    const v0, 0x1001db
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_ProgressBar_Horizontal_ActionBar:I
+
+    .line 10469
+    const v0, 0x100016
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_ProgressBar_Horizontal_BootAnim:I
+
+    .line 10470
+    const v0, 0x100017
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_ProgressBar_Horizontal_BootAnimSilence:I
+
+    .line 10471
+    const v0, 0x100018
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_ProgressBar_Horizontal_Notification:I
+
+    .line 10472
+    const v0, 0x1001ee
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_ProgressBar_Large:I
+
+    .line 10473
+    const v0, 0x1001f0
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_ProgressBar_Small:I
+
+    .line 10474
+    const v0, 0x1001f2
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_RatingBar:I
+
+    .line 10475
+    const v0, 0x1001ef
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_SeekBar:I
+
+    .line 10476
+    const v0, 0x1001e2
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_Spinner:I
+
+    .line 10477
+    const v0, 0x1001e3
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_Spinner_DropDown:I
+
+    .line 10478
+    const v0, 0x1001e4
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_Light_Spinner_DropDown_ActionBar:I
+
+    .line 10479
+    const v0, 0x1001c8    # 1.470007E-39f
+
+    sput v0, Lflyme/R$style;->Widget_Flyme_ListView_DropDown:I
+
+    .line 10480
+    const v0, 0x100011
+
+    sput v0, Lflyme/R$style;->Widget_Holo_ActionButton_MzBack:I
+
+    .line 10481
+    const v0, 0x100012
+
+    sput v0, Lflyme/R$style;->Widget_Holo_Light_ActionButton_MzBack:I
+
+    .line 10482
+    const v0, 0x10000c
+
+    sput v0, Lflyme/R$style;->Widget_HorizontalScrollView:I
+
+    .line 10485
+    const v0, 0x10002e
+
+    sput v0, Lflyme/R$style;->Widget_LockPasswordView:I
+
+    .line 10486
+    const v0, 0x100015
+
+    sput v0, Lflyme/R$style;->Widget_Material_Light_PopupMenu_Overflow:I
+
+    .line 10487
+    const v0, 0x10019d
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon:I
+
+    .line 10488
+    const v0, 0x1001c0    # 1.469996E-39f
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_AnimSeekBar:I
+
+    .line 10491
+    const v0, 0x10016a
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_AnimSeekBar_Color_Blue:I
+
+    .line 10494
+    const v0, 0x100118
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_AnimSeekBar_Color_Coral:I
+
+    .line 10497
+    const v0, 0x10004c
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_AnimSeekBar_Color_Crimson:I
+
+    .line 10500
+    const v0, 0x100141
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_AnimSeekBar_Color_DodgerBlue:I
+
+    .line 10503
+    const v0, 0x1000c6
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_AnimSeekBar_Color_FireBrick:I
+
+    .line 10506
+    const v0, 0x100191
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_AnimSeekBar_Color_Grey:I
+
+    .line 10507
+    const v0, 0x1000ef
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_AnimSeekBar_Color_LimeGreen:I
+
+    .line 10510
+    const v0, 0x100074
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_AnimSeekBar_Color_SeaGreen:I
+
+    .line 10513
+    const v0, 0x10009d
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_AnimSeekBar_Color_Tomato:I
+
+    .line 10514
+    const v0, 0x1001c2    # 1.469999E-39f
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_AuraSeekBar:I
+
+    .line 10517
+    const v0, 0x10016e
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_AuraSeekBar_Color_Blue:I
+
+    .line 10520
+    const v0, 0x10011c
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_AuraSeekBar_Color_Coral:I
+
+    .line 10523
+    const v0, 0x100050
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_AuraSeekBar_Color_Crimson:I
+
+    .line 10526
+    const v0, 0x100145
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_AuraSeekBar_Color_DodgerBlue:I
+
+    .line 10529
+    const v0, 0x1000ca
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_AuraSeekBar_Color_FireBrick:I
+
+    .line 10532
+    const v0, 0x100195
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_AuraSeekBar_Color_Grey:I
+
+    .line 10535
+    const v0, 0x1000f3
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_AuraSeekBar_Color_LimeGreen:I
+
+    .line 10538
+    const v0, 0x100078
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_AuraSeekBar_Color_SeaGreen:I
+
+    .line 10541
+    const v0, 0x1000a1
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_AuraSeekBar_Color_Tomato:I
+
+    .line 10544
+    const v0, 0x1001bd    # 1.469992E-39f
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_CustomButton:I
+
+    .line 10547
+    const v0, 0x100168
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_CustomButton_Color_Blue:I
+
+    .line 10550
+    const v0, 0x100116
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_CustomButton_Color_Coral:I
+
+    .line 10553
+    const v0, 0x10004a
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_CustomButton_Color_Crimson:I
+
+    .line 10556
+    const v0, 0x10013f
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_CustomButton_Color_DodgerBlue:I
+
+    .line 10559
+    const v0, 0x1000c4
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_CustomButton_Color_FireBrick:I
+
+    .line 10562
+    const v0, 0x10018f
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_CustomButton_Color_Grey:I
+
+    .line 10565
+    const v0, 0x1000ed
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_CustomButton_Color_LimeGreen:I
+
+    .line 10568
+    const v0, 0x100072
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_CustomButton_Color_SeaGreen:I
+
+    .line 10571
+    const v0, 0x10009b
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_CustomButton_Color_Tomato:I
+
+    .line 10574
+    const v0, 0x1001be    # 1.469993E-39f
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_CutomButton:I
+
+    .line 10577
+    const v0, 0x1001bc    # 1.46999E-39f
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_EditPhoneNumberPreference:I
+
+    .line 10578
+    const v0, 0x1001a3
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_EnhanceGallery:I
+
+    .line 10579
+    const v0, 0x1001a6
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_EnhanceSeekBar:I
+
+    .line 10580
+    const v0, 0x100155
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_EnhanceSeekBar_Color_Blue:I
+
+    .line 10581
+    const v0, 0x100103
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_EnhanceSeekBar_Color_Coral:I
+
+    .line 10582
+    const v0, 0x100037
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_EnhanceSeekBar_Color_Crimson:I
+
+    .line 10583
+    const v0, 0x10012c
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_EnhanceSeekBar_Color_DodgerBlue:I
+
+    .line 10584
+    const v0, 0x1000b1
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_EnhanceSeekBar_Color_FireBrick:I
+
+    .line 10585
+    const v0, 0x10017c
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_EnhanceSeekBar_Color_Grey:I
+
+    .line 10586
+    const v0, 0x1000da
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_EnhanceSeekBar_Color_LimeGreen:I
+
+    .line 10587
+    const v0, 0x10005f
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_EnhanceSeekBar_Color_SeaGreen:I
+
+    .line 10588
+    const v0, 0x100088
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_EnhanceSeekBar_Color_Tomato:I
+
+    .line 10589
+    const v0, 0x1001ba
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_FastScrollLetter:I
+
+    .line 10590
+    const v0, 0x100163
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_FastScrollLetter_Color_Blue:I
+
+    .line 10591
+    const v0, 0x100111
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_FastScrollLetter_Color_Coral:I
+
+    .line 10592
+    const v0, 0x100045
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_FastScrollLetter_Color_Crimson:I
+
+    .line 10593
+    const v0, 0x10013a
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_FastScrollLetter_Color_DodgerBlue:I
+
+    .line 10594
+    const v0, 0x1000bf
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_FastScrollLetter_Color_FireBrick:I
+
+    .line 10595
+    const v0, 0x10018a
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_FastScrollLetter_Color_Grey:I
+
+    .line 10596
+    const v0, 0x1000e8
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_FastScrollLetter_Color_LimeGreen:I
+
+    .line 10597
+    const v0, 0x10006d
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_FastScrollLetter_Color_SeaGreen:I
+
+    .line 10598
+    const v0, 0x100096
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_FastScrollLetter_Color_Tomato:I
+
+    .line 10601
+    const v0, 0x1001a5
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_FoldableTextView:I
+
+    .line 10602
+    const v0, 0x10015f
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_FoldableTextView_Color_Blue:I
+
+    .line 10603
+    const v0, 0x10010d
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_FoldableTextView_Color_Coral:I
+
+    .line 10604
+    const v0, 0x100041
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_FoldableTextView_Color_Crimson:I
+
+    .line 10605
+    const v0, 0x100136
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_FoldableTextView_Color_DodgerBlue:I
+
+    .line 10606
+    const v0, 0x1000bb
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_FoldableTextView_Color_FireBrick:I
+
+    .line 10607
+    const v0, 0x100186
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_FoldableTextView_Color_Grey:I
+
+    .line 10608
+    const v0, 0x1000e4
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_FoldableTextView_Color_LimeGreen:I
+
+    .line 10609
+    const v0, 0x100069
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_FoldableTextView_Color_SeaGreen:I
+
+    .line 10610
+    const v0, 0x100092
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_FoldableTextView_Color_Tomato:I
+
+    .line 10611
+    const v0, 0x1001a2
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_GalleryFlow:I
+
+    .line 10612
+    const v0, 0x1001b9
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_GuidePopupWindow:I
+
+    .line 10613
+    const v0, 0x100164
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_GuidePopupWindow_Color_Blue:I
+
+    .line 10614
+    const v0, 0x100112
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_GuidePopupWindow_Color_Coral:I
+
+    .line 10615
+    const v0, 0x100046
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_GuidePopupWindow_Color_Crimson:I
+
+    .line 10616
+    const v0, 0x10013b
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_GuidePopupWindow_Color_DodgerBlue:I
+
+    .line 10617
+    const v0, 0x1000c0
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_GuidePopupWindow_Color_FireBrick:I
+
+    .line 10618
+    const v0, 0x10018b
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_GuidePopupWindow_Color_Grey:I
+
+    .line 10619
+    const v0, 0x1000e9
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_GuidePopupWindow_Color_LimeGreen:I
+
+    .line 10620
+    const v0, 0x10006e
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_GuidePopupWindow_Color_SeaGreen:I
+
+    .line 10621
+    const v0, 0x100097
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_GuidePopupWindow_Color_Tomato:I
+
+    .line 10624
+    const v0, 0x1001b0
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_LoadingView:I
+
+    .line 10627
+    const v0, 0x10015c
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_LoadingView_Color_Blue:I
+
+    .line 10630
+    const v0, 0x10010a
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_LoadingView_Color_Coral:I
+
+    .line 10633
+    const v0, 0x10003e
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_LoadingView_Color_Crimson:I
+
+    .line 10636
+    const v0, 0x100133
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_LoadingView_Color_DodgerBlue:I
+
+    .line 10639
+    const v0, 0x1000b8
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_LoadingView_Color_FireBrick:I
+
+    .line 10642
+    const v0, 0x100183
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_LoadingView_Color_Grey:I
+
+    .line 10645
+    const v0, 0x1000e1
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_LoadingView_Color_LimeGreen:I
+
+    .line 10648
+    const v0, 0x100065
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_LoadingView_Color_SeaGreen:I
+
+    .line 10651
+    const v0, 0x10008f
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_LoadingView_Color_Tomato:I
+
+    .line 10654
+    const v0, 0x1001b2
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_LoadingView_Dark:I
+
+    .line 10657
+    const v0, 0x1001b1
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_LoadingView_Light:I
+
+    .line 10658
+    const v0, 0x1001a4
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_McPickerLayout:I
+
+    .line 10659
+    const v0, 0x1001b7
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_PagerIndicator:I
+
+    .line 10660
+    const v0, 0x1001a1
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_ProgressBar:I
+
+    .line 10661
+    const v0, 0x1001ab
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_RoundCornerRecordView:I
+
+    .line 10662
+    const v0, 0x10019e
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_SeekBar:I
+
+    .line 10663
+    const v0, 0x10019f
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_SeekBar_Vertical:I
+
+    .line 10664
+    const v0, 0x100161
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_SeekBar_Vertical_Color_Blue:I
+
+    .line 10665
+    const v0, 0x10010f
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_SeekBar_Vertical_Color_Coral:I
+
+    .line 10666
+    const v0, 0x100043
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_SeekBar_Vertical_Color_Crimson:I
+
+    .line 10667
+    const v0, 0x100138
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_SeekBar_Vertical_Color_DodgerBlue:I
+
+    .line 10668
+    const v0, 0x1000bd
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_SeekBar_Vertical_Color_FireBrick:I
+
+    .line 10669
+    const v0, 0x100188
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_SeekBar_Vertical_Color_Grey:I
+
+    .line 10670
+    const v0, 0x1000e6
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_SeekBar_Vertical_Color_LimeGreen:I
+
+    .line 10671
+    const v0, 0x10006b
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_SeekBar_Vertical_Color_SeaGreen:I
+
+    .line 10672
+    const v0, 0x100094
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_SeekBar_Vertical_Color_Tomato:I
+
+    .line 10673
+    const v0, 0x1001a0
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_SeekBar_Vertical_Dark:I
+
+    .line 10674
+    const v0, 0x1001a9
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_SeletionButton:I
+
+    .line 10675
+    const v0, 0x10015a
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_SeletionButton_Color_Blue:I
+
+    .line 10676
+    const v0, 0x100108
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_SeletionButton_Color_Coral:I
+
+    .line 10677
+    const v0, 0x10003c
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_SeletionButton_Color_Crimson:I
+
+    .line 10678
+    const v0, 0x100131
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_SeletionButton_Color_DodgerBlue:I
+
+    .line 10679
+    const v0, 0x1000b6
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_SeletionButton_Color_FireBrick:I
+
+    .line 10680
+    const v0, 0x100181
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_SeletionButton_Color_Grey:I
+
+    .line 10681
+    const v0, 0x1000df
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_SeletionButton_Color_LimeGreen:I
+
+    .line 10682
+    const v0, 0x100064
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_SeletionButton_Color_SeaGreen:I
+
+    .line 10683
+    const v0, 0x10008d
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_SeletionButton_Color_Tomato:I
+
+    .line 10684
+    const v0, 0x10016b
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_StretchSearch_Color_Blue:I
+
+    .line 10687
+    const v0, 0x100119
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_StretchSearch_Color_Coral:I
+
+    .line 10690
+    const v0, 0x10004d
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_StretchSearch_Color_Crimson:I
+
+    .line 10693
+    const v0, 0x100142
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_StretchSearch_Color_DodgerBlue:I
+
+    .line 10696
+    const v0, 0x1000c7
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_StretchSearch_Color_FireBrick:I
+
+    .line 10699
+    const v0, 0x100192
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_StretchSearch_Color_Grey:I
+
+    .line 10702
+    const v0, 0x1000f0
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_StretchSearch_Color_LimeGreen:I
+
+    .line 10705
+    const v0, 0x100075
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_StretchSearch_Color_SeaGreen:I
+
+    .line 10708
+    const v0, 0x10009e
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_StretchSearch_Color_Tomato:I
+
+    .line 10709
+    const v0, 0x1001c1    # 1.469997E-39f
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_StretchSearchView:I
+
+    .line 10710
+    const v0, 0x1001bf    # 1.469994E-39f
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_SubscribeButton:I
+
+    .line 10713
+    const v0, 0x100169
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_SubscribeButton_Color_Blue:I
+
+    .line 10716
+    const v0, 0x100117
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_SubscribeButton_Color_Coral:I
+
+    .line 10719
+    const v0, 0x10004b
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_SubscribeButton_Color_Crimson:I
+
+    .line 10722
+    const v0, 0x100140
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_SubscribeButton_Color_DodgerBlue:I
+
+    .line 10725
+    const v0, 0x1000c5
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_SubscribeButton_Color_FireBrick:I
+
+    .line 10728
+    const v0, 0x100190
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_SubscribeButton_Color_Grey:I
+
+    .line 10731
+    const v0, 0x1000ee
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_SubscribeButton_Color_LimeGreen:I
+
+    .line 10734
+    const v0, 0x100073
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_SubscribeButton_Color_SeaGreen:I
+
+    .line 10737
+    const v0, 0x10009c
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_SubscribeButton_Color_Tomato:I
+
+    .line 10738
+    const v0, 0x1001a7
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_Switch:I
+
+    .line 10739
+    const v0, 0x100154
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_Switch_Color_Blue:I
+
+    .line 10740
+    const v0, 0x100102
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_Switch_Color_Coral:I
+
+    .line 10741
+    const v0, 0x100036
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_Switch_Color_Crimson:I
+
+    .line 10742
+    const v0, 0x10012b
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_Switch_Color_DodgerBlue:I
+
+    .line 10743
+    const v0, 0x1000b0
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_Switch_Color_FireBrick:I
+
+    .line 10744
+    const v0, 0x10017b
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_Switch_Color_Grey:I
+
+    .line 10745
+    const v0, 0x1000d9
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_Switch_Color_LimeGreen:I
+
+    .line 10746
+    const v0, 0x10005e
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_Switch_Color_SeaGreen:I
+
+    .line 10747
+    const v0, 0x100087
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_Switch_Color_Tomato:I
+
+    .line 10748
+    const v0, 0x1001a8
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_SwitchPreference:I
+
+    .line 10749
+    const v0, 0x1001aa
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_TabScroller:I
+
+    .line 10750
+    const v0, 0x10015b
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_TabScroller_Color_Blue:I
+
+    .line 10751
+    const v0, 0x100109
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_TabScroller_Color_Coral:I
+
+    .line 10752
+    const v0, 0x10003d
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_TabScroller_Color_Crimson:I
+
+    .line 10753
+    const v0, 0x100132
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_TabScroller_Color_DodgerBlue:I
+
+    .line 10754
+    const v0, 0x1000b7
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_TabScroller_Color_FireBrick:I
+
+    .line 10755
+    const v0, 0x100182
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_TabScroller_Color_Grey:I
+
+    .line 10756
+    const v0, 0x1000e0
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_TabScroller_Color_LimeGreen:I
+
+    .line 10757
+    const v0, 0x100066
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_TabScroller_Color_SeaGreen:I
+
+    .line 10758
+    const v0, 0x10008e
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_TabScroller_Color_Tomato:I
+
+    .line 10759
+    const v0, 0x1001bb
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_TipDrawable:I
+
+    .line 10760
+    const v0, 0x100165
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_TipDrawable_Color_Blue:I
+
+    .line 10761
+    const v0, 0x100113
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_TipDrawable_Color_Coral:I
+
+    .line 10762
+    const v0, 0x100047
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_TipDrawable_Color_Crimson:I
+
+    .line 10763
+    const v0, 0x10013c
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_TipDrawable_Color_DodgerBlue:I
+
+    .line 10764
+    const v0, 0x1000c1
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_TipDrawable_Color_FireBrick:I
+
+    .line 10765
+    const v0, 0x10018c
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_TipDrawable_Color_Grey:I
+
+    .line 10766
+    const v0, 0x1000ea
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_TipDrawable_Color_LimeGreen:I
+
+    .line 10767
+    const v0, 0x10006f
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_TipDrawable_Color_SeaGreen:I
+
+    .line 10768
+    const v0, 0x100098
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_TipDrawable_Color_Tomato:I
+
+    .line 10772
+    const v0, 0x1001b6
+
+    sput v0, Lflyme/R$style;->Widget_MeizuCommon_WindowsTransparent:I
+
+    .line 10773
+    const v0, 0x100013
+
+    sput v0, Lflyme/R$style;->Widget_StaggeredGridView:I
+
+    .line 10776
+    const v0, 0x10002b
+
+    sput v0, Lflyme/R$style;->borderlessButtonStyle:I
+
+    return-void
+.end method
+
+.method public constructor <init>()V
+    .locals 0
+
+    .prologue
+    .line 9909
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    return-void
+.end method

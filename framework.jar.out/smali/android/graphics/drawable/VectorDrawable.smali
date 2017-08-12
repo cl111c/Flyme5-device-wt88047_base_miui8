@@ -589,22 +589,18 @@
 
     if-eqz v13, :cond_1
 
-    .line 573
     invoke-virtual {v5}, Ljava/util/Stack;->pop()Ljava/lang/Object;
 
-    goto :goto_1
+    goto/16 :goto_1
 
-    .line 584
     .end local v12    # "tagName":Ljava/lang/String;
     :cond_7
     if-eqz v7, :cond_9
 
-    .line 585
     new-instance v11, Ljava/lang/StringBuffer;
 
     invoke-direct {v11}, Ljava/lang/StringBuffer;-><init>()V
 
-    .line 587
     .local v11, "tag":Ljava/lang/StringBuffer;
     invoke-virtual {v11}, Ljava/lang/StringBuffer;->length()I
 

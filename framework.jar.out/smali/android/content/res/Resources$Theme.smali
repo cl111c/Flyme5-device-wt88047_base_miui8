@@ -428,14 +428,7 @@
 
     invoke-static/range {v0 .. v8}, Landroid/content/res/AssetManager;->applyStyle(JIIJ[I[I[I)Z
 
-    .line 1509
-    iget-object v0, p0, Landroid/content/res/Resources$Theme;->this$0:Landroid/content/res/Resources;
-
-    invoke-virtual {v0, v9}, Landroid/content/res/Resources;->loadOverlayTypedArray(Landroid/content/res/TypedArray;)Landroid/content/res/TypedArray;
-
-    move-result-object v0
-
-    return-object v0
+    return-object v9
 .end method
 
 .method public obtainStyledAttributes(Landroid/util/AttributeSet;[III)Landroid/content/res/TypedArray;
@@ -484,20 +477,11 @@
 
     invoke-static/range {v0 .. v8}, Landroid/content/res/AssetManager;->applyStyle(JIIJ[I[I[I)Z
 
-    .line 1573
     iput-object p0, v9, Landroid/content/res/TypedArray;->mTheme:Landroid/content/res/Resources$Theme;
 
-    .line 1574
     iput-object v11, v9, Landroid/content/res/TypedArray;->mXml:Landroid/content/res/XmlBlock$Parser;
 
-    .line 1607
-    iget-object v0, p0, Landroid/content/res/Resources$Theme;->this$0:Landroid/content/res/Resources;
-
-    invoke-virtual {v0, v9}, Landroid/content/res/Resources;->loadOverlayTypedArray(Landroid/content/res/TypedArray;)Landroid/content/res/TypedArray;
-
-    move-result-object v0
-
-    return-object v0
+    return-object v9
 
     .line 1570
     :cond_0
@@ -543,14 +527,7 @@
 
     invoke-static/range {v0 .. v8}, Landroid/content/res/AssetManager;->applyStyle(JIIJ[I[I[I)Z
 
-    .line 1452
-    iget-object v0, p0, Landroid/content/res/Resources$Theme;->this$0:Landroid/content/res/Resources;
-
-    invoke-virtual {v0, v9}, Landroid/content/res/Resources;->loadOverlayTypedArray(Landroid/content/res/TypedArray;)Landroid/content/res/TypedArray;
-
-    move-result-object v0
-
-    return-object v0
+    return-object v9
 .end method
 
 .method public resolveAttribute(ILandroid/util/TypedValue;Z)Z
@@ -574,6 +551,8 @@
     invoke-virtual/range {v1 .. v6}, Landroid/content/res/AssetManager;->getThemeValue(JILandroid/util/TypedValue;Z)Z
 
     move-result v0
+
+    return v0
 
     .line 1666
     .local v0, "got":Z

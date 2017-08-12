@@ -286,7 +286,7 @@
     .line 59
     .end local v1    # "fullLen":I
     :cond_1
-    new-instance v0, Landroid/content/res/MiuiTypedArray;
+    new-instance v0, Landroid/content/res/TypedArray;
 
     .end local v0    # "attrs":Landroid/content/res/TypedArray;
     mul-int/lit8 v2, p1, 0x6
@@ -297,7 +297,7 @@
 
     new-array v3, v3, [I
 
-    invoke-direct {v0, p0, v2, v3, p1}, Landroid/content/res/MiuiTypedArray;-><init>(Landroid/content/res/Resources;[I[II)V
+    invoke-direct {v0, p0, v2, v3, p1}, Landroid/content/res/TypedArray;-><init>(Landroid/content/res/Resources;[I[II)V
 
     goto :goto_0
 .end method
@@ -855,7 +855,7 @@
 .end method
 
 .method public getDimension(IF)F
-    .locals 6
+    .locals 5
     .param p1, "index"    # I
     .param p2, "defValue"    # F
 
@@ -874,49 +874,36 @@
 
     throw v2
 
-    .line 485
     :cond_0
     mul-int/lit8 p1, p1, 0x6
 
-    .line 486
     iget-object v0, p0, Landroid/content/res/TypedArray;->mData:[I
 
-    .line 487
     .local v0, "data":[I
     add-int/lit8 v2, p1, 0x0
 
     aget v1, v0, v2
 
-    .line 488
     .local v1, "type":I
     if-nez v1, :cond_1
 
-    .line 495
     .end local p2    # "defValue":F
     :goto_0
     return p2
 
-    .line 490
     .restart local p2    # "defValue":F
     :cond_1
     const/4 v2, 0x5
 
     if-ne v1, v2, :cond_2
 
-    .line 495
-    iget-object v2, p0, Landroid/content/res/TypedArray;->mResources:Landroid/content/res/Resources;
+    add-int/lit8 v2, p1, 0x1
 
-    const/4 v3, 0x0
+    aget v2, v0, v2
 
-    add-int/lit8 v4, p1, 0x2
+    iget-object v3, p0, Landroid/content/res/TypedArray;->mMetrics:Landroid/util/DisplayMetrics;
 
-    aget v4, v0, v4
-
-    add-int/lit8 v5, p1, 0x1
-
-    aget v5, v0, v5
-
-    invoke-virtual {v2, v3, v4, v5}, Landroid/content/res/Resources;->getExquisiteDimension(III)F
+    invoke-static {v2, v3}, Landroid/util/TypedValue;->complexToDimension(ILandroid/util/DisplayMetrics;)F
 
     move-result p2
 
@@ -985,7 +972,7 @@
 .end method
 
 .method public getDimensionPixelOffset(II)I
-    .locals 6
+    .locals 5
     .param p1, "index"    # I
     .param p2, "defValue"    # I
 
@@ -1004,53 +991,38 @@
 
     throw v2
 
-    .line 527
     :cond_0
     mul-int/lit8 p1, p1, 0x6
 
-    .line 528
     iget-object v0, p0, Landroid/content/res/TypedArray;->mData:[I
 
-    .line 529
     .local v0, "data":[I
     add-int/lit8 v2, p1, 0x0
 
     aget v1, v0, v2
 
-    .line 530
     .local v1, "type":I
     if-nez v1, :cond_1
 
-    .line 537
     .end local p2    # "defValue":I
     :goto_0
     return p2
 
-    .line 532
     .restart local p2    # "defValue":I
     :cond_1
     const/4 v2, 0x5
 
     if-ne v1, v2, :cond_2
 
-    .line 537
-    iget-object v2, p0, Landroid/content/res/TypedArray;->mResources:Landroid/content/res/Resources;
+    add-int/lit8 v2, p1, 0x1
 
-    const/4 v3, 0x1
+    aget v2, v0, v2
 
-    add-int/lit8 v4, p1, 0x2
+    iget-object v3, p0, Landroid/content/res/TypedArray;->mMetrics:Landroid/util/DisplayMetrics;
 
-    aget v4, v0, v4
+    invoke-static {v2, v3}, Landroid/util/TypedValue;->complexToDimensionPixelOffset(ILandroid/util/DisplayMetrics;)I
 
-    add-int/lit8 v5, p1, 0x1
-
-    aget v5, v0, v5
-
-    invoke-virtual {v2, v3, v4, v5}, Landroid/content/res/Resources;->getExquisiteDimension(III)F
-
-    move-result v2
-
-    float-to-int p2, v2
+    move-result p2
 
     goto :goto_0
 
@@ -1117,19 +1089,15 @@
 .end method
 
 .method public getDimensionPixelSize(II)I
-    .locals 6
+    .locals 5
     .param p1, "index"    # I
     .param p2, "defValue"    # I
 
     .prologue
-    const/4 v5, 0x2
-
-    .line 566
     iget-boolean v2, p0, Landroid/content/res/TypedArray;->mRecycled:Z
 
     if-eqz v2, :cond_0
 
-    .line 567
     new-instance v2, Ljava/lang/RuntimeException;
 
     const-string v3, "Cannot make calls to a recycled instance!"
@@ -1138,59 +1106,46 @@
 
     throw v2
 
-    .line 570
     :cond_0
     mul-int/lit8 p1, p1, 0x6
 
-    .line 571
     iget-object v0, p0, Landroid/content/res/TypedArray;->mData:[I
 
-    .line 572
     .local v0, "data":[I
     add-int/lit8 v2, p1, 0x0
 
     aget v1, v0, v2
 
-    .line 573
     .local v1, "type":I
     if-nez v1, :cond_1
 
-    .line 580
     .end local p2    # "defValue":I
     :goto_0
     return p2
 
-    .line 575
     .restart local p2    # "defValue":I
     :cond_1
     const/4 v2, 0x5
 
     if-ne v1, v2, :cond_2
 
-    .line 580
-    iget-object v2, p0, Landroid/content/res/TypedArray;->mResources:Landroid/content/res/Resources;
+    add-int/lit8 v2, p1, 0x1
 
-    add-int/lit8 v3, p1, 0x2
+    aget v2, v0, v2
 
-    aget v3, v0, v3
+    iget-object v3, p0, Landroid/content/res/TypedArray;->mMetrics:Landroid/util/DisplayMetrics;
 
-    add-int/lit8 v4, p1, 0x1
+    invoke-static {v2, v3}, Landroid/util/TypedValue;->complexToDimensionPixelSize(ILandroid/util/DisplayMetrics;)I
 
-    aget v4, v0, v4
-
-    invoke-virtual {v2, v5, v3, v4}, Landroid/content/res/Resources;->getExquisiteDimension(III)F
-
-    move-result v2
-
-    float-to-int p2, v2
+    move-result p2
 
     goto :goto_0
 
-    .line 582
     :cond_2
-    if-ne v1, v5, :cond_3
+    const/4 v2, 0x2
 
-    .line 583
+    if-ne v1, v2, :cond_3
+
     new-instance v2, Ljava/lang/RuntimeException;
 
     new-instance v3, Ljava/lang/StringBuilder;
@@ -1946,7 +1901,7 @@
 .end method
 
 .method public getLayoutDimension(II)I
-    .locals 6
+    .locals 4
     .param p1, "index"    # I
     .param p2, "defValue"    # I
 
@@ -1988,60 +1943,44 @@
 
     if-gt v1, v2, :cond_2
 
-    .line 651
     add-int/lit8 v2, p1, 0x1
 
     aget p2, v0, v2
 
-    .line 661
     .end local p2    # "defValue":I
     :cond_1
     :goto_0
     return p2
 
-    .line 652
     .restart local p2    # "defValue":I
     :cond_2
     const/4 v2, 0x5
 
     if-ne v1, v2, :cond_1
 
-    .line 657
-    iget-object v2, p0, Landroid/content/res/TypedArray;->mResources:Landroid/content/res/Resources;
+    add-int/lit8 v2, p1, 0x1
 
-    const/4 v3, 0x2
+    aget v2, v0, v2
 
-    add-int/lit8 v4, p1, 0x2
+    iget-object v3, p0, Landroid/content/res/TypedArray;->mMetrics:Landroid/util/DisplayMetrics;
 
-    aget v4, v0, v4
+    invoke-static {v2, v3}, Landroid/util/TypedValue;->complexToDimensionPixelSize(ILandroid/util/DisplayMetrics;)I
 
-    add-int/lit8 v5, p1, 0x1
-
-    aget v5, v0, v5
-
-    invoke-virtual {v2, v3, v4, v5}, Landroid/content/res/Resources;->getExquisiteDimension(III)F
-
-    move-result v2
-
-    float-to-int p2, v2
+    move-result p2
 
     goto :goto_0
 .end method
 
 .method public getLayoutDimension(ILjava/lang/String;)I
-    .locals 6
+    .locals 5
     .param p1, "index"    # I
     .param p2, "name"    # Ljava/lang/String;
 
     .prologue
-    const/4 v5, 0x2
-
-    .line 603
     iget-boolean v2, p0, Landroid/content/res/TypedArray;->mRecycled:Z
 
     if-eqz v2, :cond_0
 
-    .line 604
     new-instance v2, Ljava/lang/RuntimeException;
 
     const-string v3, "Cannot make calls to a recycled instance!"
@@ -2073,45 +2012,35 @@
 
     if-gt v1, v2, :cond_1
 
-    .line 612
     add-int/lit8 v2, p1, 0x1
 
     aget v2, v0, v2
 
-    .line 618
     :goto_0
     return v2
 
-    .line 613
     :cond_1
     const/4 v2, 0x5
 
     if-ne v1, v2, :cond_2
 
-    .line 618
-    iget-object v2, p0, Landroid/content/res/TypedArray;->mResources:Landroid/content/res/Resources;
+    add-int/lit8 v2, p1, 0x1
 
-    add-int/lit8 v3, p1, 0x2
+    aget v2, v0, v2
 
-    aget v3, v0, v3
+    iget-object v3, p0, Landroid/content/res/TypedArray;->mMetrics:Landroid/util/DisplayMetrics;
 
-    add-int/lit8 v4, p1, 0x1
-
-    aget v4, v0, v4
-
-    invoke-virtual {v2, v5, v3, v4}, Landroid/content/res/Resources;->getExquisiteDimension(III)F
+    invoke-static {v2, v3}, Landroid/util/TypedValue;->complexToDimensionPixelSize(ILandroid/util/DisplayMetrics;)I
 
     move-result v2
 
-    float-to-int v2, v2
-
     goto :goto_0
 
-    .line 620
     :cond_2
-    if-ne v1, v5, :cond_3
+    const/4 v2, 0x2
 
-    .line 621
+    if-ne v1, v2, :cond_3
+
     new-instance v2, Ljava/lang/RuntimeException;
 
     new-instance v3, Ljava/lang/StringBuilder;

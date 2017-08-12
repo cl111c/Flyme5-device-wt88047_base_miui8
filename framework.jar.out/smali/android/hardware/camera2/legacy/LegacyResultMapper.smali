@@ -246,10 +246,10 @@
     :pswitch_5
     move v0, v4
 
-    .line 467
     goto :goto_0
 
-    .line 457
+    nop
+
     :sswitch_data_0
     .sparse-switch
         -0xb99cbc3 -> :sswitch_2
@@ -443,47 +443,37 @@
     :pswitch_1
     move v0, v1
 
-    .line 488
     goto :goto_0
 
     :pswitch_2
     move v0, v2
 
-    .line 490
     goto :goto_0
 
     :pswitch_3
     move v0, v3
 
-    .line 492
     goto :goto_0
 
     :pswitch_4
     move v0, v4
 
-    .line 494
     goto :goto_0
 
-    .line 496
     :pswitch_5
     const/4 v0, 0x6
 
     goto/16 :goto_0
 
-    .line 498
     :pswitch_6
     const/4 v0, 0x7
 
     goto/16 :goto_0
 
-    .line 500
     :pswitch_7
     const/16 v0, 0x8
 
     goto/16 :goto_0
-
-    .line 484
-    nop
 
     :sswitch_data_0
     .sparse-switch

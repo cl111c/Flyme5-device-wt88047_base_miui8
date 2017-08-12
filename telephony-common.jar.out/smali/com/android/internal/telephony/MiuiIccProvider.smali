@@ -125,6 +125,12 @@
 
     invoke-virtual {v0, v1, v2, v3}, Landroid/content/UriMatcher;->addURI(Ljava/lang/String;Ljava/lang/String;I)V
 
+    const-string v1, "icc"
+
+    const-string v2, "adn/subId/#"
+
+    invoke-virtual {v0, v1, v2, v3}, Landroid/content/UriMatcher;->addURI(Ljava/lang/String;Ljava/lang/String;I)V
+
     .line 75
     sget-object v0, Lcom/android/internal/telephony/MiuiIccProvider;->URL_MATCHER:Landroid/content/UriMatcher;
 
@@ -134,12 +140,24 @@
 
     invoke-virtual {v0, v1, v2, v4}, Landroid/content/UriMatcher;->addURI(Ljava/lang/String;Ljava/lang/String;I)V
 
+    const-string v1, "icc"
+
+    const-string v2, "fdn/subId/#"
+
+    invoke-virtual {v0, v1, v2, v4}, Landroid/content/UriMatcher;->addURI(Ljava/lang/String;Ljava/lang/String;I)V
+
     .line 76
     sget-object v0, Lcom/android/internal/telephony/MiuiIccProvider;->URL_MATCHER:Landroid/content/UriMatcher;
 
     const-string v1, "icc"
 
     const-string v2, "sdn"
+
+    invoke-virtual {v0, v1, v2, v5}, Landroid/content/UriMatcher;->addURI(Ljava/lang/String;Ljava/lang/String;I)V
+
+    const-string v1, "icc"
+
+    const-string v2, "sdn/subId/#"
 
     invoke-virtual {v0, v1, v2, v5}, Landroid/content/UriMatcher;->addURI(Ljava/lang/String;Ljava/lang/String;I)V
 
@@ -1732,7 +1750,11 @@
 
     move-result-object v3
 
-    invoke-virtual {v3}, Lmiui/telephony/SubscriptionManager;->getDefaultSlotId()I
+    invoke-direct/range {p0 .. p1}, Lcom/android/internal/telephony/MiuiIccProvider;->getRequestSubId(Landroid/net/Uri;)I
+
+    move-result v5
+
+    invoke-virtual {v3, v5}, Lmiui/telephony/SubscriptionManager;->getSlotIdForSubscription(I)I
 
     move-result v9
 
@@ -2093,7 +2115,11 @@
 
     move-result-object v2
 
-    invoke-virtual {v2}, Lmiui/telephony/SubscriptionManager;->getDefaultSlotId()I
+    invoke-direct/range {p0 .. p1}, Lcom/android/internal/telephony/MiuiIccProvider;->getRequestSubId(Landroid/net/Uri;)I
+
+    move-result v4
+
+    invoke-virtual {v2, v4}, Lmiui/telephony/SubscriptionManager;->getSlotIdForSubscription(I)I
 
     move-result v9
 
@@ -2436,7 +2462,11 @@
 
     move-result-object v2
 
-    invoke-virtual {v2}, Lmiui/telephony/SubscriptionManager;->getDefaultSlotId()I
+    invoke-direct/range {p0 .. p1}, Lcom/android/internal/telephony/MiuiIccProvider;->getRequestSubId(Landroid/net/Uri;)I
+
+    move-result v3
+
+    invoke-virtual {v2, v3}, Lmiui/telephony/SubscriptionManager;->getSlotIdForSubscription(I)I
 
     move-result v0
 
@@ -2610,7 +2640,11 @@
 
     move-result-object v3
 
-    invoke-virtual {v3}, Lmiui/telephony/SubscriptionManager;->getDefaultSlotId()I
+    invoke-direct/range {p0 .. p1}, Lcom/android/internal/telephony/MiuiIccProvider;->getRequestSubId(Landroid/net/Uri;)I
+
+    move-result v8
+
+    invoke-virtual {v3, v8}, Lmiui/telephony/SubscriptionManager;->getSlotIdForSubscription(I)I
 
     move-result v9
 
@@ -2967,4 +3001,51 @@
         :pswitch_0
         :pswitch_1
     .end packed-switch
+.end method
+
+.method private getRequestSubId(Landroid/net/Uri;)I
+    .locals 4
+    .param p1, "url"    # Landroid/net/Uri;
+
+    .prologue
+    :try_start_0
+    invoke-virtual {p1}, Landroid/net/Uri;->getLastPathSegment()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-static {v1}, Ljava/lang/Integer;->parseInt(Ljava/lang/String;)I
+    :try_end_0
+    .catch Ljava/lang/NumberFormatException; {:try_start_0 .. :try_end_0} :catch_0
+
+    move-result v1
+
+    return v1
+
+    :catch_0
+    move-exception v0
+
+    .local v0, "ex":Ljava/lang/NumberFormatException;
+    new-instance v1, Ljava/lang/IllegalArgumentException;
+
+    new-instance v2, Ljava/lang/StringBuilder;
+
+    invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v3, "Unknown URL "
+
+    invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2, p1}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    move-result-object v2
+
+    invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v2
+
+    invoke-direct {v1, v2}, Ljava/lang/IllegalArgumentException;-><init>(Ljava/lang/String;)V
+
+    throw v1
 .end method

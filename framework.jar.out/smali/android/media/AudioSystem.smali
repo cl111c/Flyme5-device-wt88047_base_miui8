@@ -505,121 +505,103 @@
     :goto_0
     return-object v0
 
-    .line 494
     :sswitch_0
     const-string v0, "communication"
 
     goto :goto_0
 
-    .line 496
     :sswitch_1
     const-string v0, "ambient"
 
     goto :goto_0
 
-    .line 498
     :sswitch_2
-    const-string/jumbo v0, "mic"
+    const-string v0, "mic"
 
     goto :goto_0
 
-    .line 500
     :sswitch_3
     const-string v0, "bt_sco_hs"
 
     goto :goto_0
 
-    .line 502
     :sswitch_4
     const-string v0, "headset"
 
     goto :goto_0
 
-    .line 504
     :sswitch_5
     const-string v0, "aux_digital"
 
     goto :goto_0
 
-    .line 506
     :sswitch_6
-    const-string/jumbo v0, "telephony_rx"
+    const-string v0, "telephony_rx"
 
     goto :goto_0
 
-    .line 508
     :sswitch_7
     const-string v0, "back_mic"
 
     goto :goto_0
 
-    .line 510
     :sswitch_8
-    const-string/jumbo v0, "remote_submix"
+    const-string v0, "remote_submix"
 
     goto :goto_0
 
-    .line 512
     :sswitch_9
     const-string v0, "analog_dock"
 
     goto :goto_0
 
-    .line 514
     :sswitch_a
     const-string v0, "digital_dock"
 
     goto :goto_0
 
-    .line 516
     :sswitch_b
-    const-string/jumbo v0, "usb_accessory"
+    const-string v0, "usb_accessory"
 
     goto :goto_0
 
-    .line 518
     :sswitch_c
-    const-string/jumbo v0, "usb_device"
+    const-string v0, "usb_device"
 
     goto :goto_0
 
-    .line 520
     :sswitch_d
     const-string v0, "fm_tuner"
 
     goto :goto_0
 
-    .line 522
     :sswitch_e
-    const-string/jumbo v0, "tv_tuner"
+    const-string v0, "tv_tuner"
 
     goto :goto_0
 
-    .line 524
     :sswitch_f
-    const-string/jumbo v0, "line"
+    const-string v0, "line"
 
     goto :goto_0
 
-    .line 526
     :sswitch_10
-    const-string/jumbo v0, "spdif"
+    const-string v0, "spdif"
 
     goto :goto_0
 
-    .line 528
     :sswitch_11
     const-string v0, "bt_a2dp"
 
     goto :goto_0
 
-    .line 530
     :sswitch_12
-    const-string/jumbo v0, "loopback"
+    const-string v0, "loopback"
 
     goto :goto_0
 
-    .line 492
+    nop
+
     :sswitch_data_0
     .sparse-switch
         -0x7fffffff -> :sswitch_0

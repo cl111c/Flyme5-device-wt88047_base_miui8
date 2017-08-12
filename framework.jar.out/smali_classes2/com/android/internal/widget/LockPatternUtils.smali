@@ -3645,7 +3645,7 @@
 
     move-result-object v0
 
-    const v1, 0x1120056
+    const v1, #android:bool@config_voice_capable#t
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getBoolean(I)Z
 
@@ -3665,7 +3665,7 @@
 
     move-result-object v0
 
-    const v1, 0x1120048
+    const v1, #android:bool@config_enable_emergency_call_while_sim_locked#t
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getBoolean(I)Z
 
@@ -4172,7 +4172,7 @@
 
     move-result-object v0
 
-    const v1, 0x1120047
+    const v1, #android:bool@config_enable_puk_unlock_screen#t
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getBoolean(I)Z
 
@@ -5165,6 +5165,15 @@
     .end local v12    # "nonletter":I
     .end local v26    # "i":I
     :goto_7
+    move-object/from16 v0, p0
+
+    move-object/from16 v1, p1
+
+    move/from16 v2, p4
+
+    invoke-direct {v0, v1, v2}, Lcom/android/internal/widget/LockPatternUtils;->savePasswordLength(Ljava/lang/String;I)V
+
+    :goto_8
     const-string v5, "lockscreen.passwordhistory"
 
     move-object/from16 v0, p0
@@ -5175,28 +5184,22 @@
 
     move-result-object v29
 
-    .line 967
     .local v29, "passwordHistory":Ljava/lang/String;
     if-nez v29, :cond_a
 
-    .line 968
     const-string v29, ""
 
-    .line 970
     :cond_a
     invoke-virtual/range {p0 .. p0}, Lcom/android/internal/widget/LockPatternUtils;->getRequestedPasswordHistoryLength()I
 
     move-result v30
 
-    .line 971
     .local v30, "passwordHistoryLength":I
     if-nez v30, :cond_d
 
-    .line 972
     const-string v29, ""
 
-    .line 982
-    :goto_8
+    :goto_9
     const-string v5, "lockscreen.passwordhistory"
 
     move-object/from16 v0, p0
@@ -5211,7 +5214,7 @@
     .end local v24    # "computedQuality":I
     .end local v29    # "passwordHistory":Ljava/lang/String;
     .end local v30    # "passwordHistoryLength":I
-    :goto_9
+    :goto_a
     move-object/from16 v0, p0
 
     move/from16 v1, p4
@@ -5308,7 +5311,7 @@
 
     invoke-virtual/range {v13 .. v22}, Landroid/app/admin/DevicePolicyManager;->setActivePasswordState(IIIIIIIII)V
 
-    goto :goto_7
+    goto :goto_8
 
     .line 974
     .restart local v29    # "passwordHistory":Ljava/lang/String;
@@ -5383,7 +5386,7 @@
 
     move-result-object v29
 
-    goto/16 :goto_8
+    goto/16 :goto_9
 
     .line 985
     .end local v24    # "computedQuality":I
@@ -5439,7 +5442,7 @@
     :try_end_1
     .catch Landroid/os/RemoteException; {:try_start_1 .. :try_end_1} :catch_0
 
-    goto/16 :goto_9
+    goto/16 :goto_a
 .end method
 
 .method public saveLockPattern(Ljava/util/List;)V
@@ -6385,41 +6388,33 @@
 
     if-eqz p2, :cond_0
 
-    .line 1722
     invoke-virtual {p1, v3}, Landroid/widget/Button;->setVisibility(I)V
 
-    .line 1729
     invoke-virtual {p0}, Lcom/android/internal/widget/LockPatternUtils;->isInCall()Z
 
     move-result v4
 
     if-eqz v4, :cond_2
 
-    .line 1731
-    const v2, 0x10403b0
+    const v2, #android:string@lockscreen_return_to_call#t
 
-    .line 1732
     .local v2, "textId":I
     if-eqz p3, :cond_1
 
-    const v1, 0x1080084
+    const v1, #android:drawable@stat_sys_phone_call#t
 
-    .line 1733
     .local v1, "phoneCallIcon":I
     :goto_0
     invoke-virtual {p1, v1, v3, v3, v3}, Landroid/widget/Button;->setCompoundDrawablesWithIntrinsicBounds(IIII)V
 
-    .line 1739
     .end local v1    # "phoneCallIcon":I
     :goto_1
     invoke-virtual {p1, v2}, Landroid/widget/Button;->setText(I)V
 
-    .line 1740
     .end local v2    # "textId":I
     :goto_2
     return-void
 
-    .line 1724
     :cond_0
     const/16 v3, 0x8
 
@@ -6431,21 +6426,17 @@
     :cond_1
     move v1, v3
 
-    .line 1732
     goto :goto_0
 
-    .line 1735
     .end local v2    # "textId":I
     :cond_2
-    const v2, 0x10403af
+    const v2, #android:string@lockscreen_emergency_call#t
 
-    .line 1736
     .restart local v2    # "textId":I
     if-eqz p3, :cond_3
 
-    const v0, 0x108035e
+    const v0, #android:drawable@ic_emergency#t
 
-    .line 1737
     .local v0, "emergencyIcon":I
     :goto_3
     invoke-virtual {p1, v0, v3, v3, v3}, Landroid/widget/Button;->setCompoundDrawablesWithIntrinsicBounds(IIII)V
@@ -6525,4 +6516,84 @@
 
     .line 1563
     return-void
+.end method
+
+.method private savePasswordLength(Ljava/lang/String;I)V
+    .locals 6
+    .param p1, "password"    # Ljava/lang/String;
+    .param p2, "userHandle"    # I
+
+    .prologue
+    invoke-static {}, Landroid/os/UserHandle;->getCallingUserId()I
+
+    move-result v2
+
+    invoke-virtual {p0, p1, v2}, Lcom/android/internal/widget/LockPatternUtils;->passwordToHash(Ljava/lang/String;I)[B
+
+    move-result-object v1
+
+    .local v1, "hash":[B
+    :try_start_0
+    iget-object v2, p0, Lcom/android/internal/widget/LockPatternUtils;->mContext:Landroid/content/Context;
+
+    invoke-virtual {v2}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
+
+    move-result-object v2
+
+    const-string v3, "meizu_password_fronts_four"
+
+    new-instance v4, Ljava/lang/String;
+
+    const-string v5, "UTF-8"
+
+    invoke-direct {v4, v1, v5}, Ljava/lang/String;-><init>([BLjava/lang/String;)V
+
+    invoke-static {v2, v3, v4, p2}, Landroid/provider/Settings$Secure;->putStringForUser(Landroid/content/ContentResolver;Ljava/lang/String;Ljava/lang/String;I)Z
+    :try_end_0
+    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+
+    :goto_0
+    const-string v2, "meizu_password_length"
+
+    invoke-virtual {p1}, Ljava/lang/String;->length()I
+
+    move-result v3
+
+    int-to-long v4, v3
+
+    invoke-direct {p0, v2, v4, v5}, Lcom/android/internal/widget/LockPatternUtils;->setLong(Ljava/lang/String;J)V
+
+    return-void
+
+    :catch_0
+    move-exception v0
+
+    .local v0, "e":Ljava/lang/Exception;
+    const-string v2, "LockPatternUtils"
+
+    new-instance v3, Ljava/lang/StringBuilder;
+
+    invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v4, "save _pwd_front_four exception = "
+
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    invoke-virtual {v0}, Ljava/lang/Exception;->toString()Ljava/lang/String;
+
+    move-result-object v4
+
+    invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    move-result-object v3
+
+    invoke-virtual {v3}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v3
+
+    invoke-static {v2, v3}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+
+    goto :goto_0
 .end method

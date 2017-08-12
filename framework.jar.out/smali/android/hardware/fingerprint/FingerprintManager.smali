@@ -609,3 +609,11 @@
     .line 533
     return-void
 .end method
+
+.method public startListening(Landroid/service/fingerprint/FingerprintManagerReceiver;)V
+    .locals 0
+    .param p1, "receiver"    # Landroid/service/fingerprint/FingerprintManagerReceiver;
+
+    .prologue
+    return-void
+.end method

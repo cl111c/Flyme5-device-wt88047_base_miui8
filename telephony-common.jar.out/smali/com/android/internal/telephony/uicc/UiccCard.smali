@@ -558,7 +558,7 @@
 
     move-result-object v10
 
-    const v11, 0x1120046
+    const v11, #android:bool@config_hotswapCapable#t
 
     invoke-virtual {v10, v11}, Landroid/content/res/Resources;->getBoolean(I)Z
 
@@ -610,7 +610,7 @@
     .local v6, "r":Landroid/content/res/Resources;
     if-eqz p1, :cond_3
 
-    const v10, 0x1040508
+    const v10, #android:string@sim_added_title#t
 
     invoke-virtual {v6, v10}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
 
@@ -619,7 +619,7 @@
     .line 356
     .local v8, "title":Ljava/lang/String;
     :goto_1
-    const v10, 0x104000a
+    const v10, #android:string@ok#t
 
     invoke-virtual {v6, v10}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
 
@@ -639,7 +639,7 @@
 
     .line 359
     .local v2, "inflater":Landroid/view/LayoutInflater;
-    const v10, 0x10900d7
+    const v10, #android:layout@sim_dialog_title#t
 
     const/4 v12, 0x0
 
@@ -649,7 +649,7 @@
 
     .line 360
     .local v9, "view":Landroid/view/View;
-    const v10, 0x102039e
+    const v10, #android:id@sim_custom_title#t
 
     invoke-virtual {v9, v10}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -746,7 +746,7 @@
     .restart local v5    # "listener":Landroid/content/DialogInterface$OnClickListener;
     .restart local v6    # "r":Landroid/content/res/Resources;
     :cond_3
-    const v10, 0x1040505
+    const v10, #android:string@sim_removed_title#t
 
     :try_start_3
     invoke-virtual {v6, v10}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
@@ -774,6 +774,8 @@
     .prologue
     const/4 v12, 0x1
 
+    return v12
+
     .line 388
     iget-object v8, p0, Lcom/android/internal/telephony/uicc/UiccCard;->mContext:Landroid/content/Context;
 
@@ -781,76 +783,62 @@
 
     move-result-object v8
 
-    const v9, 0x1120046
+    const v9, #android:bool@config_hotswapCapable#t
 
     invoke-virtual {v8, v9}, Landroid/content/res/Resources;->getBoolean(I)Z
 
     move-result v2
 
-    .line 392
     .local v2, "isHotSwapSupported":Z
     if-eqz v2, :cond_0
 
     if-eqz p1, :cond_0
 
-    .line 393
     invoke-direct {p0, p1}, Lcom/android/internal/telephony/uicc/UiccCard;->broadcastSimHotSwap(Z)V
 
-    .line 456
     :goto_0
     return v12
 
-    .line 397
     :cond_0
     iget-object v9, p0, Lcom/android/internal/telephony/uicc/UiccCard;->mLock:Ljava/lang/Object;
 
     monitor-enter v9
 
-    .line 398
     :try_start_0
     invoke-static {}, Landroid/content/res/Resources;->getSystem()Landroid/content/res/Resources;
 
     move-result-object v5
 
-    .line 399
     .local v5, "r":Landroid/content/res/Resources;
     const-string v7, ""
 
-    .line 400
     .local v7, "title":Ljava/lang/String;
     const/4 v3, 0x0
 
-    .line 401
     .local v3, "listener":Landroid/content/DialogInterface$OnClickListener;
-    const v4, 0x104000a
+    const v4, #android:string@ok#t
 
-    .line 403
     .local v4, "positiveButtonText":I
     if-eqz v2, :cond_5
 
-    .line 404
-    const v8, 0x1040505
+    const v8, #android:string@sim_removed_title#t
 
     invoke-virtual {v5, v8}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
 
     move-result-object v7
 
-    .line 410
     :goto_1
     if-nez v2, :cond_1
 
     if-eqz p1, :cond_1
 
-    .line 411
     const v4, 0x11070098
 
-    .line 412
     new-instance v3, Lcom/android/internal/telephony/uicc/UiccCard$3;
 
     .end local v3    # "listener":Landroid/content/DialogInterface$OnClickListener;
     invoke-direct {v3, p0}, Lcom/android/internal/telephony/uicc/UiccCard$3;-><init>(Lcom/android/internal/telephony/uicc/UiccCard;)V
 
-    .line 427
     .restart local v3    # "listener":Landroid/content/DialogInterface$OnClickListener;
     :cond_1
     new-instance v8, Landroid/app/AlertDialog$Builder;
@@ -869,26 +857,22 @@
 
     move-result-object v0
 
-    .line 431
     .local v0, "builder":Landroid/app/AlertDialog$Builder;
     if-nez v2, :cond_2
 
     if-eqz p1, :cond_2
 
-    .line 432
-    const/high16 v8, 0x1040000
+    const/high16 v8, #android:string@cancel#i
 
     const/4 v10, 0x0
 
     invoke-virtual {v0, v8, v10}, Landroid/app/AlertDialog$Builder;->setNegativeButton(ILandroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
 
-    .line 435
     :cond_2
     invoke-virtual {v0}, Landroid/app/AlertDialog$Builder;->create()Landroid/app/AlertDialog;
 
     move-result-object v1
 
-    .line 436
     .local v1, "dialog":Landroid/app/AlertDialog;
     invoke-virtual {v1}, Landroid/app/AlertDialog;->getWindow()Landroid/view/Window;
 
@@ -966,7 +950,7 @@
     goto :goto_1
 
     :cond_6
-    const v8, 0x1040505
+    const v8, #android:string@sim_removed_title#t
 
     invoke-virtual {v5, v8}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
     :try_end_1

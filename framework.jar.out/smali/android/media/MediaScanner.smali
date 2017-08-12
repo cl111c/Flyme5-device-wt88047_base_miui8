@@ -2482,7 +2482,7 @@
 
     move-result-object v0
 
-    const v1, 0x11200c4
+    const v1, #android:bool@def_custom_sys_sound#t
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getBoolean(I)Z
 
@@ -5033,15 +5033,15 @@
     .locals 6
 
     .prologue
-    const v5, 0x104006a
+    const v5, #android:string@def_custom_sys_mms#t
 
-    const v4, 0x1040069
+    const v4, #android:string@def_custom_sys_notification#t
 
-    const v3, 0x1040068
+    const v3, #android:string@def_custom_sys_ringtone3#t
 
-    const v2, 0x1040067
+    const v2, #android:string@def_custom_sys_ringtone2#t
 
-    const v1, 0x1040066
+    const v1, #android:string@def_custom_sys_ringtone#t
 
     .line 438
     iget-object v0, p0, Landroid/media/MediaScanner;->mContext:Landroid/content/Context;
@@ -5205,7 +5205,7 @@
 
     move-result-object v0
 
-    const v1, 0x104006b
+    const v1, #android:string@def_custom_sys_alarm#t
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
 
@@ -5224,7 +5224,7 @@
 
     move-result-object v0
 
-    const v1, 0x104006b
+    const v1, #android:string@def_custom_sys_alarm#t
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
 

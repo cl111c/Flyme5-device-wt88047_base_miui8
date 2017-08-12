@@ -40,7 +40,7 @@
 
 .field private static final DBG:Z = false
 
-.field public static final DEFAULT_NAME_RES:I = 0x104000e
+.field public static final DEFAULT_NAME_RES:I = #android:string@unknownName#t
 
 .field public static final DEFAULT_NW_MODE:I = -0x1
 
@@ -2670,4 +2670,24 @@
     move-exception v2
 
     goto :goto_0
+.end method
+
+.method public setDefaultDataSubIdExtended(I)V
+    .locals 0
+    .param p1, "subId"    # I
+
+    .prologue
+    invoke-static {p1}, Landroid/telephony/SubscriptionManager;->setDefaultDataSubId(I)V
+
+    return-void
+.end method
+
+.method public setDefaultVoiceSubIdExtended(I)V
+    .locals 0
+    .param p1, "subId"    # I
+
+    .prologue
+    invoke-static {p1}, Landroid/telephony/SubscriptionManager;->setDefaultVoiceSubId(I)V
+
+    return-void
 .end method

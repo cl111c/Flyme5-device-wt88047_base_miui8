@@ -9,6 +9,7 @@
 # annotations
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
+        Landroid/net/wifi/ScanResult$FlymeInjector;,
         Landroid/net/wifi/ScanResult$InformationElement;
     }
 .end annotation
@@ -39,6 +40,8 @@
 
 # instance fields
 .field public BSSID:Ljava/lang/String;
+
+.field public HexSSID:Ljava/lang/String;
 
 .field public SSID:Ljava/lang/String;
 
@@ -110,103 +113,84 @@
     .param p1, "source"    # Landroid/net/wifi/ScanResult;
 
     .prologue
-    .line 291
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 292
     if-eqz p1, :cond_0
 
-    .line 293
     iget-object v0, p1, Landroid/net/wifi/ScanResult;->wifiSsid:Landroid/net/wifi/WifiSsid;
 
     iput-object v0, p0, Landroid/net/wifi/ScanResult;->wifiSsid:Landroid/net/wifi/WifiSsid;
 
-    .line 294
     iget-object v0, p1, Landroid/net/wifi/ScanResult;->SSID:Ljava/lang/String;
 
     iput-object v0, p0, Landroid/net/wifi/ScanResult;->SSID:Ljava/lang/String;
 
-    .line 295
     iget-object v0, p1, Landroid/net/wifi/ScanResult;->BSSID:Ljava/lang/String;
 
     iput-object v0, p0, Landroid/net/wifi/ScanResult;->BSSID:Ljava/lang/String;
 
-    .line 296
     iget-object v0, p1, Landroid/net/wifi/ScanResult;->capabilities:Ljava/lang/String;
 
     iput-object v0, p0, Landroid/net/wifi/ScanResult;->capabilities:Ljava/lang/String;
 
-    .line 297
     iget v0, p1, Landroid/net/wifi/ScanResult;->level:I
 
     iput v0, p0, Landroid/net/wifi/ScanResult;->level:I
 
-    .line 298
     iget v0, p1, Landroid/net/wifi/ScanResult;->frequency:I
 
     iput v0, p0, Landroid/net/wifi/ScanResult;->frequency:I
 
-    .line 299
     iget-wide v0, p1, Landroid/net/wifi/ScanResult;->timestamp:J
 
     iput-wide v0, p0, Landroid/net/wifi/ScanResult;->timestamp:J
 
-    .line 300
     iget v0, p1, Landroid/net/wifi/ScanResult;->distanceCm:I
 
     iput v0, p0, Landroid/net/wifi/ScanResult;->distanceCm:I
 
-    .line 301
     iget v0, p1, Landroid/net/wifi/ScanResult;->distanceSdCm:I
 
     iput v0, p0, Landroid/net/wifi/ScanResult;->distanceSdCm:I
 
-    .line 302
     iget-wide v0, p1, Landroid/net/wifi/ScanResult;->seen:J
 
     iput-wide v0, p0, Landroid/net/wifi/ScanResult;->seen:J
 
-    .line 303
     iget v0, p1, Landroid/net/wifi/ScanResult;->autoJoinStatus:I
 
     iput v0, p0, Landroid/net/wifi/ScanResult;->autoJoinStatus:I
 
-    .line 304
     iget-boolean v0, p1, Landroid/net/wifi/ScanResult;->untrusted:Z
 
     iput-boolean v0, p0, Landroid/net/wifi/ScanResult;->untrusted:Z
 
-    .line 305
     iget v0, p1, Landroid/net/wifi/ScanResult;->numConnection:I
 
     iput v0, p0, Landroid/net/wifi/ScanResult;->numConnection:I
 
-    .line 306
     iget v0, p1, Landroid/net/wifi/ScanResult;->numUsage:I
 
     iput v0, p0, Landroid/net/wifi/ScanResult;->numUsage:I
 
-    .line 307
     iget v0, p1, Landroid/net/wifi/ScanResult;->numIpConfigFailures:I
 
     iput v0, p0, Landroid/net/wifi/ScanResult;->numIpConfigFailures:I
 
-    .line 308
     iget v0, p1, Landroid/net/wifi/ScanResult;->isAutoJoinCandidate:I
 
     iput v0, p0, Landroid/net/wifi/ScanResult;->isAutoJoinCandidate:I
 
-    .line 310
     iget-object v0, p1, Landroid/net/wifi/ScanResult;->wpsState:Ljava/lang/String;
 
     iput-object v0, p0, Landroid/net/wifi/ScanResult;->wpsState:Ljava/lang/String;
 
-    .line 311
     iget-object v0, p1, Landroid/net/wifi/ScanResult;->wpsDeviceName:Ljava/lang/String;
 
     iput-object v0, p0, Landroid/net/wifi/ScanResult;->wpsDeviceName:Ljava/lang/String;
 
-    .line 314
+    invoke-static/range {p0 .. p1}, Landroid/net/wifi/ScanResult$FlymeInjector;->initFlymeExtraFields(Landroid/net/wifi/ScanResult;Landroid/net/wifi/ScanResult;)V
+
     :cond_0
     return-void
 .end method
@@ -241,6 +225,8 @@
     move-wide/from16 v6, p6
 
     invoke-direct/range {v0 .. v9}, Landroid/net/wifi/ScanResult;-><init>(Landroid/net/wifi/WifiSsid;Ljava/lang/String;Ljava/lang/String;IIJLjava/lang/String;Ljava/lang/String;)V
+
+    invoke-static/range {p0 .. p1}, Landroid/net/wifi/ScanResult$FlymeInjector;->initFlymeExtraFields(Landroid/net/wifi/ScanResult;Landroid/net/wifi/WifiSsid;)V
 
     .line 243
     return-void
@@ -282,6 +268,8 @@
     move/from16 v9, p9
 
     invoke-direct/range {v0 .. v11}, Landroid/net/wifi/ScanResult;-><init>(Landroid/net/wifi/WifiSsid;Ljava/lang/String;Ljava/lang/String;IIJIILjava/lang/String;Ljava/lang/String;)V
+
+    invoke-static/range {p0 .. p1}, Landroid/net/wifi/ScanResult$FlymeInjector;->initFlymeExtraFields(Landroid/net/wifi/ScanResult;Landroid/net/wifi/WifiSsid;)V
 
     .line 269
     return-void

@@ -203,21 +203,20 @@
 
     invoke-virtual {v2, v3}, Landroid/graphics/Paint;->setXfermode(Landroid/graphics/Xfermode;)Landroid/graphics/Xfermode;
 
-    .line 128
     new-instance v2, Landroid/view/animation/DecelerateInterpolator;
 
     invoke-direct {v2}, Landroid/view/animation/DecelerateInterpolator;-><init>()V
 
     iput-object v2, p0, Landroid/widget/EdgeEffect;->mInterpolator:Landroid/view/animation/Interpolator;
 
-    .line 130
     invoke-static {p1}, Lmiui/os/Environment;->isUsingMiui(Landroid/content/Context;)Z
 
     move-result v2
 
+    const/4 v2, 0x0
+
     iput-boolean v2, p0, Landroid/widget/EdgeEffect;->mIsUsingMiui:Z
 
-    .line 131
     return-void
 .end method
 

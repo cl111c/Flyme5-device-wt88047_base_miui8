@@ -1231,11 +1231,11 @@
 
     goto/16 :goto_1
 
-    .line 320
     :cond_11
     return-void
 
-    .line 182
+    nop
+
     :pswitch_data_0
     .packed-switch 0x0
         :pswitch_0

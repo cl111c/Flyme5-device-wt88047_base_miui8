@@ -304,23 +304,19 @@
 
     move-result-object v0
 
-    .line 95
     .restart local v0    # "_arg0":Lcom/fingerprints/service/IFingerprintClient;
-    invoke-virtual {p2}, Landroid/os/Parcel;->readInt()I
+    invoke-virtual {p2}, Landroid/os/Parcel;->createIntArray()[I
 
-    move-result v1
+    move-result-object v1
 
-    .line 96
-    .local v1, "_arg1":I
-    invoke-virtual {p0, v0, v1}, Lcom/fingerprints/service/IFingerprintService$Stub;->removeData(Lcom/fingerprints/service/IFingerprintClient;I)Z
+    .restart local v1    # "_arg1":[I
+    invoke-virtual {p0, v0, v1}, Lcom/fingerprints/service/IFingerprintService$Stub;->removeData(Lcom/fingerprints/service/IFingerprintClient;[I)Z
 
     move-result v2
 
-    .line 97
     .restart local v2    # "_result":Z
     invoke-virtual {p3}, Landroid/os/Parcel;->writeNoException()V
 
-    .line 98
     if-eqz v2, :cond_1
 
     move v3, v4
@@ -332,7 +328,7 @@
 
     .line 103
     .end local v0    # "_arg0":Lcom/fingerprints/service/IFingerprintClient;
-    .end local v1    # "_arg1":I
+    .end local v1    # "_arg1":[I
     .end local v2    # "_result":Z
     :sswitch_6
     const-string v3, "com.fingerprints.service.IFingerprintService"

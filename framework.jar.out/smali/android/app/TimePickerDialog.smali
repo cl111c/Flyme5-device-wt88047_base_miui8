@@ -87,7 +87,7 @@
 
     .line 109
     .local v0, "inflater":Landroid/view/LayoutInflater;
-    const v3, 0x10900ee
+    const v3, #android:layout@time_picker_dialog#t
 
     const/4 v4, 0x0
 
@@ -102,7 +102,7 @@
     .line 111
     const/4 v3, -0x1
 
-    const v4, 0x104000a
+    const v4, #android:string@ok#t
 
     invoke-virtual {v1, v4}, Landroid/content/Context;->getString(I)Ljava/lang/String;
 
@@ -113,7 +113,7 @@
     .line 112
     const/4 v3, -0x2
 
-    const/high16 v4, 0x1040000
+    const/high16 v4, #android:string@cancel#i
 
     invoke-virtual {v1, v4}, Landroid/content/Context;->getString(I)Ljava/lang/String;
 
@@ -121,13 +121,11 @@
 
     invoke-virtual {p0, v3, v4, p0}, Landroid/app/TimePickerDialog;->setButton(ILjava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)V
 
-    .line 113
     const/4 v3, 0x1
 
     invoke-virtual {p0, v3}, Landroid/app/TimePickerDialog;->setButtonPanelLayoutHint(I)V
 
-    .line 115
-    const v3, 0x10203cc
+    const v3, #android:id@timePicker#t
 
     invoke-virtual {v2, v3}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -236,7 +234,7 @@
 
     move-result-object v1
 
-    const v2, 0x101049e
+    const v2, #android:attr@timePickerDialogTheme#t
 
     const/4 v3, 0x1
 

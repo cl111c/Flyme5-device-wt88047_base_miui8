@@ -318,6 +318,8 @@
 
     throw v10
 
+    nop
+
     .line 1142
     :pswitch_data_0
     .packed-switch 0x0

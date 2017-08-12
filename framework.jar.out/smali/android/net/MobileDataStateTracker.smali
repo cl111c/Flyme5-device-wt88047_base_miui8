@@ -800,74 +800,60 @@
 
     invoke-static {v0}, Landroid/net/MobileDataStateTracker;->sloge(Ljava/lang/String;)V
 
-    .line 732
     const/4 v0, 0x0
 
     :goto_0
     return-object v0
 
-    .line 711
     :pswitch_1
     const-string v0, "default"
 
     goto :goto_0
 
-    .line 713
     :pswitch_2
-    const-string/jumbo v0, "mms"
+    const-string v0, "mms"
 
     goto :goto_0
 
-    .line 715
     :pswitch_3
-    const-string/jumbo v0, "supl"
+    const-string v0, "supl"
 
     goto :goto_0
 
-    .line 717
     :pswitch_4
     const-string v0, "dun"
 
     goto :goto_0
 
-    .line 719
     :pswitch_5
     const-string v0, "hipri"
 
     goto :goto_0
 
-    .line 721
     :pswitch_6
     const-string v0, "fota"
 
     goto :goto_0
 
-    .line 723
     :pswitch_7
     const-string v0, "ims"
 
     goto :goto_0
 
-    .line 725
     :pswitch_8
     const-string v0, "cbs"
 
     goto :goto_0
 
-    .line 727
     :pswitch_9
     const-string v0, "ia"
 
     goto :goto_0
 
-    .line 729
     :pswitch_a
     const-string v0, "emergency"
 
     goto :goto_0
-
-    .line 709
-    nop
 
     :pswitch_data_0
     .packed-switch 0x0
@@ -1130,7 +1116,7 @@
 
     move-result-object v1
 
-    const v2, 0x10e0079
+    const v2, #android:integer@config_mobile_mtu#t
 
     invoke-virtual {v1, v2}, Landroid/content/res/Resources;->getInteger(I)I
 

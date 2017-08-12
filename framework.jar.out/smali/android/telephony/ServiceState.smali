@@ -455,41 +455,32 @@
     .param p0, "roamingType"    # I
 
     .prologue
-    .line 234
     packed-switch p0, :pswitch_data_0
 
-    .line 248
     const-string v0, "UNKNOWN"
 
     :goto_0
     return-object v0
 
-    .line 236
     :pswitch_0
     const-string v0, "home"
 
     goto :goto_0
 
-    .line 239
     :pswitch_1
-    const-string/jumbo v0, "roaming"
+    const-string v0, "roaming"
 
     goto :goto_0
 
-    .line 242
     :pswitch_2
     const-string v0, "Domestic Roaming"
 
     goto :goto_0
 
-    .line 245
     :pswitch_3
     const-string v0, "International Roaming"
 
     goto :goto_0
-
-    .line 234
-    nop
 
     :pswitch_data_0
     .packed-switch 0x0

@@ -134,6 +134,8 @@
 
     goto :goto_0
 
+    nop
+
     .line 67
     :pswitch_data_0
     .packed-switch 0x1
