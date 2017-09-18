@@ -12854,9 +12854,9 @@
 
     move-object/from16 v19, p3
 
-    invoke-static/range {v8 .. v19}, Lcom/android/server/am/ExtraActivityManagerService;->checkStartActivityPermission(Landroid/content/Context;Lcom/android/server/am/ActivityManagerService;Landroid/app/IApplicationThread;Landroid/content/pm/ActivityInfo;Landroid/content/Intent;Ljava/lang/String;ZIZIILjava/lang/String;)Landroid/content/Intent;
+#    invoke-static/range {v8 .. v19}, Lcom/android/server/am/ExtraActivityManagerService;->checkStartActivityPermission(Landroid/content/Context;Lcom/android/server/am/ActivityManagerService;Landroid/app/IApplicationThread;Landroid/content/pm/ActivityInfo;Landroid/content/Intent;Ljava/lang/String;ZIZIILjava/lang/String;)Landroid/content/Intent;
 
-    move-result-object p4
+#    move-result-object p4
 
     .line 952
     move-object/from16 v0, p4
